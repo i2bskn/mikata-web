@@ -13,38 +13,22 @@ export interface HeaderProps {
   siteName: string;
   logoUrl?: string;
   navItems: NavItem[];
-  /**
-   * キャッチコピー（トップバーに表示）
-   */
   catchphrase?: string;
-  /**
-   * 電話番号（表示する場合）
-   */
   phoneNumber?: string;
-  /**
-   * 予約確認URL
-   */
   reservationCheckUrl?: string;
-  /**
-   * 履歴・お気に入りURL
-   */
   historyUrl?: string;
-  /**
-   * お問い合わせURL
-   */
   contactUrl?: string;
 }
 
 /**
  * 共通ヘッダーコンポーネント
- * 既存サイトのデザインに合わせたトップバー付きヘッダー
+ * 既存サイト: 水色トップバー + 白メインヘッダー + アクションアイコン
  */
 export const Header: FC<HeaderProps> = ({
   siteName,
   logoUrl,
   navItems,
   catchphrase,
-  phoneNumber,
   reservationCheckUrl,
   historyUrl,
   contactUrl,
@@ -53,179 +37,222 @@ export const Header: FC<HeaderProps> = ({
 
   return (
     <header className="sticky top-0 z-50">
-      {/* トップバー（水色） */}
-      <div className="bg-primary text-white">
-        <div className="mx-auto max-w-7xl px-4">
-          <div className="flex h-8 items-center justify-between text-xs sm:text-sm">
+      {/* トップバー（水色背景） - 既存サイト: height 35px, bg #1a9edb */}
+      <div style={{ backgroundColor: "#1a9edb" }}>
+        <div className="mx-auto px-1" style={{ maxWidth: "1020px" }}>
+          <div
+            className="flex items-center text-white"
+            style={{ height: "35px", fontSize: "12px", fontWeight: 300 }}
+          >
             <span className="truncate">
-              {catchphrase || `青の洞窟専門のアクティビティ予約サイト "${siteName}"`}
+              {catchphrase ||
+                `青の洞窟専門のアクティビティ予約サイト "${siteName}"`}
             </span>
-            {phoneNumber && (
-              <a
-                href={`tel:${phoneNumber.replace(/-/g, "")}`}
-                className="hidden sm:flex items-center gap-1 hover:opacity-80"
-              >
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
-                {phoneNumber}
-              </a>
-            )}
           </div>
         </div>
       </div>
 
-      {/* メインヘッダー（白背景） */}
-      <div className="bg-white shadow-sm">
-        <div className="mx-auto max-w-7xl px-4">
-          <div className="flex h-14 items-center justify-between">
+      {/* メインヘッダー（白背景） - 既存サイト: height 59px */}
+      <div className="bg-white" style={{ borderBottom: "1px solid #e5e5e5" }}>
+        <div className="mx-auto px-1" style={{ maxWidth: "1020px" }}>
+          <div
+            className="flex items-center justify-between"
+            style={{ height: "59px" }}
+          >
             {/* ロゴ */}
-            <a href="/" className="flex items-center gap-2 shrink-0">
+            <a href="/" className="flex items-center shrink-0">
               {logoUrl ? (
-                <img src={logoUrl} alt={siteName} className="h-9" />
+                <img src={logoUrl} alt={siteName} className="h-10" />
               ) : (
-                <span className="text-lg font-bold text-primary">{siteName}</span>
+                <span
+                  className="font-bold"
+                  style={{ color: "#1a9edb", fontSize: "18px" }}
+                >
+                  {siteName}
+                </span>
               )}
             </a>
 
             {/* デスクトップナビゲーション */}
-            <nav className="hidden lg:flex items-center gap-6">
+            <nav className="hidden lg:flex items-center gap-5">
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="text-sm font-medium text-gray-700 hover:text-primary transition-colors"
+                  className="font-semibold"
+                  style={{ color: "#333", fontSize: "12px" }}
                 >
                   {item.label}
                 </a>
               ))}
             </nav>
 
-            {/* アクションボタン群 */}
-            <div className="flex items-center gap-2">
-              {/* お問い合わせ */}
+            {/* アクションアイコン群 - 既存サイト: 全て#1a9edb fill、メニューのみ#ed3434 */}
+            <div className="flex items-center">
+              {/* 各種 お問い合わせ */}
               {contactUrl && (
                 <a
                   href={contactUrl}
-                  className="hidden sm:flex flex-col items-center justify-center px-2 py-1 text-gray-600 hover:text-primary transition-colors"
+                  className="hidden sm:flex flex-col items-center justify-center"
+                  style={{ padding: "4px 12px" }}
                 >
-                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
+                  <svg
+                    width="23"
+                    height="20"
+                    viewBox="0 0 24 22"
+                    fill="#1a9edb"
+                  >
+                    <path d="M12 0C5.4 0 0 4.4 0 9.8c0 3.1 1.7 5.8 4.4 7.6L3 21.5c-.1.3.1.5.4.5.1 0 .2 0 .3-.1l5-3.2c1 .2 2.1.3 3.3.3 6.6 0 12-4.4 12-9.8S18.6 0 12 0zm-4 12a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zm4 0a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zm4 0a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4z" />
                   </svg>
-                  <span className="text-xs mt-0.5">お問合せ</span>
+                  <span style={{ fontSize: "10px", marginTop: "2px", color: "#333" }}>
+                    各種 お問い合わせ
+                  </span>
                 </a>
               )}
 
-              {/* 履歴・お気に入り */}
+              {/* 履歴・お気に入り - 既存サイト: 青の回転矢印+青の星 */}
               {historyUrl && (
                 <a
                   href={historyUrl}
-                  className="hidden sm:flex flex-col items-center justify-center px-2 py-1 text-gray-600 hover:text-primary transition-colors"
+                  className="hidden sm:flex flex-col items-center justify-center"
+                  style={{ padding: "4px 12px" }}
                 >
-                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  <span className="text-xs mt-0.5">履歴</span>
+                  <div className="flex items-center gap-1">
+                    {/* 履歴（回転矢印） */}
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 21 18"
+                      fill="#1a9edb"
+                    >
+                      <path d="M18.4 2.6A10 10 0 003.1 1.5L1.5.3c-.2-.2-.5 0-.5.3v4.8c0 .2.2.4.4.4h4.8c.3 0 .4-.3.3-.5L4.8 3.5a7.8 7.8 0 0112 .8A7.8 7.8 0 0118.5 10a7.8 7.8 0 01-5.7 7.5 7.8 7.8 0 01-9.1-4.2c-.1-.3-.5-.4-.7-.2l-.6.4c-.2.2-.3.5-.2.8a10 10 0 0011.5 5.4A10 10 0 0020.5 10a10 10 0 00-2.1-7.4z" />
+                    </svg>
+                    {/* お気に入り（星） */}
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 19 18"
+                      fill="#1a9edb"
+                    >
+                      <path d="M9.5.6l2.4 5.8h6.2l-5 3.8 1.9 6L9.5 12.5 4 16.2l1.9-6-5-3.8h6.2z" />
+                    </svg>
+                  </div>
+                  <span style={{ fontSize: "10px", marginTop: "2px", color: "#333" }}>
+                    履歴・お気に入り
+                  </span>
                 </a>
               )}
 
-              {/* 予約確認ボタン */}
+              {/* 予約確認 - 既存サイト: 青のカレンダーアイコン */}
               {reservationCheckUrl && (
                 <a
                   href={reservationCheckUrl}
-                  className="flex items-center gap-1 rounded bg-danger px-3 py-2 text-sm font-medium text-white hover:opacity-90 transition-opacity"
+                  className="hidden sm:flex flex-col items-center justify-center"
+                  style={{ padding: "4px 12px" }}
                 >
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
-                    />
+                  <svg
+                    width="23"
+                    height="20"
+                    viewBox="0 0 23 20"
+                    fill="#1a9edb"
+                  >
+                    <path d="M18.5 2h-1V.5a.5.5 0 00-1 0V2h-10V.5a.5.5 0 00-1 0V2h-1A3.5 3.5 0 001 5.5v11A3.5 3.5 0 004.5 20h14a3.5 3.5 0 003.5-3.5v-11A3.5 3.5 0 0018.5 2zm-14 1h14A2.5 2.5 0 0121 5.5V7H2V5.5A2.5 2.5 0 014.5 3zM18.5 19h-14A2.5 2.5 0 012 16.5V8h19v8.5A2.5 2.5 0 0118.5 19z" />
+                    <rect x="5" y="10" width="2.5" height="2" rx=".3" />
+                    <rect x="10" y="10" width="2.5" height="2" rx=".3" />
+                    <rect x="15" y="10" width="2.5" height="2" rx=".3" />
+                    <rect x="5" y="14" width="2.5" height="2" rx=".3" />
+                    <rect x="10" y="14" width="2.5" height="2" rx=".3" />
                   </svg>
-                  <span className="hidden sm:inline">予約確認</span>
+                  <span style={{ fontSize: "10px", marginTop: "2px", color: "#333" }}>
+                    予約確認
+                  </span>
                 </a>
               )}
 
-              {/* モバイルメニューボタン */}
+              {/* メニューボタン - 既存サイト: #ed3434の3本線 */}
               <button
                 type="button"
-                className="lg:hidden flex flex-col items-center justify-center px-2 py-1 text-gray-600"
+                className="flex flex-col items-center justify-center"
+                style={{ padding: "4px 12px" }}
                 aria-label="メニューを開く"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
-                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  {isMenuOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  )}
-                </svg>
-                <span className="text-xs mt-0.5">メニュー</span>
+                <div
+                  style={{ width: "20px", height: "20px" }}
+                  className="flex flex-col justify-center gap-[4px]"
+                >
+                  <span
+                    style={{
+                      display: "block",
+                      width: "20px",
+                      height: "3px",
+                      backgroundColor: "#ed3434",
+                      borderRadius: "1px",
+                    }}
+                  />
+                  <span
+                    style={{
+                      display: "block",
+                      width: "20px",
+                      height: "3px",
+                      backgroundColor: "#ed3434",
+                      borderRadius: "1px",
+                    }}
+                  />
+                  <span
+                    style={{
+                      display: "block",
+                      width: "20px",
+                      height: "3px",
+                      backgroundColor: "#ed3434",
+                      borderRadius: "1px",
+                    }}
+                  />
+                </div>
+                <span style={{ fontSize: "10px", marginTop: "2px", color: "#333" }}>
+                  メニュー
+                </span>
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* モバイルメニュー */}
+      {/* モバイル/ドロワーメニュー */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-white border-t shadow-lg">
-          <nav className="mx-auto max-w-7xl px-4 py-4">
-            <ul className="space-y-2">
+        <div className="bg-white shadow-lg" style={{ borderTop: "1px solid #e5e5e5" }}>
+          <nav className="mx-auto px-4 py-4" style={{ maxWidth: "1020px" }}>
+            <ul className="space-y-1">
               {navItems.map((item) => (
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="block py-2 text-gray-700 hover:text-primary transition-colors"
+                    className="block py-3 px-2"
+                    style={{ color: "#333", borderBottom: "1px solid #eee" }}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.label}
                   </a>
                 </li>
               ))}
-              <li className="border-t pt-2 mt-2">
+              <li style={{ borderBottom: "1px solid #eee" }}>
                 {contactUrl && (
-                  <a
-                    href={contactUrl}
-                    className="block py-2 text-gray-700 hover:text-primary transition-colors"
-                  >
-                    お問合せ
+                  <a href={contactUrl} className="block py-3 px-2" style={{ color: "#333" }}>
+                    各種 お問い合わせ
+                  </a>
+                )}
+              </li>
+              <li style={{ borderBottom: "1px solid #eee" }}>
+                {historyUrl && (
+                  <a href={historyUrl} className="block py-3 px-2" style={{ color: "#333" }}>
+                    履歴・お気に入り
                   </a>
                 )}
               </li>
               <li>
-                {historyUrl && (
-                  <a
-                    href={historyUrl}
-                    className="block py-2 text-gray-700 hover:text-primary transition-colors"
-                  >
-                    履歴・お気に入り
+                {reservationCheckUrl && (
+                  <a href={reservationCheckUrl} className="block py-3 px-2" style={{ color: "#333" }}>
+                    予約確認
                   </a>
                 )}
               </li>

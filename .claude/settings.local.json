@@ -5,7 +5,13 @@
       "Bash(pnpm check-types:*)",
       "Bash(pnpm --filter bluecavetour build:*)",
       "Bash(pnpm --filter bluecavetour dev:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(ls:*)",
+      "Bash(tree:*)",
+      "Bash(done)",
+      "Bash(pnpm build:*)",
+      "Bash(/bin/cp:*)",
+      "Bash(/bin/rm:*)"
     ]
   }
 }

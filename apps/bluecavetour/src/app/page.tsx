@@ -6,29 +6,40 @@ import { OrganizationJsonLd } from "@repo/seo/json-ld";
 import { getPopularPlans } from "../lib/data/plans";
 import { siteConfig } from "../lib/site-config";
 
-// ヒーローバナーのスライドデータ
+// ヒーローバナーのスライドデータ（旧サイト準拠: 4枚）
 const heroSlides = [
   {
-    imageUrl: "/images/banner/hero-1.jpg",
-    alt: "石垣島 青の洞窟シュノーケリング",
+    imageUrl: "/images/banner/hero-kv.png",
+    alt: "石垣島・青の洞窟専門 厳選ツアーがいっぱい！",
+    href: "/",
   },
   {
-    imageUrl: "/images/banner/hero-2.jpg",
-    alt: "透明度抜群の海でカヤック体験",
+    imageUrl: "/images/banner/hero-ferry.webp",
+    alt: "離島フェリー予約",
+    href: "https://ishigaki-tours.com/ferry/",
   },
   {
-    imageUrl: "/images/banner/hero-3.jpg",
-    alt: "ウミガメに出会えるツアー",
+    imageUrl: "/images/banner/hero-premium.webp",
+    alt: "ツアーズ厳選プレミアムプラン",
+    href: "/campaign/premium-plan.html",
+  },
+  {
+    imageUrl: "/images/banner/hero-bluecave.jpg",
+    alt: "石垣島 青の洞窟",
+    href: "/",
   },
 ];
 
-// カテゴリナビのアイテム
+// カテゴリナビ - 既存サイトの8項目
 const categoryNavItems = [
-  { label: "人気ランキング", href: "/ranking", icon: "ranking" as const },
-  { label: "アクティビティ", href: "/plan", icon: "activity" as const },
-  { label: "シーン・時間帯", href: "/category/scene-time", icon: "time" as const },
-  { label: "セットプラン", href: "/category/setplan", icon: "combo" as const },
-  { label: "キャンペーン", href: "/category/campaign", icon: "campaign" as const },
+  { label: "人気プラン\nランキング", href: "/ranking", iconUrl: "/images/category/ranking.webp", isActive: true },
+  { label: "アクティビティ", href: "/plan", iconUrl: "/images/category/activity.webp" },
+  { label: "当日予約OK\nプラン", href: "/scene-time/same_day_booking.html", iconUrl: "/images/category/same-day.webp" },
+  { label: "写真無料サービ\nス付きプラン", href: "/scene-time/freetourphotos.html", iconUrl: "/images/category/free-photo.png" },
+  { label: "プレミアム\n厳選プラン", href: "/campaign/premium-plan.html", iconUrl: "/images/category/premium.webp" },
+  { label: "ウミガメツアー", href: "/plan?category=umigame", iconUrl: "/images/category/sea-turtle.png" },
+  { label: "送迎付きプラン", href: "/plan?category=shuttle", iconUrl: "/images/category/transfer.png" },
+  { label: "お得な割引\nセットプラン", href: "/category/setplan", iconUrl: "/images/category/setplan.webp" },
 ];
 
 export default function HomePage() {
@@ -46,77 +57,317 @@ export default function HomePage() {
         }}
       />
 
-      <div className="mx-auto max-w-7xl px-4 py-6">
-        {/* 2カラムレイアウト */}
-        <div className="flex flex-col lg:flex-row gap-6">
-          {/* メインコンテンツ */}
-          <div className="flex-1">
-            {/* ヒーローバナー */}
-            <HeroBanner slides={heroSlides} autoPlayInterval={5000} />
+      {/* ヒーローバナー - フルワイド */}
+      <HeroBanner slides={heroSlides} autoPlayInterval={5000} />
 
-            {/* カテゴリナビゲーション */}
-            <div className="mt-6">
-              <CategoryNav items={categoryNavItems} />
+      {/* 検索エリア - 既存サイト: フルワイド薄い青背景(#eff4ff)の中に白カード1つ（タブ+フォーム） */}
+      <div
+        style={{
+          backgroundColor: "#eff4ff",
+          padding: "25px 0",
+        }}
+      >
+        <div className="mx-auto" style={{ maxWidth: "1020px", padding: "0 10px" }}>
+            <div
+              style={{
+                backgroundColor: "#fff",
+                borderRadius: "10px",
+                padding: "15px",
+              }}
+            >
+              {/* カテゴリナビ（タブ） - 白カード内 */}
+              <CategoryNav items={categoryNavItems} embedded />
+
+              {/* 検索フォーム - 白カード内 */}
+              <div style={{ marginTop: "10px" }}>
+          <div className="flex flex-wrap items-end gap-3">
+            {/* プラン選択 */}
+            <div style={{ flex: "1", minWidth: "180px" }}>
+              <select
+                style={{
+                  width: "100%",
+                  padding: "10px 12px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  fontSize: "14px",
+                  backgroundColor: "#fff",
+                  appearance: "none",
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "right 12px center",
+                }}
+              >
+                <option value="">全てのプラン</option>
+                <option value="bluecave">青の洞窟シュノーケリング</option>
+                <option value="kayak">カヤック</option>
+                <option value="setplan">セットプラン</option>
+                <option value="charter">チャーター</option>
+                <option value="marine-sports">マリンスポーツ</option>
+              </select>
             </div>
 
-            {/* 検索フォーム */}
-            <div className="mt-6 rounded-lg bg-white p-4 shadow-sm border">
-              <h2 className="mb-4 text-lg font-bold text-gray-900">
-                ツアーを検索
-              </h2>
-              <div className="grid gap-4 sm:grid-cols-3">
-                <div>
-                  <label className="mb-1 block text-sm font-medium text-gray-700">
-                    アクティビティ
-                  </label>
-                  <select className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary">
-                    <option value="">すべて</option>
-                    <option value="bluecave">青の洞窟シュノーケリング</option>
-                    <option value="kayak">カヤック</option>
-                    <option value="setplan">セットプラン</option>
-                    <option value="charter">チャーター</option>
-                    <option value="marine-sports">マリンスポーツ</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="mb-1 block text-sm font-medium text-gray-700">
-                    参加日
-                  </label>
-                  <input
-                    type="date"
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                  />
-                </div>
-                <div className="flex items-end">
-                  <button
-                    type="button"
-                    className="w-full rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:opacity-90 transition-opacity"
-                  >
-                    検索する
-                  </button>
-                </div>
+            {/* 日付選択 */}
+            <div style={{ flex: "1", minWidth: "180px" }}>
+              <input
+                type="text"
+                placeholder="日付未定"
+                readOnly
+                style={{
+                  width: "100%",
+                  padding: "10px 12px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  fontSize: "14px",
+                  backgroundColor: "#fff",
+                }}
+              />
+            </div>
+
+            {/* 今日・明日チェックボックス */}
+            <div className="flex items-center gap-4" style={{ fontSize: "14px", color: "#333" }}>
+              <label className="flex items-center gap-1 cursor-pointer">
+                <input type="checkbox" style={{ width: "16px", height: "16px" }} />
+                <span>今日</span>
+              </label>
+              <label className="flex items-center gap-1 cursor-pointer">
+                <input type="checkbox" style={{ width: "16px", height: "16px" }} />
+                <span>明日</span>
+              </label>
+            </div>
+
+            {/* さらに絞り込む */}
+            <div>
+              <button
+                type="button"
+                style={{
+                  fontSize: "13px",
+                  color: "#666",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                ＋さらに<br />絞り込む
+              </button>
+            </div>
+          </div>
+
+          {/* 該当プラン数 + 検索ボタン */}
+          <div className="flex items-center justify-between" style={{ marginTop: "16px" }}>
+            <div style={{ color: "#666", fontSize: "14px" }}>
+              該当プラン数{" "}
+              <span style={{ fontSize: "32px", fontWeight: "bold", color: "#333" }}>17</span>
+              <span style={{ fontSize: "16px", color: "#333" }}>件</span>
+            </div>
+            <button
+              type="button"
+              style={{
+                backgroundColor: "#ed3434",
+                color: "#fff",
+                border: "none",
+                borderRadius: "5px",
+                padding: "14px 50px",
+                fontSize: "22px",
+                fontWeight: "bold",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              検索する
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
+            </button>
+          </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* 人気プランセクション */}
-            <section className="mt-8">
-              <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-xl font-bold text-gray-900">
-                  人気ツアーランキング
+      {/* メインコンテンツ - 1020px幅 */}
+      <div className="mx-auto" style={{ maxWidth: "1020px", padding: "0 5px" }}>
+        {/* 2カラムレイアウト - 既存サイト: 左サイドバー225px + 右メインコンテンツ */}
+        <div className="flex gap-5" style={{ marginTop: "30px" }}>
+          {/* 左サイドバー - 既存サイト: 225px幅 */}
+          <aside className="hidden lg:block shrink-0" style={{ width: "225px" }}>
+            <div className="sticky" style={{ top: "110px" }}>
+              {/* サイドバーカテゴリナビ（小型版） */}
+              <div style={{ backgroundColor: "#fff", border: "1px solid #e5e5e5", borderRadius: "4px", padding: "12px" }}>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {categoryNavItems.slice(0, 2).map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      className="flex flex-col items-center text-center"
+                      style={{
+                        width: "80px",
+                        padding: "8px 4px",
+                        color: item.isActive ? "#1a9edb" : "#333",
+                        borderBottom: item.isActive ? "3px solid #f08300" : "3px solid transparent",
+                        fontSize: "11px",
+                      }}
+                    >
+                      <img
+                        src={item.iconUrl}
+                        alt={item.label.split("\n")[0]}
+                        width={28}
+                        height={28}
+                        style={{ width: "28px", height: "28px", objectFit: "contain" }}
+                      />
+                      <span>{item.label.split("\n")[0]}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* サイドバー検索フォーム */}
+              <div
+                style={{
+                  marginTop: "16px",
+                  backgroundColor: "#fff",
+                  border: "1px solid #e5e5e5",
+                  borderRadius: "4px",
+                  padding: "16px",
+                }}
+              >
+                <select
+                  style={{
+                    width: "100%",
+                    padding: "8px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    fontSize: "13px",
+                    marginBottom: "10px",
+                  }}
+                >
+                  <option>全てのプラン</option>
+                </select>
+                <input
+                  type="text"
+                  placeholder="日付未定"
+                  readOnly
+                  style={{
+                    width: "100%",
+                    padding: "8px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    fontSize: "13px",
+                    marginBottom: "10px",
+                  }}
+                />
+                <div className="flex items-center gap-3" style={{ fontSize: "12px", color: "#333", marginBottom: "10px" }}>
+                  <label className="flex items-center gap-1">
+                    <input type="checkbox" />
+                    <span>今日</span>
+                  </label>
+                  <label className="flex items-center gap-1">
+                    <input type="checkbox" />
+                    <span>明日</span>
+                  </label>
+                  <button type="button" style={{ fontSize: "11px", color: "#666", background: "none", border: "none" }}>
+                    ＋さらに絞り込む
+                  </button>
+                </div>
+                <div style={{ textAlign: "center", color: "#666", fontSize: "13px", marginBottom: "10px" }}>
+                  該当プラン数
+                  <div>
+                    <span style={{ fontSize: "28px", fontWeight: "bold", color: "#333" }}>17</span>
+                    <span style={{ fontSize: "14px" }}>件</span>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  style={{
+                    width: "100%",
+                    backgroundColor: "#ed3434",
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: "5px",
+                    padding: "10px",
+                    fontSize: "16px",
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "6px",
+                  }}
+                >
+                  検索する
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* サイドバーバナー広告 */}
+              <div style={{ marginTop: "16px" }}>
+                <a href="https://ishigaki-tours.com/ferry/" target="_blank" rel="noopener noreferrer" className="block">
+                  <img src="/images/sidebar/ferry-banner.webp" alt="離島フェリー予約" style={{ width: "100%", borderRadius: "4px" }} />
+                </a>
+              </div>
+              <div style={{ marginTop: "12px" }}>
+                <Link href="/campaign/premium-plan.html" className="block">
+                  <img src="/images/sidebar/premium-plan-banner.png" alt="ツアーズ厳選プレミアムプラン" style={{ width: "100%", borderRadius: "4px" }} />
+                </Link>
+              </div>
+            </div>
+          </aside>
+
+          {/* メインコンテンツ */}
+          <div className="flex-1 min-w-0">
+            {/* 人気プランランキング */}
+            <section>
+              <div className="flex items-center justify-between" style={{ marginBottom: "16px" }}>
+                <h2 className="flex items-center gap-2" style={{ fontSize: "20px", fontWeight: "bold", color: "#333" }}>
+                  <img src="/images/crown.svg" alt="" width={24} height={22} style={{ width: "24px", height: "22px" }} />
+                  人気プランランキング
                 </h2>
                 <Link
                   href="/ranking"
-                  className="text-sm font-medium text-primary hover:underline"
+                  style={{
+                    backgroundColor: "#ed3434",
+                    color: "#fff",
+                    padding: "6px 16px",
+                    borderRadius: "4px",
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    textDecoration: "none",
+                  }}
                 >
-                  すべて見る →
+                  一覧を見る
                 </Link>
               </div>
-              <div className="grid gap-4 sm:grid-cols-2">
+
+              {/* プランカード横スクロール - 既存サイトは5つ横並び */}
+              <div className="flex gap-3 overflow-x-auto pb-3" style={{ scrollSnapType: "x mandatory" }}>
                 {popularPlans.map((plan, index) => (
-                  <div key={plan.slug} className="relative">
+                  <div
+                    key={plan.slug}
+                    className="shrink-0"
+                    style={{ width: "170px", scrollSnapAlign: "start", position: "relative" }}
+                  >
                     {/* ランキングバッジ */}
-                    <div className="absolute -left-2 -top-2 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-bold text-white shadow-md">
-                      {index + 1}
+                    <div
+                      style={{
+                        position: "absolute",
+                        left: "0",
+                        top: "0",
+                        zIndex: 10,
+                        backgroundColor: index < 3 ? "#ed3434" : "#999",
+                        color: "#fff",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        padding: "2px 10px",
+                        borderRadius: "0 0 8px 0",
+                      }}
+                    >
+                      {index + 1}位
                     </div>
                     <PlanCard
                       name={plan.name}
@@ -134,224 +385,335 @@ export default function HomePage() {
                 ))}
               </div>
             </section>
-          </div>
 
-          {/* サイドバー */}
-          <aside className="w-full lg:w-80 shrink-0">
-            <div className="space-y-6">
-              {/* プレミアムプランバナー */}
-              <Link
-                href="/campaign/premium-plan.html"
-                className="block overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow"
-              >
-                <div className="bg-gradient-to-br from-amber-500 to-orange-600 p-6 text-white">
-                  <div className="text-xs font-medium uppercase tracking-wider opacity-90">
-                    Premium Plan
-                  </div>
-                  <h3 className="mt-2 text-xl font-bold">
-                    プレミアムプラン
-                  </h3>
-                  <p className="mt-2 text-sm opacity-90">
-                    厳選された高品質ツアーをご紹介
-                  </p>
-                  <span className="mt-4 inline-block text-sm font-medium">
-                    詳しく見る →
-                  </span>
-                </div>
-              </Link>
+            {/* おすすめ観光情報＆キャンペーン - 旧サイト: 横スクロール7カード */}
+            <section style={{ marginTop: "30px" }}>
+              <h2 className="flex items-center gap-2" style={{ fontSize: "20px", fontWeight: "bold", color: "#333", marginBottom: "16px" }}>
+                <span style={{ fontSize: "24px" }}>📌</span>
+                おすすめ観光情報＆キャンペーン
+              </h2>
+              <div className="flex gap-3 overflow-x-auto pb-3" style={{ scrollSnapType: "x mandatory" }}>
+                {[
+                  { href: "/ferry/tours", image: "/images/campaign/ferry.jpg", title: "【各便40席限定】簡単！便利！離島フェリーチケットの予約＆詳細はこちら" },
+                  { href: "/popular-spot/bluecave.html", image: "/images/campaign/bluecave-spot.png", title: "一生モノの絶景体験！石垣島『青の洞窟』で神秘のシュノーケリングツアー" },
+                  { href: "/scene-time/rental-car.html", image: "/images/campaign/rental-car.png", title: "【石垣空港送迎付き】人気の石垣島レンタカー特集！" },
+                  { href: "/campaign/premium-plan.html", image: "/images/campaign/premium-plan.webp", title: "【ツアーズ厳選】安心＆満足度No.1のおすすめプラン特集！" },
+                  { href: "/scene-time/freetourphotos.html", image: "/images/campaign/freetourphotos.webp", title: "【写真無料】絶景と感動を写真でプレゼント！" },
+                  { href: "/scene-time/setplan.html", image: "/images/campaign/setplan.jpg", title: "お得な割引セットプラン特集" },
+                  { href: "/scene-time/same_day_booking.html", image: "/images/campaign/same-day-booking.webp", title: "前日・当日予約可能な青の洞窟ツアー" },
+                ].map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block shrink-0 overflow-hidden"
+                    style={{ width: "160px", scrollSnapAlign: "start", borderRadius: "4px", border: "1px solid #e5e5e5" }}
+                  >
+                    <div style={{ width: "160px", height: "89px", overflow: "hidden" }}>
+                      <img src={item.image} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    </div>
+                    <div style={{ padding: "8px", fontSize: "12px", fontWeight: "bold", color: "#333", lineHeight: "1.4" }}>{item.title}</div>
+                  </Link>
+                ))}
+              </div>
+            </section>
 
-              {/* 写真無料サービス */}
-              <Link
-                href="/scene-time/freetourphotos.html"
-                className="block overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow"
-              >
-                <div className="bg-gradient-to-br from-primary to-blue-600 p-6 text-white">
-                  <div className="text-3xl mb-2">📸</div>
-                  <h3 className="text-lg font-bold">
-                    写真データ無料プレゼント
-                  </h3>
-                  <p className="mt-2 text-sm opacity-90">
-                    ツアー中の写真を無料でお渡し
-                  </p>
-                  <span className="mt-4 inline-block text-sm font-medium">
-                    対象プランを見る →
-                  </span>
-                </div>
-              </Link>
+            {/* 人気の組み合わせから探す */}
+            <section style={{ marginTop: "30px", backgroundColor: "#f0f8ff", borderRadius: "4px", padding: "24px" }}>
+              <div className="flex items-center justify-between" style={{ marginBottom: "16px" }}>
+                <h2 className="flex items-center gap-2" style={{ fontSize: "20px", fontWeight: "bold", color: "#333" }}>
+                  <span style={{ fontSize: "24px" }}>🔗</span>
+                  人気の組み合わせから探す
+                </h2>
+                <Link
+                  href="/category/setplan"
+                  style={{
+                    backgroundColor: "#ed3434",
+                    color: "#fff",
+                    padding: "6px 16px",
+                    borderRadius: "4px",
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    textDecoration: "none",
+                  }}
+                >
+                  一覧を見る
+                </Link>
+              </div>
+              <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
+                {[
+                  { href: "/setplan/bluecave-kabirabay.html", title: "青の洞窟×川平湾ツアー", image: "/images/setplan/bluecave-kabirabay.webp" },
+                  { href: "/setplan/bluecave-mangrove.html", title: "青の洞窟×マングローブツアー", image: "/images/setplan/bluecave-mangrove.webp" },
+                  { href: "/setplan/bluecave-sup-kayak.html", title: "石垣島青の洞窟×SUP・カヤック", image: "/images/setplan/bluecave-sup-kayak.webp" },
+                ].map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block overflow-hidden"
+                    style={{ borderRadius: "4px", backgroundColor: "#fff", border: "1px solid #e5e5e5" }}
+                  >
+                    <div style={{ aspectRatio: "4/3", overflow: "hidden" }}>
+                      <img src={item.image} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    </div>
+                    <div style={{ padding: "10px", fontSize: "13px", fontWeight: "bold", color: "#333" }}>{item.title}</div>
+                  </Link>
+                ))}
+              </div>
+            </section>
 
-              {/* 当日予約 */}
-              <Link
-                href="/scene-time/same_day_booking.html"
-                className="block overflow-hidden rounded-lg border bg-white p-6 shadow-md hover:shadow-lg transition-shadow"
+            {/* 条件から探す */}
+            <section style={{ marginTop: "30px" }}>
+              <h2 className="flex items-center gap-2" style={{ fontSize: "20px", fontWeight: "bold", color: "#333", marginBottom: "16px" }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" />
+                </svg>
+                条件から探す
+              </h2>
+              {["スポットから探す", "見れるものから探す", "シーンから探す", "シーズンから探す", "時間帯から探す", "こだわり条件から探す"].map((label) => (
+                <details
+                  key={label}
+                  style={{
+                    borderBottom: "1px solid #e5e5e5",
+                    padding: "14px 0",
+                  }}
+                >
+                  <summary
+                    style={{
+                      fontSize: "16px",
+                      color: "#333",
+                      cursor: "pointer",
+                      listStyle: "none",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    {label}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="2">
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </summary>
+                </details>
+              ))}
+
+              {/* 条件検索ボタン - 旧サイト準拠: width 300px, fontSize 28.8px */}
+              <div style={{ marginTop: "24px", textAlign: "center" }}>
+                <button
+                  type="button"
+                  style={{
+                    backgroundColor: "#ed3434",
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: "5px",
+                    width: "300px",
+                    padding: "3px 0",
+                    fontSize: "28.8px",
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                  }}
+                >
+                  検索する
+                </button>
+              </div>
+            </section>
+
+            {/* ツアーズコラム - 旧サイト: 3記事、サムネ+タイトル+日付+PV数 */}
+            <section style={{ marginTop: "30px", backgroundColor: "#f0f8ff", borderRadius: "4px", padding: "24px" }}>
+              <div className="flex items-center justify-between" style={{ marginBottom: "16px" }}>
+                <h2 className="flex items-center gap-2" style={{ fontSize: "20px", fontWeight: "bold", color: "#333" }}>
+                  <span style={{ fontSize: "24px" }}>📝</span>
+                  ツアーズコラム
+                </h2>
+                <Link
+                  href="/column"
+                  style={{
+                    backgroundColor: "#ed3434",
+                    color: "#fff",
+                    padding: "6px 16px",
+                    borderRadius: "4px",
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    textDecoration: "none",
+                  }}
+                >
+                  一覧を見る
+                </Link>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                {[
+                  {
+                    href: "/column/okinawa-bluecave",
+                    image: "/images/column/okinawa-bluecave.webp",
+                    title: "【沖縄・青の洞窟】行く前に知りたい！場所・アクセス・おすすめツアーまとめ",
+                    date: "2025年11月10日",
+                    views: 213,
+                  },
+                  {
+                    href: "/column/marine",
+                    image: "/images/column/marine.webp",
+                    title: "石垣島で人気のマリンスポーツ完全ガイド！初心者でも楽しめるSUP・ダイビング・パラセーリング",
+                    date: "2025年11月4日",
+                    views: 106,
+                  },
+                  {
+                    href: "/column/activity",
+                    image: "/images/column/activity.webp",
+                    title: "石垣島のアクティビティの魅力とは？後悔しないための楽しみ方＆ツアー選びのコツ",
+                    date: "2025年10月31日",
+                    views: 124,
+                  },
+                ].map((article) => (
+                  <Link
+                    key={article.href}
+                    href={article.href}
+                    className="flex gap-4"
+                    style={{ textDecoration: "none", color: "#333" }}
+                  >
+                    <div className="shrink-0" style={{ width: "120px", height: "75px", borderRadius: "4px", overflow: "hidden" }}>
+                      <img src={article.image} alt={article.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p style={{ fontSize: "14px", fontWeight: "bold", lineHeight: "1.4", marginBottom: "6px" }}>{article.title}</p>
+                      <div className="flex items-center justify-between" style={{ fontSize: "12px", color: "#999" }}>
+                        <span>{article.date}</span>
+                        <span className="flex items-center gap-1">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                            <circle cx="12" cy="12" r="3" />
+                          </svg>
+                          {article.views}
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+
+            {/* 関連情報 - 旧サイト: 2x3グリッドのバナー */}
+            <section style={{ marginTop: "30px" }}>
+              <h2 style={{ fontSize: "20px", fontWeight: "bold", color: "#333", marginBottom: "16px", borderBottom: "3px solid #1a9edb", paddingBottom: "8px" }}>
+                関連情報
+              </h2>
+              <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(4, 1fr)" }}>
+                {[
+                  { href: "/campaign/premium-plan.html", image: "/images/related/premium-plan.png", alt: "ツアーズ厳選プレミアムプラン" },
+                  { href: "https://ishigaki-tours.com/ferry/", image: "/images/related/ferry.webp", alt: "離島フェリー予約" },
+                  { href: "https://ishigaki-tours.com/", image: "/images/related/bluecavetour.webp", alt: "石垣島ツアーズ" },
+                  { href: "https://kohama-tours.com/", image: "/images/related/kohama.webp", alt: "小浜島ツアーズ" },
+                  { href: "https://iriomote-tours.com/", image: "/images/related/iriomote.png", alt: "西表島ツアーズ" },
+                  { href: "/affiliate-programs/", image: "/images/related/affiliate.png", alt: "アフィリエイトパートナー募集" },
+                ].map((item) => (
+                  <a
+                    key={item.alt}
+                    href={item.href}
+                    target={item.href.startsWith("http") ? "_blank" : undefined}
+                    rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="block overflow-hidden"
+                    style={{ borderRadius: "4px" }}
+                  >
+                    <img src={item.image} alt={item.alt} style={{ width: "100%", height: "auto", display: "block" }} />
+                  </a>
+                ))}
+              </div>
+            </section>
+
+            {/* 予約から参加の流れ - 既存サイト: 4ステップ横並び */}
+            <section style={{ marginTop: "30px", paddingBottom: "40px" }}>
+              <h2
+                style={{
+                  fontSize: "21.6px",
+                  fontWeight: 600,
+                  color: "#333",
+                  paddingBottom: "10px",
+                  borderBottom: "4px solid #1a9edb",
+                  marginBottom: "20px",
+                }}
               >
-                <div className="flex items-center gap-3">
-                  <div className="text-3xl">⏰</div>
-                  <div>
-                    <h3 className="font-bold text-gray-900">当日予約OK</h3>
-                    <p className="text-sm text-gray-600">
-                      今日参加できるプラン
+                予約から参加の流れ
+              </h2>
+              <div className="flex gap-4">
+                {[
+                  {
+                    step: 1,
+                    image: "/images/flow/flow01.webp",
+                    title: "ツアーを探す",
+                    text: "シーンや時間帯から参加したいツアーを探してみましょう\u266a",
+                  },
+                  {
+                    step: 2,
+                    image: "/images/flow/flow02.webp",
+                    title: "予約プランの申し込み",
+                    text: "申し込みたいプランを決めたら、日付と時間帯を選んで申し込み開始！",
+                  },
+                  {
+                    step: 3,
+                    image: "/images/flow/flow03.webp",
+                    title: "予約確定",
+                    text: "予約が完了すると、石垣島ツアーズから連絡がきます\u266a",
+                  },
+                  {
+                    step: 4,
+                    image: "/images/flow/flow04.webp",
+                    title: "ツアーに参加",
+                    text: "あとは当日参加するだけ！思いっきり楽しんじゃおう！！",
+                  },
+                ].map((item) => (
+                  <div key={item.step} style={{ flex: 1, paddingBottom: "10px" }}>
+                    <div style={{ position: "relative" }}>
+                      <span
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          backgroundColor: "#1a9edb",
+                          color: "#fff",
+                          fontSize: "14px",
+                          fontWeight: "bold",
+                          width: "28px",
+                          height: "28px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          borderRadius: "2px",
+                          zIndex: 1,
+                        }}
+                      >
+                        {item.step}
+                      </span>
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        style={{ width: "100%", height: "auto", display: "block" }}
+                      />
+                    </div>
+                    <h3
+                      style={{
+                        fontSize: "16.8px",
+                        fontWeight: 600,
+                        color: "#ed3434",
+                        marginTop: "8px",
+                      }}
+                    >
+                      {item.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontSize: "14.4px",
+                        color: "#333",
+                        lineHeight: "1.4",
+                        marginTop: "4px",
+                      }}
+                    >
+                      {item.text}
                     </p>
                   </div>
-                </div>
-              </Link>
-
-              {/* セットプラン */}
-              <div className="rounded-lg border bg-white p-4 shadow-md">
-                <h3 className="mb-4 font-bold text-gray-900">
-                  人気の組み合わせ
-                </h3>
-                <ul className="space-y-3">
-                  <li>
-                    <Link
-                      href="/setplan/bluecave-sup-kayak.html"
-                      className="flex items-center gap-2 text-sm text-gray-700 hover:text-primary"
-                    >
-                      <span className="text-primary">▶</span>
-                      青の洞窟×SUP・カヤック
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/setplan/bluecave-mangrove.html"
-                      className="flex items-center gap-2 text-sm text-gray-700 hover:text-primary"
-                    >
-                      <span className="text-primary">▶</span>
-                      青の洞窟×マングローブ
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/setplan/bluecave-kabirabay.html"
-                      className="flex items-center gap-2 text-sm text-gray-700 hover:text-primary"
-                    >
-                      <span className="text-primary">▶</span>
-                      青の洞窟×川平湾
-                    </Link>
-                  </li>
-                </ul>
+                ))}
               </div>
-
-              {/* 高評価ツアー */}
-              <div className="rounded-lg border bg-white p-4 shadow-md">
-                <h3 className="mb-4 font-bold text-gray-900">
-                  高評価ツアー
-                </h3>
-                <ul className="space-y-3">
-                  {popularPlans.slice(0, 3).map((plan) => (
-                    <li key={plan.slug}>
-                      <Link
-                        href={`/plan/${plan.slug}`}
-                        className="group flex gap-3"
-                      >
-                        <div className="h-16 w-16 shrink-0 overflow-hidden rounded bg-gray-200">
-                          <img
-                            src={plan.imageUrl}
-                            alt={plan.name}
-                            className="h-full w-full object-cover"
-                          />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <p className="text-sm font-medium text-gray-900 group-hover:text-primary line-clamp-2">
-                            {plan.name}
-                          </p>
-                          {plan.rating && (
-                            <div className="mt-1 flex items-center gap-1">
-                              <svg
-                                className="h-4 w-4 text-yellow-400"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                              >
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                              </svg>
-                              <span className="text-xs text-gray-600">
-                                {plan.rating.toFixed(1)}
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </aside>
-        </div>
-
-        {/* アクティビティカテゴリセクション */}
-        <section className="mt-12 rounded-lg bg-blue-50 p-6">
-          <h2 className="mb-6 text-center text-xl font-bold text-gray-900">
-            アクティビティから探す
-          </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <CategoryCard
-              href="/plan?category=bluecave"
-              title="青の洞窟シュノーケリング"
-              description="人気No.1の定番ツアー"
-              icon="🏊"
-            />
-            <CategoryCard
-              href="/plan?category=kayak"
-              title="カヤック"
-              description="2人乗りで楽しむ海上散歩"
-              icon="🚣"
-            />
-            <CategoryCard
-              href="/plan?category=setplan"
-              title="セットプラン"
-              description="1日で複数体験をお得に"
-              icon="⭐"
-            />
-            <CategoryCard
-              href="/plan?category=charter"
-              title="チャーター"
-              description="貸切で自由なプラン"
-              icon="👑"
-            />
+            </section>
           </div>
-        </section>
-
-        {/* CTAセクション */}
-        <section className="mt-12 rounded-lg bg-gradient-to-r from-primary to-blue-600 p-8 text-center text-white">
-          <h2 className="mb-4 text-2xl font-bold">
-            石垣島で最高の思い出を作りませんか？
-          </h2>
-          <p className="mb-6 opacity-90">
-            会員登録不要で簡単予約。当日予約も対応しています。
-          </p>
-          <Link
-            href="/plan"
-            className="inline-block rounded-full bg-accent px-10 py-3 text-lg font-medium text-white transition-opacity hover:opacity-90"
-          >
-            ツアーを予約する
-          </Link>
-        </section>
+        </div>
       </div>
     </>
-  );
-}
-
-function CategoryCard({
-  href,
-  title,
-  description,
-  icon,
-}: {
-  href: string;
-  title: string;
-  description: string;
-  icon: string;
-}) {
-  return (
-    <Link
-      href={href}
-      className="flex items-center gap-4 rounded-lg bg-white p-4 shadow-md transition-shadow hover:shadow-lg"
-    >
-      <div className="text-3xl">{icon}</div>
-      <div>
-        <h3 className="font-bold text-gray-900">{title}</h3>
-        <p className="text-sm text-gray-600">{description}</p>
-      </div>
-    </Link>
   );
 }

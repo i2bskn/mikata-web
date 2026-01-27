@@ -1,7 +1,7 @@
 "use client";
 
 import type { FC } from "react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 export interface BannerSlide {
   imageUrl: string;
@@ -16,32 +16,66 @@ export interface HeroBannerProps {
    */
   autoPlayInterval?: number;
   /**
-   * 高さ（デフォルト: aspect-[16/9]）
+   * スライダーの高さ（px）。デフォルト: 460
    */
+  height?: number;
   className?: string;
 }
 
+const SLIDE_WIDTH = 1000;
+
 /**
  * ヒーローバナー（スライダー）コンポーネント
+ * 旧サイト準拠: Slick centerMode + infinite 相当の無限ループスライダー
  */
 export const HeroBanner: FC<HeroBannerProps> = ({
   slides,
   autoPlayInterval = 5000,
+  height = 460,
   className = "",
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // クローン分のオフセット: 先頭にslidesのクローンを追加するため、初期位置はslidesの長さ分ずれる
+  const [position, setPosition] = useState(slides.length);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  // 実際のインデックス（0〜slides.length-1）
+  const realIndex = ((position % slides.length) + slides.length) % slides.length;
+
+  // クローン付きスライド配列: [clone...] + [original...] + [clone...]
+  const extendedSlides = [...slides, ...slides, ...slides];
 
   const goToNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % slides.length);
-  }, [slides.length]);
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setPosition((prev) => prev + 1);
+  }, [isTransitioning]);
 
   const goToPrev = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
-  }, [slides.length]);
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setPosition((prev) => prev - 1);
+  }, [isTransitioning]);
 
   const goToSlide = useCallback((index: number) => {
-    setCurrentIndex(index);
-  }, []);
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setPosition(slides.length + index);
+  }, [isTransitioning, slides.length]);
+
+  // トランジション終了時: クローン領域にいたら実スライド領域に瞬時ジャンプ
+  const handleTransitionEnd = useCallback(() => {
+    setIsTransitioning(false);
+    setPosition((prev) => {
+      if (prev < slides.length) {
+        return prev + slides.length;
+      }
+      if (prev >= slides.length * 2) {
+        return prev - slides.length;
+      }
+      return prev;
+    });
+  }, [slides.length]);
 
   // 自動再生
   useEffect(() => {
@@ -55,32 +89,47 @@ export const HeroBanner: FC<HeroBannerProps> = ({
     return null;
   }
 
+  // クローン領域へのジャンプ時はトランジションを無効化
+  const needsJump = position < slides.length || position >= slides.length * 2;
+  const translateX = -(position * SLIDE_WIDTH);
+
+  const renderSlide = (slide: BannerSlide, key: number) => (
+    <div key={key} className="flex-shrink-0" style={{ width: `${SLIDE_WIDTH}px`, height: "100%" }}>
+      {slide.href ? (
+        <a href={slide.href} className="block" style={{ height: "100%" }}>
+          <img
+            src={slide.imageUrl}
+            alt={slide.alt}
+            className="h-full w-full object-cover"
+          />
+        </a>
+      ) : (
+        <img
+          src={slide.imageUrl}
+          alt={slide.alt}
+          className="h-full w-full object-cover"
+        />
+      )}
+    </div>
+  );
+
   return (
-    <div className={`relative overflow-hidden rounded-lg ${className}`}>
-      {/* スライド */}
-      <div
-        className="flex transition-transform duration-500 ease-in-out"
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-      >
-        {slides.map((slide, index) => (
-          <div key={index} className="w-full flex-shrink-0">
-            {slide.href ? (
-              <a href={slide.href} className="block">
-                <img
-                  src={slide.imageUrl}
-                  alt={slide.alt}
-                  className="h-full w-full object-cover aspect-[16/9]"
-                />
-              </a>
-            ) : (
-              <img
-                src={slide.imageUrl}
-                alt={slide.alt}
-                className="h-full w-full object-cover aspect-[16/9]"
-              />
-            )}
-          </div>
-        ))}
+    <div className={`relative overflow-hidden ${className}`} style={{ height: `${height}px` }}>
+      {/* スライダーコンテナ - 旧サイト準拠: max-width: 1000px, 中央配置, overflow: visible で前後スライドが見切れる */}
+      <div style={{ maxWidth: `${SLIDE_WIDTH}px`, margin: "0 auto", height: "100%", position: "relative", overflow: "visible" }}>
+        {/* スライドトラック */}
+        <div
+          ref={trackRef}
+          className="flex"
+          style={{
+            transform: `translateX(${translateX}px)`,
+            transition: !isTransitioning && needsJump ? "none" : "transform 500ms ease-in-out",
+            height: "100%",
+          }}
+          onTransitionEnd={handleTransitionEnd}
+        >
+          {extendedSlides.map((slide, index) => renderSlide(slide, index))}
+        </div>
       </div>
 
       {/* 左右矢印ナビゲーション */}
@@ -138,7 +187,7 @@ export const HeroBanner: FC<HeroBannerProps> = ({
               type="button"
               onClick={() => goToSlide(index)}
               className={`h-2 w-2 rounded-full transition-colors ${
-                index === currentIndex
+                index === realIndex
                   ? "bg-white"
                   : "bg-white/50 hover:bg-white/75"
               }`}
@@ -151,7 +200,7 @@ export const HeroBanner: FC<HeroBannerProps> = ({
       {/* スライドカウンター */}
       {slides.length > 1 && (
         <div className="absolute bottom-3 right-3 rounded bg-black/50 px-2 py-1 text-xs text-white">
-          {currentIndex + 1} / {slides.length}
+          {realIndex + 1} / {slides.length}
         </div>
       )}
     </div>

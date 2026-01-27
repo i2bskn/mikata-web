@@ -9,7 +9,7 @@ export const plans: Plan[] = [
     name: "【石垣島/半日】当日予約OK！ウミガメに会えるかも☆秘境『青の洞窟』シュノーケリング＆洞窟探検ツアー★写真無料＆送迎付き（No.304）",
     description:
       "石垣島の人気スポット「青の洞窟」でシュノーケリング体験！透明度抜群の海でカラフルな熱帯魚やウミガメに出会えるチャンス。初心者やお子様連れでも安心のガイド付きツアーです。",
-    imageUrl: "/images/plans/bluecave304.jpg",
+    imageUrl: "/images/plans/bluecave304.webp",
     price: 6500,
     originalPrice: 7500,
     duration: "約2.5時間",
@@ -50,7 +50,7 @@ export const plans: Plan[] = [
     name: "【石垣島/約2.5時間】当日予約OK！神秘的スポット『青の洞窟』を目指すSUPツアー★透明度抜群の海で新体験♪写真無料＆送迎付き（No.305）",
     description:
       "SUP（スタンドアップパドル）で青の洞窟を目指す人気ツアー！透き通る海の上を滑るように進み、神秘的な青の洞窟へ。初心者でも丁寧にレクチャーするので安心です。",
-    imageUrl: "/images/plans/bluecave305.jpg",
+    imageUrl: "/images/plans/bluecave305.webp",
     price: 7000,
     duration: "約2.5時間",
     tags: ["当日予約OK", "初心者OK"],
@@ -82,7 +82,7 @@ export const plans: Plan[] = [
     name: "【石垣島/半日】透明度抜群の海で新体験！人気の話題スポット『青の洞窟』を目指すカヤックツアー★写真無料＆送迎付き（No.306）",
     description:
       "カヤックで青の洞窟を目指すアドベンチャーツアー！2人乗りカヤックで協力しながら漕ぎ進め、青く輝く洞窟へ。カップルやファミリーにおすすめです。",
-    imageUrl: "/images/plans/kayak306.jpg",
+    imageUrl: "/images/plans/kayak306.webp",
     price: 6800,
     duration: "約2.5時間",
     tags: ["カップルにおすすめ", "ファミリー向け"],
@@ -114,7 +114,7 @@ export const plans: Plan[] = [
     name: "【石垣島/1日】海と川を制覇☆石垣島最長！宮良川マングローブSUP/カヌー＆青の洞窟シュノーケリングツアー★＜写真無料&送迎付き＞（No.362）",
     description:
       "石垣島を1日で満喫！午前は宮良川でマングローブSUP/カヌー、午後は青の洞窟でシュノーケリング。海と川、両方楽しめる贅沢なセットプランです。",
-    imageUrl: "/images/plans/setplan362.jpg",
+    imageUrl: "/images/plans/setplan362.webp",
     price: 14000,
     originalPrice: 16000,
     duration: "約7時間",
@@ -148,7 +148,7 @@ export const plans: Plan[] = [
     name: "【石垣島/1日】迷ったらコレ☆ウミガメを探そう！川平湾SUP/カヌー＆青の洞窟シュノーケリングツアー★＜写真無料＆送迎付き＞（No.349）",
     description:
       "石垣島の2大人気スポットを1日で制覇！午前は絶景・川平湾でSUP/カヌー、午後は青の洞窟でシュノーケリング。迷ったらこのプランがおすすめです。",
-    imageUrl: "/images/plans/setplan349.jpg",
+    imageUrl: "/images/plans/setplan349.webp",
     price: 13500,
     duration: "約7時間",
     tags: ["2大スポット", "おすすめ"],
@@ -181,7 +181,7 @@ export const plans: Plan[] = [
     name: "【石垣島/半日】ガイド貸切☆贅沢VIPチャータープラン＜写真無料＆送迎付き＞柔軟対応◎自分たちのペースで♪団体旅行・社員旅行にも（No.553）",
     description:
       "ガイド貸切で贅沢な時間を！行きたい場所、やりたいことを自由にアレンジ可能。グループ旅行や社員旅行、特別な記念日にもおすすめのVIPプランです。",
-    imageUrl: "/images/plans/charter553.jpg",
+    imageUrl: "/images/plans/charter553.webp",
     price: 35000,
     duration: "約3時間",
     tags: ["貸切プラン", "VIP"],
@@ -212,7 +212,7 @@ export const plans: Plan[] = [
     name: "【石垣島/1日】童心に返って遊びまくる☆青の洞窟探検＋ウミガメビーチシュノーケリング＋マリンスポーツ10種類以上遊び放題コース！グループ旅行にもおすすめ（No.399）",
     description:
       "1日中遊び尽くす！青の洞窟探検、ウミガメシュノーケリング、さらにマリンスポーツ10種類以上が遊び放題。友達グループや社員旅行に最適です。",
-    imageUrl: "/images/plans/marine399.jpg",
+    imageUrl: "/images/plans/marine399.webp",
     price: 18000,
     originalPrice: 22000,
     duration: "約8時間",
@@ -247,7 +247,7 @@ export const plans: Plan[] = [
     name: "【石垣島/1日】一度は見たい絶景『川平湾』でグラスボート体験＆青の洞窟シュノーケリングツアー★写真無料（No.392）",
     description:
       "川平湾でグラスボートに乗って海の中を覗き見！午後は青の洞窟でシュノーケリング。泳ぎが苦手な方やお子様連れでも楽しめる人気のセットプランです。",
-    imageUrl: "/images/plans/glassboat392.jpg",
+    imageUrl: "/images/plans/glassboat392.webp",
     price: 12000,
     duration: "約6時間",
     tags: ["泳げなくてもOK", "ファミリー向け"],

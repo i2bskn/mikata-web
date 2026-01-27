@@ -5,117 +5,60 @@ import type { FC } from "react";
 export interface CategoryItem {
   label: string;
   href: string;
-  icon?: "ranking" | "activity" | "time" | "combo" | "campaign" | "search";
+  iconUrl: string;
   isActive?: boolean;
 }
 
 export interface CategoryNavProps {
   items: CategoryItem[];
   className?: string;
+  /** 親カードに埋め込まれる場合true（自身の背景・ボーダーを非表示） */
+  embedded?: boolean;
 }
 
 /**
- * アイコンを取得
+ * カテゴリナビゲーション - 既存サイト: 8つのアイコンナビ横並び
  */
-function getIcon(icon: CategoryItem["icon"]) {
-  switch (icon) {
-    case "ranking":
-      return (
-        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-          />
-        </svg>
-      );
-    case "activity":
-      return (
-        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      );
-    case "time":
-      return (
-        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      );
-    case "combo":
-      return (
-        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-          />
-        </svg>
-      );
-    case "campaign":
-      return (
-        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
-          />
-        </svg>
-      );
-    case "search":
-      return (
-        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-          />
-        </svg>
-      );
-    default:
-      return null;
-  }
-}
-
-/**
- * カテゴリナビゲーションコンポーネント
- */
-export const CategoryNav: FC<CategoryNavProps> = ({ items, className = "" }) => {
+export const CategoryNav: FC<CategoryNavProps> = ({ items, className = "", embedded = false }) => {
   return (
-    <nav className={`bg-white rounded-lg shadow-sm border ${className}`}>
-      <div className="flex flex-wrap">
-        {items.map((item, index) => (
+    <nav
+      className={className}
+      style={embedded ? {
+        padding: "5px 0",
+      } : {
+        backgroundColor: "#fff",
+        border: "1px solid #e5e5e5",
+        borderRadius: "4px",
+        padding: "12px 0",
+      }}
+    >
+      <div className="flex flex-wrap justify-center">
+        {items.map((item) => (
           <a
             key={item.href}
             href={item.href}
-            className={`flex items-center gap-2 px-4 py-3 text-sm font-medium transition-colors
-              ${
-                item.isActive
-                  ? "bg-primary text-white"
-                  : "text-gray-700 hover:bg-gray-50 hover:text-primary"
-              }
-              ${index !== 0 ? "border-l border-gray-200" : ""}
-            `}
+            className="flex flex-col items-center text-center"
+            style={{
+              width: "12.5%",
+              minWidth: "80px",
+              padding: "8px 4px",
+              color: "#333",
+              borderBottom: item.isActive ? "4px solid #1a9edb" : "4px solid transparent",
+              fontSize: "11px",
+              fontWeight: "normal",
+              textDecoration: "none",
+            }}
           >
-            {item.icon && (
-              <span className={item.isActive ? "text-white" : "text-primary"}>
-                {getIcon(item.icon)}
-              </span>
-            )}
-            <span>{item.label}</span>
+            <span className="mb-1">
+              <img
+                src={item.iconUrl}
+                alt={item.label}
+                width={65}
+                height={38}
+                style={{ width: "65px", height: "38px", objectFit: "contain" }}
+              />
+            </span>
+            <span style={{ lineHeight: "1.3" }}>{item.label}</span>
           </a>
         ))}
       </div>
