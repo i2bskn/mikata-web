@@ -3,7 +3,9 @@
     "allow": [
       "Bash(pnpm install:*)",
       "Bash(pnpm check-types:*)",
-      "Bash(pnpm --filter bluecavetour build:*)"
+      "Bash(pnpm --filter bluecavetour build:*)",
+      "Bash(pnpm --filter bluecavetour dev:*)",
+      "Bash(curl:*)"
     ]
   }
 }

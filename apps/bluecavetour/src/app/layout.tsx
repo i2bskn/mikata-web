@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import { Header } from "@repo/ui/header";
 import { Footer } from "@repo/ui/footer";
-import { siteConfig, navItems, footerSections, companyInfo } from "../lib/site-config";
+import { siteConfig, navItems, footerSections, companyInfo, headerConfig } from "../lib/site-config";
 import "./globals.css";
 
 const notoSansJP = Noto_Sans_JP({
@@ -32,7 +32,10 @@ export default function RootLayout({
         <Header
           siteName={siteConfig.siteName}
           navItems={navItems}
-          reservationUrl="/plan"
+          catchphrase={headerConfig.catchphrase}
+          contactUrl={headerConfig.contactUrl}
+          historyUrl={headerConfig.historyUrl}
+          reservationCheckUrl={headerConfig.reservationCheckUrl}
         />
         <main className="min-h-screen">{children}</main>
         <Footer

@@ -60,3 +60,13 @@ export const companyInfo = {
   name: "株式会社ShumMaKe",
   address: "〒143-0025 東京都大田区南馬込4丁目26-18",
 };
+
+/**
+ * ヘッダー設定
+ */
+export const headerConfig = {
+  catchphrase: `青の洞窟専門のアクティビティ予約サイト "石垣島 青の洞窟ツアーズ"`,
+  contactUrl: "/select-contact",
+  historyUrl: "/myplan",
+  reservationCheckUrl: "https://ishigaki-tours.com/mypage/reservation",
+};

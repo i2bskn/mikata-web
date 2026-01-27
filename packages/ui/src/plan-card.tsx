@@ -1,5 +1,11 @@
 import type { FC } from "react";
 
+export interface PriceItem {
+  label: string;
+  price: number;
+  originalPrice?: number;
+}
+
 export interface PlanCardProps {
   /**
    * プラン名
@@ -18,13 +24,17 @@ export interface PlanCardProps {
    */
   href: string;
   /**
-   * 価格（税込）
+   * 価格（税込）- 単一価格の場合
    */
   price: number;
   /**
    * 元の価格（割引表示用）
    */
   originalPrice?: number;
+  /**
+   * 複数価格（大人/小人/幼児など）
+   */
+  prices?: PriceItem[];
   /**
    * 所要時間
    */
@@ -41,6 +51,29 @@ export interface PlanCardProps {
    * レビュー数
    */
   reviewCount?: number;
+  /**
+   * 評価ラベル（例: "最高の評価"）
+   */
+  ratingLabel?: string;
+}
+
+/**
+ * タグの色を取得
+ */
+function getTagColor(tag: string): string {
+  if (tag.includes("人気") || tag.includes("おすすめ")) {
+    return "bg-accent";
+  }
+  if (tag.includes("当日") || tag.includes("予約OK")) {
+    return "bg-green-500";
+  }
+  if (tag.includes("写真") || tag.includes("無料")) {
+    return "bg-primary";
+  }
+  if (tag.includes("送迎")) {
+    return "bg-purple-500";
+  }
+  return "bg-gray-600";
 }
 
 /**
@@ -55,10 +88,12 @@ export const PlanCard: FC<PlanCardProps> = ({
   href,
   price,
   originalPrice,
+  prices,
   duration,
   tags,
   rating,
   reviewCount,
+  ratingLabel,
 }) => {
   const discountPercent = originalPrice
     ? Math.round((1 - price / originalPrice) * 100)
@@ -82,7 +117,7 @@ export const PlanCard: FC<PlanCardProps> = ({
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded bg-orange-500 px-2 py-1 text-xs font-medium text-white"
+                className={`rounded px-2 py-1 text-xs font-medium text-white ${getTagColor(tag)}`}
               >
                 {tag}
               </span>
@@ -91,8 +126,14 @@ export const PlanCard: FC<PlanCardProps> = ({
         )}
         {/* 割引率 */}
         {discountPercent && (
-          <div className="absolute right-2 top-2 rounded bg-red-500 px-2 py-1 text-xs font-bold text-white">
+          <div className="absolute right-2 top-2 rounded bg-danger px-2 py-1 text-xs font-bold text-white">
             {discountPercent}% OFF
+          </div>
+        )}
+        {/* 評価ラベル */}
+        {ratingLabel && (
+          <div className="absolute bottom-2 left-2 rounded bg-yellow-500 px-2 py-1 text-xs font-bold text-white">
+            {ratingLabel}
           </div>
         )}
       </div>
@@ -100,15 +141,15 @@ export const PlanCard: FC<PlanCardProps> = ({
       {/* コンテンツ */}
       <div className="p-4">
         {/* プラン名 */}
-        <h3 className="mb-2 text-lg font-bold text-gray-900 line-clamp-2">
+        <h3 className="mb-2 text-sm font-bold text-gray-900 line-clamp-2 group-hover:text-primary transition-colors">
           {name}
         </h3>
 
         {/* 説明 */}
-        <p className="mb-3 text-sm text-gray-600 line-clamp-2">{description}</p>
+        <p className="mb-3 text-xs text-gray-600 line-clamp-2">{description}</p>
 
         {/* 所要時間・評価 */}
-        <div className="mb-3 flex items-center gap-4 text-sm text-gray-500">
+        <div className="mb-3 flex items-center gap-4 text-xs text-gray-500">
           {duration && (
             <span className="flex items-center gap-1">
               <svg
@@ -144,18 +185,38 @@ export const PlanCard: FC<PlanCardProps> = ({
           )}
         </div>
 
-        {/* 価格 */}
-        <div className="flex items-end gap-2">
-          {originalPrice && (
-            <span className="text-sm text-gray-400 line-through">
-              ¥{originalPrice.toLocaleString()}
+        {/* 価格 - 複数価格対応 */}
+        {prices && prices.length > 0 ? (
+          <div className="space-y-1 border-t pt-3">
+            {prices.map((priceItem) => (
+              <div key={priceItem.label} className="flex items-center justify-between text-xs">
+                <span className="text-gray-600">{priceItem.label}</span>
+                <div className="flex items-center gap-2">
+                  {priceItem.originalPrice && (
+                    <span className="text-gray-400 line-through">
+                      ¥{priceItem.originalPrice.toLocaleString()}
+                    </span>
+                  )}
+                  <span className="font-bold text-primary">
+                    ¥{priceItem.price.toLocaleString()}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="flex items-end gap-2 border-t pt-3">
+            {originalPrice && (
+              <span className="text-xs text-gray-400 line-through">
+                ¥{originalPrice.toLocaleString()}
+              </span>
+            )}
+            <span className="text-lg font-bold text-primary">
+              ¥{price.toLocaleString()}
             </span>
-          )}
-          <span className="text-xl font-bold text-blue-600">
-            ¥{price.toLocaleString()}
-          </span>
-          <span className="text-sm text-gray-500">〜 / 人</span>
-        </div>
+            <span className="text-xs text-gray-500">〜 / 人</span>
+          </div>
+        )}
       </div>
     </a>
   );

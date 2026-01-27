@@ -8,7 +8,9 @@
     "./footer": "./src/footer.tsx",
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",
-    "./plan-card": "./src/plan-card.tsx"
+    "./plan-card": "./src/plan-card.tsx",
+    "./hero-banner": "./src/hero-banner.tsx",
+    "./category-nav": "./src/category-nav.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
