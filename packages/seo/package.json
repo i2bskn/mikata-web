@@ -1,14 +1,11 @@
 {
-  "name": "@repo/ui",
+  "name": "@repo/seo",
   "version": "0.0.1",
   "private": true,
   "exports": {
     ".": "./src/index.ts",
-    "./header": "./src/header.tsx",
-    "./footer": "./src/footer.tsx",
-    "./button": "./src/button.tsx",
-    "./card": "./src/card.tsx",
-    "./plan-card": "./src/plan-card.tsx"
+    "./metadata": "./src/metadata.ts",
+    "./json-ld": "./src/json-ld.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -17,10 +14,12 @@
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/react": "^19.0.0",
+    "next": "^15.0.0 || ^16.0.0",
     "react": "^19.0.0",
     "typescript": "^5.3.0"
   },
   "peerDependencies": {
+    "next": "^15.0.0 || ^16.0.0",
     "react": "^19.0.0"
   }
 }
