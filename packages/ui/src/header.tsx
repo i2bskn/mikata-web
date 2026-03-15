@@ -271,7 +271,7 @@ export const Header: FC<HeaderProps> = ({
         }}
       >
             {/* 閉じるボタン */}
-            <div style={{ textAlign: "right", padding: "12px 16px 0" }}>
+            <div style={{ textAlign: "right", padding: "8px 12px 0" }}>
               <button
                 type="button"
                 onClick={() => setIsMenuOpen(false)}
@@ -290,7 +290,7 @@ export const Header: FC<HeaderProps> = ({
             </div>
 
             {/* ヘッダーメッセージ - 既存: 14px/600 */}
-            <div style={{ textAlign: "center", padding: "8px 15px 12px", fontSize: "14px", fontWeight: 600, color: "#212529", display: "flex", alignItems: "center", justifyContent: "center", gap: "6px" }}>
+            <div style={{ textAlign: "center", padding: "4px 15px 8px", fontSize: "14px", fontWeight: 600, color: "#212529", display: "flex", alignItems: "center", justifyContent: "center", gap: "6px" }}>
               <img src="/images/menu/title-icon-a.png" alt="" style={{ width: "28px", height: "28px", objectFit: "contain" }} />
               会員登録不要！ご予約はお早めに
             </div>
@@ -300,8 +300,8 @@ export const Header: FC<HeaderProps> = ({
               <div style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(3, 1fr)",
-                gap: "8px",
-                padding: "0 15px 12px",
+                gap: "6px",
+                padding: "0 15px 8px",
               }}>
                 {menuQuickLinks.map((link) => (
                   <a
@@ -363,10 +363,10 @@ export const Header: FC<HeaderProps> = ({
                   fontSize: "13px",
                   fontWeight: 600,
                   color: "#212529",
-                  marginBottom: "8px",
+                  marginBottom: "6px",
                   display: "flex",
                   alignItems: "center",
-                  gap: "8px",
+                  gap: "6px",
                 }}>
                   <img src="/images/menu/title-icon-c.png" alt="" style={{ width: "20px", height: "20px" }} />
                   {section.title}
@@ -374,7 +374,7 @@ export const Header: FC<HeaderProps> = ({
                 <div style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(3, 1fr)",
-                  gap: "8px",
+                  gap: "6px",
                 }}>
                   {section.items.map((item) => (
                     <a
@@ -413,10 +413,10 @@ export const Header: FC<HeaderProps> = ({
                   fontSize: "13px",
                   fontWeight: 600,
                   color: "#212529",
-                  marginBottom: "8px",
+                  marginBottom: "6px",
                   display: "flex",
                   alignItems: "center",
-                  gap: "8px",
+                  gap: "6px",
                 }}>
                   <img src="/images/menu/icon-other-island.png" alt="" style={{ width: "20px", height: "20px" }} />
                   他の島のツアーもチェック
@@ -424,7 +424,7 @@ export const Header: FC<HeaderProps> = ({
                 <div style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(2, 1fr)",
-                  gap: "8px",
+                  gap: "6px",
                 }}>
                   {menuExternalSites.map((site) => (
                     <a
@@ -484,10 +484,10 @@ export const Header: FC<HeaderProps> = ({
                 fontSize: "13px",
                 fontWeight: 600,
                 color: "#212529",
-                marginBottom: "8px",
+                marginBottom: "6px",
                 display: "flex",
                 alignItems: "center",
-                gap: "8px",
+                gap: "6px",
               }}>
                 <img src="/images/menu/icon-info.png" alt="" style={{ width: "20px", height: "20px" }} />
                 初めて行く方へ！お役立ち情報
@@ -550,7 +550,7 @@ export const Header: FC<HeaderProps> = ({
             </div>
 
             {/* 閉じるボタン（下部） - 既存: 赤×＋テキスト */}
-            <div style={{ padding: "8px 15px 16px", textAlign: "center" }}>
+            <div style={{ padding: "4px 15px 12px", textAlign: "center" }}>
               <button
                 type="button"
                 onClick={() => setIsMenuOpen(false)}
