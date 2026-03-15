@@ -65,6 +65,7 @@ export const Header: FC<HeaderProps> = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
+    <>
     <header className="lg:sticky lg:top-0 z-50">
       {/* トップバー（水色背景） - 既存サイト: height 35px, bg #1a9edb */}
       <div style={{ backgroundColor: "#1a9edb" }}>
@@ -237,6 +238,7 @@ export const Header: FC<HeaderProps> = ({
           </div>
         </div>
       </div>
+    </header>
 
       {/* ドロワーメニュー - 既存サイト準拠: 右側スライドインパネル */}
       {/* オーバーレイ */}
@@ -245,7 +247,7 @@ export const Header: FC<HeaderProps> = ({
           position: "fixed",
           inset: 0,
           backgroundColor: "rgba(0,0,0,0.4)",
-          zIndex: 998,
+          zIndex: 9998,
           opacity: isMenuOpen ? 1 : 0,
           pointerEvents: isMenuOpen ? "auto" : "none",
           transition: "opacity 300ms ease-in-out",
@@ -261,7 +263,7 @@ export const Header: FC<HeaderProps> = ({
           bottom: 0,
           width: "min(360px, 90vw)",
           backgroundColor: "#eff4ff",
-          zIndex: 999,
+          zIndex: 9999,
           overflowY: "auto",
           boxShadow: "-4px 0 12px rgba(0,0,0,0.15)",
           transform: isMenuOpen ? "translateX(0)" : "translateX(100%)",
@@ -312,7 +314,7 @@ export const Header: FC<HeaderProps> = ({
                       textAlign: "center",
                       padding: "10px 4px",
                       backgroundColor: "#fff",
-                      borderRadius: "8px",
+                      borderRadius: "6px",
                       textDecoration: "none",
                       color: "#666",
                       fontSize: "10px",
@@ -340,7 +342,7 @@ export const Header: FC<HeaderProps> = ({
                   gap: "10px",
                   padding: "10px 12px",
                   backgroundColor: "#fff",
-                  borderRadius: "8px",
+                  borderRadius: "6px",
                   textDecoration: "none",
                   color: "#212529",
                 }}
@@ -365,11 +367,7 @@ export const Header: FC<HeaderProps> = ({
                   alignItems: "center",
                   gap: "6px",
                 }}>
-                  {section.iconUrl ? (
-                    <img src={section.iconUrl} alt="" style={{ width: "20px", height: "20px" }} />
-                  ) : (
-                    <span style={{ fontSize: "16px" }}>⚙</span>
-                  )}
+                  <img src="/images/menu/title-icon-c.png" alt="" style={{ width: "20px", height: "20px" }} />
                   {section.title}
                 </div>
                 <div style={{
@@ -389,7 +387,7 @@ export const Header: FC<HeaderProps> = ({
                         textAlign: "center",
                         padding: "8px 4px",
                         backgroundColor: "#fff",
-                        borderRadius: "8px",
+                        borderRadius: "6px",
                         textDecoration: "none",
                         color: "#666",
                         fontSize: "10px",
@@ -419,7 +417,7 @@ export const Header: FC<HeaderProps> = ({
                   alignItems: "center",
                   gap: "6px",
                 }}>
-                  <span style={{ fontSize: "16px" }}>✦</span>
+                  <img src="/images/menu/icon-other-island.png" alt="" style={{ width: "20px", height: "20px" }} />
                   他の島のツアーもチェック
                 </div>
                 <div style={{
@@ -439,7 +437,7 @@ export const Header: FC<HeaderProps> = ({
                         justifyContent: "center",
                         padding: "10px",
                         backgroundColor: "#fff",
-                        borderRadius: "8px",
+                        borderRadius: "6px",
                         textDecoration: "none",
                       }}
                     >
@@ -454,38 +452,123 @@ export const Header: FC<HeaderProps> = ({
               </div>
             )}
 
-            {/* 下部バナー */}
-            {menuBannerUrl && (
-              <div style={{ padding: "0 16px 16px" }}>
+            {/* 離島フェリー予約受付中 - 既存サイト準拠 */}
+            <div style={{ padding: "0 15px 12px" }}>
+              <a
+                href="https://ishigaki-tours.com/tours-ferry"
+                onClick={() => setIsMenuOpen(false)}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  padding: "10px 12px",
+                  backgroundColor: "#fff",
+                  borderRadius: "6px",
+                  textDecoration: "none",
+                  color: "#212529",
+                }}
+              >
+                <img src="/images/menu/icon-ferry.png" alt="" style={{ width: "40px", height: "40px", objectFit: "contain" }} />
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: "11px", color: "#666" }}>【各便40席限定】石垣島から離島へ！</div>
+                  <div style={{ fontSize: "11px", color: "#666" }}>（乗船時間までキャンセル料無料）</div>
+                  <div style={{ fontWeight: "bold", fontSize: "13px", color: "#1a9edb", marginTop: "2px" }}>離島フェリー予約受付中</div>
+                </div>
+              </a>
+            </div>
+
+            {/* 初めて行く方へ！お役立ち情報 - 既存サイト準拠 */}
+            <div style={{ padding: "0 15px 12px" }}>
+              <div style={{
+                fontSize: "13px",
+                fontWeight: 600,
+                color: "#212529",
+                marginBottom: "8px",
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+              }}>
+                <img src="/images/menu/icon-info.png" alt="" style={{ width: "20px", height: "20px" }} />
+                初めて行く方へ！お役立ち情報
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "6px" }}>
                 <a
-                  href={menuBannerHref || "#"}
+                  href="https://ishigaki-tours.com/popular-spot/bluecave.html"
                   onClick={() => setIsMenuOpen(false)}
-                  style={{ display: "block" }}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    textAlign: "center",
+                    padding: "8px 4px",
+                    backgroundColor: "#fff",
+                    borderRadius: "6px",
+                    textDecoration: "none",
+                    color: "#666",
+                    fontSize: "10px",
+                    fontWeight: 600,
+                    lineHeight: "1.3",
+                  }}
                 >
-                  <img src={menuBannerUrl} alt="" style={{ width: "100%", borderRadius: "4px" }} />
+                  <img src="/images/menu/icon-bluecave.png" alt="" style={{ width: "40px", height: "40px", objectFit: "contain", marginBottom: "4px" }} />
+                  {"青の洞窟とは？\n基本情報紹介"}
+                </a>
+                <a
+                  href="/column"
+                  onClick={() => setIsMenuOpen(false)}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    textAlign: "center",
+                    padding: "8px 4px",
+                    backgroundColor: "#fff",
+                    borderRadius: "6px",
+                    textDecoration: "none",
+                    color: "#666",
+                    fontSize: "10px",
+                    fontWeight: 600,
+                    lineHeight: "1.3",
+                  }}
+                >
+                  <img src="/images/menu/icon-column.png" alt="" style={{ width: "40px", height: "40px", objectFit: "contain", marginBottom: "4px" }} />
+                  コラム一覧
                 </a>
               </div>
-            )}
+            </div>
 
-            {/* 閉じるボタン（下部） */}
-            <div style={{ padding: "16px", textAlign: "center" }}>
+            {/* 青の洞窟ツアーKVバナー */}
+            <div style={{ padding: "0 15px 12px" }}>
+              <a
+                href="https://ishigaki-tours.com/popular-spot/bluecave.html"
+                onClick={() => setIsMenuOpen(false)}
+                style={{ display: "block" }}
+              >
+                <img src="/images/menu/bluecave-kv.png" alt="青の洞窟ツアー" style={{ width: "100%", borderRadius: "4px" }} />
+              </a>
+            </div>
+
+            {/* 閉じるボタン（下部） - 既存: 赤×＋テキスト */}
+            <div style={{ padding: "8px 15px 16px", textAlign: "center" }}>
               <button
                 type="button"
                 onClick={() => setIsMenuOpen(false)}
                 style={{
                   background: "none",
-                  border: "1px solid #ccc",
-                  borderRadius: "4px",
-                  padding: "8px 24px",
-                  fontSize: "13px",
+                  border: "none",
+                  fontSize: "14px",
                   color: "#666",
                   cursor: "pointer",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "4px",
                 }}
               >
-                メニューを閉じる ×
+                メニューを閉じる
+                <span style={{ color: "#ed3434", fontSize: "18px", fontWeight: "bold" }}>×</span>
               </button>
             </div>
           </div>
-    </header>
+    </>
   );
 };
