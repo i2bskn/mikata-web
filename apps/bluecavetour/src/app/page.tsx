@@ -74,9 +74,10 @@ export default function HomePage() {
 
               {/* 検索フォーム - 白カード内 */}
               <div style={{ marginTop: "10px" }}>
-          <div className="flex flex-wrap items-end gap-3">
+          {/* 1行目: プラン選択 + 日付 + チェックボックス + 絞り込み */}
+          <div className="flex items-center gap-2 flex-wrap">
             {/* プラン選択 */}
-            <div style={{ flex: "1", minWidth: "180px" }}>
+            <div className="flex-1" style={{ minWidth: "120px" }}>
               <select
                 style={{
                   width: "100%",
@@ -101,7 +102,7 @@ export default function HomePage() {
             </div>
 
             {/* 日付選択 */}
-            <div style={{ flex: "1", minWidth: "180px" }}>
+            <div className="flex-1" style={{ minWidth: "100px" }}>
               <input
                 type="text"
                 placeholder="日付未定"
@@ -118,7 +119,7 @@ export default function HomePage() {
             </div>
 
             {/* 今日・明日チェックボックス */}
-            <div className="flex items-center gap-4" style={{ fontSize: "14px", color: "#333" }}>
+            <div className="flex items-center gap-3" style={{ fontSize: "14px", color: "#333" }}>
               <label className="flex items-center gap-1 cursor-pointer">
                 <input type="checkbox" style={{ width: "16px", height: "16px" }} />
                 <span>今日</span>
@@ -130,21 +131,19 @@ export default function HomePage() {
             </div>
 
             {/* さらに絞り込む */}
-            <div>
-              <button
-                type="button"
-                style={{
-                  fontSize: "13px",
-                  color: "#666",
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                ＋さらに<br />絞り込む
-              </button>
-            </div>
+            <button
+              type="button"
+              style={{
+                fontSize: "12px",
+                color: "#666",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+              }}
+            >
+              ＋さらに<br />絞り込む
+            </button>
           </div>
 
           {/* 該当プラン数 + 検索ボタン */}
