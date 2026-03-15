@@ -44,7 +44,7 @@ export default function RootLayout({
           navItems={navItems}
           catchphrase={headerConfig.catchphrase}
           contactUrl={headerConfig.contactUrl}
-          historyUrl={headerConfig.historyUrl}
+          saleUrl={headerConfig.saleUrl}
           reservationCheckUrl={headerConfig.reservationCheckUrl}
         />
         <main>{children}</main>

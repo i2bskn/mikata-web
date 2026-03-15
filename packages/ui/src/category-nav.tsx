@@ -32,15 +32,14 @@ export const CategoryNav: FC<CategoryNavProps> = ({ items, className = "", embed
         padding: "12px 0",
       }}
     >
-      <div className="flex flex-wrap justify-center">
+      <div className="flex overflow-x-auto md:flex-wrap md:justify-center" style={{ WebkitOverflowScrolling: "touch", scrollbarWidth: "none" }}>
         {items.map((item) => (
           <a
             key={item.href}
             href={item.href}
-            className="flex flex-col items-center text-center"
+            className="flex flex-col items-center text-center shrink-0 md:shrink"
             style={{
-              width: "12.5%",
-              minWidth: "80px",
+              width: "80px",
               padding: "8px 4px",
               color: "#333",
               borderBottom: item.isActive ? "4px solid #1a9edb" : "4px solid transparent",

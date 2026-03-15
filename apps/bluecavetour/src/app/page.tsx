@@ -162,18 +162,18 @@ export default function HomePage() {
             </div>
             <button
               type="button"
+              className="text-base sm:text-[22px] px-6 sm:px-[50px] py-2.5 sm:py-3.5"
               style={{
                 backgroundColor: "#ed3434",
                 color: "#fff",
                 border: "none",
                 borderRadius: "5px",
-                padding: "14px 50px",
-                fontSize: "22px",
                 fontWeight: "bold",
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
                 gap: "8px",
+                whiteSpace: "nowrap",
               }}
             >
               検索する
@@ -439,7 +439,7 @@ export default function HomePage() {
                   一覧を見る
                 </Link>
               </div>
-              <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {[
                   { href: "/setplan/bluecave-kabirabay.html", title: "青の洞窟×川平湾ツアー", image: "/images/setplan/bluecave-kabirabay.webp" },
                   { href: "/setplan/bluecave-mangrove.html", title: "青の洞窟×マングローブツアー", image: "/images/setplan/bluecave-mangrove.webp" },
@@ -500,14 +500,13 @@ export default function HomePage() {
               <div style={{ marginTop: "24px", textAlign: "center" }}>
                 <button
                   type="button"
+                  className="w-full sm:w-[300px] text-xl sm:text-[28.8px]"
                   style={{
                     backgroundColor: "#ed3434",
                     color: "#fff",
                     border: "none",
                     borderRadius: "5px",
-                    width: "300px",
-                    padding: "3px 0",
-                    fontSize: "28.8px",
+                    padding: "8px 0",
                     fontWeight: "bold",
                     cursor: "pointer",
                   }}
@@ -595,7 +594,7 @@ export default function HomePage() {
               <h2 style={{ fontSize: "20px", fontWeight: "bold", color: "#333", marginBottom: "16px", borderBottom: "3px solid #1a9edb", paddingBottom: "8px" }}>
                 関連情報
               </h2>
-              <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(4, 1fr)" }}>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
                   { href: "/campaign/premium-plan.html", image: "/images/related/premium-plan.png", alt: "ツアーズ厳選プレミアムプラン" },
                   { href: "https://ishigaki-tours.com/ferry/", image: "/images/related/ferry.webp", alt: "離島フェリー予約" },
@@ -632,7 +631,7 @@ export default function HomePage() {
               >
                 予約から参加の流れ
               </h2>
-              <div className="flex gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {[
                   {
                     step: 1,
@@ -659,7 +658,7 @@ export default function HomePage() {
                     text: "あとは当日参加するだけ！思いっきり楽しんじゃおう！！",
                   },
                 ].map((item) => (
-                  <div key={item.step} style={{ flex: 1, paddingBottom: "10px" }}>
+                  <div key={item.step} style={{ paddingBottom: "10px" }}>
                     <div style={{ position: "relative" }}>
                       <span
                         style={{

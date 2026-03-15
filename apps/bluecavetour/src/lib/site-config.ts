@@ -55,6 +55,7 @@ export const headerConfig = {
   catchphrase: `青の洞窟専門のアクティビティ予約サイト "石垣島 青の洞窟ツアーズ"`,
   contactUrl: "/select-contact",
   historyUrl: "/myplan",
+  saleUrl: "/pickup_item",
   reservationCheckUrl: "https://mikata.in/yaeyama-tour/subscribers/confirm",
 };
 

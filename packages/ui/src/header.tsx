@@ -18,6 +18,7 @@ export interface HeaderProps {
   reservationCheckUrl?: string;
   historyUrl?: string;
   contactUrl?: string;
+  saleUrl?: string;
 }
 
 /**
@@ -32,6 +33,7 @@ export const Header: FC<HeaderProps> = ({
   reservationCheckUrl,
   historyUrl,
   contactUrl,
+  saleUrl,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -93,52 +95,42 @@ export const Header: FC<HeaderProps> = ({
               {contactUrl && (
                 <a
                   href={contactUrl}
-                  className="hidden sm:flex flex-col items-center justify-center"
-                  style={{ padding: "4px 12px" }}
+                  className="flex flex-col items-center justify-center"
+                  style={{ padding: "4px 6px" }}
                 >
                   <svg
-                    width="23"
-                    height="20"
+                    width="20"
+                    height="18"
                     viewBox="0 0 24 22"
                     fill="#1a9edb"
+                    className="sm:w-[23px] sm:h-[20px]"
                   >
                     <path d="M12 0C5.4 0 0 4.4 0 9.8c0 3.1 1.7 5.8 4.4 7.6L3 21.5c-.1.3.1.5.4.5.1 0 .2 0 .3-.1l5-3.2c1 .2 2.1.3 3.3.3 6.6 0 12-4.4 12-9.8S18.6 0 12 0zm-4 12a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zm4 0a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zm4 0a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4z" />
                   </svg>
-                  <span style={{ fontSize: "10px", marginTop: "2px", color: "#333" }}>
+                  <span className="whitespace-nowrap" style={{ fontSize: "9px", marginTop: "2px", color: "#333" }}>
                     各種 お問い合わせ
                   </span>
                 </a>
               )}
 
-              {/* 履歴・お気に入り - 既存サイト: 青の回転矢印+青の星 */}
-              {historyUrl && (
+              {/* SALE・特集 - 既存サイト: 旗アイコン */}
+              {saleUrl && (
                 <a
-                  href={historyUrl}
-                  className="hidden sm:flex flex-col items-center justify-center"
-                  style={{ padding: "4px 12px" }}
+                  href={saleUrl}
+                  className="flex flex-col items-center justify-center"
+                  style={{ padding: "4px 6px" }}
                 >
-                  <div className="flex items-center gap-1">
-                    {/* 履歴（回転矢印） */}
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 21 18"
-                      fill="#1a9edb"
-                    >
-                      <path d="M18.4 2.6A10 10 0 003.1 1.5L1.5.3c-.2-.2-.5 0-.5.3v4.8c0 .2.2.4.4.4h4.8c.3 0 .4-.3.3-.5L4.8 3.5a7.8 7.8 0 0112 .8A7.8 7.8 0 0118.5 10a7.8 7.8 0 01-5.7 7.5 7.8 7.8 0 01-9.1-4.2c-.1-.3-.5-.4-.7-.2l-.6.4c-.2.2-.3.5-.2.8a10 10 0 0011.5 5.4A10 10 0 0020.5 10a10 10 0 00-2.1-7.4z" />
-                    </svg>
-                    {/* お気に入り（星） */}
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 19 18"
-                      fill="#1a9edb"
-                    >
-                      <path d="M9.5.6l2.4 5.8h6.2l-5 3.8 1.9 6L9.5 12.5 4 16.2l1.9-6-5-3.8h6.2z" />
-                    </svg>
-                  </div>
-                  <span style={{ fontSize: "10px", marginTop: "2px", color: "#333" }}>
-                    履歴・お気に入り
+                  <svg
+                    width="20"
+                    height="18"
+                    viewBox="0 0 20 20"
+                    fill="#1a9edb"
+                    className="sm:w-[23px] sm:h-[20px]"
+                  >
+                    <path d="M4 1a1 1 0 00-1 1v16a1 1 0 102 0v-5h10.5a1 1 0 00.8-1.6L13 7l3.3-4.4A1 1 0 0015.5 1H4z" />
+                  </svg>
+                  <span className="whitespace-nowrap" style={{ fontSize: "9px", marginTop: "2px", color: "#333" }}>
+                    SALE・特集
                   </span>
                 </a>
               )}
@@ -147,14 +139,15 @@ export const Header: FC<HeaderProps> = ({
               {reservationCheckUrl && (
                 <a
                   href={reservationCheckUrl}
-                  className="hidden sm:flex flex-col items-center justify-center"
-                  style={{ padding: "4px 12px" }}
+                  className="flex flex-col items-center justify-center"
+                  style={{ padding: "4px 6px" }}
                 >
                   <svg
-                    width="23"
-                    height="20"
+                    width="20"
+                    height="18"
                     viewBox="0 0 23 20"
                     fill="#1a9edb"
+                    className="sm:w-[23px] sm:h-[20px]"
                   >
                     <path d="M18.5 2h-1V.5a.5.5 0 00-1 0V2h-10V.5a.5.5 0 00-1 0V2h-1A3.5 3.5 0 001 5.5v11A3.5 3.5 0 004.5 20h14a3.5 3.5 0 003.5-3.5v-11A3.5 3.5 0 0018.5 2zm-14 1h14A2.5 2.5 0 0121 5.5V7H2V5.5A2.5 2.5 0 014.5 3zM18.5 19h-14A2.5 2.5 0 012 16.5V8h19v8.5A2.5 2.5 0 0118.5 19z" />
                     <rect x="5" y="10" width="2.5" height="2" rx=".3" />
@@ -163,7 +156,7 @@ export const Header: FC<HeaderProps> = ({
                     <rect x="5" y="14" width="2.5" height="2" rx=".3" />
                     <rect x="10" y="14" width="2.5" height="2" rx=".3" />
                   </svg>
-                  <span style={{ fontSize: "10px", marginTop: "2px", color: "#333" }}>
+                  <span className="whitespace-nowrap" style={{ fontSize: "9px", marginTop: "2px", color: "#333" }}>
                     予約確認
                   </span>
                 </a>

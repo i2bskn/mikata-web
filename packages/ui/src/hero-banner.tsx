@@ -22,7 +22,7 @@ export interface HeroBannerProps {
   className?: string;
 }
 
-const SLIDE_WIDTH = 1000;
+const DESKTOP_SLIDE_WIDTH = 1000;
 
 /**
  * ヒーローバナー（スライダー）コンポーネント
@@ -38,6 +38,19 @@ export const HeroBanner: FC<HeroBannerProps> = ({
   const [position, setPosition] = useState(slides.length);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [slideWidth, setSlideWidth] = useState(DESKTOP_SLIDE_WIDTH);
+
+  // レスポンシブ: コンテナ幅に応じてスライド幅を変更
+  useEffect(() => {
+    const updateSlideWidth = () => {
+      const vw = window.innerWidth;
+      setSlideWidth(vw < 768 ? vw : DESKTOP_SLIDE_WIDTH);
+    };
+    updateSlideWidth();
+    window.addEventListener("resize", updateSlideWidth);
+    return () => window.removeEventListener("resize", updateSlideWidth);
+  }, []);
 
   // 実際のインデックス（0〜slides.length-1）
   const realIndex = ((position % slides.length) + slides.length) % slides.length;
@@ -91,10 +104,10 @@ export const HeroBanner: FC<HeroBannerProps> = ({
 
   // クローン領域へのジャンプ時はトランジションを無効化
   const needsJump = position < slides.length || position >= slides.length * 2;
-  const translateX = -(position * SLIDE_WIDTH);
+  const translateX = -(position * slideWidth);
 
   const renderSlide = (slide: BannerSlide, key: number) => (
-    <div key={key} className="flex-shrink-0" style={{ width: `${SLIDE_WIDTH}px`, height: "100%" }}>
+    <div key={key} className="flex-shrink-0" style={{ width: `${slideWidth}px`, height: "100%" }}>
       {slide.href ? (
         <a href={slide.href} className="block" style={{ height: "100%" }}>
           <img
@@ -114,9 +127,9 @@ export const HeroBanner: FC<HeroBannerProps> = ({
   );
 
   return (
-    <div className={`relative overflow-hidden ${className}`} style={{ height: `${height}px` }}>
+    <div ref={containerRef} className={`relative overflow-hidden ${className}`} style={{ height: slideWidth < 768 ? "auto" : `${height}px`, aspectRatio: slideWidth < 768 ? "16/9" : undefined }}>
       {/* スライダーコンテナ - 旧サイト準拠: max-width: 1000px, 中央配置, overflow: visible で前後スライドが見切れる */}
-      <div style={{ maxWidth: `${SLIDE_WIDTH}px`, margin: "0 auto", height: "100%", position: "relative", overflow: "visible" }}>
+      <div style={{ maxWidth: slideWidth < 768 ? "100%" : `${DESKTOP_SLIDE_WIDTH}px`, margin: "0 auto", height: "100%", position: "relative", overflow: "visible" }}>
         {/* スライドトラック */}
         <div
           ref={trackRef}
