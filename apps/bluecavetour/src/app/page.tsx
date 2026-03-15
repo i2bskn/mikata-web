@@ -318,7 +318,7 @@ export default function HomePage() {
             <section>
               <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
                 <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529" }}>
-                  <img src="/images/icons/crown.svg" alt="" width={22} height={20} style={{ width: "22px", height: "20px" }} />
+                  <img src="/images/icons/crown.svg" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
                   人気プランランキング
                 </h2>
                 <Link
@@ -382,7 +382,7 @@ export default function HomePage() {
             {/* おすすめ観光情報＆キャンペーン - 旧サイト: 横スクロール7カード */}
             <section style={{ marginTop: "20px" }}>
               <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "12px" }}>
-                <img src="/images/icons/flag.svg" alt="" width={22} height={20} style={{ width: "22px", height: "20px" }} />
+                <img src="/images/icons/flag.svg" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
                 おすすめ観光情報＆キャンペーン
               </h2>
               <div className="flex gap-3 overflow-x-auto pb-3" style={{ scrollSnapType: "x mandatory" }}>
@@ -414,7 +414,7 @@ export default function HomePage() {
             <section style={{ marginTop: "20px" }}>
               <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
                 <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529" }}>
-                  <img src="/images/icons/icon-time.webp" alt="" width={22} height={22} style={{ width: "22px", height: "22px" }} />
+                  <img src="/images/icons/icon-time.webp" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
                   シーン・時間帯から探す
                 </h2>
                 <Link
@@ -458,7 +458,7 @@ export default function HomePage() {
             <section style={{ marginTop: "20px", backgroundColor: "#f0f8ff", borderRadius: "4px", padding: "16px" }}>
               <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
                 <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529" }}>
-                  <img src="/images/icons/icon-activity.png" alt="" width={22} height={22} style={{ width: "22px", height: "22px" }} />
+                  <img src="/images/icons/icon-activity.png" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
                   人気の組み合わせから探す
                 </h2>
                 <Link
@@ -500,7 +500,7 @@ export default function HomePage() {
             {/* 条件から探す */}
             <section style={{ marginTop: "20px" }}>
               <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "12px" }}>
-                <img src="/images/icons/loupe.svg" alt="" width={22} height={20} style={{ width: "22px", height: "20px" }} />
+                <img src="/images/icons/loupe.svg" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
                 条件から探す
               </h2>
               {["スポットから探す", "見れるものから探す", "シーンから探す", "シーズンから探す", "時間帯から探す", "こだわり条件から探す"].map((label) => (
@@ -554,7 +554,7 @@ export default function HomePage() {
             <section style={{ marginTop: "20px", backgroundColor: "#f0f8ff", borderRadius: "4px", padding: "16px" }}>
               <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
                 <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529" }}>
-                  <img src="/images/icons/pen.svg" alt="" width={22} height={20} style={{ width: "22px", height: "20px" }} />
+                  <img src="/images/icons/pen.svg" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
                   ツアーズコラム
                 </h2>
                 <Link
