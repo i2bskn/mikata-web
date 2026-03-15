@@ -301,7 +301,7 @@ export const Header: FC<HeaderProps> = ({
                 display: "grid",
                 gridTemplateColumns: "repeat(3, 1fr)",
                 gap: "6px",
-                padding: "0 15px 10px",
+                padding: "0 15px 15px",
               }}>
                 {menuQuickLinks.map((link) => (
                   <a
