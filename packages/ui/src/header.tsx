@@ -290,8 +290,9 @@ export const Header: FC<HeaderProps> = ({
             </div>
 
             {/* ヘッダーメッセージ - 既存: 14px/600 */}
-            <div style={{ textAlign: "center", padding: "8px 15px 12px", fontSize: "14px", fontWeight: 600, color: "#212529" }}>
-              <span style={{ fontSize: "16px" }}>☆</span> 会員登録不要！ご予約はお早めに
+            <div style={{ textAlign: "center", padding: "8px 15px 12px", fontSize: "14px", fontWeight: 600, color: "#212529", display: "flex", alignItems: "center", justifyContent: "center", gap: "6px" }}>
+              <img src="/images/menu/title-icon-a.png" alt="" style={{ width: "28px", height: "28px", objectFit: "contain" }} />
+              会員登録不要！ご予約はお早めに
             </div>
 
             {/* クイックリンク 3カラム - 既存: 白bg/枠線なし/95x89px */}
@@ -299,7 +300,7 @@ export const Header: FC<HeaderProps> = ({
               <div style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(3, 1fr)",
-                gap: "6px",
+                gap: "8px",
                 padding: "0 15px 12px",
               }}>
                 {menuQuickLinks.map((link) => (
@@ -312,9 +313,9 @@ export const Header: FC<HeaderProps> = ({
                       flexDirection: "column",
                       alignItems: "center",
                       textAlign: "center",
-                      padding: "10px 4px",
+                      padding: "10px 5px",
                       backgroundColor: "#fff",
-                      borderRadius: "6px",
+                      borderRadius: "10px",
                       textDecoration: "none",
                       color: "#666",
                       fontSize: "10px",
@@ -342,12 +343,12 @@ export const Header: FC<HeaderProps> = ({
                   gap: "10px",
                   padding: "10px 12px",
                   backgroundColor: "#fff",
-                  borderRadius: "6px",
+                  borderRadius: "10px",
                   textDecoration: "none",
                   color: "#212529",
                 }}
               >
-                <img src="/images/category/free-photo.png" alt="" style={{ width: "40px", height: "40px", objectFit: "contain" }} />
+                <img src="/images/menu/icon-camera.png" alt="" style={{ width: "40px", height: "40px", objectFit: "contain" }} />
                 <div>
                   <div style={{ fontSize: "11px", color: "#666" }}>心に残る瞬間を写真に残そう！</div>
                   <div style={{ fontWeight: "bold", fontSize: "13px" }}>写真無料プラン</div>
@@ -365,7 +366,7 @@ export const Header: FC<HeaderProps> = ({
                   marginBottom: "8px",
                   display: "flex",
                   alignItems: "center",
-                  gap: "6px",
+                  gap: "8px",
                 }}>
                   <img src="/images/menu/title-icon-c.png" alt="" style={{ width: "20px", height: "20px" }} />
                   {section.title}
@@ -373,7 +374,7 @@ export const Header: FC<HeaderProps> = ({
                 <div style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(3, 1fr)",
-                  gap: "6px",
+                  gap: "8px",
                 }}>
                   {section.items.map((item) => (
                     <a
@@ -385,9 +386,9 @@ export const Header: FC<HeaderProps> = ({
                         flexDirection: "column",
                         alignItems: "center",
                         textAlign: "center",
-                        padding: "8px 4px",
+                        padding: "10px 5px",
                         backgroundColor: "#fff",
-                        borderRadius: "6px",
+                        borderRadius: "10px",
                         textDecoration: "none",
                         color: "#666",
                         fontSize: "10px",
@@ -415,7 +416,7 @@ export const Header: FC<HeaderProps> = ({
                   marginBottom: "8px",
                   display: "flex",
                   alignItems: "center",
-                  gap: "6px",
+                  gap: "8px",
                 }}>
                   <img src="/images/menu/icon-other-island.png" alt="" style={{ width: "20px", height: "20px" }} />
                   他の島のツアーもチェック
@@ -423,7 +424,7 @@ export const Header: FC<HeaderProps> = ({
                 <div style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(2, 1fr)",
-                  gap: "6px",
+                  gap: "8px",
                 }}>
                   {menuExternalSites.map((site) => (
                     <a
@@ -437,7 +438,7 @@ export const Header: FC<HeaderProps> = ({
                         justifyContent: "center",
                         padding: "10px",
                         backgroundColor: "#fff",
-                        borderRadius: "6px",
+                        borderRadius: "10px",
                         textDecoration: "none",
                       }}
                     >
@@ -463,7 +464,7 @@ export const Header: FC<HeaderProps> = ({
                   gap: "10px",
                   padding: "10px 12px",
                   backgroundColor: "#fff",
-                  borderRadius: "6px",
+                  borderRadius: "10px",
                   textDecoration: "none",
                   color: "#212529",
                 }}
@@ -486,7 +487,7 @@ export const Header: FC<HeaderProps> = ({
                 marginBottom: "8px",
                 display: "flex",
                 alignItems: "center",
-                gap: "6px",
+                gap: "8px",
               }}>
                 <img src="/images/menu/icon-info.png" alt="" style={{ width: "20px", height: "20px" }} />
                 初めて行く方へ！お役立ち情報
@@ -500,9 +501,9 @@ export const Header: FC<HeaderProps> = ({
                     flexDirection: "column",
                     alignItems: "center",
                     textAlign: "center",
-                    padding: "8px 4px",
+                    padding: "10px 5px",
                     backgroundColor: "#fff",
-                    borderRadius: "6px",
+                    borderRadius: "10px",
                     textDecoration: "none",
                     color: "#666",
                     fontSize: "10px",
@@ -521,9 +522,9 @@ export const Header: FC<HeaderProps> = ({
                     flexDirection: "column",
                     alignItems: "center",
                     textAlign: "center",
-                    padding: "8px 4px",
+                    padding: "10px 5px",
                     backgroundColor: "#fff",
-                    borderRadius: "6px",
+                    borderRadius: "10px",
                     textDecoration: "none",
                     color: "#666",
                     fontSize: "10px",
