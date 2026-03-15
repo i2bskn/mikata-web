@@ -287,18 +287,18 @@ export const Header: FC<HeaderProps> = ({
               </button>
             </div>
 
-            {/* ヘッダーメッセージ */}
-            <div style={{ textAlign: "center", padding: "0 16px 12px", fontSize: "13px", color: "#333" }}>
+            {/* ヘッダーメッセージ - 既存: 14px/600 */}
+            <div style={{ textAlign: "center", padding: "8px 15px 12px", fontSize: "14px", fontWeight: 600, color: "#212529" }}>
               <span style={{ fontSize: "16px" }}>☆</span> 会員登録不要！ご予約はお早めに
             </div>
 
-            {/* クイックリンク 3カラム */}
+            {/* クイックリンク 3カラム - 既存: 白bg/枠線なし/95x89px */}
             {menuQuickLinks && menuQuickLinks.length > 0 && (
               <div style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(3, 1fr)",
-                gap: "8px",
-                padding: "0 16px 16px",
+                gap: "6px",
+                padding: "0 15px 12px",
               }}>
                 {menuQuickLinks.map((link) => (
                   <a
@@ -311,16 +311,17 @@ export const Header: FC<HeaderProps> = ({
                       alignItems: "center",
                       textAlign: "center",
                       padding: "10px 4px",
-                      border: "1px solid #e5e5e5",
-                      borderRadius: "6px",
+                      backgroundColor: "#fff",
+                      borderRadius: "8px",
                       textDecoration: "none",
-                      color: "#333",
+                      color: "#666",
                       fontSize: "10px",
+                      fontWeight: 600,
                       lineHeight: "1.3",
                     }}
                   >
                     {link.iconUrl && (
-                      <img src={link.iconUrl} alt="" style={{ width: "32px", height: "32px", objectFit: "contain", marginBottom: "4px" }} />
+                      <img src={link.iconUrl} alt="" style={{ width: "40px", height: "40px", objectFit: "contain", marginBottom: "4px" }} />
                     )}
                     {link.label}
                   </a>
@@ -328,8 +329,8 @@ export const Header: FC<HeaderProps> = ({
               </div>
             )}
 
-            {/* 写真無料プランバナー */}
-            <div style={{ padding: "0 16px 16px" }}>
+            {/* 写真無料プランバナー - 既存: カメラアイコン画像 */}
+            <div style={{ padding: "0 15px 12px" }}>
               <a
                 href="/scene-time/freetourphotos.html"
                 onClick={() => setIsMenuOpen(false)}
@@ -338,35 +339,31 @@ export const Header: FC<HeaderProps> = ({
                   alignItems: "center",
                   gap: "10px",
                   padding: "10px 12px",
-                  backgroundColor: "#fffbe6",
-                  borderRadius: "6px",
-                  border: "1px solid #f5e6a3",
+                  backgroundColor: "#fff",
+                  borderRadius: "8px",
                   textDecoration: "none",
-                  color: "#333",
-                  fontSize: "12px",
+                  color: "#212529",
                 }}
               >
-                <span style={{ fontSize: "24px" }}>📷</span>
+                <img src="/images/category/free-photo.png" alt="" style={{ width: "40px", height: "40px", objectFit: "contain" }} />
                 <div>
                   <div style={{ fontSize: "11px", color: "#666" }}>心に残る瞬間を写真に残そう！</div>
-                  <div style={{ fontWeight: "bold", fontSize: "14px" }}>写真無料プラン</div>
+                  <div style={{ fontWeight: "bold", fontSize: "13px" }}>写真無料プラン</div>
                 </div>
               </a>
             </div>
 
-            {/* メニューセクション */}
+            {/* メニューセクション - 既存: 白bg/枠線なし */}
             {menuSections && menuSections.map((section) => (
-              <div key={section.title} style={{ padding: "0 16px 16px" }}>
+              <div key={section.title} style={{ padding: "0 15px 12px" }}>
                 <div style={{
                   fontSize: "13px",
-                  fontWeight: "bold",
-                  color: "#333",
-                  marginBottom: "10px",
+                  fontWeight: 600,
+                  color: "#212529",
+                  marginBottom: "8px",
                   display: "flex",
                   alignItems: "center",
                   gap: "6px",
-                  borderBottom: "2px solid #f0f0f0",
-                  paddingBottom: "6px",
                 }}>
                   {section.iconUrl ? (
                     <img src={section.iconUrl} alt="" style={{ width: "20px", height: "20px" }} />
@@ -378,7 +375,7 @@ export const Header: FC<HeaderProps> = ({
                 <div style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(3, 1fr)",
-                  gap: "8px",
+                  gap: "6px",
                 }}>
                   {section.items.map((item) => (
                     <a
@@ -391,16 +388,17 @@ export const Header: FC<HeaderProps> = ({
                         alignItems: "center",
                         textAlign: "center",
                         padding: "8px 4px",
-                        border: "1px solid #e5e5e5",
-                        borderRadius: "6px",
+                        backgroundColor: "#fff",
+                        borderRadius: "8px",
                         textDecoration: "none",
-                        color: "#333",
+                        color: "#666",
                         fontSize: "10px",
+                        fontWeight: 600,
                         lineHeight: "1.3",
                       }}
                     >
                       {item.iconUrl && (
-                        <img src={item.iconUrl} alt="" style={{ width: "32px", height: "32px", objectFit: "contain", marginBottom: "4px" }} />
+                        <img src={item.iconUrl} alt="" style={{ width: "40px", height: "40px", objectFit: "contain", marginBottom: "4px" }} />
                       )}
                       {item.label}
                     </a>
@@ -409,19 +407,17 @@ export const Header: FC<HeaderProps> = ({
               </div>
             ))}
 
-            {/* 外部サイトリンク */}
+            {/* 外部サイトリンク - 既存: 白bg/枠線なし */}
             {menuExternalSites && menuExternalSites.length > 0 && (
-              <div style={{ padding: "0 16px 16px" }}>
+              <div style={{ padding: "0 15px 12px" }}>
                 <div style={{
                   fontSize: "13px",
-                  fontWeight: "bold",
-                  color: "#333",
-                  marginBottom: "10px",
+                  fontWeight: 600,
+                  color: "#212529",
+                  marginBottom: "8px",
                   display: "flex",
                   alignItems: "center",
                   gap: "6px",
-                  borderBottom: "2px solid #f0f0f0",
-                  paddingBottom: "6px",
                 }}>
                   <span style={{ fontSize: "16px" }}>✦</span>
                   他の島のツアーもチェック
@@ -429,7 +425,7 @@ export const Header: FC<HeaderProps> = ({
                 <div style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(2, 1fr)",
-                  gap: "8px",
+                  gap: "6px",
                 }}>
                   {menuExternalSites.map((site) => (
                     <a
@@ -442,8 +438,8 @@ export const Header: FC<HeaderProps> = ({
                         alignItems: "center",
                         justifyContent: "center",
                         padding: "10px",
-                        border: "1px solid #e5e5e5",
-                        borderRadius: "6px",
+                        backgroundColor: "#fff",
+                        borderRadius: "8px",
                         textDecoration: "none",
                       }}
                     >
