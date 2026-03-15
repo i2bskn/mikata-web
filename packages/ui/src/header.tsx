@@ -9,6 +9,18 @@ export interface NavItem {
   children?: NavItem[];
 }
 
+export interface MenuLink {
+  label: string;
+  href: string;
+  iconUrl?: string;
+}
+
+export interface MenuSection {
+  title: string;
+  iconUrl?: string;
+  items: MenuLink[];
+}
+
 export interface HeaderProps {
   siteName: string;
   logoUrl?: string;
@@ -19,6 +31,16 @@ export interface HeaderProps {
   historyUrl?: string;
   contactUrl?: string;
   saleUrl?: string;
+  /** ドロワーメニューのセクション設定 */
+  menuSections?: MenuSection[];
+  /** ドロワーメニューのクイックリンク（上部3カラム） */
+  menuQuickLinks?: MenuLink[];
+  /** ドロワーメニューの外部サイトリンク */
+  menuExternalSites?: MenuLink[];
+  /** ドロワーメニューの下部バナー画像URL */
+  menuBannerUrl?: string;
+  /** ドロワーメニューの下部バナーリンク */
+  menuBannerHref?: string;
 }
 
 /**
@@ -34,6 +56,11 @@ export const Header: FC<HeaderProps> = ({
   historyUrl,
   contactUrl,
   saleUrl,
+  menuSections,
+  menuQuickLinks,
+  menuExternalSites,
+  menuBannerUrl,
+  menuBannerHref,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -211,47 +238,256 @@ export const Header: FC<HeaderProps> = ({
         </div>
       </div>
 
-      {/* モバイル/ドロワーメニュー */}
+      {/* ドロワーメニュー - 既存サイト準拠: 右側スライドパネル */}
       {isMenuOpen && (
-        <div className="bg-white shadow-lg" style={{ borderTop: "1px solid #e5e5e5" }}>
-          <nav className="mx-auto px-4 py-4" style={{ maxWidth: "1020px" }}>
-            <ul className="space-y-1">
-              {navItems.map((item) => (
-                <li key={item.href}>
+        <>
+          {/* オーバーレイ */}
+          <div
+            style={{
+              position: "fixed",
+              inset: 0,
+              backgroundColor: "rgba(0,0,0,0.4)",
+              zIndex: 998,
+            }}
+            onClick={() => setIsMenuOpen(false)}
+          />
+          {/* パネル */}
+          <div
+            style={{
+              position: "fixed",
+              top: 0,
+              right: 0,
+              bottom: 0,
+              width: "min(360px, 85vw)",
+              backgroundColor: "#fff",
+              zIndex: 999,
+              overflowY: "auto",
+              boxShadow: "-4px 0 12px rgba(0,0,0,0.15)",
+            }}
+          >
+            {/* 閉じるボタン */}
+            <div style={{ textAlign: "right", padding: "12px 16px 0" }}>
+              <button
+                type="button"
+                onClick={() => setIsMenuOpen(false)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  fontSize: "28px",
+                  color: "#f08300",
+                  cursor: "pointer",
+                  lineHeight: 1,
+                }}
+                aria-label="メニューを閉じる"
+              >
+                ×
+              </button>
+            </div>
+
+            {/* ヘッダーメッセージ */}
+            <div style={{ textAlign: "center", padding: "0 16px 12px", fontSize: "13px", color: "#333" }}>
+              <span style={{ fontSize: "16px" }}>☆</span> 会員登録不要！ご予約はお早めに
+            </div>
+
+            {/* クイックリンク 3カラム */}
+            {menuQuickLinks && menuQuickLinks.length > 0 && (
+              <div style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap: "8px",
+                padding: "0 16px 16px",
+              }}>
+                {menuQuickLinks.map((link) => (
                   <a
-                    href={item.href}
-                    className="block py-3 px-2"
-                    style={{ color: "#333", borderBottom: "1px solid #eee" }}
+                    key={link.href}
+                    href={link.href}
                     onClick={() => setIsMenuOpen(false)}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      textAlign: "center",
+                      padding: "10px 4px",
+                      border: "1px solid #e5e5e5",
+                      borderRadius: "6px",
+                      textDecoration: "none",
+                      color: "#333",
+                      fontSize: "10px",
+                      lineHeight: "1.3",
+                    }}
                   >
-                    {item.label}
+                    {link.iconUrl && (
+                      <img src={link.iconUrl} alt="" style={{ width: "32px", height: "32px", objectFit: "contain", marginBottom: "4px" }} />
+                    )}
+                    {link.label}
                   </a>
-                </li>
-              ))}
-              <li style={{ borderBottom: "1px solid #eee" }}>
-                {contactUrl && (
-                  <a href={contactUrl} className="block py-3 px-2" style={{ color: "#333" }}>
-                    各種 お問い合わせ
-                  </a>
-                )}
-              </li>
-              <li style={{ borderBottom: "1px solid #eee" }}>
-                {historyUrl && (
-                  <a href={historyUrl} className="block py-3 px-2" style={{ color: "#333" }}>
-                    履歴・お気に入り
-                  </a>
-                )}
-              </li>
-              <li>
-                {reservationCheckUrl && (
-                  <a href={reservationCheckUrl} className="block py-3 px-2" style={{ color: "#333" }}>
-                    予約確認
-                  </a>
-                )}
-              </li>
-            </ul>
-          </nav>
-        </div>
+                ))}
+              </div>
+            )}
+
+            {/* 写真無料プランバナー */}
+            <div style={{ padding: "0 16px 16px" }}>
+              <a
+                href="/scene-time/freetourphotos.html"
+                onClick={() => setIsMenuOpen(false)}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  padding: "10px 12px",
+                  backgroundColor: "#fffbe6",
+                  borderRadius: "6px",
+                  border: "1px solid #f5e6a3",
+                  textDecoration: "none",
+                  color: "#333",
+                  fontSize: "12px",
+                }}
+              >
+                <span style={{ fontSize: "24px" }}>📷</span>
+                <div>
+                  <div style={{ fontSize: "11px", color: "#666" }}>心に残る瞬間を写真に残そう！</div>
+                  <div style={{ fontWeight: "bold", fontSize: "14px" }}>写真無料プラン</div>
+                </div>
+              </a>
+            </div>
+
+            {/* メニューセクション */}
+            {menuSections && menuSections.map((section) => (
+              <div key={section.title} style={{ padding: "0 16px 16px" }}>
+                <div style={{
+                  fontSize: "13px",
+                  fontWeight: "bold",
+                  color: "#333",
+                  marginBottom: "10px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  borderBottom: "2px solid #f0f0f0",
+                  paddingBottom: "6px",
+                }}>
+                  {section.iconUrl ? (
+                    <img src={section.iconUrl} alt="" style={{ width: "20px", height: "20px" }} />
+                  ) : (
+                    <span style={{ fontSize: "16px" }}>⚙</span>
+                  )}
+                  {section.title}
+                </div>
+                <div style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  gap: "8px",
+                }}>
+                  {section.items.map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        textAlign: "center",
+                        padding: "8px 4px",
+                        border: "1px solid #e5e5e5",
+                        borderRadius: "6px",
+                        textDecoration: "none",
+                        color: "#333",
+                        fontSize: "10px",
+                        lineHeight: "1.3",
+                      }}
+                    >
+                      {item.iconUrl && (
+                        <img src={item.iconUrl} alt="" style={{ width: "32px", height: "32px", objectFit: "contain", marginBottom: "4px" }} />
+                      )}
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))}
+
+            {/* 外部サイトリンク */}
+            {menuExternalSites && menuExternalSites.length > 0 && (
+              <div style={{ padding: "0 16px 16px" }}>
+                <div style={{
+                  fontSize: "13px",
+                  fontWeight: "bold",
+                  color: "#333",
+                  marginBottom: "10px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  borderBottom: "2px solid #f0f0f0",
+                  paddingBottom: "6px",
+                }}>
+                  <span style={{ fontSize: "16px" }}>✦</span>
+                  他の島のツアーもチェック
+                </div>
+                <div style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, 1fr)",
+                  gap: "8px",
+                }}>
+                  {menuExternalSites.map((site) => (
+                    <a
+                      key={site.href}
+                      href={site.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        padding: "10px",
+                        border: "1px solid #e5e5e5",
+                        borderRadius: "6px",
+                        textDecoration: "none",
+                      }}
+                    >
+                      {site.iconUrl ? (
+                        <img src={site.iconUrl} alt={site.label} style={{ height: "24px", objectFit: "contain" }} />
+                      ) : (
+                        <span style={{ fontSize: "12px", color: "#333" }}>{site.label}</span>
+                      )}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* 下部バナー */}
+            {menuBannerUrl && (
+              <div style={{ padding: "0 16px 16px" }}>
+                <a
+                  href={menuBannerHref || "#"}
+                  onClick={() => setIsMenuOpen(false)}
+                  style={{ display: "block" }}
+                >
+                  <img src={menuBannerUrl} alt="" style={{ width: "100%", borderRadius: "4px" }} />
+                </a>
+              </div>
+            )}
+
+            {/* 閉じるボタン（下部） */}
+            <div style={{ padding: "16px", textAlign: "center" }}>
+              <button
+                type="button"
+                onClick={() => setIsMenuOpen(false)}
+                style={{
+                  background: "none",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  padding: "8px 24px",
+                  fontSize: "13px",
+                  color: "#666",
+                  cursor: "pointer",
+                }}
+              >
+                メニューを閉じる ×
+              </button>
+            </div>
+          </div>
+        </>
       )}
     </header>
   );

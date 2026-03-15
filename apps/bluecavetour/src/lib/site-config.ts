@@ -60,6 +60,33 @@ export const headerConfig = {
 };
 
 /**
+ * ドロワーメニュー設定 - 既存サイト準拠
+ */
+export const menuConfig = {
+  quickLinks: [
+    { label: "人気ツアー\nランキング", href: "/ranking", iconUrl: "/images/category/ranking.webp" },
+    { label: "予約確認\n(予約済みの方)", href: "https://mikata.in/yaeyama-tour/subscribers/confirm", iconUrl: "/images/menu/calender-icon.png" },
+    { label: "閲覧履歴\nお気に入り", href: "/myplan", iconUrl: "/images/menu/bookmark-icon.png" },
+  ],
+  sections: [
+    {
+      title: "プランを探す",
+      items: [
+        { label: "送迎付きプラン\nから探す", href: "/plan?category=shuttle", iconUrl: "/images/category/transfer.png" },
+        { label: "当日予約OK\nプラン", href: "/scene-time/same_day_booking.html", iconUrl: "/images/category/same-day.webp" },
+        { label: "アクティビティ\nから探す", href: "/plan", iconUrl: "/images/category/activity.webp" },
+        { label: "青の洞窟×\n川平湾", href: "/setplan/bluecave-kabirabay.html", iconUrl: "/images/menu/icon-kabirabay.png" },
+        { label: "青の洞窟×\nマングローブ", href: "/setplan/bluecave-mangrove.html", iconUrl: "/images/menu/icon-mangrove.png" },
+      ],
+    },
+  ],
+  externalSites: [
+    { label: "石垣島ツアーズ", href: "https://ishigaki-tours.com/", iconUrl: "/images/menu/ishigaki-logo.png" },
+    { label: "小浜島ツアーズ", href: "https://kohama-tours.com/", iconUrl: "/images/menu/kohama-logo.png" },
+  ],
+};
+
+/**
  * 関連サイト一覧 - 既存サイトのフッター「当社運営サイトのご紹介」
  */
 export const relatedSites: RelatedSite[] = [

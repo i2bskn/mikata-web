@@ -8,6 +8,7 @@ import {
   footerSections,
   companyInfo,
   headerConfig,
+  menuConfig,
   relatedSites,
   socialLinks,
   partnerLogos,
@@ -46,6 +47,9 @@ export default function RootLayout({
           contactUrl={headerConfig.contactUrl}
           saleUrl={headerConfig.saleUrl}
           reservationCheckUrl={headerConfig.reservationCheckUrl}
+          menuQuickLinks={menuConfig.quickLinks}
+          menuSections={menuConfig.sections}
+          menuExternalSites={menuConfig.externalSites}
         />
         <main>{children}</main>
         <Footer
