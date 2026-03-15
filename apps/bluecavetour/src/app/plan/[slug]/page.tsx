@@ -157,6 +157,11 @@ export default async function PlanDetailPage({ params }: PageProps) {
                   {plan.price.toLocaleString()}円
                 </span>
               </div>
+              {plan.childPrice && (
+                <div style={{ marginTop: "4px", fontSize: "13px", color: "#666" }}>
+                  小人(中学生未満)：<strong style={{ color: "#333" }}>{plan.childPrice.toLocaleString()}円</strong>
+                </div>
+              )}
             </div>
 
             {/* 評価 */}
@@ -228,6 +233,8 @@ export default async function PlanDetailPage({ params }: PageProps) {
                     <th style={{ padding: "12px 16px", backgroundColor: "#f5f5f5", fontWeight: 600, color: "#333", textAlign: "left", width: "120px" }}>金額</th>
                     <td style={{ padding: "12px 16px", color: "#333" }}>
                       <div>大人(中学生以上)：{plan.originalPrice && <span style={{ textDecoration: "line-through", color: "#999" }}>{plan.originalPrice.toLocaleString()}円</span>} → <strong style={{ color: "#ed3434" }}>{plan.price.toLocaleString()}円</strong></div>
+                      {plan.childPrice && <div style={{ marginTop: "4px" }}>小人(中学生未満)：<strong>{plan.childPrice.toLocaleString()}円</strong></div>}
+                      {plan.infantPrice && <div style={{ marginTop: "4px" }}>幼児(小学生未満)：<strong>{plan.infantPrice.toLocaleString()}円</strong></div>}
                     </td>
                   </tr>
                   <tr style={{ borderBottom: "1px solid #e5e5e5" }}>

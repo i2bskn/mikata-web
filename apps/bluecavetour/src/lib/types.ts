@@ -8,6 +8,8 @@ export interface Plan {
   imageUrl: string;
   price: number;
   originalPrice?: number;
+  childPrice?: number;
+  infantPrice?: number;
   duration: string;
   tags: string[];
   rating?: number;
