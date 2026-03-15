@@ -417,6 +417,50 @@ export default function HomePage() {
               </div>
             </section>
 
+            {/* シーン・時間帯から探す - 既存サイト: 4カード横スクロール */}
+            <section style={{ marginTop: "30px" }}>
+              <div className="flex items-center justify-between" style={{ marginBottom: "16px" }}>
+                <h2 className="flex items-center gap-2" style={{ fontSize: "20px", fontWeight: "bold", color: "#333" }}>
+                  <span style={{ fontSize: "24px" }}>🕐</span>
+                  シーン・時間帯から探す
+                </h2>
+                <Link
+                  href="/category/scene-time"
+                  style={{
+                    backgroundColor: "#ed3434",
+                    color: "#fff",
+                    padding: "6px 16px",
+                    borderRadius: "4px",
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                    textDecoration: "none",
+                  }}
+                >
+                  一覧を見る
+                </Link>
+              </div>
+              <div className="flex gap-3 overflow-x-auto pb-3" style={{ scrollSnapType: "x mandatory" }}>
+                {[
+                  { href: "/scene-time/half-day.html", image: "/images/scene/half-day.jpg", title: "お手軽！半日ツアー" },
+                  { href: "/scene-time/one-day.html", image: "/images/scene/one-day.jpg", title: "満喫！1日ツアー" },
+                  { href: "/scene-time/freetourphotos.html", image: "/images/scene/free-photo.webp", title: "写真無料サービス付きツアー" },
+                  { href: "/scene-time/same_day_booking.html", image: "/images/scene/same-day.webp", title: "前日・当日予約可能な青の洞窟ツアー" },
+                ].map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block shrink-0 overflow-hidden"
+                    style={{ width: "200px", scrollSnapAlign: "start", borderRadius: "4px", border: "1px solid #e5e5e5" }}
+                  >
+                    <div style={{ width: "200px", height: "125px", overflow: "hidden" }}>
+                      <img src={item.image} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    </div>
+                    <div style={{ padding: "10px", fontSize: "13px", fontWeight: "bold", color: "#333", lineHeight: "1.4" }}>{item.title}</div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+
             {/* 人気の組み合わせから探す */}
             <section style={{ marginTop: "30px", backgroundColor: "#f0f8ff", borderRadius: "4px", padding: "24px" }}>
               <div className="flex items-center justify-between" style={{ marginBottom: "16px" }}>
