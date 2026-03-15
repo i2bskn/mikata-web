@@ -417,7 +417,7 @@ export default function HomePage() {
               </div>
             </section>
 
-            {/* シーン・時間帯から探す - 既存サイト: 4カード横スクロール */}
+            {/* シーン・時間帯から探す - 既存サイト: SP 2x2グリッド、PC 4列 */}
             <section style={{ marginTop: "30px" }}>
               <div className="flex items-center justify-between" style={{ marginBottom: "16px" }}>
                 <h2 className="flex items-center gap-2" style={{ fontSize: "20px", fontWeight: "bold", color: "#333" }}>
@@ -439,7 +439,7 @@ export default function HomePage() {
                   一覧を見る
                 </Link>
               </div>
-              <div className="flex gap-3 overflow-x-auto pb-3" style={{ scrollSnapType: "x mandatory" }}>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
                   { href: "/scene-time/half-day.html", image: "/images/scene/half-day.jpg", title: "お手軽！半日ツアー" },
                   { href: "/scene-time/one-day.html", image: "/images/scene/one-day.jpg", title: "満喫！1日ツアー" },
@@ -449,13 +449,13 @@ export default function HomePage() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="block shrink-0 overflow-hidden"
-                    style={{ width: "200px", scrollSnapAlign: "start", borderRadius: "4px", border: "1px solid #e5e5e5" }}
+                    className="block overflow-hidden"
+                    style={{ borderRadius: "4px", border: "1px solid #e5e5e5" }}
                   >
-                    <div style={{ width: "200px", height: "125px", overflow: "hidden" }}>
+                    <div style={{ aspectRatio: "16/10", overflow: "hidden" }}>
                       <img src={item.image} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                     </div>
-                    <div style={{ padding: "10px", fontSize: "13px", fontWeight: "bold", color: "#333", lineHeight: "1.4" }}>{item.title}</div>
+                    <div style={{ padding: "8px", fontSize: "12px", fontWeight: "bold", color: "#333", lineHeight: "1.4" }}>{item.title}</div>
                   </Link>
                 ))}
               </div>
@@ -483,7 +483,7 @@ export default function HomePage() {
                   一覧を見る
                 </Link>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="flex gap-3 overflow-x-auto pb-3 sm:grid sm:grid-cols-3 sm:overflow-visible">
                 {[
                   { href: "/setplan/bluecave-kabirabay.html", title: "青の洞窟×川平湾ツアー", image: "/images/setplan/bluecave-kabirabay.webp" },
                   { href: "/setplan/bluecave-mangrove.html", title: "青の洞窟×マングローブツアー", image: "/images/setplan/bluecave-mangrove.webp" },
@@ -492,7 +492,7 @@ export default function HomePage() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="block overflow-hidden"
+                    className="block overflow-hidden shrink-0 w-[200px] sm:w-auto"
                     style={{ borderRadius: "4px", backgroundColor: "#fff", border: "1px solid #e5e5e5" }}
                   >
                     <div style={{ aspectRatio: "4/3", overflow: "hidden" }}>
