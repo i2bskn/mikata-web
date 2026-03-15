@@ -11,7 +11,22 @@
       "Bash(done)",
       "Bash(pnpm build:*)",
       "Bash(/bin/cp:*)",
-      "Bash(/bin/rm:*)"
+      "Bash(/bin/rm:*)",
+      "Bash(grep -v '^$')",
+      "mcp__claude_ai_Notion__notion-fetch",
+      "mcp__claude_ai_Notion__notion-search",
+      "mcp__claude_ai_Notion__notion-create-pages",
+      "mcp__claude_ai_Notion__notion-update-page",
+      "mcp__chrome-devtools__list_pages",
+      "mcp__chrome-devtools__new_page",
+      "mcp__chrome-devtools__emulate",
+      "mcp__chrome-devtools__navigate_page",
+      "mcp__chrome-devtools__take_screenshot",
+      "mcp__chrome-devtools__select_page",
+      "mcp__chrome-devtools__evaluate_script",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(cd:*)"
     ]
   }
 }
