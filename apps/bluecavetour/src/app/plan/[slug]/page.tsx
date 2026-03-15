@@ -204,6 +204,26 @@ export default async function PlanDetailPage({ params }: PageProps) {
               ))}
             </div>
 
+            {/* ツアーズプレミアムプランとは？ - 既存サイト準拠 */}
+            <section style={{ marginTop: "20px", backgroundColor: "#eff8ff", borderRadius: "4px", padding: "20px", border: "1px solid #d4e8f7" }}>
+              <h2 style={{ fontSize: "16px", fontWeight: 600, color: "#212529", marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
+                <span style={{ fontSize: "20px" }}>🏆</span>
+                ツアーズプレミアムプランとは？
+              </h2>
+              <ol style={{ paddingLeft: "20px", fontSize: "14px", color: "#333", lineHeight: "2" }}>
+                <li>写真データ無料プレゼント！</li>
+                <li>ご参加日前日18:00までキャンセル料無料！</li>
+                <li>前日・当日予約OK！</li>
+                <li>好評価の声多数！</li>
+                <li>ツアーに必要な用具レンタル無料！</li>
+              </ol>
+              <p style={{ marginTop: "8px" }}>
+                <a href="/campaign/premium-plan.html" style={{ color: "#1a9edb", fontSize: "14px", fontWeight: "bold" }}>
+                  →ツアーズプレミアムプランを詳しくチェック
+                </a>
+              </p>
+            </section>
+
             {/* プランの特徴 */}
             <section style={{ marginTop: "20px" }}>
               <h2 style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
