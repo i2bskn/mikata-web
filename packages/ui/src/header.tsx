@@ -38,7 +38,7 @@ export const Header: FC<HeaderProps> = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50">
+    <header className="lg:sticky lg:top-0 z-50">
       {/* トップバー（水色背景） - 既存サイト: height 35px, bg #1a9edb */}
       <div style={{ backgroundColor: "#1a9edb" }}>
         <div className="mx-auto px-1" style={{ maxWidth: "1020px" }}>
