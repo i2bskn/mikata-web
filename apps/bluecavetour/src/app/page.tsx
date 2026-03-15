@@ -60,7 +60,7 @@ export default function HomePage() {
       {/* ヒーローバナー - フルワイド */}
       <HeroBanner slides={heroSlides} autoPlayInterval={5000} />
 
-      {/* 検索エリア - 既存サイト: フルワイド薄い青背景(#eff4ff)の中に白カード1つ（タブ+フォーム） */}
+      {/* 検索エリア - 既存サイト: フルワイド薄い青背景(#eff4ff)、カードなし */}
       <div
         style={{
           backgroundColor: "#eff4ff",
@@ -68,13 +68,7 @@ export default function HomePage() {
         }}
       >
         <div className="mx-auto" style={{ maxWidth: "1020px", padding: "0 10px" }}>
-            <div
-              style={{
-                backgroundColor: "#fff",
-                borderRadius: "10px",
-                padding: "15px",
-              }}
-            >
+            <div>
               {/* カテゴリナビ（タブ） - 白カード内 */}
               <CategoryNav items={categoryNavItems} embedded />
 
@@ -191,7 +185,7 @@ export default function HomePage() {
       {/* メインコンテンツ - 1020px幅 */}
       <div className="mx-auto" style={{ maxWidth: "1020px", padding: "0 5px" }}>
         {/* 2カラムレイアウト - 既存サイト: 左サイドバー225px + 右メインコンテンツ */}
-        <div className="flex gap-5" style={{ marginTop: "30px" }}>
+        <div className="flex gap-5" style={{ marginTop: "20px" }}>
           {/* 左サイドバー - 既存サイト: 225px幅 */}
           <aside className="hidden lg:block shrink-0" style={{ width: "225px" }}>
             <div className="sticky" style={{ top: "110px" }}>
@@ -323,7 +317,7 @@ export default function HomePage() {
           <div className="flex-1 min-w-0">
             {/* 人気プランランキング */}
             <section>
-              <div className="flex items-center justify-between" style={{ marginBottom: "16px" }}>
+              <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
                 <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529" }}>
                   <img src="/images/icons/crown.svg" alt="" width={22} height={20} style={{ width: "22px", height: "20px" }} />
                   人気プランランキング
@@ -387,8 +381,8 @@ export default function HomePage() {
             </section>
 
             {/* おすすめ観光情報＆キャンペーン - 旧サイト: 横スクロール7カード */}
-            <section style={{ marginTop: "30px" }}>
-              <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "16px" }}>
+            <section style={{ marginTop: "20px" }}>
+              <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "12px" }}>
                 <img src="/images/icons/flag.svg" alt="" width={22} height={20} style={{ width: "22px", height: "20px" }} />
                 おすすめ観光情報＆キャンペーン
               </h2>
@@ -418,8 +412,8 @@ export default function HomePage() {
             </section>
 
             {/* シーン・時間帯から探す - 既存サイト: SP 2x2グリッド、PC 4列 */}
-            <section style={{ marginTop: "30px" }}>
-              <div className="flex items-center justify-between" style={{ marginBottom: "16px" }}>
+            <section style={{ marginTop: "20px" }}>
+              <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
                 <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529" }}>
                   <img src="/images/icons/icon-time.webp" alt="" width={22} height={22} style={{ width: "22px", height: "22px" }} />
                   シーン・時間帯から探す
@@ -462,8 +456,8 @@ export default function HomePage() {
             </section>
 
             {/* 人気の組み合わせから探す */}
-            <section style={{ marginTop: "30px", backgroundColor: "#f0f8ff", borderRadius: "4px", padding: "24px" }}>
-              <div className="flex items-center justify-between" style={{ marginBottom: "16px" }}>
+            <section style={{ marginTop: "20px", backgroundColor: "#f0f8ff", borderRadius: "4px", padding: "16px" }}>
+              <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
                 <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529" }}>
                   <img src="/images/icons/icon-activity.png" alt="" width={22} height={22} style={{ width: "22px", height: "22px" }} />
                   人気の組み合わせから探す
@@ -492,7 +486,7 @@ export default function HomePage() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="block overflow-hidden shrink-0 w-[200px] sm:w-auto"
+                    className="block overflow-hidden shrink-0 w-[150px] sm:w-auto"
                     style={{ borderRadius: "4px", backgroundColor: "#fff", border: "1px solid #e5e5e5" }}
                   >
                     <div style={{ aspectRatio: "4/3", overflow: "hidden" }}>
@@ -505,8 +499,8 @@ export default function HomePage() {
             </section>
 
             {/* 条件から探す */}
-            <section style={{ marginTop: "30px" }}>
-              <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "16px" }}>
+            <section style={{ marginTop: "20px" }}>
+              <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "12px" }}>
                 <img src="/images/icons/loupe.svg" alt="" width={22} height={20} style={{ width: "22px", height: "20px" }} />
                 条件から探す
               </h2>
@@ -558,8 +552,8 @@ export default function HomePage() {
             </section>
 
             {/* ツアーズコラム - 旧サイト: 3記事、サムネ+タイトル+日付+PV数 */}
-            <section style={{ marginTop: "30px", backgroundColor: "#f0f8ff", borderRadius: "4px", padding: "24px" }}>
-              <div className="flex items-center justify-between" style={{ marginBottom: "16px" }}>
+            <section style={{ marginTop: "20px", backgroundColor: "#f0f8ff", borderRadius: "4px", padding: "16px" }}>
+              <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
                 <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529" }}>
                   <img src="/images/icons/pen.svg" alt="" width={22} height={20} style={{ width: "22px", height: "20px" }} />
                   ツアーズコラム
@@ -631,7 +625,7 @@ export default function HomePage() {
             </section>
 
             {/* 関連情報 - 旧サイト: 2x3グリッドのバナー */}
-            <section style={{ marginTop: "30px" }}>
+            <section style={{ marginTop: "20px" }}>
               <h2 style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "16px", borderBottom: "4px solid #1a9edb", paddingBottom: "10px" }}>
                 関連情報
               </h2>
@@ -659,7 +653,7 @@ export default function HomePage() {
             </section>
 
             {/* 予約から参加の流れ - 既存サイト: 4ステップ横並び */}
-            <section style={{ marginTop: "30px", paddingBottom: "40px" }}>
+            <section style={{ marginTop: "20px", paddingBottom: "40px" }}>
               <h2
                 style={{
                   fontSize: "18px",
