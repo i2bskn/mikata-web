@@ -324,8 +324,8 @@ export default function HomePage() {
             {/* 人気プランランキング */}
             <section>
               <div className="flex items-center justify-between" style={{ marginBottom: "16px" }}>
-                <h2 className="flex items-center gap-2" style={{ fontSize: "20px", fontWeight: "bold", color: "#333" }}>
-                  <img src="/images/crown.svg" alt="" width={24} height={22} style={{ width: "24px", height: "22px" }} />
+                <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529" }}>
+                  <img src="/images/icons/crown.svg" alt="" width={22} height={20} style={{ width: "22px", height: "20px" }} />
                   人気プランランキング
                 </h2>
                 <Link
@@ -388,8 +388,8 @@ export default function HomePage() {
 
             {/* おすすめ観光情報＆キャンペーン - 旧サイト: 横スクロール7カード */}
             <section style={{ marginTop: "30px" }}>
-              <h2 className="flex items-center gap-2" style={{ fontSize: "20px", fontWeight: "bold", color: "#333", marginBottom: "16px" }}>
-                <span style={{ fontSize: "24px" }}>📌</span>
+              <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "16px" }}>
+                <img src="/images/icons/flag.svg" alt="" width={22} height={20} style={{ width: "22px", height: "20px" }} />
                 おすすめ観光情報＆キャンペーン
               </h2>
               <div className="flex gap-3 overflow-x-auto pb-3" style={{ scrollSnapType: "x mandatory" }}>
@@ -420,8 +420,8 @@ export default function HomePage() {
             {/* シーン・時間帯から探す - 既存サイト: SP 2x2グリッド、PC 4列 */}
             <section style={{ marginTop: "30px" }}>
               <div className="flex items-center justify-between" style={{ marginBottom: "16px" }}>
-                <h2 className="flex items-center gap-2" style={{ fontSize: "20px", fontWeight: "bold", color: "#333" }}>
-                  <span style={{ fontSize: "24px" }}>🕐</span>
+                <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529" }}>
+                  <img src="/images/icons/icon-time.webp" alt="" width={22} height={22} style={{ width: "22px", height: "22px" }} />
                   シーン・時間帯から探す
                 </h2>
                 <Link
@@ -464,8 +464,8 @@ export default function HomePage() {
             {/* 人気の組み合わせから探す */}
             <section style={{ marginTop: "30px", backgroundColor: "#f0f8ff", borderRadius: "4px", padding: "24px" }}>
               <div className="flex items-center justify-between" style={{ marginBottom: "16px" }}>
-                <h2 className="flex items-center gap-2" style={{ fontSize: "20px", fontWeight: "bold", color: "#333" }}>
-                  <span style={{ fontSize: "24px" }}>🔗</span>
+                <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529" }}>
+                  <img src="/images/icons/icon-activity.png" alt="" width={22} height={22} style={{ width: "22px", height: "22px" }} />
                   人気の組み合わせから探す
                 </h2>
                 <Link
@@ -506,11 +506,8 @@ export default function HomePage() {
 
             {/* 条件から探す */}
             <section style={{ marginTop: "30px" }}>
-              <h2 className="flex items-center gap-2" style={{ fontSize: "20px", fontWeight: "bold", color: "#333", marginBottom: "16px" }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2">
-                  <circle cx="11" cy="11" r="8" />
-                  <path d="m21 21-4.35-4.35" />
-                </svg>
+              <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "16px" }}>
+                <img src="/images/icons/loupe.svg" alt="" width={22} height={20} style={{ width: "22px", height: "20px" }} />
                 条件から探す
               </h2>
               {["スポットから探す", "見れるものから探す", "シーンから探す", "シーズンから探す", "時間帯から探す", "こだわり条件から探す"].map((label) => (
@@ -563,8 +560,8 @@ export default function HomePage() {
             {/* ツアーズコラム - 旧サイト: 3記事、サムネ+タイトル+日付+PV数 */}
             <section style={{ marginTop: "30px", backgroundColor: "#f0f8ff", borderRadius: "4px", padding: "24px" }}>
               <div className="flex items-center justify-between" style={{ marginBottom: "16px" }}>
-                <h2 className="flex items-center gap-2" style={{ fontSize: "20px", fontWeight: "bold", color: "#333" }}>
-                  <span style={{ fontSize: "24px" }}>📝</span>
+                <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529" }}>
+                  <img src="/images/icons/pen.svg" alt="" width={22} height={20} style={{ width: "22px", height: "20px" }} />
                   ツアーズコラム
                 </h2>
                 <Link
@@ -635,7 +632,7 @@ export default function HomePage() {
 
             {/* 関連情報 - 旧サイト: 2x3グリッドのバナー */}
             <section style={{ marginTop: "30px" }}>
-              <h2 style={{ fontSize: "20px", fontWeight: "bold", color: "#333", marginBottom: "16px", borderBottom: "3px solid #1a9edb", paddingBottom: "8px" }}>
+              <h2 style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "16px", borderBottom: "4px solid #1a9edb", paddingBottom: "10px" }}>
                 関連情報
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -665,9 +662,9 @@ export default function HomePage() {
             <section style={{ marginTop: "30px", paddingBottom: "40px" }}>
               <h2
                 style={{
-                  fontSize: "21.6px",
+                  fontSize: "18px",
                   fontWeight: 600,
-                  color: "#333",
+                  color: "#212529",
                   paddingBottom: "10px",
                   borderBottom: "4px solid #1a9edb",
                   marginBottom: "20px",
