@@ -238,33 +238,36 @@ export const Header: FC<HeaderProps> = ({
         </div>
       </div>
 
-      {/* ドロワーメニュー - 既存サイト準拠: 右側スライドパネル */}
-      {isMenuOpen && (
-        <>
-          {/* オーバーレイ */}
-          <div
-            style={{
-              position: "fixed",
-              inset: 0,
-              backgroundColor: "rgba(0,0,0,0.4)",
-              zIndex: 998,
-            }}
-            onClick={() => setIsMenuOpen(false)}
-          />
-          {/* パネル */}
-          <div
-            style={{
-              position: "fixed",
-              top: 0,
-              right: 0,
-              bottom: 0,
-              width: "min(360px, 85vw)",
-              backgroundColor: "#fff",
-              zIndex: 999,
-              overflowY: "auto",
-              boxShadow: "-4px 0 12px rgba(0,0,0,0.15)",
-            }}
-          >
+      {/* ドロワーメニュー - 既存サイト準拠: 右側スライドインパネル */}
+      {/* オーバーレイ */}
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          backgroundColor: "rgba(0,0,0,0.4)",
+          zIndex: 998,
+          opacity: isMenuOpen ? 1 : 0,
+          pointerEvents: isMenuOpen ? "auto" : "none",
+          transition: "opacity 300ms ease-in-out",
+        }}
+        onClick={() => setIsMenuOpen(false)}
+      />
+      {/* パネル */}
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          width: "min(360px, 85vw)",
+          backgroundColor: "#fff",
+          zIndex: 999,
+          overflowY: "auto",
+          boxShadow: "-4px 0 12px rgba(0,0,0,0.15)",
+          transform: isMenuOpen ? "translateX(0)" : "translateX(100%)",
+          transition: "transform 300ms ease-in-out",
+        }}
+      >
             {/* 閉じるボタン */}
             <div style={{ textAlign: "right", padding: "12px 16px 0" }}>
               <button
@@ -487,8 +490,6 @@ export const Header: FC<HeaderProps> = ({
               </button>
             </div>
           </div>
-        </>
-      )}
     </header>
   );
 };
