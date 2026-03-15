@@ -271,7 +271,7 @@ export const Header: FC<HeaderProps> = ({
         }}
       >
             {/* 閉じるボタン */}
-            <div style={{ textAlign: "right", padding: "8px 12px 0" }}>
+            <div style={{ textAlign: "right", padding: "40px 12px 0" }}>
               <button
                 type="button"
                 onClick={() => setIsMenuOpen(false)}
@@ -301,7 +301,7 @@ export const Header: FC<HeaderProps> = ({
                 display: "grid",
                 gridTemplateColumns: "repeat(3, 1fr)",
                 gap: "6px",
-                padding: "0 15px 8px",
+                padding: "0 15px 10px",
               }}>
                 {menuQuickLinks.map((link) => (
                   <a
