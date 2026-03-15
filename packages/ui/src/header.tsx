@@ -454,7 +454,7 @@ export const Header: FC<HeaderProps> = ({
             )}
 
             {/* 離島フェリー予約受付中 - 既存サイト準拠 */}
-            <div style={{ padding: "0 15px 12px" }}>
+            <div style={{ padding: "0 15px 8px" }}>
               <a
                 href="https://ishigaki-tours.com/tours-ferry"
                 onClick={() => setIsMenuOpen(false)}
@@ -473,7 +473,7 @@ export const Header: FC<HeaderProps> = ({
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: "11px", color: "#666" }}>【各便40席限定】石垣島から離島へ！</div>
                   <div style={{ fontSize: "11px", color: "#666" }}>（乗船時間までキャンセル料無料）</div>
-                  <div style={{ fontWeight: "bold", fontSize: "13px", color: "#1a9edb", marginTop: "2px" }}>離島フェリー予約受付中</div>
+                  <div style={{ fontWeight: "bold", fontSize: "13px", color: "#1a9edb", marginTop: "2px", borderBottom: "2px solid #f5c518", display: "inline-block" }}>離島フェリー予約受付中</div>
                 </div>
               </a>
             </div>
