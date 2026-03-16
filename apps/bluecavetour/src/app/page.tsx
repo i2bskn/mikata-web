@@ -60,7 +60,7 @@ export default function HomePage() {
       {/* ヒーローバナー - フルワイド */}
       <HeroBanner slides={heroSlides} autoPlayInterval={5000} />
 
-      {/* 検索エリア - 既存サイト: フルワイド薄い青背景(#eff4ff)、カードなし */}
+      {/* 検索エリア - 既存サイト: フルワイド薄い青背景(#eff4ff)、白カード */}
       <div
         style={{
           backgroundColor: "#eff4ff",
@@ -68,7 +68,12 @@ export default function HomePage() {
         }}
       >
         <div className="mx-auto" style={{ maxWidth: "1020px", padding: "0 10px" }}>
-            <div>
+            <div style={{
+              backgroundColor: "#fff",
+              borderRadius: "10px",
+              boxShadow: "rgb(204, 204, 204) 0px 1px 6px 0px",
+              padding: "15px",
+            }}>
               {/* カテゴリナビ（タブ） - 白カード内 */}
               <CategoryNav items={categoryNavItems} embedded />
 

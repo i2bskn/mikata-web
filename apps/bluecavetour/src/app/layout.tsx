@@ -50,6 +50,16 @@ export default function RootLayout({
           menuQuickLinks={menuConfig.quickLinks}
           menuSections={menuConfig.sections}
           menuExternalSites={menuConfig.externalSites}
+          menuSliderImages={[
+            "/images/plans/bluecave304.webp",
+            "/images/plans/setplan349.webp",
+            "/images/plans/setplan362.webp",
+            "/images/plans/glassboat392.webp",
+            "/images/plans/bluecave305.webp",
+            "/images/plans/kayak306.webp",
+            "/images/plans/charter553.webp",
+            "/images/plans/marine399.webp",
+          ]}
         />
         <main>{children}</main>
         <Footer

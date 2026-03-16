@@ -1,7 +1,7 @@
 "use client";
 
 import type { FC } from "react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export interface NavItem {
   label: string;
@@ -41,7 +41,57 @@ export interface HeaderProps {
   menuBannerUrl?: string;
   /** ドロワーメニューの下部バナーリンク */
   menuBannerHref?: string;
+  /** ドロワーメニューのフッタースライダー画像URL配列 */
+  menuSliderImages?: string[];
 }
+
+/** CSS製×アイコン（2本の赤い線を45度回転） */
+const CssCloseIcon: FC<{ size?: number }> = ({ size = 30 }) => (
+  <div style={{ width: size, height: size, position: "relative" }}>
+    <span style={{
+      display: "block", width: size, height: 2, backgroundColor: "#ed3434",
+      position: "absolute", top: "50%", left: 0,
+      transform: "rotate(45deg)", transformOrigin: "center",
+    }} />
+    <span style={{
+      display: "block", width: size, height: 2, backgroundColor: "#ed3434",
+      position: "absolute", top: "50%", left: 0,
+      transform: "rotate(-45deg)", transformOrigin: "center",
+    }} />
+  </div>
+);
+
+/** フッタースライダー: 画像が左にゆっくり流れる */
+const FooterSlider: FC<{ images: string[] }> = ({ images }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let animId: number;
+    let pos = 0;
+    const speed = 0.5;
+    const animate = () => {
+      pos -= speed;
+      const totalWidth = el.scrollWidth / 2;
+      if (Math.abs(pos) >= totalWidth) pos = 0;
+      el.style.transform = `translateX(${pos}px)`;
+      animId = requestAnimationFrame(animate);
+    };
+    animId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animId);
+  }, []);
+
+  const doubled = [...images, ...images];
+  return (
+    <div style={{ overflow: "hidden", padding: "10px 0" }}>
+      <div ref={ref} style={{ display: "flex", gap: "4px", willChange: "transform" }}>
+        {doubled.map((src, i) => (
+          <img key={i} src={src} alt="" style={{ width: 169, height: 101, objectFit: "cover", borderRadius: 4, flexShrink: 0 }} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 /**
  * 共通ヘッダーコンポーネント
@@ -61,8 +111,20 @@ export const Header: FC<HeaderProps> = ({
   menuExternalSites,
   menuBannerUrl,
   menuBannerHref,
+  menuSliderImages,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // セクションタイトル共通スタイル - 既存: 18px/600/#666
+  const sectionTitleStyle: React.CSSProperties = {
+    fontSize: "18px",
+    fontWeight: 600,
+    color: "#666",
+    marginBottom: "10px",
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+  };
 
   return (
     <>
@@ -241,61 +303,61 @@ export const Header: FC<HeaderProps> = ({
     </header>
 
       {/* ドロワーメニュー - 既存サイト準拠: 右側スライドインパネル */}
-      {/* オーバーレイ */}
+      {/* オーバーレイ - 既存: SP rgba(0,0,0,0.6) z-100 / PC なし */}
       <div
+        className="lg:hidden"
         style={{
           position: "fixed",
           inset: 0,
-          backgroundColor: "rgba(0,0,0,0)",
-          zIndex: 39,
+          backgroundColor: "rgba(0,0,0,0.6)",
+          zIndex: 100,
           opacity: isMenuOpen ? 1 : 0,
           pointerEvents: isMenuOpen ? "auto" : "none",
           transition: "opacity 300ms ease-in-out",
         }}
         onClick={() => setIsMenuOpen(false)}
       />
-      {/* パネル */}
+      {/* パネル - 既存: SP top:0 width:90vw / PC top:94px width:380px, z-index:10000, bg:#eff4ff */}
       <div
+        className="fixed top-0 lg:top-[94px] right-0 bottom-0"
         style={{
-          position: "fixed",
-          top: 0,
-          right: 0,
-          bottom: 0,
-          width: "min(360px, 90vw)",
+          width: "min(380px, 90vw)",
           backgroundColor: "#eff4ff",
-          zIndex: 40,
+          zIndex: 10000,
           overflowY: "auto",
-          boxShadow: "-4px 0 12px rgba(0,0,0,0.15)",
           transform: isMenuOpen ? "translateX(0)" : "translateX(100%)",
           transition: "transform 300ms ease-in-out",
+          paddingBottom: 0,
         }}
       >
-            {/* 閉じるボタン */}
-            <div style={{ textAlign: "right", padding: "40px 12px 0" }}>
-              <button
-                type="button"
-                onClick={() => setIsMenuOpen(false)}
-                style={{
-                  background: "none",
-                  border: "none",
-                  fontSize: "28px",
-                  color: "#f08300",
-                  cursor: "pointer",
-                  lineHeight: 1,
-                }}
-                aria-label="メニューを閉じる"
-              >
-                ×
-              </button>
+            {/* 閉じるボタン（上部） - 既存: CSS製×, 30x30, absolute top:15px right:15px, 赤#ed3434 */}
+            <button
+              type="button"
+              onClick={() => setIsMenuOpen(false)}
+              aria-label="メニューを閉じる"
+              style={{
+                position: "absolute",
+                top: "15px",
+                right: "15px",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                zIndex: 1,
+                padding: 0,
+              }}
+            >
+              <CssCloseIcon size={30} />
+            </button>
+
+            {/* ヘッダーメッセージ - 既存: 18px/600/#666, textAlign left, icon 20x20, SP paddingTop 80px / PC 20px */}
+            <div className="pt-[80px] lg:pt-[20px]" style={{ paddingLeft: "15px", paddingRight: "15px", paddingBottom: "8px", display: "flex", alignItems: "center", gap: "6px" }}>
+              <img src="/images/menu/title-icon-a.png" alt="" style={{ width: "20px", height: "20px", objectFit: "contain" }} />
+              <span style={{ fontSize: "18px", fontWeight: 600, color: "#666", lineHeight: "24px" }}>
+                会員登録不要！ご予約はお早めに
+              </span>
             </div>
 
-            {/* ヘッダーメッセージ - 既存: 14px/600 */}
-            <div style={{ textAlign: "center", padding: "4px 15px 8px", fontSize: "14px", fontWeight: 600, color: "#212529", display: "flex", alignItems: "center", justifyContent: "center", gap: "6px" }}>
-              <img src="/images/menu/title-icon-a.png" alt="" style={{ width: "28px", height: "28px", objectFit: "contain" }} />
-              会員登録不要！ご予約はお早めに
-            </div>
-
-            {/* クイックリンク 3カラム - 既存: 白bg/枠線なし/95x89px */}
+            {/* クイックリンク 3カラム - 既存: 白bg/角丸10px, icon 40x40, text 10px/600/#666 */}
             {menuQuickLinks && menuQuickLinks.length > 0 && (
               <div style={{
                 display: "grid",
@@ -332,8 +394,8 @@ export const Header: FC<HeaderProps> = ({
               </div>
             )}
 
-            {/* 写真無料プランバナー - 既存: カメラアイコン画像 */}
-            <div style={{ padding: "0 15px 12px" }}>
+            {/* 写真無料プランバナー - 既存: subtitle 12px/500/#666, title 18px/700/#666 */}
+            <div style={{ padding: "0 15px 25px" }}>
               <a
                 href="/scene-time/freetourphotos.html"
                 onClick={() => setIsMenuOpen(false)}
@@ -345,29 +407,21 @@ export const Header: FC<HeaderProps> = ({
                   backgroundColor: "#fff",
                   borderRadius: "10px",
                   textDecoration: "none",
-                  color: "#212529",
+                  color: "#666",
                 }}
               >
-                <img src="/images/menu/icon-camera.png" alt="" style={{ width: "40px", height: "40px", objectFit: "contain" }} />
+                <img src="/images/menu/icon-camera.png" alt="" style={{ width: "45px", height: "45px", objectFit: "contain" }} />
                 <div>
-                  <div style={{ fontSize: "11px", color: "#666" }}>心に残る瞬間を写真に残そう！</div>
-                  <div style={{ fontWeight: "bold", fontSize: "13px" }}>写真無料プラン</div>
+                  <div style={{ fontSize: "12px", fontWeight: 500, color: "#666" }}>心に残る瞬間を写真に残そう！</div>
+                  <div style={{ fontWeight: 700, fontSize: "18px", color: "#666" }}>写真無料プラン</div>
                 </div>
               </a>
             </div>
 
-            {/* メニューセクション - 既存: 白bg/枠線なし */}
+            {/* メニューセクション - 既存: タイトル 18px/600/#666, カード 10px/600/#666 */}
             {menuSections && menuSections.map((section) => (
               <div key={section.title} style={{ padding: "0 15px 25px" }}>
-                <div style={{
-                  fontSize: "13px",
-                  fontWeight: 600,
-                  color: "#212529",
-                  marginBottom: "10px",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                }}>
+                <div style={sectionTitleStyle}>
                   <img src="/images/menu/title-icon-c.png" alt="" style={{ width: "20px", height: "20px" }} />
                   {section.title}
                 </div>
@@ -406,18 +460,10 @@ export const Header: FC<HeaderProps> = ({
               </div>
             ))}
 
-            {/* 外部サイトリンク - 既存: 白bg/枠線なし */}
+            {/* 外部サイトリンク - 既存: タイトル 18px/600/#666, ロゴ height:40px */}
             {menuExternalSites && menuExternalSites.length > 0 && (
-              <div style={{ padding: "0 15px 25px" }}>
-                <div style={{
-                  fontSize: "13px",
-                  fontWeight: 600,
-                  color: "#212529",
-                  marginBottom: "10px",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                }}>
+              <div style={{ padding: "0 15px 15px" }}>
+                <div style={sectionTitleStyle}>
                   <img src="/images/menu/icon-other-island.png" alt="" style={{ width: "20px", height: "20px" }} />
                   他の島のツアーもチェック
                 </div>
@@ -444,7 +490,7 @@ export const Header: FC<HeaderProps> = ({
                       }}
                     >
                       {site.iconUrl ? (
-                        <img src={site.iconUrl} alt={site.label} style={{ height: "24px", objectFit: "contain", marginBottom: "5px" }} />
+                        <img src={site.iconUrl} alt={site.label} style={{ height: "40px", objectFit: "contain", marginBottom: "5px" }} />
                       ) : null}
                       <span style={{ fontSize: "10px", fontWeight: 600, color: "#666" }}>{site.label.includes("石垣") ? "石垣島専門" : "小浜島専門"}</span>
                       <span style={{ fontSize: "9px", color: "#999" }}>（外部サイト）</span>
@@ -454,8 +500,8 @@ export const Header: FC<HeaderProps> = ({
               </div>
             )}
 
-            {/* 離島フェリー予約受付中 - 既存サイト準拠 */}
-            <div style={{ padding: "0 15px 8px" }}>
+            {/* 離島フェリー予約受付中 - 既存: subtitle 12px/500/#666, title 18px/700/#666 */}
+            <div style={{ padding: "0 15px 25px" }}>
               <a
                 href="https://ishigaki-tours.com/tours-ferry"
                 onClick={() => setIsMenuOpen(false)}
@@ -467,33 +513,25 @@ export const Header: FC<HeaderProps> = ({
                   backgroundColor: "#fff",
                   borderRadius: "10px",
                   textDecoration: "none",
-                  color: "#212529",
+                  color: "#666",
                 }}
               >
-                <img src="/images/menu/icon-ferry.png" alt="" style={{ width: "40px", height: "40px", objectFit: "contain" }} />
+                <img src="/images/menu/icon-ferry.png" alt="" style={{ width: "45px", height: "45px", objectFit: "contain" }} />
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: "11px", color: "#666" }}>【各便40席限定】石垣島から離島へ！</div>
-                  <div style={{ fontSize: "11px", color: "#666" }}>（乗船時間までキャンセル料無料）</div>
-                  <div style={{ fontWeight: "bold", fontSize: "13px", color: "#1a9edb", marginTop: "2px", borderBottom: "2px solid #f5c518", display: "inline-block" }}>離島フェリー予約受付中</div>
+                  <div style={{ fontSize: "12px", fontWeight: 500, color: "#666" }}>【各便40席限定】石垣島から離島へ！</div>
+                  <div style={{ fontSize: "12px", fontWeight: 500, color: "#666" }}>（乗船時間までキャンセル料無料）</div>
+                  <div style={{ fontWeight: 700, fontSize: "18px", color: "#666", marginTop: "2px" }}>離島フェリー予約受付中</div>
                 </div>
               </a>
             </div>
 
-            {/* 初めて行く方へ！お役立ち情報 - 既存サイト準拠 */}
-            <div style={{ padding: "0 15px 12px" }}>
-              <div style={{
-                fontSize: "13px",
-                fontWeight: 600,
-                color: "#212529",
-                marginBottom: "10px",
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-              }}>
+            {/* 初めて行く方へ！お役立ち情報 - 既存: タイトル 18px/600/#666 */}
+            <div style={{ padding: "0 15px 25px" }}>
+              <div style={sectionTitleStyle}>
                 <img src="/images/menu/icon-info.png" alt="" style={{ width: "20px", height: "20px" }} />
                 初めて行く方へ！お役立ち情報
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "6px" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "8px" }}>
                 <a
                   href="https://ishigaki-tours.com/popular-spot/bluecave.html"
                   onClick={() => setIsMenuOpen(false)}
@@ -550,26 +588,35 @@ export const Header: FC<HeaderProps> = ({
               </a>
             </div>
 
-            {/* 閉じるボタン（下部） - 既存: 赤×＋テキスト */}
-            <div style={{ padding: "4px 15px 50px", textAlign: "center" }}>
+            {/* フッタースライダー - 既存: 16枚の画像が左にゆっくり流れる、169x101px */}
+            {menuSliderImages && menuSliderImages.length > 0 && (
+              <FooterSlider images={menuSliderImages} />
+            )}
+
+            {/* 閉じるボタン（下部） - 既存: スクロール末尾に配置, height 54px, bg #eee */}
+            <div style={{ height: "54px", backgroundColor: "#eee" }}>
               <button
                 type="button"
                 onClick={() => setIsMenuOpen(false)}
                 style={{
-                  background: "none",
+                  width: "100%",
+                  height: "54px",
+                  backgroundColor: "#eee",
                   border: "none",
-                  fontSize: "14px",
-                  color: "#666",
                   cursor: "pointer",
-                  display: "inline-flex",
+                  display: "flex",
                   alignItems: "center",
-                  gap: "4px",
+                  justifyContent: "center",
+                  gap: "8px",
+                  fontSize: "16px",
+                  color: "#666",
                 }}
               >
+                <CssCloseIcon size={20} />
                 メニューを閉じる
-                <span style={{ color: "#ed3434", fontSize: "18px", fontWeight: "bold" }}>×</span>
               </button>
             </div>
+
           </div>
     </>
   );
