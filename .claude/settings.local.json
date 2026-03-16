@@ -28,7 +28,8 @@
       "Bash(git commit:*)",
       "Bash(cd:*)",
       "mcp__chrome-devtools__take_snapshot",
-      "mcp__chrome-devtools__click"
+      "mcp__chrome-devtools__click",
+      "Bash(git rm:*)"
     ]
   }
 }

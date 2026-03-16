@@ -16,6 +16,10 @@
   --color-footer-bg: #f9f9f2;
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   background-color: #ffffff;
   color: #212529;

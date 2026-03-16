@@ -114,6 +114,15 @@ export const Header: FC<HeaderProps> = ({
   menuSliderImages,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLg, setIsLg] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    setIsLg(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsLg(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   // セクションタイトル共通スタイル - 既存: 18px/600/#666
   const sectionTitleStyle: React.CSSProperties = {
@@ -304,8 +313,8 @@ export const Header: FC<HeaderProps> = ({
 
       {/* ドロワーメニュー - 既存サイト準拠: 右側スライドインパネル */}
       {/* オーバーレイ - 既存: SP rgba(0,0,0,0.6) z-100 / PC なし */}
+      {!isLg && (
       <div
-        className="lg:hidden"
         style={{
           position: "fixed",
           inset: 0,
@@ -317,10 +326,14 @@ export const Header: FC<HeaderProps> = ({
         }}
         onClick={() => setIsMenuOpen(false)}
       />
+      )}
       {/* パネル - 既存: SP top:0 width:90vw / PC top:94px width:380px, z-index:10000, bg:#eff4ff */}
       <div
-        className="fixed top-0 lg:top-[94px] right-0 bottom-0"
         style={{
+          position: "fixed",
+          top: isLg ? "94px" : 0,
+          right: 0,
+          bottom: 0,
           width: "min(380px, 90vw)",
           backgroundColor: "#eff4ff",
           zIndex: 10000,
@@ -330,11 +343,12 @@ export const Header: FC<HeaderProps> = ({
           paddingBottom: 0,
         }}
       >
-            {/* 閉じるボタン（上部） - 既存: CSS製×, 30x30, absolute top:15px right:15px, 赤#ed3434 */}
+            {/* 閉じるボタン（上部） - 既存: SP top:15px right:15px / PC 非表示 */}
             <button
               type="button"
               onClick={() => setIsMenuOpen(false)}
               aria-label="メニューを閉じる"
+              hidden={isLg}
               style={{
                 position: "absolute",
                 top: "15px",
@@ -350,7 +364,7 @@ export const Header: FC<HeaderProps> = ({
             </button>
 
             {/* ヘッダーメッセージ - 既存: 18px/600/#666, textAlign left, icon 20x20, SP paddingTop 80px / PC 20px */}
-            <div className="pt-[80px] lg:pt-[20px]" style={{ paddingLeft: "15px", paddingRight: "15px", paddingBottom: "8px", display: "flex", alignItems: "center", gap: "6px" }}>
+            <div style={{ paddingTop: isLg ? "20px" : "80px", paddingLeft: "15px", paddingRight: "15px", paddingBottom: "8px", display: "flex", alignItems: "center", gap: "6px" }}>
               <img src="/images/menu/title-icon-a.png" alt="" style={{ width: "20px", height: "20px", objectFit: "contain" }} />
               <span style={{ fontSize: "18px", fontWeight: 600, color: "#666", lineHeight: "24px" }}>
                 会員登録不要！ご予約はお早めに
