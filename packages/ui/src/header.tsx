@@ -408,7 +408,7 @@ export const Header: FC<HeaderProps> = ({
 
             {/* 外部サイトリンク - 既存: 白bg/枠線なし */}
             {menuExternalSites && menuExternalSites.length > 0 && (
-              <div style={{ padding: "0 15px 12px" }}>
+              <div style={{ padding: "0 15px 25px" }}>
                 <div style={{
                   fontSize: "13px",
                   fontWeight: 600,
