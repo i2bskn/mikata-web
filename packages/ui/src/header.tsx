@@ -358,7 +358,7 @@ export const Header: FC<HeaderProps> = ({
 
             {/* メニューセクション - 既存: 白bg/枠線なし */}
             {menuSections && menuSections.map((section) => (
-              <div key={section.title} style={{ padding: "0 15px 12px" }}>
+              <div key={section.title} style={{ padding: "0 15px 25px" }}>
                 <div style={{
                   fontSize: "13px",
                   fontWeight: 600,
