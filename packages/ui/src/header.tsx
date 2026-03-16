@@ -300,7 +300,7 @@ export const Header: FC<HeaderProps> = ({
               <div style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(3, 1fr)",
-                gap: "6px",
+                gap: "8px",
                 padding: "0 15px 15px",
               }}>
                 {menuQuickLinks.map((link) => (
@@ -363,10 +363,10 @@ export const Header: FC<HeaderProps> = ({
                   fontSize: "13px",
                   fontWeight: 600,
                   color: "#212529",
-                  marginBottom: "6px",
+                  marginBottom: "10px",
                   display: "flex",
                   alignItems: "center",
-                  gap: "6px",
+                  gap: "8px",
                 }}>
                   <img src="/images/menu/title-icon-c.png" alt="" style={{ width: "20px", height: "20px" }} />
                   {section.title}
@@ -374,7 +374,7 @@ export const Header: FC<HeaderProps> = ({
                 <div style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(3, 1fr)",
-                  gap: "6px",
+                  gap: "8px",
                 }}>
                   {section.items.map((item) => (
                     <a
@@ -413,10 +413,10 @@ export const Header: FC<HeaderProps> = ({
                   fontSize: "13px",
                   fontWeight: 600,
                   color: "#212529",
-                  marginBottom: "6px",
+                  marginBottom: "10px",
                   display: "flex",
                   alignItems: "center",
-                  gap: "6px",
+                  gap: "8px",
                 }}>
                   <img src="/images/menu/icon-other-island.png" alt="" style={{ width: "20px", height: "20px" }} />
                   他の島のツアーもチェック
@@ -424,7 +424,7 @@ export const Header: FC<HeaderProps> = ({
                 <div style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(2, 1fr)",
-                  gap: "6px",
+                  gap: "8px",
                 }}>
                   {menuExternalSites.map((site) => (
                     <a
@@ -485,10 +485,10 @@ export const Header: FC<HeaderProps> = ({
                 fontSize: "13px",
                 fontWeight: 600,
                 color: "#212529",
-                marginBottom: "6px",
+                marginBottom: "10px",
                 display: "flex",
                 alignItems: "center",
-                gap: "6px",
+                gap: "8px",
               }}>
                 <img src="/images/menu/icon-info.png" alt="" style={{ width: "20px", height: "20px" }} />
                 初めて行く方へ！お役立ち情報
@@ -551,7 +551,7 @@ export const Header: FC<HeaderProps> = ({
             </div>
 
             {/* 閉じるボタン（下部） - 既存: 赤×＋テキスト */}
-            <div style={{ padding: "4px 15px 12px", textAlign: "center" }}>
+            <div style={{ padding: "4px 15px 50px", textAlign: "center" }}>
               <button
                 type="button"
                 onClick={() => setIsMenuOpen(false)}
