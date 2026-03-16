@@ -434,19 +434,20 @@ export const Header: FC<HeaderProps> = ({
                       rel="noopener noreferrer"
                       style={{
                         display: "flex",
+                        flexDirection: "column",
                         alignItems: "center",
                         justifyContent: "center",
-                        padding: "10px",
+                        padding: "10px 10px 5px",
                         backgroundColor: "#fff",
                         borderRadius: "10px",
                         textDecoration: "none",
                       }}
                     >
                       {site.iconUrl ? (
-                        <img src={site.iconUrl} alt={site.label} style={{ height: "24px", objectFit: "contain" }} />
-                      ) : (
-                        <span style={{ fontSize: "12px", color: "#333" }}>{site.label}</span>
-                      )}
+                        <img src={site.iconUrl} alt={site.label} style={{ height: "24px", objectFit: "contain", marginBottom: "5px" }} />
+                      ) : null}
+                      <span style={{ fontSize: "10px", fontWeight: 600, color: "#666" }}>{site.label.includes("石垣") ? "石垣島専門" : "小浜島専門"}</span>
+                      <span style={{ fontSize: "9px", color: "#999" }}>（外部サイト）</span>
                     </a>
                   ))}
                 </div>
