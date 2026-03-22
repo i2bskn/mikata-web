@@ -52,7 +52,7 @@ export const CategoryNav: FC<CategoryNavProps> = ({ items, className = "", embed
                 alt={item.label}
                 width={65}
                 height={38}
-                className="w-[50px] h-[32px] md:w-[65px] md:h-[38px]"
+                className="w-[65px] h-[38px]"
                 style={{ objectFit: "contain" }}
               />
             </span>

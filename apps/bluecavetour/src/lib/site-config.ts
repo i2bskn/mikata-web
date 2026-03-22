@@ -11,6 +11,20 @@ export const siteConfig: SiteConfig = {
 };
 
 /**
+ * カテゴリナビアイテム - サイドバー・カテゴリナビ共通
+ */
+export const categoryNavItems = [
+  { label: "人気プラン\nランキング", href: "/ranking", iconUrl: "/images/category/ranking.webp", isActive: true },
+  { label: "アクティビティ", href: "/plan", iconUrl: "/images/category/activity.webp" },
+  { label: "当日予約OK\nプラン", href: "/scene-time/same_day_booking.html", iconUrl: "/images/category/same-day.webp" },
+  { label: "写真無料サービ\nス付きプラン", href: "/scene-time/freetourphotos.html", iconUrl: "/images/category/free-photo.png" },
+  { label: "プレミアム\n厳選プラン", href: "/campaign/premium-plan.html", iconUrl: "/images/category/premium.webp" },
+  { label: "ウミガメツアー", href: "/plan?category=umigame", iconUrl: "/images/category/sea-turtle.png" },
+  { label: "送迎付きプラン", href: "/plan?category=shuttle", iconUrl: "/images/category/transfer.png" },
+  { label: "お得な割引\nセットプラン", href: "/category/setplan", iconUrl: "/images/category/setplan.webp" },
+];
+
+/**
  * ヘッダーナビゲーション - 既存サイト: アクティビティ、人気ランキング、「選ばれる理由」とは
  */
 export const navItems: NavItem[] = [
@@ -29,13 +43,13 @@ export const footerSections: FooterSection[] = [
       { label: "石垣島青の洞窟ツアーズが「選ばれる理由」とは", href: "/visitor" },
       { label: "よくある質問＆注意事項", href: "/faq" },
       { label: "運営者情報", href: "/administratordata" },
-      { label: "旅行業務取扱料金表(国内旅行)", href: "/travel-fee" },
+      { label: "旅行業務取扱料金表(国内旅行)", href: "https://www.shummake.com/ryokin-kokunnai/" },
       { label: "特定商取引法に関する表記", href: "/act_on_specified_commercial_transactions" },
       { label: "利用規約", href: "/policy" },
       { label: "個人情報保護方針", href: "/privacypolicy" },
       { label: "リンク集・掲載事業者一覧", href: "/links" },
-      { label: "アフィリエイトについて", href: "/affiliate" },
-      { label: "採用情報", href: "/recruit" },
+      { label: "アフィリエイトについて", href: "https://shummake-affiliate-programs.manus.space/" },
+      { label: "採用情報", href: "https://www.shummake.com/recruit/" },
     ],
   },
 ];

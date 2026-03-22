@@ -60,7 +60,7 @@ export const PlanCard: FC<PlanCardProps> = ({
         <h3
           style={{
             fontSize: "12px",
-            fontWeight: "bold",
+            fontWeight: 600,
             color: "#333",
             lineHeight: "1.4",
             display: "-webkit-box",

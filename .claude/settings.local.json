@@ -29,7 +29,15 @@
       "Bash(cd:*)",
       "mcp__chrome-devtools__take_snapshot",
       "mcp__chrome-devtools__click",
-      "Bash(git rm:*)"
+      "Bash(git rm:*)",
+      "mcp__chrome-devtools__resize_page",
+      "Bash(NODE_OPTIONS=\"--stack-trace-limit=50\" npx --filter bluecavetour next build)",
+      "Bash(NODE_OPTIONS=\"--stack-trace-limit=50\" pnpm --filter bluecavetour exec next build 2>&1)",
+      "Bash(COLUMNS=200 pnpm --filter bluecavetour build 2>&1)",
+      "Bash(npx next:*)",
+      "Bash(NODE_OPTIONS='--stack-trace-limit=50' npx next build)",
+      "Bash(npx tsc:*)",
+      "Bash(pnpm --filter bluecavetour exec tsc --noEmit)"
     ]
   }
 }

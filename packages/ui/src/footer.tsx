@@ -184,7 +184,7 @@ export const Footer: FC<FooterProps> = ({
       )}
 
       {/* コピーライト - 既存サイト: 濃い背景 */}
-      <div style={{ backgroundColor: "#333", padding: "16px 0" }}>
+      <div style={{ backgroundColor: "rgb(88, 88, 88)", padding: "16px 0" }}>
         <div className="mx-auto text-center" style={{ maxWidth: "1020px", padding: "0 5px" }}>
           <p style={{ fontSize: "13px", color: "#fff" }}>
             {copyright || `(c) ${currentYear} ${siteName} All Rights Reserved.`}

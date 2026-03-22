@@ -31,17 +31,11 @@ export interface HeaderProps {
   historyUrl?: string;
   contactUrl?: string;
   saleUrl?: string;
-  /** ドロワーメニューのセクション設定 */
   menuSections?: MenuSection[];
-  /** ドロワーメニューのクイックリンク（上部3カラム） */
   menuQuickLinks?: MenuLink[];
-  /** ドロワーメニューの外部サイトリンク */
   menuExternalSites?: MenuLink[];
-  /** ドロワーメニューの下部バナー画像URL */
   menuBannerUrl?: string;
-  /** ドロワーメニューの下部バナーリンク */
   menuBannerHref?: string;
-  /** ドロワーメニューのフッタースライダー画像URL配列 */
   menuSliderImages?: string[];
 }
 
@@ -62,7 +56,7 @@ const CssCloseIcon: FC<{ size?: number }> = ({ size = 30 }) => (
 );
 
 /** フッタースライダー: 画像が左にゆっくり流れる */
-const FooterSlider: FC<{ images: string[] }> = ({ images }) => {
+const FooterSlider: FC<{ images: string[]; isLg?: boolean }> = ({ images, isLg }) => {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
@@ -81,22 +75,20 @@ const FooterSlider: FC<{ images: string[] }> = ({ images }) => {
     return () => cancelAnimationFrame(animId);
   }, []);
 
+  const imgW = isLg ? 190 : 169;
+  const imgH = isLg ? 95 : 101;
   const doubled = [...images, ...images];
   return (
     <div style={{ overflow: "hidden", padding: "10px 0" }}>
       <div ref={ref} style={{ display: "flex", gap: "4px", willChange: "transform" }}>
         {doubled.map((src, i) => (
-          <img key={i} src={src} alt="" style={{ width: 169, height: 101, objectFit: "cover", borderRadius: 4, flexShrink: 0 }} />
+          <img key={i} src={src} alt="" style={{ width: imgW, height: imgH, objectFit: "cover", borderRadius: 4, flexShrink: 0 }} />
         ))}
       </div>
     </div>
   );
 };
 
-/**
- * 共通ヘッダーコンポーネント
- * 既存サイト: 水色トップバー + 白メインヘッダー + アクションアイコン
- */
 export const Header: FC<HeaderProps> = ({
   siteName,
   logoUrl,
@@ -124,7 +116,6 @@ export const Header: FC<HeaderProps> = ({
     return () => mq.removeEventListener("change", handler);
   }, []);
 
-  // セクションタイトル共通スタイル - 既存: 18px/600/#666
   const sectionTitleStyle: React.CSSProperties = {
     fontSize: "18px",
     fontWeight: 600,
@@ -135,15 +126,22 @@ export const Header: FC<HeaderProps> = ({
     gap: "8px",
   };
 
+  // ドロワー内アイコンサイズ: SP 45px / PC 15px
+  const menuIconSize = isLg ? "15px" : "45px";
+  // ドロワー内ロゴ: PC時はmaxWidth制限
+  const menuLogoStyle: React.CSSProperties = isLg
+    ? { height: "40px", maxWidth: "89px", objectFit: "contain" as const, marginBottom: "5px" }
+    : { height: "40px", objectFit: "contain" as const, marginBottom: "5px" };
+
   return (
     <>
     <header className="lg:sticky lg:top-0 z-50">
-      {/* トップバー（水色背景） - 既存サイト: height 35px, bg #1a9edb */}
+      {/* トップバー - 既存: height 43px(padding 5px 0), bg #1a9edb, fontSize 11px */}
       <div style={{ backgroundColor: "#1a9edb" }}>
         <div className="mx-auto px-1" style={{ maxWidth: "1020px" }}>
           <div
             className="flex items-center text-white"
-            style={{ height: "35px", fontSize: "12px", fontWeight: 300 }}
+            style={{ height: "43px", padding: "5px 0", fontSize: "11px", fontWeight: 300 }}
           >
             <span className="truncate">
               {catchphrase ||
@@ -153,17 +151,17 @@ export const Header: FC<HeaderProps> = ({
         </div>
       </div>
 
-      {/* メインヘッダー（白背景） - 既存サイト: height 59px */}
-      <div className="bg-white" style={{ borderBottom: "1px solid #e5e5e5" }}>
+      {/* メインヘッダー - 既存: height 59px, box-shadow あり */}
+      <div className="bg-white" style={{ borderBottom: "1px solid #e5e5e5", boxShadow: "rgb(191, 191, 191) 0px 1px 5px 0px" }}>
         <div className="mx-auto px-1" style={{ maxWidth: "1020px" }}>
           <div
             className="flex items-center justify-between"
             style={{ height: "59px" }}
           >
-            {/* ロゴ */}
+            {/* ロゴ - 既存SP: 110x27px */}
             <a href="/" className="flex items-center shrink-0">
               {logoUrl ? (
-                <img src={logoUrl} alt={siteName} className="h-10" />
+                <img src={logoUrl} alt={siteName} style={{ height: "27px" }} />
               ) : (
                 <span
                   className="font-bold"
@@ -188,65 +186,59 @@ export const Header: FC<HeaderProps> = ({
               ))}
             </nav>
 
-            {/* アクションアイコン群 - 既存サイト: 全て#1a9edb fill、メニューのみ#ed3434 */}
+            {/* アクションアイコン群 - 既存: padding 5px 0, fontSize 10px, icon 20px高 */}
             <div className="flex items-center">
-              {/* 各種 お問い合わせ */}
               {contactUrl && (
                 <a
                   href={contactUrl}
                   className="flex flex-col items-center justify-center"
-                  style={{ padding: "4px 6px" }}
+                  style={{ padding: "5px 0" }}
                 >
                   <svg
                     width="20"
-                    height="18"
+                    height="20"
                     viewBox="0 0 24 22"
                     fill="#1a9edb"
-                    className="sm:w-[23px] sm:h-[20px]"
                   >
                     <path d="M12 0C5.4 0 0 4.4 0 9.8c0 3.1 1.7 5.8 4.4 7.6L3 21.5c-.1.3.1.5.4.5.1 0 .2 0 .3-.1l5-3.2c1 .2 2.1.3 3.3.3 6.6 0 12-4.4 12-9.8S18.6 0 12 0zm-4 12a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zm4 0a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zm4 0a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4z" />
                   </svg>
-                  <span className="whitespace-nowrap" style={{ fontSize: "9px", marginTop: "2px", color: "#333" }}>
+                  <span className="whitespace-nowrap" style={{ fontSize: "10px", marginTop: "2px", color: "#333" }}>
                     各種 お問い合わせ
                   </span>
                 </a>
               )}
 
-              {/* SALE・特集 - 既存サイト: 旗アイコン */}
               {saleUrl && (
                 <a
                   href={saleUrl}
                   className="flex flex-col items-center justify-center"
-                  style={{ padding: "4px 6px" }}
+                  style={{ padding: "5px 0" }}
                 >
                   <svg
                     width="20"
-                    height="18"
+                    height="20"
                     viewBox="0 0 20 20"
                     fill="#1a9edb"
-                    className="sm:w-[23px] sm:h-[20px]"
                   >
                     <path d="M4 1a1 1 0 00-1 1v16a1 1 0 102 0v-5h10.5a1 1 0 00.8-1.6L13 7l3.3-4.4A1 1 0 0015.5 1H4z" />
                   </svg>
-                  <span className="whitespace-nowrap" style={{ fontSize: "9px", marginTop: "2px", color: "#333" }}>
+                  <span className="whitespace-nowrap" style={{ fontSize: "10px", marginTop: "2px", color: "#333" }}>
                     SALE・特集
                   </span>
                 </a>
               )}
 
-              {/* 予約確認 - 既存サイト: 青のカレンダーアイコン */}
               {reservationCheckUrl && (
                 <a
                   href={reservationCheckUrl}
                   className="flex flex-col items-center justify-center"
-                  style={{ padding: "4px 6px" }}
+                  style={{ padding: "5px 0" }}
                 >
                   <svg
                     width="20"
-                    height="18"
+                    height="20"
                     viewBox="0 0 23 20"
                     fill="#1a9edb"
-                    className="sm:w-[23px] sm:h-[20px]"
                   >
                     <path d="M18.5 2h-1V.5a.5.5 0 00-1 0V2h-10V.5a.5.5 0 00-1 0V2h-1A3.5 3.5 0 001 5.5v11A3.5 3.5 0 004.5 20h14a3.5 3.5 0 003.5-3.5v-11A3.5 3.5 0 0018.5 2zm-14 1h14A2.5 2.5 0 0121 5.5V7H2V5.5A2.5 2.5 0 014.5 3zM18.5 19h-14A2.5 2.5 0 012 16.5V8h19v8.5A2.5 2.5 0 0118.5 19z" />
                     <rect x="5" y="10" width="2.5" height="2" rx=".3" />
@@ -255,17 +247,16 @@ export const Header: FC<HeaderProps> = ({
                     <rect x="5" y="14" width="2.5" height="2" rx=".3" />
                     <rect x="10" y="14" width="2.5" height="2" rx=".3" />
                   </svg>
-                  <span className="whitespace-nowrap" style={{ fontSize: "9px", marginTop: "2px", color: "#333" }}>
+                  <span className="whitespace-nowrap" style={{ fontSize: "10px", marginTop: "2px", color: "#333" }}>
                     予約確認
                   </span>
                 </a>
               )}
 
-              {/* メニューボタン - 既存サイト: #ed3434の3本線 */}
               <button
                 type="button"
                 className="flex flex-col items-center justify-center"
-                style={{ padding: "4px 12px" }}
+                style={{ padding: "5px 12px" }}
                 aria-label="メニューを開く"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
@@ -273,33 +264,9 @@ export const Header: FC<HeaderProps> = ({
                   style={{ width: "20px", height: "20px" }}
                   className="flex flex-col justify-center gap-[4px]"
                 >
-                  <span
-                    style={{
-                      display: "block",
-                      width: "20px",
-                      height: "3px",
-                      backgroundColor: "#ed3434",
-                      borderRadius: "1px",
-                    }}
-                  />
-                  <span
-                    style={{
-                      display: "block",
-                      width: "20px",
-                      height: "3px",
-                      backgroundColor: "#ed3434",
-                      borderRadius: "1px",
-                    }}
-                  />
-                  <span
-                    style={{
-                      display: "block",
-                      width: "20px",
-                      height: "3px",
-                      backgroundColor: "#ed3434",
-                      borderRadius: "1px",
-                    }}
-                  />
+                  <span style={{ display: "block", width: "20px", height: "3px", backgroundColor: "#ed3434", borderRadius: "1px" }} />
+                  <span style={{ display: "block", width: "20px", height: "3px", backgroundColor: "#ed3434", borderRadius: "1px" }} />
+                  <span style={{ display: "block", width: "20px", height: "3px", backgroundColor: "#ed3434", borderRadius: "1px" }} />
                 </div>
                 <span style={{ fontSize: "10px", marginTop: "2px", color: "#333" }}>
                   メニュー
@@ -311,7 +278,6 @@ export const Header: FC<HeaderProps> = ({
       </div>
     </header>
 
-      {/* ドロワーメニュー - 既存サイト準拠: 右側スライドインパネル */}
       {/* オーバーレイ - 既存: SP rgba(0,0,0,0.6) z-100 / PC なし */}
       {!isLg && (
       <div
@@ -327,7 +293,7 @@ export const Header: FC<HeaderProps> = ({
         onClick={() => setIsMenuOpen(false)}
       />
       )}
-      {/* パネル - 既存: SP top:0 width:90vw / PC top:94px width:380px, z-index:10000, bg:#eff4ff */}
+      {/* パネル - 既存: SP top:0 / PC top:94px, z-index:10000 */}
       <div
         style={{
           position: "fixed",
@@ -340,7 +306,6 @@ export const Header: FC<HeaderProps> = ({
           overflowY: "auto",
           transform: isMenuOpen ? "translateX(0)" : "translateX(100%)",
           transition: "transform 300ms ease-in-out",
-          paddingBottom: 0,
         }}
       >
             {/* 閉じるボタン（上部） - 既存: SP top:15px right:15px / PC 非表示 */}
@@ -363,7 +328,7 @@ export const Header: FC<HeaderProps> = ({
               <CssCloseIcon size={30} />
             </button>
 
-            {/* ヘッダーメッセージ - 既存: 18px/600/#666, textAlign left, icon 20x20, SP paddingTop 80px / PC 20px */}
+            {/* ヘッダーメッセージ - 既存: 18px/600/#666, left, SP paddingTop 80px / PC 20px */}
             <div style={{ paddingTop: isLg ? "20px" : "80px", paddingLeft: "15px", paddingRight: "15px", paddingBottom: "8px", display: "flex", alignItems: "center", gap: "6px" }}>
               <img src="/images/menu/title-icon-a.png" alt="" style={{ width: "20px", height: "20px", objectFit: "contain" }} />
               <span style={{ fontSize: "18px", fontWeight: 600, color: "#666", lineHeight: "24px" }}>
@@ -371,7 +336,7 @@ export const Header: FC<HeaderProps> = ({
               </span>
             </div>
 
-            {/* クイックリンク 3カラム - 既存: 白bg/角丸10px, icon 40x40, text 10px/600/#666 */}
+            {/* クイックリンク 3カラム - 既存: boxShadow rgba(204,204,204,0.32) 0px 1px 10px 3px */}
             {menuQuickLinks && menuQuickLinks.length > 0 && (
               <div style={{
                 display: "grid",
@@ -392,6 +357,7 @@ export const Header: FC<HeaderProps> = ({
                       padding: "10px 5px",
                       backgroundColor: "#fff",
                       borderRadius: "10px",
+                      boxShadow: "rgba(204, 204, 204, 0.32) 0px 1px 10px 3px",
                       textDecoration: "none",
                       color: "#666",
                       fontSize: "10px",
@@ -408,7 +374,7 @@ export const Header: FC<HeaderProps> = ({
               </div>
             )}
 
-            {/* 写真無料プランバナー - 既存: subtitle 12px/500/#666, title 18px/700/#666 */}
+            {/* 写真無料プランバナー - 既存: SP icon 45px / PC icon 15px */}
             <div style={{ padding: "0 15px 25px" }}>
               <a
                 href="/scene-time/freetourphotos.html"
@@ -424,7 +390,7 @@ export const Header: FC<HeaderProps> = ({
                   color: "#666",
                 }}
               >
-                <img src="/images/menu/icon-camera.png" alt="" style={{ width: "45px", height: "45px", objectFit: "contain" }} />
+                <img src="/images/menu/icon-camera.png" alt="" style={{ width: menuIconSize, height: menuIconSize, objectFit: "contain" }} />
                 <div>
                   <div style={{ fontSize: "12px", fontWeight: 500, color: "#666" }}>心に残る瞬間を写真に残そう！</div>
                   <div style={{ fontWeight: 700, fontSize: "18px", color: "#666" }}>写真無料プラン</div>
@@ -432,7 +398,7 @@ export const Header: FC<HeaderProps> = ({
               </a>
             </div>
 
-            {/* メニューセクション - 既存: タイトル 18px/600/#666, カード 10px/600/#666 */}
+            {/* メニューセクション */}
             {menuSections && menuSections.map((section) => (
               <div key={section.title} style={{ padding: "0 15px 25px" }}>
                 <div style={sectionTitleStyle}>
@@ -474,7 +440,7 @@ export const Header: FC<HeaderProps> = ({
               </div>
             ))}
 
-            {/* 外部サイトリンク - 既存: タイトル 18px/600/#666, ロゴ height:40px */}
+            {/* 外部サイトリンク - PC時ロゴmaxWidth:89px */}
             {menuExternalSites && menuExternalSites.length > 0 && (
               <div style={{ padding: "0 15px 15px" }}>
                 <div style={sectionTitleStyle}>
@@ -504,7 +470,7 @@ export const Header: FC<HeaderProps> = ({
                       }}
                     >
                       {site.iconUrl ? (
-                        <img src={site.iconUrl} alt={site.label} style={{ height: "40px", objectFit: "contain", marginBottom: "5px" }} />
+                        <img src={site.iconUrl} alt={site.label} style={menuLogoStyle} />
                       ) : null}
                       <span style={{ fontSize: "10px", fontWeight: 600, color: "#666" }}>{site.label.includes("石垣") ? "石垣島専門" : "小浜島専門"}</span>
                       <span style={{ fontSize: "9px", color: "#999" }}>（外部サイト）</span>
@@ -514,7 +480,7 @@ export const Header: FC<HeaderProps> = ({
               </div>
             )}
 
-            {/* 離島フェリー予約受付中 - 既存: subtitle 12px/500/#666, title 18px/700/#666 */}
+            {/* 離島フェリー予約受付中 - SP icon 45px / PC icon 15px */}
             <div style={{ padding: "0 15px 25px" }}>
               <a
                 href="https://ishigaki-tours.com/tours-ferry"
@@ -530,7 +496,7 @@ export const Header: FC<HeaderProps> = ({
                   color: "#666",
                 }}
               >
-                <img src="/images/menu/icon-ferry.png" alt="" style={{ width: "45px", height: "45px", objectFit: "contain" }} />
+                <img src="/images/menu/icon-ferry.png" alt="" style={{ width: menuIconSize, height: menuIconSize, objectFit: "contain" }} />
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: "12px", fontWeight: 500, color: "#666" }}>【各便40席限定】石垣島から離島へ！</div>
                   <div style={{ fontSize: "12px", fontWeight: 500, color: "#666" }}>（乗船時間までキャンセル料無料）</div>
@@ -539,7 +505,7 @@ export const Header: FC<HeaderProps> = ({
               </a>
             </div>
 
-            {/* 初めて行く方へ！お役立ち情報 - 既存: タイトル 18px/600/#666 */}
+            {/* 初めて行く方へ！お役立ち情報 */}
             <div style={{ padding: "0 15px 25px" }}>
               <div style={sectionTitleStyle}>
                 <img src="/images/menu/icon-info.png" alt="" style={{ width: "20px", height: "20px" }} />
@@ -550,18 +516,9 @@ export const Header: FC<HeaderProps> = ({
                   href="https://ishigaki-tours.com/popular-spot/bluecave.html"
                   onClick={() => setIsMenuOpen(false)}
                   style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    textAlign: "center",
-                    padding: "10px 5px",
-                    backgroundColor: "#fff",
-                    borderRadius: "10px",
-                    textDecoration: "none",
-                    color: "#666",
-                    fontSize: "10px",
-                    fontWeight: 600,
-                    lineHeight: "1.3",
+                    display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center",
+                    padding: "10px 5px", backgroundColor: "#fff", borderRadius: "10px",
+                    textDecoration: "none", color: "#666", fontSize: "10px", fontWeight: 600, lineHeight: "1.3",
                   }}
                 >
                   <img src="/images/menu/icon-bluecave.png" alt="" style={{ width: "40px", height: "40px", objectFit: "contain", marginBottom: "4px" }} />
@@ -571,18 +528,9 @@ export const Header: FC<HeaderProps> = ({
                   href="/column"
                   onClick={() => setIsMenuOpen(false)}
                   style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    textAlign: "center",
-                    padding: "10px 5px",
-                    backgroundColor: "#fff",
-                    borderRadius: "10px",
-                    textDecoration: "none",
-                    color: "#666",
-                    fontSize: "10px",
-                    fontWeight: 600,
-                    lineHeight: "1.3",
+                    display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center",
+                    padding: "10px 5px", backgroundColor: "#fff", borderRadius: "10px",
+                    textDecoration: "none", color: "#666", fontSize: "10px", fontWeight: 600, lineHeight: "1.3",
                   }}
                 >
                   <img src="/images/menu/icon-column.png" alt="" style={{ width: "40px", height: "40px", objectFit: "contain", marginBottom: "4px" }} />
@@ -602,32 +550,32 @@ export const Header: FC<HeaderProps> = ({
               </a>
             </div>
 
-            {/* フッタースライダー - 既存: 16枚の画像が左にゆっくり流れる、169x101px */}
+            {/* フッタースライダー - SP 169x101 / PC 190x95 */}
             {menuSliderImages && menuSliderImages.length > 0 && (
-              <FooterSlider images={menuSliderImages} />
+              <FooterSlider images={menuSliderImages} isLg={isLg} />
             )}
 
-            {/* 閉じるボタン（下部） - 既存: スクロール末尾に配置, height 54px, bg #eee */}
-            <div style={{ height: "54px", backgroundColor: "#eee" }}>
+            {/* 閉じるボタン（下部） - 既存: 60px, bg #eee, テキスト「×」 */}
+            <div style={{ height: "60px", backgroundColor: "#eee" }}>
               <button
                 type="button"
                 onClick={() => setIsMenuOpen(false)}
                 style={{
                   width: "100%",
-                  height: "54px",
+                  height: "60px",
                   backgroundColor: "#eee",
                   border: "none",
                   cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  gap: "8px",
+                  gap: "4px",
                   fontSize: "16px",
                   color: "#666",
                 }}
               >
-                <CssCloseIcon size={20} />
                 メニューを閉じる
+                <span style={{ color: "#666", fontSize: "16px" }}>×</span>
               </button>
             </div>
 

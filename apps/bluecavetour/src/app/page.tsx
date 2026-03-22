@@ -4,7 +4,8 @@ import { HeroBanner } from "@repo/ui/hero-banner";
 import { CategoryNav } from "@repo/ui/category-nav";
 import { OrganizationJsonLd } from "@repo/seo/json-ld";
 import { getPopularPlans } from "../lib/data/plans";
-import { siteConfig } from "../lib/site-config";
+import { siteConfig, categoryNavItems } from "../lib/site-config";
+import { Sidebar } from "../components/sidebar";
 
 // ヒーローバナーのスライドデータ（旧サイト準拠: 4枚）
 const heroSlides = [
@@ -30,17 +31,6 @@ const heroSlides = [
   },
 ];
 
-// カテゴリナビ - 既存サイトの8項目
-const categoryNavItems = [
-  { label: "人気プラン\nランキング", href: "/ranking", iconUrl: "/images/category/ranking.webp", isActive: true },
-  { label: "アクティビティ", href: "/plan", iconUrl: "/images/category/activity.webp" },
-  { label: "当日予約OK\nプラン", href: "/scene-time/same_day_booking.html", iconUrl: "/images/category/same-day.webp" },
-  { label: "写真無料サービ\nス付きプラン", href: "/scene-time/freetourphotos.html", iconUrl: "/images/category/free-photo.png" },
-  { label: "プレミアム\n厳選プラン", href: "/campaign/premium-plan.html", iconUrl: "/images/category/premium.webp" },
-  { label: "ウミガメツアー", href: "/plan?category=umigame", iconUrl: "/images/category/sea-turtle.png" },
-  { label: "送迎付きプラン", href: "/plan?category=shuttle", iconUrl: "/images/category/transfer.png" },
-  { label: "お得な割引\nセットプラン", href: "/category/setplan", iconUrl: "/images/category/setplan.webp" },
-];
 
 export default function HomePage() {
   const popularPlans = getPopularPlans(6);
@@ -160,7 +150,7 @@ export default function HomePage() {
             </div>
             <button
               type="button"
-              className="text-base sm:text-[22px] px-6 sm:px-[50px] py-2.5 sm:py-3.5"
+              className="text-base sm:text-[24px] px-6 sm:w-[195px] py-2.5 sm:py-3.5"
               style={{
                 backgroundColor: "#ed3434",
                 color: "#fff",
@@ -170,6 +160,7 @@ export default function HomePage() {
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
+                justifyContent: "center",
                 gap: "8px",
                 whiteSpace: "nowrap",
               }}
@@ -190,139 +181,14 @@ export default function HomePage() {
       <div className="mx-auto" style={{ maxWidth: "1020px", padding: "0 5px" }}>
         {/* 2カラムレイアウト - 既存サイト: 左サイドバー225px + 右メインコンテンツ */}
         <div className="flex gap-5" style={{ marginTop: "20px" }}>
-          {/* 左サイドバー - 既存サイト: 225px幅 */}
-          <aside className="hidden lg:block shrink-0" style={{ width: "225px" }}>
-            <div className="sticky" style={{ top: "110px" }}>
-              {/* サイドバーカテゴリナビ（小型版） */}
-              <div style={{ backgroundColor: "#fff", border: "1px solid #e5e5e5", borderRadius: "4px", padding: "12px" }}>
-                <div className="flex flex-wrap justify-center gap-2">
-                  {categoryNavItems.slice(0, 2).map((item) => (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      className="flex flex-col items-center text-center"
-                      style={{
-                        width: "80px",
-                        padding: "8px 4px",
-                        color: item.isActive ? "#1a9edb" : "#333",
-                        borderBottom: item.isActive ? "3px solid #f08300" : "3px solid transparent",
-                        fontSize: "11px",
-                      }}
-                    >
-                      <img
-                        src={item.iconUrl}
-                        alt={item.label.split("\n")[0]}
-                        width={28}
-                        height={28}
-                        style={{ width: "28px", height: "28px", objectFit: "contain" }}
-                      />
-                      <span>{item.label.split("\n")[0]}</span>
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-              {/* サイドバー検索フォーム */}
-              <div
-                style={{
-                  marginTop: "16px",
-                  backgroundColor: "#fff",
-                  border: "1px solid #e5e5e5",
-                  borderRadius: "4px",
-                  padding: "16px",
-                }}
-              >
-                <select
-                  style={{
-                    width: "100%",
-                    padding: "8px",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                    fontSize: "13px",
-                    marginBottom: "10px",
-                  }}
-                >
-                  <option>全てのプラン</option>
-                </select>
-                <input
-                  type="text"
-                  placeholder="日付未定"
-                  readOnly
-                  style={{
-                    width: "100%",
-                    padding: "8px",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                    fontSize: "13px",
-                    marginBottom: "10px",
-                  }}
-                />
-                <div className="flex items-center gap-3" style={{ fontSize: "12px", color: "#333", marginBottom: "10px" }}>
-                  <label className="flex items-center gap-1">
-                    <input type="checkbox" />
-                    <span>今日</span>
-                  </label>
-                  <label className="flex items-center gap-1">
-                    <input type="checkbox" />
-                    <span>明日</span>
-                  </label>
-                  <button type="button" style={{ fontSize: "11px", color: "#666", background: "none", border: "none" }}>
-                    ＋さらに絞り込む
-                  </button>
-                </div>
-                <div style={{ textAlign: "center", color: "#666", fontSize: "13px", marginBottom: "10px" }}>
-                  該当プラン数
-                  <div>
-                    <span style={{ fontSize: "28px", fontWeight: "bold", color: "#333" }}>17</span>
-                    <span style={{ fontSize: "14px" }}>件</span>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  style={{
-                    width: "100%",
-                    backgroundColor: "#ed3434",
-                    color: "#fff",
-                    border: "none",
-                    borderRadius: "5px",
-                    padding: "10px",
-                    fontSize: "16px",
-                    fontWeight: "bold",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "6px",
-                  }}
-                >
-                  検索する
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <circle cx="11" cy="11" r="8" />
-                    <path d="m21 21-4.35-4.35" />
-                  </svg>
-                </button>
-              </div>
-
-              {/* サイドバーバナー広告 */}
-              <div style={{ marginTop: "16px" }}>
-                <a href="https://ishigaki-tours.com/ferry/" target="_blank" rel="noopener noreferrer" className="block">
-                  <img src="/images/sidebar/ferry-banner.webp" alt="離島フェリー予約" style={{ width: "100%", borderRadius: "4px" }} />
-                </a>
-              </div>
-              <div style={{ marginTop: "12px" }}>
-                <Link href="/campaign/premium-plan.html" className="block">
-                  <img src="/images/sidebar/premium-plan-banner.png" alt="ツアーズ厳選プレミアムプラン" style={{ width: "100%", borderRadius: "4px" }} />
-                </Link>
-              </div>
-            </div>
-          </aside>
+          <Sidebar categoryNavItems={categoryNavItems} />
 
           {/* メインコンテンツ */}
           <div className="flex-1 min-w-0">
             {/* 人気プランランキング */}
             <section>
               <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
-                <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529" }}>
+                <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", lineHeight: "21.6px" }}>
                   <img src="/images/icons/crown.svg" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
                   人気プランランキング
                 </h2>
@@ -331,7 +197,7 @@ export default function HomePage() {
                   style={{
                     backgroundColor: "#ed3434",
                     color: "#fff",
-                    padding: "6px 16px",
+                    padding: "2px 10px",
                     borderRadius: "4px",
                     fontSize: "13px",
                     fontWeight: "bold",
@@ -348,7 +214,7 @@ export default function HomePage() {
                   <div
                     key={plan.slug}
                     className="shrink-0"
-                    style={{ width: "170px", scrollSnapAlign: "start", position: "relative" }}
+                    style={{ width: "160px", scrollSnapAlign: "start", position: "relative" }}
                   >
                     {/* ランキングバッジ */}
                     <div
@@ -386,7 +252,7 @@ export default function HomePage() {
 
             {/* おすすめ観光情報＆キャンペーン - 旧サイト: 横スクロール7カード */}
             <section style={{ marginTop: "20px" }}>
-              <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "12px" }}>
+              <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", lineHeight: "21.6px", marginBottom: "12px" }}>
                 <img src="/images/icons/flag.svg" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
                 おすすめ観光情報＆キャンペーン
               </h2>
@@ -418,7 +284,7 @@ export default function HomePage() {
             {/* シーン・時間帯から探す - 既存サイト: SP 2x2グリッド、PC 4列 */}
             <section style={{ marginTop: "20px" }}>
               <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
-                <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529" }}>
+                <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", lineHeight: "21.6px" }}>
                   <img src="/images/icons/icon-time.webp" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
                   シーン・時間帯から探す
                 </h2>
@@ -427,7 +293,7 @@ export default function HomePage() {
                   style={{
                     backgroundColor: "#ed3434",
                     color: "#fff",
-                    padding: "6px 16px",
+                    padding: "2px 10px",
                     borderRadius: "4px",
                     fontSize: "13px",
                     fontWeight: "bold",
@@ -460,9 +326,9 @@ export default function HomePage() {
             </section>
 
             {/* 人気の組み合わせから探す */}
-            <section style={{ marginTop: "20px", backgroundColor: "#f0f8ff", borderRadius: "4px", padding: "16px" }}>
+            <section style={{ marginTop: "20px", padding: "16px" }}>
               <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
-                <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529" }}>
+                <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", lineHeight: "21.6px" }}>
                   <img src="/images/icons/icon-activity.png" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
                   人気の組み合わせから探す
                 </h2>
@@ -471,7 +337,7 @@ export default function HomePage() {
                   style={{
                     backgroundColor: "#ed3434",
                     color: "#fff",
-                    padding: "6px 16px",
+                    padding: "2px 10px",
                     borderRadius: "4px",
                     fontSize: "13px",
                     fontWeight: "bold",
@@ -504,7 +370,7 @@ export default function HomePage() {
 
             {/* 条件から探す */}
             <section style={{ marginTop: "20px" }}>
-              <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "12px" }}>
+              <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", lineHeight: "21.6px", marginBottom: "12px" }}>
                 <img src="/images/icons/loupe.svg" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
                 条件から探す
               </h2>
@@ -539,7 +405,7 @@ export default function HomePage() {
               <div style={{ marginTop: "24px", textAlign: "center" }}>
                 <button
                   type="button"
-                  className="w-full sm:w-[300px] text-xl sm:text-[28.8px]"
+                  className="w-full sm:w-[300px] text-xl sm:text-[24px]"
                   style={{
                     backgroundColor: "#ed3434",
                     color: "#fff",
@@ -556,9 +422,9 @@ export default function HomePage() {
             </section>
 
             {/* ツアーズコラム - 旧サイト: 3記事、サムネ+タイトル+日付+PV数 */}
-            <section style={{ marginTop: "20px", backgroundColor: "#f0f8ff", borderRadius: "4px", padding: "16px" }}>
+            <section style={{ marginTop: "20px", padding: "16px" }}>
               <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
-                <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529" }}>
+                <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", lineHeight: "21.6px" }}>
                   <img src="/images/icons/pen.svg" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
                   ツアーズコラム
                 </h2>
@@ -567,7 +433,7 @@ export default function HomePage() {
                   style={{
                     backgroundColor: "#ed3434",
                     color: "#fff",
-                    padding: "6px 16px",
+                    padding: "2px 10px",
                     borderRadius: "4px",
                     fontSize: "13px",
                     fontWeight: "bold",
@@ -630,7 +496,7 @@ export default function HomePage() {
 
             {/* 関連情報 - 旧サイト: 2x3グリッドのバナー */}
             <section style={{ marginTop: "20px" }}>
-              <h2 style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "16px", borderBottom: "4px solid #1a9edb", paddingBottom: "10px" }}>
+              <h2 style={{ fontSize: "18px", fontWeight: 600, color: "#212529", lineHeight: "21.6px", marginBottom: "16px", borderBottom: "4px solid #1a9edb", paddingBottom: "10px" }}>
                 関連情報
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -663,6 +529,7 @@ export default function HomePage() {
                   fontSize: "18px",
                   fontWeight: 600,
                   color: "#212529",
+                  lineHeight: "21.6px",
                   paddingBottom: "10px",
                   borderBottom: "4px solid #1a9edb",
                   marginBottom: "20px",
