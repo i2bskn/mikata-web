@@ -8,12 +8,6 @@ export const metadata: Metadata = {
   title: "人気ランキング",
 };
 
-const rankBadgeColors: Record<number, string> = {
-  1: "#1a9edb",
-  2: "#1a9edb",
-  3: "#1a9edb",
-};
-
 export default function RankingPage() {
   const rankedPlans = getPopularPlans(plans.length);
 
@@ -37,9 +31,9 @@ export default function RankingPage() {
             <h1
               style={{
                 fontSize: "24px",
-                fontWeight: "600",
-                color: "#333",
-                marginBottom: "24px",
+                fontWeight: "bold",
+                color: "#1a9edb",
+                marginBottom: "16px",
               }}
             >
               人気ランキング
@@ -49,7 +43,7 @@ export default function RankingPage() {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "20px",
+                gap: "16px",
                 marginBottom: "40px",
               }}
             >
@@ -92,16 +86,74 @@ export default function RankingPage() {
                           position: "absolute",
                           top: "0",
                           left: "0",
-                          backgroundColor:
-                            rankBadgeColors[index + 1] ?? "#999",
+                          backgroundColor: "#1a9edb",
                           color: "#fff",
-                          padding: "4px 12px",
+                          padding: "6px 14px",
                           fontSize: "16px",
                           fontWeight: "bold",
                           borderRadius: "0 0 8px 0",
                         }}
                       >
                         {index + 1}位
+                      </div>
+                      {/* Premium Planバッジ */}
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "0",
+                          right: "0",
+                          backgroundColor: "rgba(51, 51, 51, 0.85)",
+                          color: "#fff",
+                          padding: "8px 12px",
+                          fontSize: "11px",
+                          fontWeight: "bold",
+                          lineHeight: "1.3",
+                          textAlign: "center",
+                          borderRadius: "0 0 0 8px",
+                        }}
+                      >
+                        Premium
+                        <br />
+                        Plan
+                      </div>
+                      {/* カルーセル矢印 */}
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "50%",
+                          left: "8px",
+                          transform: "translateY(-50%)",
+                          width: "28px",
+                          height: "28px",
+                          backgroundColor: "rgba(255,255,255,0.7)",
+                          borderRadius: "50%",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2.5">
+                          <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                      </div>
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "50%",
+                          right: "8px",
+                          transform: "translateY(-50%)",
+                          width: "28px",
+                          height: "28px",
+                          backgroundColor: "rgba(255,255,255,0.7)",
+                          borderRadius: "50%",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2.5">
+                          <polyline points="9 18 15 12 9 6" />
+                        </svg>
                       </div>
                     </div>
 
@@ -120,95 +172,133 @@ export default function RankingPage() {
                         {plan.name}
                       </h2>
 
-                      {/* 価格 */}
-                      <div style={{ marginBottom: "8px" }}>
-                        <div
-                          className="flex items-center gap-2 flex-wrap"
-                          style={{ marginBottom: "4px" }}
-                        >
-                          <span
-                            style={{
-                              fontSize: "13px",
-                              color: "#333",
-                            }}
-                          >
-                            大人(中学生以上)
-                          </span>
-                          {plan.originalPrice && (
-                            <span
-                              style={{
-                                fontSize: "13px",
-                                color: "#999",
-                                textDecoration: "line-through",
-                              }}
-                            >
-                              {plan.originalPrice.toLocaleString()}円
-                            </span>
-                          )}
-                          <span
-                            style={{ fontSize: "13px", color: "#999" }}
-                          >
-                            →
-                          </span>
-                          <span
-                            style={{
-                              fontSize: "22px",
-                              fontWeight: "bold",
-                              color: "#ed3434",
-                            }}
-                          >
-                            {plan.price.toLocaleString()}円
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* 評価 */}
-                      {plan.rating !== undefined && (
-                        <div
-                          className="flex items-center gap-2"
-                          style={{ marginBottom: "12px" }}
-                        >
-                          <div className="flex">
-                            {[1, 2, 3, 4, 5].map((star) => (
-                              <svg
-                                key={star}
-                                width="16"
-                                height="16"
-                                viewBox="0 0 20 20"
-                                fill={
-                                  star <= Math.round(plan.rating ?? 0)
-                                    ? "#f5a623"
-                                    : "#ddd"
-                                }
-                              >
-                                <path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.34L10 13.27l-4.78 2.51.92-5.34L2.27 6.67l5.34-.78z" />
-                              </svg>
-                            ))}
-                          </div>
-                          {plan.reviewCount !== undefined && (
-                            <span
-                              style={{ fontSize: "13px", color: "#666" }}
-                            >
-                              ({plan.reviewCount}件)
-                            </span>
-                          )}
-                        </div>
-                      )}
-
-                      {/* 詳細を見るボタン */}
-                      <div
+                      {/* 価格テーブル */}
+                      <table
                         style={{
-                          display: "inline-block",
-                          padding: "8px 32px",
-                          backgroundColor: "#333",
-                          color: "#fff",
-                          borderRadius: "4px",
+                          width: "100%",
+                          marginBottom: "12px",
+                          borderCollapse: "collapse",
                           fontSize: "14px",
-                          fontWeight: "bold",
-                          textAlign: "center",
                         }}
                       >
-                        詳細を見る ＞
+                        <tbody>
+                          <tr>
+                            <td style={{ padding: "4px 0", color: "#333" }}>
+                              大人(中学生以上)
+                            </td>
+                            <td style={{ padding: "4px 0", textAlign: "right" }}>
+                              <span className="flex items-center justify-end gap-2">
+                                {plan.originalPrice && (
+                                  <span
+                                    style={{
+                                      fontSize: "13px",
+                                      color: "#999",
+                                      textDecoration: "line-through",
+                                    }}
+                                  >
+                                    {plan.originalPrice.toLocaleString()}円
+                                  </span>
+                                )}
+                                {plan.originalPrice && (
+                                  <span style={{ fontSize: "13px", color: "#999" }}>→</span>
+                                )}
+                                <span
+                                  style={{
+                                    fontSize: "20px",
+                                    fontWeight: "bold",
+                                    color: "#ed3434",
+                                  }}
+                                >
+                                  {plan.price.toLocaleString()}円
+                                </span>
+                              </span>
+                            </td>
+                          </tr>
+                          {plan.childPrice !== undefined && (
+                            <tr>
+                              <td style={{ padding: "4px 0", color: "#333" }}>
+                                小人(中学生未満)
+                              </td>
+                              <td
+                                style={{
+                                  padding: "4px 0",
+                                  textAlign: "right",
+                                  fontSize: "18px",
+                                  fontWeight: "bold",
+                                }}
+                              >
+                                {plan.childPrice.toLocaleString()}円
+                              </td>
+                            </tr>
+                          )}
+                          {plan.infantPrice !== undefined && (
+                            <tr>
+                              <td style={{ padding: "4px 0", color: "#333" }}>
+                                幼児(小学生未満)
+                              </td>
+                              <td
+                                style={{
+                                  padding: "4px 0",
+                                  textAlign: "right",
+                                  fontSize: "18px",
+                                  fontWeight: "bold",
+                                }}
+                              >
+                                {plan.infantPrice.toLocaleString()}円
+                              </td>
+                            </tr>
+                          )}
+                        </tbody>
+                      </table>
+
+                      {/* 評価 + 詳細ボタン */}
+                      <div
+                        className="flex items-center justify-between flex-wrap gap-2"
+                      >
+                        {/* 評価 */}
+                        {plan.rating !== undefined && (
+                          <div className="flex items-center gap-2">
+                            <div className="flex">
+                              {[1, 2, 3, 4, 5].map((star) => (
+                                <svg
+                                  key={star}
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 20 20"
+                                  fill={
+                                    star <= Math.round(plan.rating ?? 0)
+                                      ? "#f5a623"
+                                      : "#ddd"
+                                  }
+                                >
+                                  <path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.34L10 13.27l-4.78 2.51.92-5.34L2.27 6.67l5.34-.78z" />
+                                </svg>
+                              ))}
+                            </div>
+                            {plan.reviewCount !== undefined && (
+                              <span
+                                style={{ fontSize: "13px", color: "#666" }}
+                              >
+                                ({plan.reviewCount}件)
+                              </span>
+                            )}
+                          </div>
+                        )}
+
+                        {/* 詳細を見るボタン */}
+                        <div
+                          style={{
+                            padding: "10px 40px",
+                            backgroundColor: "#333",
+                            color: "#fff",
+                            borderRadius: "4px",
+                            fontSize: "14px",
+                            fontWeight: "bold",
+                            textAlign: "center",
+                          }}
+                        >
+                          詳細を見る ＞
+                        </div>
                       </div>
                     </div>
                   </div>

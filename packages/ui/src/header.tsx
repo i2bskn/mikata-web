@@ -192,7 +192,7 @@ export const Header: FC<HeaderProps> = ({
                 <a
                   href={contactUrl}
                   className="flex flex-col items-center justify-center"
-                  style={{ padding: "5px 0" }}
+                  style={{ padding: "5px 8px" }}
                 >
                   <svg
                     width="20"
@@ -212,7 +212,7 @@ export const Header: FC<HeaderProps> = ({
                 <a
                   href={saleUrl}
                   className="flex flex-col items-center justify-center"
-                  style={{ padding: "5px 0" }}
+                  style={{ padding: "5px 8px" }}
                 >
                   <svg
                     width="20"
@@ -232,7 +232,7 @@ export const Header: FC<HeaderProps> = ({
                 <a
                   href={reservationCheckUrl}
                   className="flex flex-col items-center justify-center"
-                  style={{ padding: "5px 0" }}
+                  style={{ padding: "5px 8px" }}
                 >
                   <svg
                     width="20"

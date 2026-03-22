@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const h3Style = {
   fontSize: "19px",
   fontWeight: "600" as const,
-  marginBottom: "12px",
+  marginBottom: "19px",
   paddingLeft: "19px",
   borderLeft: "4px solid #999",
 };
@@ -36,16 +36,16 @@ export default function PrivacyPolicyPage() {
           <div className="flex-1 min-w-0">
             <h1
               style={{
-                fontSize: "22px",
-                fontWeight: "bold",
+                fontSize: "24px",
+                fontWeight: "600",
                 color: "#333",
-                marginBottom: "24px",
+                marginBottom: "12px",
               }}
             >
               個人情報保護方針
             </h1>
 
-            <div style={{ fontSize: "14px", lineHeight: "1.8", color: "#333" }}>
+            <div style={{ fontSize: "16.8px", lineHeight: "2", color: "#333" }}>
               <section style={{ marginBottom: "28px" }}>
                 <h3 style={h3Style}>
                   1. 個人情報の定義

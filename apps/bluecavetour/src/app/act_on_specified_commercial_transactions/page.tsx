@@ -41,13 +41,13 @@ export default function ActOnSpecifiedCommercialTransactionsPage() {
               style={{
                 fontSize: "24px",
                 fontWeight: "600",
-                marginBottom: "24px",
+                marginBottom: "12px",
               }}
             >
               特定商取引法に関する表記
             </h1>
 
-            <div style={{ fontSize: "14px", lineHeight: "1.8", color: "#333" }}>
+            <div style={{ fontSize: "16.8px", lineHeight: "2", color: "#333" }}>
               <section style={{ marginBottom: "28px" }}>
                 <h2 style={h2Style}>役務の内容</h2>
                 <p>
@@ -62,20 +62,26 @@ export default function ActOnSpecifiedCommercialTransactionsPage() {
                 </p>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
-                <h2 style={h2Style}>（掲載事業者の負担する費用）</h2>
-                <ul style={{ paddingLeft: "20px", listStyleType: "disc" }}>
-                  <li>アクティビティサービス提供：所定のサービス利用料がかかります。</li>
-                  <li>振込申請：振込手数料は当社が負担致します。</li>
-                </ul>
-              </section>
+              <p style={{ marginBottom: "16px" }}>（掲載事業者の負担する費用）</p>
+              <ul style={{ paddingLeft: "20px", listStyleType: "disc", marginBottom: "28px" }}>
+                <li><strong>アクティビティサービス提供</strong><br />所定のサービス利用料がかかります。</li>
+                <li><strong>振込申請</strong><br />振込手数料は当社が負担致します。</li>
+              </ul>
 
               <section style={{ marginBottom: "28px" }}>
                 <h2 style={h2Style}>支払方法および支払い時期</h2>
                 <ul style={{ paddingLeft: "20px", listStyleType: "disc" }}>
-                  <li>支払い方法：クレジットカード、現地決済</li>
-                  <li>
-                    支払い時期：クレジットカード（ツアー参加後、またはその日の翌日から3日以内）、現地決済（ツアー参加時、レンタカーの借り受け時）
+                  <li><strong>支払い方法</strong>
+                    <ul style={{ paddingLeft: "20px", listStyleType: "disc" }}>
+                      <li>クレジットカード</li>
+                      <li>現地決済</li>
+                    </ul>
+                  </li>
+                  <li><strong>支払い時期</strong>
+                    <ul style={{ paddingLeft: "20px", listStyleType: "disc" }}>
+                      <li>クレジットカード：ツアー参加後、またはその日の翌日から3日以内</li>
+                      <li>現地決済：ツアー参加時、レンタカーの借り受け時</li>
+                    </ul>
                   </li>
                 </ul>
               </section>
@@ -83,9 +89,9 @@ export default function ActOnSpecifiedCommercialTransactionsPage() {
               <section style={{ marginBottom: "28px" }}>
                 <h2 style={h2Style}>役務の提供時期</h2>
                 <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}>
-                  <li>予約：予約の都度</li>
+                  <li><strong>予約</strong><br />予約の都度</li>
                   <li>
-                    アクティビティサービス提供：アクティビティ登録以降、予約の都度、掲載事業者により提供されます。
+                    <strong>アクティビティサービス提供</strong><br />アクティビティ登録以降、予約の都度、掲載事業者により提供されます。
                   </li>
                 </ol>
               </section>
@@ -93,10 +99,8 @@ export default function ActOnSpecifiedCommercialTransactionsPage() {
               <section style={{ marginBottom: "28px" }}>
                 <h2 style={h2Style}>キャンセル特約・瑕疵担保責任等</h2>
                 <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}>
-                  <li>
-                    予約ごとのキャンセル：キャンセル返金については各プランページをご覧ください。
-                  </li>
-                  <li>役務の瑕疵等に関する責任：利用規約に基づきます。</li>
+                  <li><strong>予約ごとのキャンセル</strong><br />キャンセル返金については各プランページをご覧ください。</li>
+                  <li><strong>役務の瑕疵等に関する責任</strong><br />利用規約に基づきます。</li>
                 </ol>
               </section>
 

@@ -72,7 +72,7 @@ export default function HomePage() {
           {/* 1行目: プラン選択 + 日付 + チェックボックス + 絞り込み */}
           <div className="flex items-center gap-2 flex-wrap">
             {/* プラン選択 */}
-            <div className="flex-1" style={{ minWidth: "120px" }}>
+            <div className="w-full sm:w-auto sm:flex-1" style={{ minWidth: "120px" }}>
               <select
                 style={{
                   width: "100%",

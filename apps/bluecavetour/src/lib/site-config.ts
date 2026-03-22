@@ -124,10 +124,15 @@ export const relatedSites: RelatedSite[] = [
   { name: "水納島ツアーズ", href: "https://minnajima-tours.com" },
   { name: "ホエールウォッチングツアーズ", href: "https://whale.okinawa-tours.com" },
   { name: "久米島ツアーズ", href: "https://kumejima-tours.com" },
-  { name: "奄美大島ツアーズ", href: "https://amami-tours.com" },
+  { name: "奄美ツアーズ", href: "https://amami-tours.com" },
   { name: "屋久島アクティビティ", href: "https://yakushima-tours.com" },
   { name: "ハワイツアーズ", href: "https://hawaii-tours.com" },
+  { name: "ホノルルツアーズ", href: "https://honolulu-tours.com" },
+  { name: "プーケットツアーズ", href: "https://phuket-tours.com" },
+  { name: "セブ島ツアーズ", href: "https://cebu-tours.com" },
   { name: "長野ツアーズ", href: "https://nagano-tours.com" },
+  { name: "北海道観光ツアーズ", href: "https://hokkaido-tours.com" },
+  { name: "ニセコツアーズ", href: "https://niseko-tours.com" },
 ];
 
 /**

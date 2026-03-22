@@ -149,6 +149,13 @@ export const plans: Plan[] = [
     description:
       "石垣島の2大人気スポットを1日で制覇！午前は絶景・川平湾でSUP/カヌー、午後は青の洞窟でシュノーケリング。迷ったらこのプランがおすすめです。",
     imageUrl: "/images/plans/setplan349.webp",
+    imageUrls: [
+      "/images/plans/bluecave305.webp",
+      "/images/plans/kayak306.webp",
+      "/images/plans/bluecave304.webp",
+      "/images/plans/marine399.webp",
+      "/images/plans/setplan362.webp",
+    ],
     price: 13500,
     originalPrice: 29000,
     childPrice: 12500,

@@ -125,7 +125,7 @@ export function Sidebar({ categoryNavItems }: SidebarProps) {
         </div>
         <div style={{ marginTop: "12px" }}>
           <Link href="/campaign/premium-plan.html" className="block">
-            <img src="/images/sidebar/premium-plan-banner.png" alt="ツアーズ厳選プレミアムプラン" style={{ width: "100%", borderRadius: "4px" }} />
+            <img src="/images/banner/hero-premium.webp" alt="ツアーズ厳選プレミアムプラン" style={{ width: "100%", borderRadius: "4px" }} />
           </Link>
         </div>
       </div>

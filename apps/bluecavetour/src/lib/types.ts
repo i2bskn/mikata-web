@@ -6,6 +6,7 @@ export interface Plan {
   name: string;
   description: string;
   imageUrl: string;
+  imageUrls?: string[];
   price: number;
   originalPrice?: number;
   childPrice?: number;

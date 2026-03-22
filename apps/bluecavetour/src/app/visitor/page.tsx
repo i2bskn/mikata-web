@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const h3Style = {
   fontSize: "19px",
   fontWeight: "600" as const,
-  marginBottom: "12px",
+  marginBottom: "19px",
   paddingLeft: "19px",
   borderLeft: "4px solid #999",
   paddingBottom: "8px",
@@ -93,13 +93,13 @@ export default function VisitorPage() {
               style={{
                 fontSize: "24px",
                 fontWeight: "600",
-                marginBottom: "24px",
+                marginBottom: "12px",
               }}
             >
               旅行専門家が作る予約サイト「石垣島青の洞窟ツアーズ」とは
             </h1>
 
-            <div style={{ fontSize: "14px", lineHeight: "1.8", color: "#333" }}>
+            <div style={{ fontSize: "16.8px", lineHeight: "2", color: "#333" }}>
               {/* KV画像 */}
               <img
                 src="https://bluecavetour.ishigaki-tours.com/wp-content/uploads/2025/01/e6a6c5efaf4971f575d62679c2bdbf9e.png"

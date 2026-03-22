@@ -134,13 +134,13 @@ export default function LinksPage() {
                 fontSize: "24px",
                 fontWeight: "600",
                 color: "#333",
-                marginBottom: "24px",
+                marginBottom: "12px",
               }}
             >
               リンク集・掲載事業者一覧
             </h1>
 
-            <div style={{ fontSize: "16.8px", lineHeight: "1.8", color: "#333" }}>
+            <div style={{ fontSize: "16.8px", lineHeight: "2", color: "#333" }}>
               {linkItems.map((item) => (
                 <div key={item.href} style={{ marginBottom: "16px" }}>
                   <p>

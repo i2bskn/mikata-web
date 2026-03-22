@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const h3Style = {
   fontSize: "19px",
   fontWeight: "600" as const,
-  marginBottom: "12px",
+  marginBottom: "19px",
   paddingLeft: "19px",
   borderLeft: "4px solid #999",
 };
@@ -111,13 +111,22 @@ export default function AdministratorDataPage() {
               style={{
                 fontSize: "24px",
                 fontWeight: "600",
-                marginBottom: "24px",
+                marginBottom: "12px",
               }}
             >
               運営者情報
             </h1>
 
-            <div style={{ fontSize: "14px", lineHeight: "1.8", color: "#333" }}>
+            <div style={{ fontSize: "16.8px", lineHeight: "2", color: "#333" }}>
+              {/* 会社紹介画像 */}
+              <div style={{ marginBottom: "24px" }}>
+                <img
+                  src="https://phantomislandtour.ishigaki-tours.com/wp-content/uploads/2023/08/2c78c26e6ea90c7c1c836cb611188775-640x268.jpg"
+                  alt="株式会社ShumMaKe"
+                  style={{ width: "100%", height: "auto" }}
+                />
+              </div>
+
               {/* 運営者情報テーブル */}
               <section style={{ marginBottom: "28px" }}>
                 <table style={{ width: "100%", borderCollapse: "collapse" }}>
@@ -161,9 +170,12 @@ export default function AdministratorDataPage() {
               {/* 数多くの団体や公的機関との連携 */}
               <section style={{ marginBottom: "28px" }}>
                 <h3 style={h3Style}>数多くの団体や公的機関との連携</h3>
-                <p style={{ color: "#999" }}>
-                  （画像は後日対応予定）
-                </p>
+                <div className="flex flex-wrap gap-4" style={{ marginTop: "12px" }}>
+                  <img src="https://bluecavetour.ishigaki-tours.com/wp-content/uploads/2025/05/cb7f76683c0da65c1bfd414e10478798-300x73.webp" alt="全国旅行業協会" style={{ width: "150px", height: "auto" }} />
+                  <img src="https://bluecavetour.ishigaki-tours.com/wp-content/uploads/2025/05/077223feaefdc73830874f00a6da460d-300x73.webp" alt="HIS" style={{ width: "150px", height: "auto" }} />
+                  <img src="https://bluecavetour.ishigaki-tours.com/wp-content/uploads/2025/05/535e91c2fc367431b736295a0696cb89-300x73.webp" alt="おきなわSDGsパートナー" style={{ width: "150px", height: "auto" }} />
+                  <img src="https://bluecavetour.ishigaki-tours.com/wp-content/uploads/2025/05/83dbd9814d393d9de6c940def08957f0-300x73.webp" alt="海と日本プロジェクト" style={{ width: "150px", height: "auto" }} />
+                </div>
               </section>
 
               {/* 旅行をもっと簡単に */}

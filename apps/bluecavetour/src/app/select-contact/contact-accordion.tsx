@@ -8,10 +8,15 @@ interface ContactMethod {
   href: string;
 }
 
-interface ContactCategory {
+interface ContactSubItem {
   title: string;
   description: string;
   methods: ContactMethod[];
+}
+
+interface ContactCategory {
+  title: string;
+  subItems: ContactSubItem[];
 }
 
 interface ContactAccordionProps {
@@ -27,88 +32,132 @@ const methodColors: Record<string, { bg: string; text: string }> = {
 };
 
 export function ContactAccordion({ items }: ContactAccordionProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <div>
-      {items.map((item, index) => (
+      {items.map((category, catIndex) => (
         <div
-          key={index}
+          key={catIndex}
           style={{
             borderBottom: "1px solid #e5e5e5",
             marginBottom: "4px",
           }}
         >
-          <button
-            type="button"
-            onClick={() => setOpenIndex(openIndex === index ? null : index)}
+          {/* カテゴリタイトル */}
+          <h3
             style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              padding: "16px 0",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              textAlign: "left",
-              fontSize: "16px",
+              fontSize: "18px",
               fontWeight: "bold",
               color: "#333",
-              gap: "12px",
+              padding: "16px 0 8px 0",
+              margin: 0,
             }}
           >
-            <span>{item.title}</span>
-            <span
-              style={{
-                fontSize: "24px",
-                lineHeight: "1",
-                color: "#333",
-                flexShrink: 0,
-              }}
-            >
-              {openIndex === index ? "−" : "＋"}
-            </span>
-          </button>
-          {openIndex === index && (
-            <div
-              style={{
-                padding: "0 0 16px 0",
-                fontSize: "14px",
-                lineHeight: "1.8",
-                color: "#333",
-              }}
-            >
-              <p style={{ marginBottom: "12px" }}>{item.description}</p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-                {item.methods.map((method, mIndex) => {
-                  const colors = methodColors[method.type] ?? methodColors.link;
-                  return (
-                    <a
-                      key={mIndex}
-                      href={method.href}
-                      target={method.href.startsWith("http") ? "_blank" : undefined}
-                      rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "6px",
-                        padding: "10px 20px",
-                        backgroundColor: colors.bg,
-                        color: colors.text,
-                        borderRadius: "5px",
-                        fontSize: "14px",
-                        fontWeight: "bold",
-                        textDecoration: "none",
-                      }}
-                    >
-                      {method.label}
-                    </a>
-                  );
-                })}
+            {category.title}
+          </h3>
+
+          {/* サブアイテム */}
+          {category.subItems.map((subItem, subIndex) => {
+            const globalIndex = items
+              .slice(0, catIndex)
+              .reduce((acc, c) => acc + c.subItems.length, 0) + subIndex;
+
+            return (
+              <div key={subIndex}>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setOpenIndex(openIndex === globalIndex ? null : globalIndex)
+                  }
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    padding: "8px 0",
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    textAlign: "left",
+                    fontSize: "22px",
+                    color: "#333",
+                    gap: "12px",
+                  }}
+                >
+                  <span style={{ fontSize: "14px", color: "#666" }}>
+                    {subItem.title}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "20px",
+                      lineHeight: "1",
+                      color: "#333",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {openIndex === globalIndex ? "−" : "＋"}
+                  </span>
+                </button>
+                {openIndex === globalIndex && (
+                  <div
+                    style={{
+                      padding: "0 0 16px 0",
+                      fontSize: "14px",
+                      lineHeight: "1.8",
+                      color: "#333",
+                    }}
+                  >
+                    <p style={{ marginBottom: "12px" }}>{subItem.description}</p>
+                    {subItem.methods.length > 0 && (
+                      <div
+                        style={{
+                          display: "flex",
+                          flexWrap: "wrap",
+                          gap: "8px",
+                        }}
+                      >
+                        {subItem.methods.map((method, mIndex) => {
+                          const colors =
+                            methodColors[method.type] ?? methodColors.link;
+                          return (
+                            <a
+                              key={mIndex}
+                              href={method.href}
+                              target={
+                                method.href.startsWith("http")
+                                  ? "_blank"
+                                  : undefined
+                              }
+                              rel={
+                                method.href.startsWith("http")
+                                  ? "noopener noreferrer"
+                                  : undefined
+                              }
+                              style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: "6px",
+                                padding: "10px 20px",
+                                backgroundColor: colors.bg,
+                                color: colors.text,
+                                borderRadius: "5px",
+                                fontSize: "14px",
+                                fontWeight: "bold",
+                                textDecoration: "none",
+                              }}
+                            >
+                              {method.label}
+                            </a>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
-            </div>
-          )}
+            );
+          })}
         </div>
       ))}
     </div>

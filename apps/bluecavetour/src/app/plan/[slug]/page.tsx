@@ -6,6 +6,8 @@ import { getPlanBySlug, getAllPlanSlugs, getPopularPlans } from "../../../lib/da
 import { siteConfig, categoryNavItems } from "../../../lib/site-config";
 import { PlanCard } from "@repo/ui/plan-card";
 import { Sidebar } from "../../../components/sidebar";
+import { PlanImageSlider } from "../../../components/plan-image-slider";
+import { FloatingBookingButton } from "../../../components/floating-booking-button";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -107,127 +109,41 @@ export default async function PlanDetailPage({ params }: PageProps) {
         </div>
 
         {/* 画像スライダーエリア（全幅） */}
-        <div style={{ position: "relative", marginBottom: "10px" }}>
+        <div style={{ marginBottom: "10px", position: "relative" }}>
+          <PlanImageSlider
+            images={plan.imageUrls ?? [plan.imageUrl]}
+            alt={plan.name}
+            totalCount={20}
+          />
+          {/* 価格オーバーレイ */}
           <div
             style={{
-              aspectRatio: "16/7",
-              overflow: "hidden",
-              position: "relative",
+              position: "absolute",
+              bottom: "10px",
+              right: "10px",
+              backgroundColor: "rgba(0,0,0,0.7)",
+              color: "#fff",
+              padding: "10px 16px",
+              borderRadius: "4px",
+              fontSize: "13px",
+              lineHeight: "1.6",
+              zIndex: 1,
             }}
           >
-            <img
-              src={plan.imageUrl}
-              alt={plan.name}
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-            {/* Premium Planバッジ */}
-            <div
-              style={{
-                position: "absolute",
-                top: "10px",
-                right: "10px",
-                backgroundColor: "#f08300",
-                color: "#fff",
-                padding: "8px 12px",
-                borderRadius: "6px",
-                fontSize: "13px",
-                fontWeight: "bold",
-                textAlign: "center",
-                lineHeight: "1.3",
-              }}
-            >
-              Premium<br />Plan
-            </div>
-            {/* 価格オーバーレイ */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: "10px",
-                right: "10px",
-                backgroundColor: "rgba(0,0,0,0.7)",
-                color: "#fff",
-                padding: "10px 16px",
-                borderRadius: "4px",
-                fontSize: "13px",
-                lineHeight: "1.6",
-              }}
-            >
-              <div>
-                大人(中学生以上)　：
-                {plan.originalPrice && (
-                  <span style={{ textDecoration: "line-through" }}>{plan.originalPrice.toLocaleString()}円</span>
-                )}
-                {" → "}
-                <span style={{ fontSize: "20px", fontWeight: "bold" }}>{plan.price.toLocaleString()}</span>円
-              </div>
-              {plan.childPrice && (
-                <div>小人(中学生未満)：{plan.childPrice.toLocaleString()}円</div>
+            <div>
+              大人(中学生以上)　：
+              {plan.originalPrice && (
+                <span style={{ textDecoration: "line-through" }}>{plan.originalPrice.toLocaleString()}円</span>
               )}
-              {plan.infantPrice && (
-                <div>幼児(小学生未満)　：{plan.infantPrice.toLocaleString()}円</div>
-              )}
+              {" → "}
+              <span style={{ fontSize: "20px", fontWeight: "bold" }}>{plan.price.toLocaleString()}</span>円
             </div>
-            {/* スライダー矢印（装飾） */}
-            <button
-              type="button"
-              style={{
-                position: "absolute",
-                left: "10px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                backgroundColor: "rgba(255,255,255,0.8)",
-                border: "none",
-                borderRadius: "50%",
-                width: "36px",
-                height: "36px",
-                fontSize: "18px",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#333",
-              }}
-            >
-              ‹
-            </button>
-            <button
-              type="button"
-              style={{
-                position: "absolute",
-                right: "70px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                backgroundColor: "rgba(255,255,255,0.8)",
-                border: "none",
-                borderRadius: "50%",
-                width: "36px",
-                height: "36px",
-                fontSize: "18px",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#333",
-              }}
-            >
-              ›
-            </button>
-            {/* スライダーカウンター */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: "10px",
-                left: "10px",
-                backgroundColor: "rgba(255,255,255,0.9)",
-                padding: "4px 12px",
-                borderRadius: "4px",
-                fontSize: "14px",
-                color: "#333",
-                fontWeight: "500",
-              }}
-            >
-              1 / 20
-            </div>
+            {plan.childPrice && (
+              <div>小人(中学生未満)：{plan.childPrice.toLocaleString()}円</div>
+            )}
+            {plan.infantPrice && (
+              <div>幼児(小学生未満)　：{plan.infantPrice.toLocaleString()}円</div>
+            )}
           </div>
         </div>
 
@@ -274,6 +190,11 @@ export default async function PlanDetailPage({ params }: PageProps) {
                     (口コミ{plan.reviewCount}件)
                   </a>
                 )}
+                <span style={{ marginLeft: "auto", cursor: "pointer", color: "#999", fontSize: "18px" }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </span>
               </div>
             )}
 
@@ -524,6 +445,9 @@ export default async function PlanDetailPage({ params }: PageProps) {
           </div>
         </div>
       </div>
+
+      {/* フローティング予約ボタン */}
+      <FloatingBookingButton />
     </>
   );
 }
