@@ -95,7 +95,7 @@ export const Footer: FC<FooterProps> = ({
       {/* フッターナビ - 既存サイト: bg #f9f9f2, テキストリンク中央揃え */}
       <div style={{ backgroundColor: "#f9f9f2", padding: "20px 0" }}>
         <div className="mx-auto" style={{ maxWidth: "1020px", padding: "0 5px" }}>
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2" style={{ fontSize: "14px" }}>
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2" style={{ fontSize: "14.4px" }}>
             {footerNavLinks.map((link) => (
               <a
                 key={link.href}

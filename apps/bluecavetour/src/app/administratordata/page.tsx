@@ -10,18 +10,21 @@ export const metadata: Metadata = {
 };
 
 const h3Style = {
-  fontSize: "19px",
+  fontSize: "19.4px",
   fontWeight: "600" as const,
-  marginBottom: "19px",
-  paddingLeft: "19px",
+  marginBottom: "19.4px",
+  paddingLeft: "19.4px",
+  paddingBottom: "3px",
+  lineHeight: "1.4",
   borderLeft: "4px solid #999",
 };
 
 const h2Style = {
   fontSize: "21.6px",
   fontWeight: "600" as const,
+  color: "#666",
   marginBottom: "12px",
-  paddingBottom: "8px",
+  paddingBottom: "4px",
   borderBottom: "6px solid #1a9edb",
 };
 
@@ -98,11 +101,10 @@ export default function AdministratorDataPage() {
       />
 
       <div
-        className="mx-auto"
-        style={{ maxWidth: "1020px", padding: "0 10px" }}
+        style={{ maxWidth: "1020px", margin: "0 auto", padding: "0 5px" }}
       >
         {/* 2カラムレイアウト */}
-        <div className="flex gap-5">
+        <div style={{ display: "flex" }}>
           <Sidebar categoryNavItems={categoryNavItems} />
 
           {/* メインコンテンツ */}
@@ -111,13 +113,16 @@ export default function AdministratorDataPage() {
               style={{
                 fontSize: "24px",
                 fontWeight: "600",
+                color: "#212529",
+                marginTop: "10px",
+                lineHeight: "1.4",
                 marginBottom: "12px",
               }}
             >
               運営者情報
             </h1>
 
-            <div style={{ fontSize: "16.8px", lineHeight: "2", color: "#333" }}>
+            <div className="page-content" style={{ fontSize: "16.8px", lineHeight: "2", color: "#212529" }}>
               {/* 会社紹介画像 */}
               <div style={{ marginBottom: "24px" }}>
                 <img
@@ -128,7 +133,7 @@ export default function AdministratorDataPage() {
               </div>
 
               {/* 運営者情報テーブル */}
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <table style={{ width: "100%", borderCollapse: "collapse" }}>
                   <tbody>
                     {companyInfo.map((item) => (
@@ -168,7 +173,7 @@ export default function AdministratorDataPage() {
               </section>
 
               {/* 数多くの団体や公的機関との連携 */}
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>数多くの団体や公的機関との連携</h3>
                 <div className="flex flex-wrap gap-4" style={{ marginTop: "12px" }}>
                   <img src="https://bluecavetour.ishigaki-tours.com/wp-content/uploads/2025/05/cb7f76683c0da65c1bfd414e10478798-300x73.webp" alt="全国旅行業協会" style={{ width: "150px", height: "auto" }} />
@@ -179,7 +184,7 @@ export default function AdministratorDataPage() {
               </section>
 
               {/* 旅行をもっと簡単に */}
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>旅行をもっと簡単に</h3>
                 <p>
                   インターネットの発達によって情報が多くのメディアやサービスから発信されるようになり、旅行のための情報は点在しています。ホテルはこのサービス、レンタカーはこのサイト、レストランはこのアプリ...私たちは現地アクティビティの予約を中心に、エリア特化型の観光ポータルを運営することで、そんな旅行の不便の解消を目指します。現地を知り尽くしたスタッフが旅行の計画のお手伝い〜当日現地でのお困りごとの解決まで、ワンストップで提供します。
@@ -187,7 +192,7 @@ export default function AdministratorDataPage() {
               </section>
 
               {/* 地方をもっと自由に */}
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>地方をもっと自由に</h3>
                 <p>
                   世間ではイノベーションや働き方改革などが叫ばれていますが、地方はまだまだ都心部に比べて選択肢が限られています。私たちは現地から行きた情報・魅力を発信する地方特化型の観光ポータル運営を通じて、現地に新しいカタチの事業や雇用を生み出し、教育の場（インターン）の提供や、複業、地方と都心の２拠点生活などの新しい選択肢を提供します。
@@ -195,11 +200,11 @@ export default function AdministratorDataPage() {
               </section>
 
               {/* ツアーズが選ばれる理由 */}
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h2 style={h2Style}>ツアーズが選ばれる理由</h2>
                 <ol
                   style={{
-                    paddingLeft: "20px",
+                    paddingLeft: "27px",
                     listStyleType: "decimal",
                   }}
                 >

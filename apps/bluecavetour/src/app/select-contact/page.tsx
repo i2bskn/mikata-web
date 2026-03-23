@@ -133,19 +133,20 @@ export default function SelectContactPage() {
           <Sidebar categoryNavItems={categoryNavItems} />
 
           <div className="flex-1 min-w-0">
+            {/* #1: 24px OK, #2: color=#212529, #3: marginBottom=12px */}
             <h1
               style={{
                 fontSize: "24px",
                 fontWeight: "600",
-                color: "#333",
-                marginBottom: "24px",
+                color: "#212529",
+                marginBottom: "12px",
               }}
             >
               お問い合わせ
             </h1>
 
-            <div style={{ fontSize: "14px", lineHeight: "1.8", color: "#333" }}>
-              {/* 中央寄せ見出し */}
+            <div style={{ fontSize: "14px", lineHeight: "1.8", color: "#212529" }}>
+              {/* #4: fontSize=16.8px, #5: fontWeight=400, #6: borderBottom=none */}
               <div
                 style={{
                   textAlign: "center",
@@ -154,9 +155,9 @@ export default function SelectContactPage() {
               >
                 <h2
                   style={{
-                    fontSize: "20px",
-                    fontWeight: "600",
-                    color: "#333",
+                    fontSize: "16.8px",
+                    fontWeight: "400",
+                    color: "#212529",
                     lineHeight: "1.6",
                     display: "inline-block",
                     borderBottom: "3px solid #1a9edb",

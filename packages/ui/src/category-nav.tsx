@@ -37,9 +37,9 @@ export const CategoryNav: FC<CategoryNavProps> = ({ items, className = "", embed
           <a
             key={item.href}
             href={item.href}
-            className="flex flex-col items-center text-center shrink-0 md:shrink w-[70px] md:w-[12.5%] md:min-w-[80px] text-[10px] md:text-[11px]"
+            className="flex flex-col items-center text-center shrink-0 md:shrink w-[70px] md:w-[12.5%] md:min-w-[85px] text-[10px] md:text-[12px]"
             style={{
-              padding: "8px 4px",
+              padding: "0px 0px 5px",
               color: "#333",
               borderBottom: item.isActive ? "4px solid #1a9edb" : "4px solid transparent",
               fontWeight: "normal",
@@ -50,13 +50,13 @@ export const CategoryNav: FC<CategoryNavProps> = ({ items, className = "", embed
               <img
                 src={item.iconUrl}
                 alt={item.label}
-                width={65}
-                height={38}
-                className="w-[65px] h-[38px]"
+                width={32}
+                height={32}
+                className="w-[32px] h-[32px]"
                 style={{ objectFit: "contain" }}
               />
             </span>
-            <span style={{ lineHeight: "1.3" }}>{item.label}</span>
+            <span style={{ lineHeight: "1.3", whiteSpace: "pre-line" }}>{item.label}</span>
           </a>
         ))}
       </div>

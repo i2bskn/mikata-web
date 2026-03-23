@@ -140,12 +140,30 @@ export const Header: FC<HeaderProps> = ({
       <div style={{ backgroundColor: "#1a9edb" }}>
         <div className="mx-auto px-1" style={{ maxWidth: "1020px" }}>
           <div
-            className="flex items-center text-white"
+            className="flex items-center justify-between text-white"
             style={{ height: "43px", padding: "5px 0", fontSize: "11px", fontWeight: 300 }}
           >
             <span className="truncate">
               {catchphrase ||
                 `青の洞窟専門のアクティビティ予約サイト "${siteName}"`}
+            </span>
+            <span
+              className="inline-flex items-center shrink-0"
+              style={{
+                backgroundColor: "#fff",
+                color: "#333",
+                fontSize: "12px",
+                padding: "4px 12px",
+                borderRadius: "3px",
+                gap: "4px",
+                cursor: "pointer",
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+              </svg>
+              Japanese
             </span>
           </div>
         </div>

@@ -59,7 +59,7 @@ export const PlanCard: FC<PlanCardProps> = ({
         {/* プラン名 */}
         <h3
           style={{
-            fontSize: "12px",
+            fontSize: "14.4px",
             fontWeight: 600,
             color: "#333",
             lineHeight: "1.4",
@@ -108,14 +108,14 @@ export const PlanCard: FC<PlanCardProps> = ({
         <div style={{ fontSize: "11px", color: "#666" }}>
           大人(中学生以上) /
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 flex-wrap">
           {originalPrice && (
-            <span style={{ fontSize: "11px", color: "#999", textDecoration: "line-through" }}>
+            <span style={{ fontSize: "11px", color: "#999", textDecoration: "line-through", whiteSpace: "nowrap" }}>
               {originalPrice.toLocaleString()}円
             </span>
           )}
           <span style={{ fontSize: "11px", color: "#999" }}>→</span>
-          <span style={{ fontSize: "16px", fontWeight: "bold", color: "#ed3434" }}>
+          <span style={{ fontSize: "16.8px", fontWeight: 600, color: "#dc4343", whiteSpace: "nowrap" }}>
             {price.toLocaleString()}円
           </span>
         </div>

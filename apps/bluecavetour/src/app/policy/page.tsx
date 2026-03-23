@@ -10,10 +10,12 @@ export const metadata: Metadata = {
 };
 
 const h3Style = {
-  fontSize: "19px",
+  fontSize: "19.4px",
   fontWeight: "600" as const,
-  marginBottom: "19px",
-  paddingLeft: "19px",
+  marginBottom: "19.4px",
+  paddingLeft: "19.4px",
+  paddingBottom: "3px",
+  lineHeight: "1.4",
   borderLeft: "4px solid #999",
 };
 
@@ -27,9 +29,9 @@ export default function PolicyPage() {
         ]}
       />
 
-      <div className="mx-auto" style={{ maxWidth: "1020px", padding: "0 10px" }}>
+      <div style={{ maxWidth: "1020px", margin: "0 auto", padding: "0 5px" }}>
         {/* 2カラムレイアウト */}
-        <div className="flex gap-5">
+        <div style={{ display: "flex" }}>
           <Sidebar categoryNavItems={categoryNavItems} />
 
           {/* メインコンテンツ */}
@@ -38,17 +40,19 @@ export default function PolicyPage() {
               style={{
                 fontSize: "24px",
                 fontWeight: "600",
-                color: "#333",
+                color: "#212529",
+                marginTop: "10px",
+                lineHeight: "1.4",
                 marginBottom: "12px",
               }}
             >
               利用規約
             </h1>
 
-            <div style={{ fontSize: "16.8px", lineHeight: "2", color: "#333" }}>
-              <section style={{ marginBottom: "28px" }}>
+            <div className="page-content" style={{ fontSize: "16.8px", lineHeight: "2", color: "#212529" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>第１条（規約の適用）</h3>
-                <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}>
+                <ol style={{ paddingLeft: "27px", listStyleType: "decimal" }}>
                   <li>
                     本規約は、株式会社ShumMaKe以下「当社」といいます）が管理・運営するインターネットウェブサイト｢石垣島 青の洞窟ツアーズ｣（以下「本サイト」といいます）を通じてユーザーが石垣島 青の洞窟ツアーズサービス（次条の定義に従います。以下「本サービス」といいます）を利用するにあたり、ユーザーが行う一切の行為に適用されるものとし、ユーザーは、本規約に同意のうえ本サービスを利用するものとします。
                   </li>
@@ -61,9 +65,9 @@ export default function PolicyPage() {
                 </ol>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>第２条（本サービスの定義および契約の成立）</h3>
-                <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}>
+                <ol style={{ paddingLeft: "27px", listStyleType: "decimal" }}>
                   <li>
                     本サービスとは、ユーザーが自らインターネットを通じて、掲載事業者（次項の定義に従います）が予め登録した体験型アクティビティサービス及びこれらに付帯するサービスの予約を行うことを可能にするサービスをいいます。
                   </li>
@@ -82,9 +86,9 @@ export default function PolicyPage() {
                 </ol>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>第３条（本サービスにおける利用料金の考え方）</h3>
-                <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}>
+                <ol style={{ paddingLeft: "27px", listStyleType: "decimal" }}>
                   <li>
                     ユーザーは、掲載事業者の事業者提供サービスの利用に係る料金（以下「利用料金」といいます）等に関する情報が、他の媒体で提供される情報と異なる場合があることを了承します。なお、掲載事業者の提供する利用料金には、消費税及び地方消費税（以下「消費税等」と総称します）が含まれておりますが、サービス料やその他諸税については含まれている場合と含まれていない場合があります。
                   </li>
@@ -97,9 +101,9 @@ export default function PolicyPage() {
                 </ol>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>第４条（予約のキャンセルの成立と無連絡キャンセルの禁止）</h3>
-                <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}>
+                <ol style={{ paddingLeft: "27px", listStyleType: "decimal" }}>
                   <li>
                     ユーザーは、事業者提供サービスの予約をキャンセルする場合、本サービスより送られる「予約完了メール」を通じて、予約内容を確認の上、電話、もしくはメールあるいはそれに準ずる方法（SNSやメッセージアプリ等が含まれますが、それに限りません）で、当社へ連絡の上、キャンセルの手続きをすることとします。なお、予約したユーザーは、予約完了メールにおける「キャンセル・変更可能日時」を超えて予約をキャンセルしようとする場合、必ず電話にて当社へ直接連絡のうえ、速やかにキャンセルの手続きをすることとします。
                   </li>
@@ -124,9 +128,9 @@ export default function PolicyPage() {
                 </ol>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>第５条（ユーザーの遵守事項）</h3>
-                <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}>
+                <ol style={{ paddingLeft: "27px", listStyleType: "decimal" }}>
                   <li>
                     ユーザーは、本サイトを利用することにより得られる情報を、当社および掲載事業者の事前の承諾なく自己の私的利用以外の目的で複製・送信しない他、方法の如何を問わず第三者による利用に供しないものとします。
                   </li>
@@ -141,7 +145,7 @@ export default function PolicyPage() {
                   </li>
                 </ol>
 
-                <ul style={{ paddingLeft: "20px", listStyleType: "disc" }}>
+                <ul style={{ paddingLeft: "27px", listStyleType: "disc" }}>
                   <li>第三者になりすまして情報を送信または書き込む行為</li>
                   <li>当社の承認した以外の方法により本サービスを利用する行為</li>
                   <li>有害なコンピュータプログラム等を送信または書き込む行為、スパムメール、チェーンレター、ジャンクメール等を送信する行為</li>
@@ -158,7 +162,7 @@ export default function PolicyPage() {
                   <li>その他法令に違反する、または違反するおそれのある行為</li>
                 </ul>
 
-                <ol start={5} style={{ paddingLeft: "20px", listStyleType: "decimal" }}>
+                <ol start={5} style={{ paddingLeft: "27px", listStyleType: "decimal" }}>
                   <li>
                     前項各号の一に該当するユーザーの行為によって、当社または第三者に損害が生じた場合、ユーザーはすべての法的責任を負担するものとし、当社および第三者に損害を与えないものとします。
                   </li>
@@ -174,9 +178,9 @@ export default function PolicyPage() {
                 </ol>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>第６条（ユーザーの遵守事項の違反）</h3>
-                <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}>
+                <ol style={{ paddingLeft: "27px", listStyleType: "decimal" }}>
                   <li>
                     当社は、ユーザーが前条の遵守事項に違反した場合、その他当社が本サービスの運営上不適当と判断した場合には、当該行為を停止させ、当該ユーザーと当該掲載事業者の利用契約をキャンセルし、または掲載情報を削除する権利を留保するとともに、当該ユーザーの本サービスを含む、本サイトに係る一切のサービスの利用停止、もしくは損害賠償請求等必要な措置（法的措置を含みます）を取ることができるものとします。
                   </li>
@@ -186,9 +190,9 @@ export default function PolicyPage() {
                 </ol>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>第７条（口コミの投稿）</h3>
-                <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}>
+                <ol style={{ paddingLeft: "27px", listStyleType: "decimal" }}>
                   <li>
                     ユーザーは、当社が本サイト内に設けるクチコミ投稿サービスに投稿することができるものとします。
                   </li>
@@ -201,9 +205,9 @@ export default function PolicyPage() {
                 </ol>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>第８条（著作権）</h3>
-                <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}>
+                <ol style={{ paddingLeft: "27px", listStyleType: "decimal" }}>
                   <li>
                     ユーザーは、本サイトを通じて提供されるすべてのコンテンツについて、当社の事前の承諾なく著作権法で定めるユーザー個人の私的利用の範囲を超える使用をしてはならないものとします。
                   </li>
@@ -213,9 +217,9 @@ export default function PolicyPage() {
                 </ol>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>第９条（本サイト掲載事業者の加減）</h3>
-                <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}>
+                <ol style={{ paddingLeft: "27px", listStyleType: "decimal" }}>
                   <li>
                     本サイトに掲載されるプランまたは事業者は、当社または掲載事業者の都合により、ユーザーへの事前の通知なく変更（追加および参画の終了を含みます。以下同様）される場合があり、ユーザーは予めこれを承諾するものとします。
                   </li>
@@ -225,12 +229,12 @@ export default function PolicyPage() {
                 </ol>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>第１０条（本サイトおよび本サービスの一時的な停止）</h3>
-                <p style={{ marginBottom: "8px" }}>
+                <p>
                   当社は、次の各号に該当する場合にはユーザーへ事前に通知することなく、本サイトおよび本サービスの一時的な運用の停止を行うことがあります。
                 </p>
-                <ul style={{ paddingLeft: "20px", listStyleType: "disc" }}>
+                <ul style={{ paddingLeft: "27px", listStyleType: "disc" }}>
                   <li>本サイトの保守または仕様の変更を行う場合</li>
                   <li>
                     天災地変その他非常事態が発生し、または発生するおそれがあり、本サイトおよび本サービスの運営ができなくなった場合
@@ -241,16 +245,16 @@ export default function PolicyPage() {
                 </ul>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>第１１条（ユーザーの情報の取扱いについて）</h3>
                 <p>
                   当社は、本サイトをご利用になる皆様の利便性を向上させる目的で統計データを作成するために、アクセスログ（以下「利用者情報」といいます。）を取得することがあります。法的に要求された場合を除き、第三者に利用者情報を公開することはありません。
                 </p>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>第１２条（当社の免責）</h3>
-                <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}>
+                <ol style={{ paddingLeft: "27px", listStyleType: "decimal" }}>
                   <li>
                     当社は、掲載事業者の営業状況等につき調査する義務を負わないものとします。
                   </li>
@@ -272,9 +276,9 @@ export default function PolicyPage() {
                 </ol>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>第１３条（規約の変更）</h3>
-                <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}>
+                <ol style={{ paddingLeft: "27px", listStyleType: "decimal" }}>
                   <li>
                     当社は、ユーザーに事前の通知をすることなく本規約および諸注意等の変更（追加・削除を含みます。以下同様）をすることがあります。必ず本規約および諸注意等を本サービスご利用の都度ご確認下さい。
                   </li>
@@ -284,9 +288,9 @@ export default function PolicyPage() {
                 </ol>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>第１４条（権利義務の譲渡禁止）</h3>
-                <ol style={{ paddingLeft: "20px", listStyleType: "decimal" }}>
+                <ol style={{ paddingLeft: "27px", listStyleType: "decimal" }}>
                   <li>
                     ユーザーは、本サービスに関するユーザーとしての地位および当該地位に基づく権利義務を、当社が予め承諾した場合を除き、第三者に譲渡し、または担保に供してはならないものとします。
                   </li>
@@ -296,21 +300,21 @@ export default function PolicyPage() {
                 </ol>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>第１５条（準拠法および管轄）</h3>
                 <p>
                   本規約の準拠法は日本法とし、本規約に関する一切の紛争は、東京地方裁判所または東京簡易裁判所を第一審の専属的合意管轄裁判所とします。
                 </p>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>第１６条（反社会的勢力の排除について）</h3>
                 <p>
                   ユーザーは、反社会的勢力（暴力団、暴力団員、暴力団員でなくなった時から5年を経過しない者、暴力団準構成員、暴力団関係企業、総会屋等、社会運動等標ぼうゴロまたは特殊知能暴力集団等、その他これらに準ずる者をいいます。）に該当しないこと、また暴力的行為、詐術・脅迫行為、業務妨害行為等違法行為を行わないことを、将来にわたっても表明するものとします。かかる表明に違反した場合には、当社は、当該ユーザーと当該掲載事業者の利用契約をキャンセルし、または当該ユーザーの本サービスを含む、本サイトに係る一切のサービスの利用停止、会員資格の剥奪、その他本サービスに付随する各種契約の解除、もしくは損害賠償請求等必要な措置（法的措置を含みます）を取ることができるものとします。
                 </p>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>附則</h3>
                 <p>本規約は2018年11月1日から実施します。</p>
                 <p>改訂 2025年8月1日</p>

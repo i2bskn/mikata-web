@@ -26,3 +26,11 @@ body {
   font-family: "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
 }
+
+/* 固定ページコンテンツ: pのmarginBottomをブラウザデフォルトに戻す */
+.page-content p {
+  margin-bottom: 16.8px;
+}
+.page-content ul, .page-content ol {
+  margin-bottom: 16.8px;
+}

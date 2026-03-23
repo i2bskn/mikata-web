@@ -76,11 +76,11 @@ export default function HomePage() {
               <select
                 style={{
                   width: "100%",
-                  padding: "10px 12px",
+                  padding: "10px 38px 10px 10px",
                   border: "1px solid #ccc",
                   borderRadius: "4px",
-                  fontSize: "14px",
-                  backgroundColor: "#fff",
+                  fontSize: "16px",
+                  backgroundColor: "transparent",
                   appearance: "none",
                   backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`,
                   backgroundRepeat: "no-repeat",
@@ -97,20 +97,33 @@ export default function HomePage() {
             </div>
 
             {/* 日付選択 */}
-            <div className="flex-1" style={{ minWidth: "100px" }}>
+            <div className="flex-1 relative" style={{ minWidth: "100px" }}>
               <input
                 type="text"
                 placeholder="日付未定"
                 readOnly
                 style={{
                   width: "100%",
-                  padding: "10px 12px",
+                  padding: "10px 36px 10px 10px",
                   border: "1px solid #ccc",
-                  borderRadius: "4px",
-                  fontSize: "14px",
-                  backgroundColor: "#fff",
+                  borderRadius: "4px 0 0 4px",
+                  fontSize: "16px",
+                  backgroundColor: "#ecf3f5",
                 }}
               />
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#999"
+                strokeWidth="2"
+                className="absolute"
+                style={{ right: "10px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <path d="M16 2v4M8 2v4M3 10h18" />
+              </svg>
             </div>
 
             {/* 今日・明日チェックボックス */}
@@ -188,7 +201,7 @@ export default function HomePage() {
             {/* 人気プランランキング */}
             <section>
               <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
-                <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", lineHeight: "21.6px" }}>
+                <h2 className="flex items-center gap-2" style={{ fontSize: "21.6px", fontWeight: 600, color: "#212529", lineHeight: "1.2" }}>
                   <img src="/images/icons/crown.svg" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
                   人気プランランキング
                 </h2>
@@ -198,9 +211,9 @@ export default function HomePage() {
                     backgroundColor: "#ed3434",
                     color: "#fff",
                     padding: "2px 10px",
-                    borderRadius: "4px",
-                    fontSize: "13px",
-                    fontWeight: "bold",
+                    borderRadius: "3px",
+                    fontSize: "16.8px",
+                    fontWeight: "400",
                     textDecoration: "none",
                   }}
                 >
@@ -240,7 +253,6 @@ export default function HomePage() {
                       href={`/plan/${plan.slug}`}
                       price={plan.price}
                       originalPrice={plan.originalPrice}
-                      duration={plan.duration}
                       tags={plan.tags}
                       rating={plan.rating}
                       reviewCount={plan.reviewCount}
@@ -252,7 +264,7 @@ export default function HomePage() {
 
             {/* おすすめ観光情報＆キャンペーン - 旧サイト: 横スクロール7カード */}
             <section style={{ marginTop: "20px" }}>
-              <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", lineHeight: "21.6px", marginBottom: "12px" }}>
+              <h2 className="flex items-center gap-2" style={{ fontSize: "21.6px", fontWeight: 600, color: "#212529", lineHeight: "1.2", marginBottom: "12px" }}>
                 <img src="/images/icons/flag.svg" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
                 おすすめ観光情報＆キャンペーン
               </h2>
@@ -284,7 +296,7 @@ export default function HomePage() {
             {/* シーン・時間帯から探す - 既存サイト: SP 2x2グリッド、PC 4列 */}
             <section style={{ marginTop: "20px" }}>
               <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
-                <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", lineHeight: "21.6px" }}>
+                <h2 className="flex items-center gap-2" style={{ fontSize: "21.6px", fontWeight: 600, color: "#212529", lineHeight: "1.2" }}>
                   <img src="/images/icons/icon-time.webp" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
                   シーン・時間帯から探す
                 </h2>
@@ -294,9 +306,9 @@ export default function HomePage() {
                     backgroundColor: "#ed3434",
                     color: "#fff",
                     padding: "2px 10px",
-                    borderRadius: "4px",
-                    fontSize: "13px",
-                    fontWeight: "bold",
+                    borderRadius: "3px",
+                    fontSize: "16.8px",
+                    fontWeight: "400",
                     textDecoration: "none",
                   }}
                 >
@@ -328,7 +340,7 @@ export default function HomePage() {
             {/* 人気の組み合わせから探す */}
             <section style={{ marginTop: "20px", padding: "16px" }}>
               <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
-                <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", lineHeight: "21.6px" }}>
+                <h2 className="flex items-center gap-2" style={{ fontSize: "21.6px", fontWeight: 600, color: "#212529", lineHeight: "1.2" }}>
                   <img src="/images/icons/icon-activity.png" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
                   人気の組み合わせから探す
                 </h2>
@@ -338,9 +350,9 @@ export default function HomePage() {
                     backgroundColor: "#ed3434",
                     color: "#fff",
                     padding: "2px 10px",
-                    borderRadius: "4px",
-                    fontSize: "13px",
-                    fontWeight: "bold",
+                    borderRadius: "3px",
+                    fontSize: "16.8px",
+                    fontWeight: "400",
                     textDecoration: "none",
                   }}
                 >
@@ -370,7 +382,7 @@ export default function HomePage() {
 
             {/* 条件から探す */}
             <section style={{ marginTop: "20px" }}>
-              <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", lineHeight: "21.6px", marginBottom: "12px" }}>
+              <h2 className="flex items-center gap-2" style={{ fontSize: "21.6px", fontWeight: 600, color: "#212529", lineHeight: "1.2", marginBottom: "12px" }}>
                 <img src="/images/icons/loupe.svg" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
                 条件から探す
               </h2>
@@ -424,7 +436,7 @@ export default function HomePage() {
             {/* ツアーズコラム - 旧サイト: 3記事、サムネ+タイトル+日付+PV数 */}
             <section style={{ marginTop: "20px", padding: "16px" }}>
               <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
-                <h2 className="flex items-center gap-2" style={{ fontSize: "18px", fontWeight: 600, color: "#212529", lineHeight: "21.6px" }}>
+                <h2 className="flex items-center gap-2" style={{ fontSize: "21.6px", fontWeight: 600, color: "#212529", lineHeight: "1.2" }}>
                   <img src="/images/icons/pen.svg" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
                   ツアーズコラム
                 </h2>
@@ -434,9 +446,9 @@ export default function HomePage() {
                     backgroundColor: "#ed3434",
                     color: "#fff",
                     padding: "2px 10px",
-                    borderRadius: "4px",
-                    fontSize: "13px",
-                    fontWeight: "bold",
+                    borderRadius: "3px",
+                    fontSize: "16.8px",
+                    fontWeight: "400",
                     textDecoration: "none",
                   }}
                 >
@@ -496,7 +508,7 @@ export default function HomePage() {
 
             {/* 関連情報 - 旧サイト: 2x3グリッドのバナー */}
             <section style={{ marginTop: "20px" }}>
-              <h2 style={{ fontSize: "18px", fontWeight: 600, color: "#212529", lineHeight: "21.6px", marginBottom: "16px", borderBottom: "4px solid #1a9edb", paddingBottom: "10px" }}>
+              <h2 style={{ fontSize: "21.6px", fontWeight: 600, color: "#212529", lineHeight: "1.2", marginBottom: "16px", borderBottom: "4px solid #1a9edb", paddingBottom: "10px" }}>
                 関連情報
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -619,6 +631,53 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+      {/* フローティングボタン - 既存サイト: PC右下に「特集・SALE情報を見る」 */}
+      <a
+        href="/pickup_item"
+        className="hidden lg:flex fixed flex-col items-center"
+        style={{
+          bottom: "20px",
+          right: "20px",
+          backgroundColor: "#ed3434",
+          color: "#fff",
+          borderRadius: "8px",
+          padding: "12px 16px",
+          boxShadow: "0 2px 10px rgba(0,0,0,0.3)",
+          textDecoration: "none",
+          zIndex: 50,
+          gap: "4px",
+        }}
+      >
+        <span style={{ fontSize: "10px", fontWeight: "bold" }}>＼ 会員登録不要 ／</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 16v-4M12 8h.01" />
+        </svg>
+        <span style={{ fontSize: "13px", fontWeight: "bold" }}>特集・SALE</span>
+        <span style={{ fontSize: "13px", fontWeight: "bold" }}>情報を見る</span>
+      </a>
+
+      {/* スティッキーバナー - 既存サイト: SP画面下部に「写真撮影付きツアー」 */}
+      <a
+        href="/scene-time/freetourphotos.html"
+        className="lg:hidden fixed left-0 right-0 flex items-center justify-center"
+        style={{
+          bottom: 0,
+          backgroundColor: "#1a9edb",
+          color: "#fff",
+          padding: "8px 16px",
+          fontSize: "13px",
+          fontWeight: "bold",
+          textDecoration: "none",
+          zIndex: 50,
+          gap: "8px",
+        }}
+      >
+        <span>📷 写真撮影付きツアー</span>
+        <span style={{ fontSize: "11px", backgroundColor: "#f08300", padding: "2px 8px", borderRadius: "3px" }}>
+          高画質データ無料プレゼント！
+        </span>
+      </a>
     </>
   );
 }

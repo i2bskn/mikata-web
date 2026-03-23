@@ -11,12 +11,14 @@ export const metadata: Metadata = {
 };
 
 const h3Style = {
-  fontSize: "19px",
+  fontSize: "19.4px",
   fontWeight: "600" as const,
-  marginBottom: "19px",
-  paddingLeft: "19px",
+  color: "#666",
+  marginBottom: "19.4px",
+  paddingLeft: "19.4px",
   borderLeft: "4px solid #999",
-  paddingBottom: "8px",
+  paddingBottom: "3px",
+  lineHeight: "1.4",
   borderBottom: "3px solid #eee",
 };
 
@@ -82,10 +84,9 @@ export default function FaqPage() {
       />
 
       <div
-        className="mx-auto"
-        style={{ maxWidth: "1020px", padding: "0 10px" }}
+        style={{ maxWidth: "1020px", margin: "0 auto", padding: "0 5px" }}
       >
-        <div className="flex gap-5" style={{ marginTop: "20px" }}>
+        <div style={{ display: "flex", marginTop: "20px" }}>
           <Sidebar categoryNavItems={categoryNavItems} />
 
           <div className="flex-1 min-w-0">
@@ -93,7 +94,9 @@ export default function FaqPage() {
               style={{
                 fontSize: "24px",
                 fontWeight: "600",
-                color: "#333",
+                color: "#212529",
+                marginTop: "10px",
+                lineHeight: "1.4",
                 marginBottom: "12px",
               }}
             >
@@ -101,7 +104,8 @@ export default function FaqPage() {
             </h1>
 
             <div
-              style={{ fontSize: "16.8px", lineHeight: "2", color: "#333" }}
+              className="page-content"
+              style={{ fontSize: "16.8px", lineHeight: "2", color: "#212529" }}
             >
               {/* よくある質問 */}
               <section style={{ marginBottom: "40px" }}>
@@ -114,7 +118,7 @@ export default function FaqPage() {
                 <h3 style={h3Style}>注意事項</h3>
                 <ol
                   style={{
-                    paddingLeft: "20px",
+                    paddingLeft: "27px",
                     listStyleType: "decimal",
                   }}
                 >
@@ -156,7 +160,7 @@ export default function FaqPage() {
                     参加日の7日前より以下のキャンセルポリシーが適用されます。
                   </p>
                   <ul
-                    style={{ paddingLeft: "20px", listStyleType: "disc" }}
+                    style={{ paddingLeft: "27px", listStyleType: "disc" }}
                   >
                     <li>7〜2日前：一律2,000円/組</li>
                     <li>前日・当日のキャンセル：ツアー料金の100%</li>
@@ -187,7 +191,7 @@ export default function FaqPage() {
                     キャンセルをご希望の場合は公式LINEにて以下の事項をご連絡ください。
                   </p>
                   <ul
-                    style={{ paddingLeft: "20px", listStyleType: "disc" }}
+                    style={{ paddingLeft: "27px", listStyleType: "disc" }}
                   >
                     <li>プラン参加日</li>
                     <li>ご予約者様氏名(カタカナフルネーム)</li>
@@ -201,7 +205,7 @@ export default function FaqPage() {
               <section style={{ marginBottom: "40px" }}>
                 <h3 style={h3Style}>ツアー中止の基準</h3>
                 <ul
-                  style={{ paddingLeft: "20px", listStyleType: "disc" }}
+                  style={{ paddingLeft: "27px", listStyleType: "disc" }}
                 >
                   <li style={{ marginBottom: "8px" }}>
                     気象警報が発令している場合、もしくは予想される場合。

@@ -23,7 +23,7 @@ export function FloatingBookingButton() {
         bottom: "20px",
         right: "20px",
         zIndex: 50,
-        background: "linear-gradient(to bottom, #ed3434, #c92020)",
+        backgroundColor: "#ed3434",
         color: "#fff",
         padding: "12px 16px",
         borderRadius: "8px",

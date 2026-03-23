@@ -10,11 +10,13 @@ export const metadata: Metadata = {
 };
 
 const h3Style = {
-  fontSize: "19px",
+  fontSize: "19.4px",
   fontWeight: "600" as const,
-  marginBottom: "19px",
-  paddingLeft: "19px",
+  marginBottom: "19.4px",
+  paddingLeft: "19.4px",
+  paddingBottom: "3px",
   borderLeft: "4px solid #999",
+  lineHeight: "1.4",
 };
 
 export default function PrivacyPolicyPage() {
@@ -27,26 +29,28 @@ export default function PrivacyPolicyPage() {
         ]}
       />
 
-      <div className="mx-auto" style={{ maxWidth: "1020px", padding: "0 10px" }}>
+      <div style={{ maxWidth: "1020px", margin: "0 auto", padding: "0 5px" }}>
         {/* 2カラムレイアウト */}
-        <div className="flex gap-5">
+        <div style={{ display: "flex", marginTop: "0px" }}>
           <Sidebar categoryNavItems={categoryNavItems} />
 
           {/* メインコンテンツ */}
-          <div className="flex-1 min-w-0">
+          <div style={{ flex: 1, minWidth: 0 }}>
             <h1
               style={{
                 fontSize: "24px",
                 fontWeight: "600",
-                color: "#333",
+                color: "#212529",
+                marginTop: "10px",
                 marginBottom: "12px",
+                lineHeight: "1.4",
               }}
             >
               個人情報保護方針
             </h1>
 
-            <div style={{ fontSize: "16.8px", lineHeight: "2", color: "#333" }}>
-              <section style={{ marginBottom: "28px" }}>
+            <div className="page-content" style={{ fontSize: "16.8px", lineHeight: "2", color: "#212529" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>
                   1. 個人情報の定義
                 </h3>
@@ -55,14 +59,14 @@ export default function PrivacyPolicyPage() {
                 </p>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>
                   2.個人情報の取得及び利用目的
                 </h3>
                 <p style={{ marginBottom: "8px" }}>
                   当社は適正かつ公正な手段によって個人情報を取得し、取得した個人情報は、当社が行う以下のサービスをお客様が利用される際、必要な範囲でのみ収集、利用致します。
                 </p>
-                <ul style={{ paddingLeft: "20px", listStyleType: "disc" }}>
+                <ul style={{ paddingLeft: "27px", listStyleType: "disc", marginBottom: "16.8px" }}>
                   <li>Webサイト上のサービス</li>
                   <li>アクティビティの予約・お問合せ</li>
                   <li>宿泊施設の予約・お問合せ</li>
@@ -77,14 +81,14 @@ export default function PrivacyPolicyPage() {
                 </ul>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>
                   3.第三者への開示・提供
                 </h3>
                 <p style={{ marginBottom: "8px" }}>
                   当社は、以下のいずれかに該当する場合を除き、お客様の個人情報を第三者へ開示または提供しません。尚、業務委託先への提供は第三者への開示または提供にあたりません。
                 </p>
-                <ul style={{ paddingLeft: "20px", listStyleType: "disc" }}>
+                <ul style={{ paddingLeft: "27px", listStyleType: "disc", marginBottom: "16.8px" }}>
                   <li>ツアーの予約に必要な範囲で運営会社へ情報を提供する場合</li>
                   <li>お客様本人の同意を得た場合</li>
                   <li>法令に基づき、開示又は提供をもとめられた場合</li>
@@ -93,7 +97,7 @@ export default function PrivacyPolicyPage() {
                 </ul>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>
                   4.業務委託先の監督
                 </h3>
@@ -102,7 +106,7 @@ export default function PrivacyPolicyPage() {
                 </p>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>
                   5.個人情報の適正管理について
                 </h3>
@@ -111,7 +115,7 @@ export default function PrivacyPolicyPage() {
                 </p>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>
                   6.個人情報処理の委託
                 </h3>
@@ -120,7 +124,7 @@ export default function PrivacyPolicyPage() {
                 </p>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>
                   7.関係法令、規範の遵守
                 </h3>
@@ -129,7 +133,7 @@ export default function PrivacyPolicyPage() {
                 </p>
               </section>
 
-              <section style={{ marginBottom: "28px" }}>
+              <section style={{ marginBottom: "16.8px" }}>
                 <h3 style={h3Style}>
                   8.今後の個人情報保護への取り組み
                 </h3>

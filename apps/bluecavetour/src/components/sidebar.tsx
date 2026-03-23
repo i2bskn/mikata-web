@@ -13,11 +13,11 @@ interface SidebarProps {
 
 export function Sidebar({ categoryNavItems }: SidebarProps) {
   return (
-    <aside className="hidden lg:block shrink-0" style={{ width: "225px" }}>
+    <aside className="hidden lg:block shrink-0" style={{ width: "225px", paddingRight: "25px" }}>
       <div className="sticky" style={{ top: "110px" }}>
         {/* サイドバーカテゴリナビ + 検索フォーム（1つのカード） */}
         <div style={{ backgroundColor: "#fff", borderRadius: "10px", boxShadow: "0px 1px 6px 0px #ccc", overflow: "hidden" }}>
-          <div style={{ overflowX: "scroll", whiteSpace: "nowrap", padding: "12px" }}>
+          <div style={{ overflowX: "auto", whiteSpace: "nowrap", padding: "12px" }}>
             {categoryNavItems.map((item) => (
               <a
                 key={item.href}
@@ -26,7 +26,7 @@ export function Sidebar({ categoryNavItems }: SidebarProps) {
                 style={{
                   width: "80px",
                   padding: "8px 4px",
-                  color: item.isActive ? "#1a9edb" : "#333",
+                  color: "#333",
                   borderBottom: item.isActive ? "3px solid #f08300" : "3px solid transparent",
                   fontSize: "11px",
                   whiteSpace: "normal",
@@ -40,7 +40,7 @@ export function Sidebar({ categoryNavItems }: SidebarProps) {
                   height={28}
                   style={{ width: "28px", height: "28px", objectFit: "contain" }}
                 />
-                <span>{item.label.split("\n")[0]}</span>
+                <span style={{ whiteSpace: "pre-line" }}>{item.label}</span>
               </a>
             ))}
           </div>

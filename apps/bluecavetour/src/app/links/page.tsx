@@ -124,8 +124,8 @@ export default function LinksPage() {
         ]}
       />
 
-      <div className="mx-auto" style={{ maxWidth: "1020px", padding: "0 10px" }}>
-        <div className="flex gap-5" style={{ marginTop: "20px" }}>
+      <div style={{ maxWidth: "1020px", margin: "0 auto", padding: "0 5px" }}>
+        <div style={{ display: "flex", marginTop: "20px" }}>
           <Sidebar categoryNavItems={categoryNavItems} />
 
           <div className="flex-1 min-w-0">
@@ -133,14 +133,16 @@ export default function LinksPage() {
               style={{
                 fontSize: "24px",
                 fontWeight: "600",
-                color: "#333",
+                color: "#212529",
+                marginTop: "10px",
+                lineHeight: "1.4",
                 marginBottom: "12px",
               }}
             >
               リンク集・掲載事業者一覧
             </h1>
 
-            <div style={{ fontSize: "16.8px", lineHeight: "2", color: "#333" }}>
+            <div className="page-content" style={{ fontSize: "16.8px", lineHeight: "2", color: "#212529" }}>
               {linkItems.map((item) => (
                 <div key={item.href} style={{ marginBottom: "16px" }}>
                   <p>

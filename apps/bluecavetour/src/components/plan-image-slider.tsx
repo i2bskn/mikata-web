@@ -24,7 +24,7 @@ export function PlanImageSlider({ images, alt, totalCount }: PlanImageSliderProp
     <div style={{ position: "relative" }}>
       <div
         style={{
-          aspectRatio: "16/9",
+          height: "470px",
           overflow: "hidden",
           position: "relative",
         }}

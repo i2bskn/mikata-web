@@ -29,21 +29,24 @@ export default function ActivityCategoryPage() {
           <Sidebar categoryNavItems={categoryNavItems} />
 
           <div className="flex-1 min-w-0">
+            {/* #1: fontSize=21.6px, #2: color=#212529, #4: marginBottom=0px */}
             <h1
               style={{
-                fontSize: "24px",
+                fontSize: "21.6px",
                 fontWeight: "600",
-                color: "#333",
-                marginBottom: "16px",
+                color: "#212529",
+                marginBottom: "0px",
               }}
             >
               アクティビティの種類から探す
             </h1>
 
+            {/* #5: fontSize=16.8px, #6: color=#212529 */}
             <p
               style={{
-                fontSize: "14px",
-                color: "#333",
+                fontSize: "16.8px",
+                color: "#212529",
+                margin: "0px",
                 marginBottom: "16px",
               }}
             >
@@ -68,15 +71,15 @@ export default function ActivityCategoryPage() {
                     padding: "16px 0",
                     borderBottom: "1px solid #e5e5e5",
                     textDecoration: "none",
-                    color: "#333",
+                    color: "#212529",
                   }}
                 >
                   <img
                     src={plan.imageUrl}
                     alt={plan.name}
                     style={{
-                      width: "120px",
-                      height: "80px",
+                      width: "100px",
+                      height: "70px",
                       objectFit: "cover",
                       borderRadius: "2px",
                       flexShrink: 0,
@@ -85,10 +88,10 @@ export default function ActivityCategoryPage() {
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <h2
                       style={{
-                        fontSize: "15px",
-                        fontWeight: "bold",
-                        color: "#333",
-                        lineHeight: "1.5",
+                        fontSize: "14.4px",
+                        fontWeight: "600",
+                        color: "#000",
+                        lineHeight: "1.4",
                       }}
                     >
                       {plan.name}
@@ -100,31 +103,32 @@ export default function ActivityCategoryPage() {
 
             <p
               style={{
-                fontSize: "14px",
-                color: "#333",
+                fontSize: "16.8px",
+                color: "#212529",
+                margin: "0px",
                 marginBottom: "32px",
               }}
             >
               {plans.length}件/{plans.length}件中
             </p>
 
-            {/* 条件から探す */}
+            {/* 条件から探す: #10: fontSize=16px */}
             <div style={{ marginBottom: "40px" }}>
-              <h2
+              <div
                 className="flex items-center gap-2"
                 style={{
-                  fontSize: "20px",
-                  fontWeight: "bold",
-                  color: "#333",
-                  marginBottom: "16px",
+                  fontSize: "16px",
+                  fontWeight: "400",
+                  color: "#212529",
+                  marginBottom: "8px",
                 }}
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="11" cy="11" r="8" />
                   <path d="m21 21-4.35-4.35" />
                 </svg>
                 条件から探す
-              </h2>
+              </div>
               {[
                 "スポットから探す",
                 "見れるものから探す",
@@ -136,14 +140,15 @@ export default function ActivityCategoryPage() {
                 <div
                   key={label}
                   style={{
-                    padding: "14px 0",
+                    /* #8: fontWeight=700, #9: padding=10px 15px, #7: fontSize=16.8px */
+                    padding: "10px 15px",
                     borderBottom: "1px solid #e5e5e5",
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    fontSize: "16px",
-                    fontWeight: "600",
-                    color: "#333",
+                    fontSize: "16.8px",
+                    fontWeight: "700",
+                    color: "#212529",
                   }}
                 >
                   <span>{label}</span>

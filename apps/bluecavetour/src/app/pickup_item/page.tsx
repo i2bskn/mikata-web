@@ -77,21 +77,24 @@ export default function PickupItemPage() {
           <Sidebar categoryNavItems={categoryNavItems} />
 
           <div className="flex-1 min-w-0">
+            {/* #1: fontSize=21.6px, #2: color=#212529, #3: marginBottom=0px */}
             <h1
               style={{
-                fontSize: "24px",
+                fontSize: "21.6px",
                 fontWeight: "600",
-                color: "#333",
-                marginBottom: "8px",
+                color: "#212529",
+                marginBottom: "0px",
               }}
             >
               特集 一覧
             </h1>
 
+            {/* #4: fontSize=16.8px, #5: color=#212529 */}
             <p
               style={{
-                fontSize: "14px",
-                color: "#666",
+                fontSize: "16.8px",
+                color: "#212529",
+                margin: "0px",
                 marginBottom: "16px",
               }}
             >
@@ -114,43 +117,50 @@ export default function PickupItemPage() {
                   rel={item.external ? "noopener noreferrer" : undefined}
                   className="flex gap-4"
                   style={{
-                    padding: "16px 0",
-                    borderBottom: "1px solid #e5e5e5",
+                    /* #11: borderBottom=1px solid #e6e6e6, #12: padding=16px 10px */
+                    padding: "16px 10px",
+                    borderBottom: "1px solid #e6e6e6",
                     textDecoration: "none",
-                    color: "#333",
+                    color: "#000",
+                    display: "flex",
                   }}
                 >
+                  {/* #13: 126x71px */}
                   <img
                     src={item.imageUrl}
                     alt={item.title}
                     style={{
-                      width: "120px",
-                      height: "80px",
+                      width: "126px",
+                      height: "71px",
                       objectFit: "cover",
                       borderRadius: "2px",
                       flexShrink: 0,
                     }}
                   />
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <h2
+                    {/* #6: fontSize=16.8px, #7: fontWeight=600, #8: color=#000 */}
+                    <p
                       style={{
-                        fontSize: "16px",
-                        fontWeight: "bold",
-                        color: "#333",
-                        lineHeight: "1.5",
+                        fontSize: "16.8px",
+                        fontWeight: "600",
+                        color: "#000",
+                        lineHeight: "1.4",
                         marginBottom: "8px",
+                        margin: 0,
                       }}
                     >
                       {item.title}
-                    </h2>
-                    <p
+                    </p>
+                    {/* #9: fontSize=14.4px, #10: color=#687279 */}
+                    <div
                       style={{
-                        fontSize: "13px",
-                        color: "#999",
+                        fontSize: "14.4px",
+                        color: "#687279",
+                        marginTop: "4px",
                       }}
                     >
                       {item.date}
-                    </p>
+                    </div>
                   </div>
                 </a>
               ))}
