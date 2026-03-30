@@ -30,7 +30,8 @@ export default function ActOnSpecifiedCommercialTransactionsPage() {
         ]}
       />
 
-      <div style={{ maxWidth: "1020px", margin: "0 auto", padding: "0 5px" }}>
+      <div className="mx-auto" style={{ maxWidth: "1020px" }}>
+      <div style={{ paddingLeft: "5px", paddingRight: "5px" }}>
         {/* 2カラムレイアウト */}
         <div style={{ display: "flex" }}>
           <Sidebar categoryNavItems={categoryNavItems} />
@@ -66,22 +67,22 @@ export default function ActOnSpecifiedCommercialTransactionsPage() {
               </section>
 
               <p style={{ marginBottom: "16px" }}>（掲載事業者の負担する費用）</p>
-              <ul style={{ paddingLeft: "27px", listStyleType: "disc", marginBottom: "16.8px" }}>
+              <ul style={{ paddingLeft: "27px", listStyleType: "disc", lineHeight: "1.6", marginBottom: "16.8px" }}>
                 <li><strong>アクティビティサービス提供</strong><br />所定のサービス利用料がかかります。</li>
                 <li><strong>振込申請</strong><br />振込手数料は当社が負担致します。</li>
               </ul>
 
               <section style={{ marginBottom: "16.8px" }}>
                 <h2 style={h2Style}>支払方法および支払い時期</h2>
-                <ul style={{ paddingLeft: "27px", listStyleType: "disc" }}>
+                <ul style={{ paddingLeft: "27px", listStyleType: "disc", lineHeight: "1.6" }}>
                   <li><strong>支払い方法</strong>
-                    <ul style={{ paddingLeft: "27px", listStyleType: "disc" }}>
+                    <ul style={{ paddingLeft: "27px", listStyleType: "disc", lineHeight: "1.6" }}>
                       <li>クレジットカード</li>
                       <li>現地決済</li>
                     </ul>
                   </li>
                   <li><strong>支払い時期</strong>
-                    <ul style={{ paddingLeft: "27px", listStyleType: "disc" }}>
+                    <ul style={{ paddingLeft: "27px", listStyleType: "disc", lineHeight: "1.6" }}>
                       <li>クレジットカード：ツアー参加後、またはその日の翌日から3日以内</li>
                       <li>現地決済：ツアー参加時、レンタカーの借り受け時</li>
                     </ul>
@@ -91,7 +92,7 @@ export default function ActOnSpecifiedCommercialTransactionsPage() {
 
               <section style={{ marginBottom: "16.8px" }}>
                 <h2 style={h2Style}>役務の提供時期</h2>
-                <ol style={{ paddingLeft: "27px", listStyleType: "decimal" }}>
+                <ol style={{ paddingLeft: "40px", listStyleType: "decimal", lineHeight: "1.6" }}>
                   <li><strong>予約</strong><br />予約の都度</li>
                   <li>
                     <strong>アクティビティサービス提供</strong><br />アクティビティ登録以降、予約の都度、掲載事業者により提供されます。
@@ -101,7 +102,7 @@ export default function ActOnSpecifiedCommercialTransactionsPage() {
 
               <section style={{ marginBottom: "16.8px" }}>
                 <h2 style={h2Style}>キャンセル特約・瑕疵担保責任等</h2>
-                <ol style={{ paddingLeft: "27px", listStyleType: "decimal" }}>
+                <ol style={{ paddingLeft: "40px", listStyleType: "decimal", lineHeight: "1.6" }}>
                   <li><strong>予約ごとのキャンセル</strong><br />キャンセル返金については各プランページをご覧ください。</li>
                   <li><strong>役務の瑕疵等に関する責任</strong><br />利用規約に基づきます。</li>
                 </ol>
@@ -119,6 +120,7 @@ export default function ActOnSpecifiedCommercialTransactionsPage() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

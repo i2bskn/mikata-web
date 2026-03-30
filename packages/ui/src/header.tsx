@@ -141,9 +141,9 @@ export const Header: FC<HeaderProps> = ({
         <div className="mx-auto px-1" style={{ maxWidth: "1020px" }}>
           <div
             className="flex items-center justify-between text-white"
-            style={{ height: "43px", padding: "5px 0", fontSize: "11px", fontWeight: 300 }}
+            style={{ minHeight: "36px", padding: "5px 0", fontSize: "12px", fontWeight: 300, lineHeight: "18px" }}
           >
-            <span className="truncate">
+            <span className="lg:truncate">
               {catchphrase ||
                 `青の洞窟専門のアクティビティ予約サイト "${siteName}"`}
             </span>
@@ -179,7 +179,7 @@ export const Header: FC<HeaderProps> = ({
             {/* ロゴ - 既存SP: 110x27px */}
             <a href="/" className="flex items-center shrink-0">
               {logoUrl ? (
-                <img src={logoUrl} alt={siteName} style={{ height: "27px" }} />
+                <img src={logoUrl} alt={siteName} className="h-[27px] lg:h-[37px]" />
               ) : (
                 <span
                   className="font-bold"
@@ -191,17 +191,26 @@ export const Header: FC<HeaderProps> = ({
             </a>
 
             {/* デスクトップナビゲーション */}
-            <nav className="hidden lg:flex items-center gap-5">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="font-semibold"
-                  style={{ color: "#333", fontSize: "12px" }}
-                >
-                  {item.label}
-                </a>
-              ))}
+            <nav className="hidden lg:flex items-center gap-3">
+              {navItems.map((item) => {
+                const isRanking = item.label.includes("ランキング");
+                const isReason = item.label.includes("選ばれる理由");
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    style={{
+                      color: "#333",
+                      fontSize: isReason ? "14.4px" : "12px",
+                      fontWeight: isRanking ? 600 : 400,
+                      whiteSpace: "nowrap",
+                      lineHeight: isReason ? "21.6px" : isRanking ? "18px" : "14.4px",
+                    }}
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
             </nav>
 
             {/* アクションアイコン群 - 既存: padding 5px 0, fontSize 10px, icon 20px高 */}
@@ -209,8 +218,8 @@ export const Header: FC<HeaderProps> = ({
               {contactUrl && (
                 <a
                   href={contactUrl}
-                  className="flex flex-col items-center justify-center"
-                  style={{ padding: "5px 8px" }}
+                  className="flex flex-col items-center justify-center px-1 lg:px-2"
+                  style={{ paddingTop: "5px", paddingBottom: "5px" }}
                 >
                   <svg
                     width="20"
@@ -220,7 +229,7 @@ export const Header: FC<HeaderProps> = ({
                   >
                     <path d="M12 0C5.4 0 0 4.4 0 9.8c0 3.1 1.7 5.8 4.4 7.6L3 21.5c-.1.3.1.5.4.5.1 0 .2 0 .3-.1l5-3.2c1 .2 2.1.3 3.3.3 6.6 0 12-4.4 12-9.8S18.6 0 12 0zm-4 12a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zm4 0a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zm4 0a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4z" />
                   </svg>
-                  <span className="whitespace-nowrap" style={{ fontSize: "10px", marginTop: "2px", color: "#333" }}>
+                  <span className="whitespace-nowrap" style={{ fontSize: "10px", marginTop: "2px", color: "#333", fontWeight: 400 }}>
                     各種 お問い合わせ
                   </span>
                 </a>
@@ -229,8 +238,8 @@ export const Header: FC<HeaderProps> = ({
               {saleUrl && (
                 <a
                   href={saleUrl}
-                  className="flex flex-col items-center justify-center"
-                  style={{ padding: "5px 8px" }}
+                  className="flex flex-col items-center justify-center px-1 lg:px-2"
+                  style={{ paddingTop: "5px", paddingBottom: "5px" }}
                 >
                   <svg
                     width="20"
@@ -240,7 +249,7 @@ export const Header: FC<HeaderProps> = ({
                   >
                     <path d="M4 1a1 1 0 00-1 1v16a1 1 0 102 0v-5h10.5a1 1 0 00.8-1.6L13 7l3.3-4.4A1 1 0 0015.5 1H4z" />
                   </svg>
-                  <span className="whitespace-nowrap" style={{ fontSize: "10px", marginTop: "2px", color: "#333" }}>
+                  <span className="whitespace-nowrap" style={{ fontSize: "10px", marginTop: "2px", color: "#333", fontWeight: 400 }}>
                     SALE・特集
                   </span>
                 </a>
@@ -249,8 +258,8 @@ export const Header: FC<HeaderProps> = ({
               {reservationCheckUrl && (
                 <a
                   href={reservationCheckUrl}
-                  className="flex flex-col items-center justify-center"
-                  style={{ padding: "5px 8px" }}
+                  className="flex flex-col items-center justify-center px-1 lg:px-2"
+                  style={{ paddingTop: "5px", paddingBottom: "5px" }}
                 >
                   <svg
                     width="20"
@@ -265,7 +274,7 @@ export const Header: FC<HeaderProps> = ({
                     <rect x="5" y="14" width="2.5" height="2" rx=".3" />
                     <rect x="10" y="14" width="2.5" height="2" rx=".3" />
                   </svg>
-                  <span className="whitespace-nowrap" style={{ fontSize: "10px", marginTop: "2px", color: "#333" }}>
+                  <span className="whitespace-nowrap" style={{ fontSize: "10px", marginTop: "2px", color: "#333", fontWeight: 400 }}>
                     予約確認
                   </span>
                 </a>
@@ -273,8 +282,8 @@ export const Header: FC<HeaderProps> = ({
 
               <button
                 type="button"
-                className="flex flex-col items-center justify-center"
-                style={{ padding: "5px 12px" }}
+                className="flex flex-col items-center justify-center px-2 lg:px-3"
+                style={{ paddingTop: "5px", paddingBottom: "5px" }}
                 aria-label="メニューを開く"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
@@ -286,7 +295,7 @@ export const Header: FC<HeaderProps> = ({
                   <span style={{ display: "block", width: "20px", height: "3px", backgroundColor: "#ed3434", borderRadius: "1px" }} />
                   <span style={{ display: "block", width: "20px", height: "3px", backgroundColor: "#ed3434", borderRadius: "1px" }} />
                 </div>
-                <span style={{ fontSize: "10px", marginTop: "2px", color: "#333" }}>
+                <span className="whitespace-nowrap" style={{ fontSize: "10px", marginTop: "2px", color: "#333", fontWeight: 400 }}>
                   メニュー
                 </span>
               </button>

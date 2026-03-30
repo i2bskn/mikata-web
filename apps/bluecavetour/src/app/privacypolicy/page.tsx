@@ -14,6 +14,7 @@ const h3Style = {
   fontWeight: "600" as const,
   marginBottom: "19.4px",
   paddingLeft: "19.4px",
+  paddingTop: "3px",
   paddingBottom: "3px",
   borderLeft: "4px solid #999",
   lineHeight: "1.4",
@@ -29,7 +30,8 @@ export default function PrivacyPolicyPage() {
         ]}
       />
 
-      <div style={{ maxWidth: "1020px", margin: "0 auto", padding: "0 5px" }}>
+      <div className="mx-auto" style={{ maxWidth: "1020px" }}>
+      <div style={{ paddingLeft: "5px", paddingRight: "5px" }}>
         {/* 2カラムレイアウト */}
         <div style={{ display: "flex", marginTop: "0px" }}>
           <Sidebar categoryNavItems={categoryNavItems} />
@@ -66,7 +68,7 @@ export default function PrivacyPolicyPage() {
                 <p style={{ marginBottom: "8px" }}>
                   当社は適正かつ公正な手段によって個人情報を取得し、取得した個人情報は、当社が行う以下のサービスをお客様が利用される際、必要な範囲でのみ収集、利用致します。
                 </p>
-                <ul style={{ paddingLeft: "27px", listStyleType: "disc", marginBottom: "16.8px" }}>
+                <ul style={{ paddingLeft: "27px", listStyleType: "disc", marginBottom: "16.8px", lineHeight: "1.6" }}>
                   <li>Webサイト上のサービス</li>
                   <li>アクティビティの予約・お問合せ</li>
                   <li>宿泊施設の予約・お問合せ</li>
@@ -88,7 +90,7 @@ export default function PrivacyPolicyPage() {
                 <p style={{ marginBottom: "8px" }}>
                   当社は、以下のいずれかに該当する場合を除き、お客様の個人情報を第三者へ開示または提供しません。尚、業務委託先への提供は第三者への開示または提供にあたりません。
                 </p>
-                <ul style={{ paddingLeft: "27px", listStyleType: "disc", marginBottom: "16.8px" }}>
+                <ul style={{ paddingLeft: "27px", listStyleType: "disc", marginBottom: "16.8px", lineHeight: "1.6" }}>
                   <li>ツアーの予約に必要な範囲で運営会社へ情報を提供する場合</li>
                   <li>お客様本人の同意を得た場合</li>
                   <li>法令に基づき、開示又は提供をもとめられた場合</li>
@@ -154,6 +156,7 @@ export default function PrivacyPolicyPage() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

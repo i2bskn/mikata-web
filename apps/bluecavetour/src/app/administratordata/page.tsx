@@ -14,6 +14,7 @@ const h3Style = {
   fontWeight: "600" as const,
   marginBottom: "19.4px",
   paddingLeft: "19.4px",
+  paddingTop: "3px",
   paddingBottom: "3px",
   lineHeight: "1.4",
   borderLeft: "4px solid #999",
@@ -100,9 +101,8 @@ export default function AdministratorDataPage() {
         ]}
       />
 
-      <div
-        style={{ maxWidth: "1020px", margin: "0 auto", padding: "0 5px" }}
-      >
+      <div className="mx-auto" style={{ maxWidth: "1020px" }}>
+      <div style={{ paddingLeft: "5px", paddingRight: "5px" }}>
         {/* 2カラムレイアウト */}
         <div style={{ display: "flex" }}>
           <Sidebar categoryNavItems={categoryNavItems} />
@@ -204,8 +204,10 @@ export default function AdministratorDataPage() {
                 <h2 style={h2Style}>ツアーズが選ばれる理由</h2>
                 <ol
                   style={{
-                    paddingLeft: "27px",
+                    paddingLeft: "40px",
                     listStyleType: "decimal",
+                    lineHeight: "1.6",
+                    marginBottom: "12px",
                   }}
                 >
                   {reasons.map((reason) => (
@@ -223,6 +225,7 @@ export default function AdministratorDataPage() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

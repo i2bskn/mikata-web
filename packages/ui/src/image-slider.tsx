@@ -1,16 +1,16 @@
 "use client";
 
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 import { useState, useEffect, useCallback, useRef } from "react";
 
-export interface BannerSlide {
+export interface SliderSlide {
   imageUrl: string;
   alt: string;
   href?: string;
 }
 
-export interface HeroBannerProps {
-  slides: BannerSlide[];
+export interface ImageSliderProps {
+  slides: SliderSlide[];
   /**
    * 自動再生の間隔（ミリ秒）。0で自動再生無効
    */
@@ -20,19 +20,44 @@ export interface HeroBannerProps {
    */
   height?: number;
   className?: string;
+  /**
+   * ドットナビゲーションの表示。デフォルト: true
+   */
+  showDots?: boolean;
+  /**
+   * カウンターの表示位置。デフォルト: "right"
+   */
+  counterPosition?: "left" | "right";
+  /**
+   * 矢印ボタンのスタイル。デフォルト: "dark"
+   */
+  arrowVariant?: "dark" | "light";
+  /**
+   * カウンター表示の総数を上書き（実画像枚数と表示を変えたい場合）
+   */
+  totalSlides?: number;
+  /**
+   * スライダー上に重ねるオーバーレイコンテンツ
+   */
+  children?: ReactNode;
 }
 
 const DESKTOP_SLIDE_WIDTH = 1000;
 
 /**
- * ヒーローバナー（スライダー）コンポーネント
- * 旧サイト準拠: Slick centerMode + infinite 相当の無限ループスライダー
+ * 画像スライダーコンポーネント
+ * 無限ループ対応（Slick centerMode + infinite 相当）
  */
-export const HeroBanner: FC<HeroBannerProps> = ({
+export const ImageSlider: FC<ImageSliderProps> = ({
   slides,
   autoPlayInterval = 5000,
   height = 460,
   className = "",
+  showDots = true,
+  counterPosition = "right",
+  arrowVariant = "dark",
+  totalSlides,
+  children,
 }) => {
   // クローン分のオフセット: 先頭にslidesのクローンを追加するため、初期位置はslidesの長さ分ずれる
   const [position, setPosition] = useState(slides.length);
@@ -106,7 +131,7 @@ export const HeroBanner: FC<HeroBannerProps> = ({
   const needsJump = position < slides.length || position >= slides.length * 2;
   const translateX = -(position * slideWidth);
 
-  const renderSlide = (slide: BannerSlide, key: number) => (
+  const renderSlide = (slide: SliderSlide, key: number) => (
     <div key={key} className="flex-shrink-0" style={{ width: `${slideWidth}px`, height: "100%" }}>
       {slide.href ? (
         <a href={slide.href} className="block" style={{ height: "100%" }}>
@@ -151,7 +176,11 @@ export const HeroBanner: FC<HeroBannerProps> = ({
           <button
             type="button"
             onClick={goToPrev}
-            className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-2 text-white hover:bg-black/60 transition-colors"
+            className={`absolute left-2 top-1/2 -translate-y-1/2 rounded-full p-2 transition-colors ${
+              arrowVariant === "light"
+                ? "bg-white/80 text-gray-700 hover:bg-white"
+                : "bg-black/40 text-white hover:bg-black/60"
+            }`}
             aria-label="前のスライド"
           >
             <svg
@@ -171,7 +200,11 @@ export const HeroBanner: FC<HeroBannerProps> = ({
           <button
             type="button"
             onClick={goToNext}
-            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-2 text-white hover:bg-black/60 transition-colors"
+            className={`absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 transition-colors ${
+              arrowVariant === "light"
+                ? "bg-white/80 text-gray-700 hover:bg-white"
+                : "bg-black/40 text-white hover:bg-black/60"
+            }`}
             aria-label="次のスライド"
           >
             <svg
@@ -192,7 +225,7 @@ export const HeroBanner: FC<HeroBannerProps> = ({
       )}
 
       {/* インジケーター（ドット） */}
-      {slides.length > 1 && (
+      {showDots && slides.length > 1 && (
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
           {slides.map((_, index) => (
             <button
@@ -212,10 +245,13 @@ export const HeroBanner: FC<HeroBannerProps> = ({
 
       {/* スライドカウンター */}
       {slides.length > 1 && (
-        <div className="absolute bottom-3 right-3 rounded bg-black/50 px-2 py-1 text-xs text-white">
-          {realIndex + 1} / {slides.length}
+        <div className={`absolute bottom-3 ${counterPosition === "left" ? "left-3" : "right-3"} rounded bg-black/50 px-2 py-1 text-xs text-white`}>
+          {realIndex + 1} / {totalSlides ?? slides.length}
         </div>
       )}
+
+      {/* オーバーレイコンテンツ */}
+      {children}
     </div>
   );
 };

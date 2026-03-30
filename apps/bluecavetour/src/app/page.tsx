@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { PlanCard } from "@repo/ui/plan-card";
-import { HeroBanner } from "@repo/ui/hero-banner";
+import { ImageSlider } from "@repo/ui/image-slider";
 import { CategoryNav } from "@repo/ui/category-nav";
 import { OrganizationJsonLd } from "@repo/seo/json-ld";
 import { getPopularPlans } from "../lib/data/plans";
@@ -48,7 +48,7 @@ export default function HomePage() {
       />
 
       {/* ヒーローバナー - フルワイド */}
-      <HeroBanner slides={heroSlides} autoPlayInterval={5000} />
+      <ImageSlider slides={heroSlides} autoPlayInterval={5000} />
 
       {/* 検索エリア - 既存サイト: フルワイド薄い青背景(#eff4ff)、白カード */}
       <div

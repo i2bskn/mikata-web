@@ -124,7 +124,8 @@ export default function LinksPage() {
         ]}
       />
 
-      <div style={{ maxWidth: "1020px", margin: "0 auto", padding: "0 5px" }}>
+      <div className="mx-auto" style={{ maxWidth: "1020px" }}>
+      <div style={{ paddingLeft: "5px", paddingRight: "5px" }}>
         <div style={{ display: "flex", marginTop: "20px" }}>
           <Sidebar categoryNavItems={categoryNavItems} />
 
@@ -160,6 +161,7 @@ export default function LinksPage() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

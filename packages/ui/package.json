@@ -9,7 +9,7 @@
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",
     "./plan-card": "./src/plan-card.tsx",
-    "./hero-banner": "./src/hero-banner.tsx",
+    "./image-slider": "./src/image-slider.tsx",
     "./category-nav": "./src/category-nav.tsx"
   },
   "scripts": {

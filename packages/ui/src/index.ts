@@ -11,5 +11,5 @@ export {
   type RelatedSite,
 } from "./footer";
 export { PlanCard, PlanCardSkeleton, type PlanCardProps } from "./plan-card";
-export { HeroBanner, type HeroBannerProps, type BannerSlide } from "./hero-banner";
+export { ImageSlider, type ImageSliderProps, type SliderSlide } from "./image-slider";
 export { CategoryNav, type CategoryNavProps, type CategoryItem } from "./category-nav";

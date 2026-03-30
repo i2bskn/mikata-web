@@ -6,7 +6,7 @@ import { getPlanBySlug, getAllPlanSlugs, getPopularPlans } from "../../../lib/da
 import { siteConfig, categoryNavItems } from "../../../lib/site-config";
 import { PlanCard } from "@repo/ui/plan-card";
 import { Sidebar } from "../../../components/sidebar";
-import { PlanImageSlider } from "../../../components/plan-image-slider";
+import { ImageSlider } from "@repo/ui/image-slider";
 import { FloatingBookingButton } from "../../../components/floating-booking-button";
 
 interface PageProps {
@@ -112,10 +112,12 @@ export default async function PlanDetailPage({ params }: PageProps) {
 
       {/* 画像スライダーエリア（ビューポート全幅） */}
       <div style={{ marginBottom: "10px", position: "relative", overflow: "visible" }}>
-        <PlanImageSlider
-          images={plan.imageUrls ?? [plan.imageUrl]}
-          alt={plan.name}
-          totalCount={20}
+        <ImageSlider
+          slides={(plan.imageUrls ?? [plan.imageUrl]).map((url, i) => ({
+            imageUrl: url,
+            alt: `${plan.name} - ${i + 1}`,
+          }))}
+          autoPlayInterval={5000}
         />
         {/* 価格オーバーレイ */}
         <div
@@ -164,22 +166,22 @@ export default async function PlanDetailPage({ params }: PageProps) {
                   display: "flex",
                   alignItems: "center",
                   gap: "8px",
-                  padding: "10px 0",
-                  borderBottom: "1px solid #e5e5e5",
+                  padding: "0 10px 8px",
+                  borderBottom: "1px solid #e3e3e3",
                   flexWrap: "wrap",
                 }}
               >
                 <div style={{ display: "flex", alignItems: "center", gap: "2px" }}>
                   {[1, 2, 3, 4, 5].map((i) => (
-                    <svg key={i} width="18" height="18" viewBox="0 0 20 20" fill={i <= Math.round(plan.rating!) ? "#fbc110" : "#ddd"}>
+                    <svg key={i} width="16" height="16" viewBox="0 0 20 20" fill={i <= Math.round(plan.rating!) ? "#fbc110" : "#ddd"}>
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
-                <span style={{ fontSize: "16px", fontWeight: "400", color: "#212529" }}>{plan.rating.toFixed(1)}</span>
+                <span style={{ fontSize: "16px", fontWeight: "600", color: "#ed3434" }}>{plan.rating.toFixed(1)}</span>
                 <span
                   style={{
-                    backgroundColor: "#4caf50",
+                    background: "linear-gradient(45deg, #ffcd5a, #fd9a46)",
                     color: "#fff",
                     padding: "5px 6px",
                     borderRadius: "4px",
@@ -190,11 +192,11 @@ export default async function PlanDetailPage({ params }: PageProps) {
                   最高の評価
                 </span>
                 {plan.reviewCount && (
-                  <a href="#reviews" style={{ fontSize: "16px", color: "#1a9edb", textDecoration: "none" }}>
-                    (口コミ{plan.reviewCount}件)
-                  </a>
+                  <span style={{ fontSize: "12px", color: "#212529" }}>
+                    (<a href="#reviews" style={{ fontSize: "12px", color: "#007bff", textDecoration: "none" }}>口コミ{plan.reviewCount}件</a>)
+                  </span>
                 )}
-                <span style={{ marginLeft: "auto", cursor: "pointer", color: "#999", fontSize: "18px" }}>
+                <span className="hidden lg:inline-flex" style={{ marginLeft: "auto", cursor: "pointer", color: "#999", fontSize: "18px" }}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <polyline points="6 9 12 15 18 9" />
                   </svg>
@@ -203,21 +205,22 @@ export default async function PlanDetailPage({ params }: PageProps) {
             )}
 
             {/* タブナビゲーション */}
-            <div style={{ marginTop: "16px", borderBottom: "2px solid #1a9edb", display: "flex", flexWrap: "wrap" }}>
-              {["プランの特徴", "参考スケジュール", "内容と詳細", "このプランのQ&A", "関連プラン"].map((tab, i) => (
+            <div style={{ borderBottom: "1px solid #eee", display: "flex", justifyContent: "space-between" }}>
+              {["プランの特徴", "参考スケジュール", "内容と詳細", "このプランのQ&A", "関連プラン"].map((tab, i, arr) => (
                 <button
                   key={tab}
                   type="button"
+                  className="text-[11px] lg:text-[14.4px]"
                   style={{
-                    padding: "8px 12px",
-                    fontSize: "12px",
-                    fontWeight: i === 0 ? "bold" : "normal",
-                    color: i === 0 ? "#fff" : "#1a9edb",
-                    backgroundColor: i === 0 ? "#1a9edb" : "transparent",
-                    border: "1px solid #1a9edb",
-                    borderBottom: "none",
-                    borderRadius: "4px 4px 0 0",
+                    flex: 1,
+                    padding: "10px 0",
+                    fontWeight: "600",
+                    color: "#ed3434",
+                    backgroundColor: "transparent",
+                    border: "none",
+                    borderRight: i < arr.length - 1 ? "1px solid #eee" : "none",
                     cursor: "pointer",
+                    textAlign: "center",
                   }}
                 >
                   {tab}
@@ -225,58 +228,59 @@ export default async function PlanDetailPage({ params }: PageProps) {
               ))}
             </div>
 
-            {/* 緊急性バナー */}
-            <div
-              style={{
-                marginTop: "16px",
-                padding: "4px 8px 2px",
-                backgroundColor: "#ffd65c",
-                borderRadius: "4px",
-                textAlign: "left",
-                fontSize: "14px",
-                color: "#212529",
-              }}
-            >
-              直近で<strong style={{ color: "#ed3434", fontSize: "18px" }}>87</strong>人が検討しています。
-              <strong style={{ color: "#ed3434", marginLeft: "8px" }}>残りわずか△</strong>
-            </div>
-
-            {/* 予約ボタン */}
-            <div style={{ marginTop: "16px", textAlign: "center" }}>
-              <a
-                href="#"
+            {/* 緊急性バナー〜予約ボタン〜お気に入り（右寄せ、幅360px統一） */}
+            <div style={{ marginTop: "16px", maxWidth: "360px", marginLeft: "auto" }}>
+              {/* 緊急性バナー */}
+              <div
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: "#ed3434",
-                  color: "#fff",
-                  padding: "8px 0px",
-                  borderRadius: "3px",
-                  fontSize: "19.2px",
-                  fontWeight: "600",
-                  textDecoration: "none",
-                  textAlign: "center",
-                  maxWidth: "360px",
-                  margin: "0 auto",
-                  minHeight: "70px",
+                  padding: "4px 8px 2px",
+                  backgroundColor: "#ffd65c",
+                  borderRadius: "4px",
+                  textAlign: "left",
+                  fontSize: "14px",
+                  color: "#212529",
                 }}
               >
-                <div style={{ fontSize: "12px", fontWeight: "400" }}>＼ 会員登録不要 ／</div>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                    <line x1="16" y1="2" x2="16" y2="6" />
-                    <line x1="8" y1="2" x2="8" y2="6" />
-                    <line x1="3" y1="10" x2="21" y2="10" />
-                  </svg>
-                  予約・空き状況を見る
-                </div>
-              </a>
-              <p style={{ marginTop: "8px", fontSize: "11px", color: "#999" }}>
-                ※「予約・空き状況を見る」を押すと姉妹サイト「石垣島ツアーズ」に遷移します。ご予約は遷移先ページからお進みください
-              </p>
+                直近で<strong style={{ color: "#ed3434", fontSize: "18px" }}>87</strong>人が検討しています。
+                <strong style={{ color: "#ed3434", marginLeft: "8px" }}>残りわずか△</strong>
+              </div>
+
+              {/* 予約ボタン */}
+              <div style={{ marginTop: "16px" }}>
+                <a
+                  href="#"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#ed3434",
+                    color: "#fff",
+                    padding: "8px 0px",
+                    borderRadius: "3px",
+                    fontSize: "19.2px",
+                    fontWeight: "600",
+                    textDecoration: "none",
+                    textAlign: "center",
+                    width: "360px",
+                    minHeight: "70px",
+                  }}
+                >
+                  <div style={{ fontSize: "12px", fontWeight: "400" }}>＼ 会員登録不要 ／</div>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                      <line x1="16" y1="2" x2="16" y2="6" />
+                      <line x1="8" y1="2" x2="8" y2="6" />
+                      <line x1="3" y1="10" x2="21" y2="10" />
+                    </svg>
+                    予約・空き状況を見る
+                  </div>
+                </a>
+                <p style={{ marginTop: "8px", fontSize: "11px", color: "#999" }}>
+                  ※「予約・空き状況を見る」を押すと姉妹サイト「石垣島ツアーズ」に遷移します。ご予約は遷移先ページからお進みください
+                </p>
+              </div>
             </div>
 
             {/* お気に入り */}

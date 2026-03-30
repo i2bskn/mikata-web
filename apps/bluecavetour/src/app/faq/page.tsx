@@ -17,6 +17,7 @@ const h3Style = {
   marginBottom: "19.4px",
   paddingLeft: "19.4px",
   borderLeft: "4px solid #999",
+  paddingTop: "3px",
   paddingBottom: "3px",
   lineHeight: "1.4",
   borderBottom: "3px solid #eee",
@@ -83,9 +84,8 @@ export default function FaqPage() {
         ]}
       />
 
-      <div
-        style={{ maxWidth: "1020px", margin: "0 auto", padding: "0 5px" }}
-      >
+      <div className="mx-auto" style={{ maxWidth: "1020px" }}>
+      <div style={{ paddingLeft: "5px", paddingRight: "5px" }}>
         <div style={{ display: "flex", marginTop: "20px" }}>
           <Sidebar categoryNavItems={categoryNavItems} />
 
@@ -120,6 +120,7 @@ export default function FaqPage() {
                   style={{
                     paddingLeft: "27px",
                     listStyleType: "decimal",
+                    lineHeight: "1.6",
                   }}
                 >
                   <li style={{ marginBottom: "12px" }}>
@@ -160,7 +161,7 @@ export default function FaqPage() {
                     参加日の7日前より以下のキャンセルポリシーが適用されます。
                   </p>
                   <ul
-                    style={{ paddingLeft: "27px", listStyleType: "disc" }}
+                    style={{ paddingLeft: "27px", listStyleType: "disc", lineHeight: "1.6" }}
                   >
                     <li>7〜2日前：一律2,000円/組</li>
                     <li>前日・当日のキャンセル：ツアー料金の100%</li>
@@ -191,7 +192,7 @@ export default function FaqPage() {
                     キャンセルをご希望の場合は公式LINEにて以下の事項をご連絡ください。
                   </p>
                   <ul
-                    style={{ paddingLeft: "27px", listStyleType: "disc" }}
+                    style={{ paddingLeft: "27px", listStyleType: "disc", lineHeight: "1.6" }}
                   >
                     <li>プラン参加日</li>
                     <li>ご予約者様氏名(カタカナフルネーム)</li>
@@ -205,7 +206,7 @@ export default function FaqPage() {
               <section style={{ marginBottom: "40px" }}>
                 <h3 style={h3Style}>ツアー中止の基準</h3>
                 <ul
-                  style={{ paddingLeft: "27px", listStyleType: "disc" }}
+                  style={{ paddingLeft: "27px", listStyleType: "disc", lineHeight: "1.6" }}
                 >
                   <li style={{ marginBottom: "8px" }}>
                     気象警報が発令している場合、もしくは予想される場合。
@@ -236,6 +237,7 @@ export default function FaqPage() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

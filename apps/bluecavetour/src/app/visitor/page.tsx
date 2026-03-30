@@ -16,6 +16,7 @@ const h3Style = {
   marginBottom: "19.4px",
   paddingLeft: "19.4px",
   borderLeft: "4px solid #999",
+  paddingTop: "3px",
   paddingBottom: "3px",
   lineHeight: "1.4",
   borderBottom: "3px solid #eee",
@@ -85,7 +86,8 @@ export default function VisitorPage() {
         ]}
       />
 
-      <div style={{ maxWidth: "1020px", margin: "0 auto", padding: "0 5px" }}>
+      <div className="mx-auto" style={{ maxWidth: "1020px" }}>
+      <div style={{ paddingLeft: "5px", paddingRight: "5px" }}>
         {/* 2カラムレイアウト */}
         <div style={{ display: "flex" }}>
           <Sidebar categoryNavItems={categoryNavItems} />
@@ -191,6 +193,7 @@ export default function VisitorPage() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </>
   );
