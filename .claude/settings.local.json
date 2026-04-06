@@ -37,7 +37,8 @@
       "Bash(npx next:*)",
       "Bash(NODE_OPTIONS='--stack-trace-limit=50' npx next build)",
       "Bash(npx tsc:*)",
-      "Bash(pnpm --filter bluecavetour exec tsc --noEmit)"
+      "Bash(pnpm --filter bluecavetour exec tsc --noEmit)",
+      "Bash(pnpm --filter snorkeling build)"
     ]
   }
 }

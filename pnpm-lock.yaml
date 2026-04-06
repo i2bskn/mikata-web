@@ -66,6 +66,9 @@ importers:
 
   apps/snorkeling:
     dependencies:
+      '@repo/seo':
+        specifier: workspace:^
+        version: link:../../packages/seo
       '@repo/ui':
         specifier: workspace:^
         version: link:../../packages/ui
