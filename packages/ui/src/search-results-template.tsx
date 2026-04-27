@@ -1,4 +1,5 @@
 import type { FC, ReactNode } from "react";
+import { PageWithSidebarTemplate } from "./page-with-sidebar-template";
 import { RankingList, type RankingPlan } from "./ranking-list";
 import { SearchResultsHeader } from "./search-results-header";
 import { SearchResultsPagination } from "./search-results-pagination";
@@ -48,45 +49,40 @@ export const SearchResultsTemplate: FC<SearchResultsTemplateProps> = ({
   bottomSectionsSlot,
 }) => {
   return (
-    <>
-      {searchPanelSlot}
+    <PageWithSidebarTemplate
+      topSlot={searchPanelSlot}
+      sidebarSlot={sidebarSlot}
+      mainSlot={
+        <>
+          <SearchResultsHeader
+            title={title}
+            page={page}
+            perPage={perPage}
+            total={total}
+            sort={sort}
+            popularSortHref={popularSortHref}
+            reviewSortHref={reviewSortHref}
+            accentColor={searchAccentColor}
+          />
 
-      <div className="mx-auto" style={{ maxWidth: "1020px", padding: "0 5px" }}>
-        <div className="flex gap-5" style={{ marginTop: "20px" }}>
-          {sidebarSlot}
+          <RankingList
+            plans={plans}
+            accentColor={accentColor}
+            premiumBadgeUrl={premiumBadgeUrl}
+            planLinkPrefix={planLinkPrefix}
+          />
 
-          <div className="flex-1 min-w-0">
-            <SearchResultsHeader
-              title={title}
-              page={page}
-              perPage={perPage}
-              total={total}
-              sort={sort}
-              popularSortHref={popularSortHref}
-              reviewSortHref={reviewSortHref}
-              accentColor={searchAccentColor}
-            />
-
-            <RankingList
-              plans={plans}
-              accentColor={accentColor}
-              premiumBadgeUrl={premiumBadgeUrl}
-              planLinkPrefix={planLinkPrefix}
-            />
-
-            <SearchResultsPagination
-              page={page}
-              perPage={perPage}
-              total={total}
-              prevPageHref={prevPageHref}
-              nextPageHref={nextPageHref}
-              accentColor={searchAccentColor}
-            />
-
-            {bottomSectionsSlot}
-          </div>
-        </div>
-      </div>
-    </>
+          <SearchResultsPagination
+            page={page}
+            perPage={perPage}
+            total={total}
+            prevPageHref={prevPageHref}
+            nextPageHref={nextPageHref}
+            accentColor={searchAccentColor}
+          />
+        </>
+      }
+      bottomSectionsSlot={bottomSectionsSlot}
+    />
   );
 };

@@ -191,31 +191,63 @@ export const relatedBanners = [
 ];
 
 /**
- * トップページ「ツアーズコラム」の記事
+ * ツアーズコラムの記事（トップページのコラムリスト・/column-top で利用）
+ * - 並びはサンプル。`views` 降順で閲覧数ランキング、その他で人気記事として表示する
  */
 export const columnArticles = [
+  {
+    href: "/column/maboroshi-island-guide",
+    image: "/images/column/maboroshi-island.webp",
+    title: "幻の島（浜島）完全ガイド！上陸ベストシーズン・所要時間・おすすめツアーまとめ",
+    date: "2026年4月21日",
+    views: 812,
+  },
+  {
+    href: "/column/snorkeling-beginner",
+    image: "/images/column/snorkeling-guide.webp",
+    title: "石垣島シュノーケリング初心者講座！持ち物・服装・酔いやすい人のコツまで完全解説",
+    date: "2026年4月17日",
+    views: 624,
+  },
+  {
+    href: "/column/sea-turtle-best-season",
+    image: "/images/column/sea-turtles.webp",
+    title: "石垣島でウミガメに会える時期は？5〜9月が狙い目＆ベストシーズン徹底解説",
+    date: "2026年4月6日",
+    views: 1284,
+  },
+  {
+    href: "/column/snorkeling-spots",
+    image: "/images/column/snorkeling-guide.webp",
+    title: "石垣島シュノーケリングおすすめスポット15選！透明度・ウミガメ・初心者向けを比較",
+    date: "2026年4月3日",
+    views: 1956,
+  },
+  {
+    href: "/column/sea-turtles-tour",
+    image: "/images/column/sea-turtles.webp",
+    title: "ウミガメシュノーケリング攻略！高確率で会えるツアー・時間帯・写真の撮り方",
+    date: "2026年3月23日",
+    views: 478,
+  },
   {
     href: "/column/snorkeling-guide",
     image: "/images/column/snorkeling-guide.webp",
     title: "石垣島シュノーケリング完全ガイド！初心者でも安心の楽しみ方",
     date: "2025年11月10日",
-    views: 185,
-  },
-  {
-    href: "/column/maboroshi-island",
-    image: "/images/column/maboroshi-island.webp",
-    title: "幻の島（浜島）とは？行き方・ベストシーズン・おすすめツアーまとめ",
-    date: "2025年11月4日",
-    views: 142,
-  },
-  {
-    href: "/column/sea-turtles",
-    image: "/images/column/sea-turtles.webp",
-    title: "石垣島でウミガメに会える！シュノーケリングツアーの選び方＆おすすめスポット",
-    date: "2025年10月31日",
-    views: 98,
+    views: 712,
   },
 ];
+
+/**
+ * /column-top のヒーロー記事
+ */
+export const columnHero = {
+  href: "/column/snorkeling-spots",
+  image: "/images/column/snorkeling-guide.webp",
+  title: "石垣島シュノーケリングおすすめスポット15選！透明度・ウミガメ・初心者向けを比較",
+  views: 1956,
+};
 
 /**
  * トップページ検索パネルのプラン選択

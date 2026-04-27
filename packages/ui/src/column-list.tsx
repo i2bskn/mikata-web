@@ -9,10 +9,21 @@ export interface ColumnArticle {
 export interface ColumnListProps {
   articles: ColumnArticle[];
   iconUrl?: string;
-  seeMoreHref?: string;
+  /** 見出しテキスト。既定は「ツアーズコラム」 */
+  title?: string;
+  /** 「一覧を見る」リンク先。`null` を渡すとボタン非表示 */
+  seeMoreHref?: string | null;
+  /** 「一覧を見る」のラベル。既定は「一覧を見る」 */
+  seeMoreLabel?: string;
 }
 
-export function ColumnList({ articles, iconUrl, seeMoreHref = "/column" }: ColumnListProps) {
+export function ColumnList({
+  articles,
+  iconUrl,
+  title = "ツアーズコラム",
+  seeMoreHref = "/column",
+  seeMoreLabel = "一覧を見る",
+}: ColumnListProps) {
   return (
     <section style={{ marginTop: "20px", padding: "16px", backgroundColor: "var(--color-decoration-2)" }}>
       <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
@@ -23,7 +34,7 @@ export function ColumnList({ articles, iconUrl, seeMoreHref = "/column" }: Colum
           {iconUrl && (
             <img src={iconUrl} alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
           )}
-          ツアーズコラム
+          {title}
         </h2>
         {seeMoreHref && (
           <a
@@ -38,7 +49,7 @@ export function ColumnList({ articles, iconUrl, seeMoreHref = "/column" }: Colum
               textDecoration: "none",
             }}
           >
-            一覧を見る
+            {seeMoreLabel}
           </a>
         )}
       </div>

@@ -37,7 +37,11 @@
     "./drawer-parts": "./src/drawer-parts/index.ts",
     "./search-results-template": "./src/search-results-template.tsx",
     "./search-results-pagination": "./src/search-results-pagination.tsx",
-    "./search-results-header": "./src/search-results-header.tsx"
+    "./search-results-header": "./src/search-results-header.tsx",
+    "./page-with-sidebar-template": "./src/page-with-sidebar-template.tsx",
+    "./column-article-list": "./src/column-article-list.tsx",
+    "./column-search-box": "./src/column-search-box.tsx",
+    "./column-top-main": "./src/column-top-main.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

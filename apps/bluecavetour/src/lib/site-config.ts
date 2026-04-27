@@ -156,31 +156,63 @@ export const relatedBanners = [
 ];
 
 /**
- * トップページ「ツアーズコラム」の記事
+ * ツアーズコラムの記事（トップページのコラムリスト・/column-top で利用）
+ * - 並びはサンプル。`views` 降順で閲覧数ランキング、その他で人気記事として表示する
  */
 export const columnArticles = [
+  {
+    href: "/column/sightseeing-spots",
+    image: "/images/column/activity.webp",
+    title: "石垣島観光スポット15選！穴場・グルメ・モデルコースと「行ってはいけない」時期を徹底解説",
+    date: "2026年4月21日",
+    views: 735,
+  },
+  {
+    href: "/column/okinawa-bluecave-access",
+    image: "/images/column/okinawa-bluecave.webp",
+    title: "石垣島「青の洞窟」は個人で行ける？駐車場・行き方・がっかりしないコツを完全解説",
+    date: "2026年4月17日",
+    views: 582,
+  },
+  {
+    href: "/column/sea-turtle-season",
+    image: "/images/column/marine.webp",
+    title: "石垣島でウミガメに会える時期は？5〜9月が狙い目＆ベストシーズン解説",
+    date: "2026年4月6日",
+    views: 1154,
+  },
+  {
+    href: "/column/bluecave-individual-route",
+    image: "/images/column/activity.webp",
+    title: "石垣島・青の洞窟へ個人で行く方法！自力ルートとがっかりしないコツ",
+    date: "2026年4月3日",
+    views: 1927,
+  },
+  {
+    href: "/column/bluecave-snorkeling-tips",
+    image: "/images/column/marine.webp",
+    title: "石垣島・青の洞窟シュノーケリング攻略！自力で行く方法・時間帯・口コミ",
+    date: "2026年3月23日",
+    views: 539,
+  },
   {
     href: "/column/okinawa-bluecave",
     image: "/images/column/okinawa-bluecave.webp",
     title: "【沖縄・青の洞窟】行く前に知りたい！場所・アクセス・おすすめツアーまとめ",
     date: "2025年11月10日",
-    views: 213,
-  },
-  {
-    href: "/column/marine",
-    image: "/images/column/marine.webp",
-    title: "石垣島で人気のマリンスポーツ完全ガイド！初心者でも楽しめるSUP・ダイビング・パラセーリング",
-    date: "2025年11月4日",
-    views: 106,
-  },
-  {
-    href: "/column/activity",
-    image: "/images/column/activity.webp",
-    title: "石垣島のアクティビティの魅力とは？後悔しないための楽しみ方＆ツアー選びのコツ",
-    date: "2025年10月31日",
-    views: 124,
+    views: 685,
   },
 ];
+
+/**
+ * /column-top のヒーロー記事
+ */
+export const columnHero = {
+  href: "/column/sightseeing-spots",
+  image: "/images/column/activity.webp",
+  title: "石垣島観光スポット15選！穴場・グルメ・モデルコースと「行ってはいけない」時期を徹底解説",
+  views: 735,
+};
 
 export const planOptions = [
   { value: "bluecave", label: "青の洞窟シュノーケリング" },
