@@ -13,6 +13,7 @@ export const plans: Plan[] = [
     originalPrice: 29000,
     duration: "1日",
     tags: ["送迎付き", "写真無料"],
+    rating: 4.7,
     reviewCount: 31,
     category: "setplan",
     features: [],
@@ -28,6 +29,7 @@ export const plans: Plan[] = [
     originalPrice: 19600,
     duration: "1日",
     tags: ["送迎付き", "写真無料"],
+    rating: 4.8,
     reviewCount: 28,
     category: "hama-island",
     features: [], includes: [], schedule: [],
@@ -41,6 +43,7 @@ export const plans: Plan[] = [
     originalPrice: 14500,
     duration: "半日",
     tags: ["当日予約OK", "送迎付き", "写真無料"],
+    rating: 4.7,
     reviewCount: 28,
     category: "hama-island",
     features: [], includes: [], schedule: [],
@@ -54,6 +57,7 @@ export const plans: Plan[] = [
     originalPrice: 29000,
     duration: "1日",
     tags: ["人気No.1", "送迎付き", "写真無料"],
+    rating: 4.9,
     reviewCount: 130,
     category: "setplan",
     features: [], includes: [], schedule: [],
@@ -119,6 +123,7 @@ export const plans: Plan[] = [
     originalPrice: 8500,
     duration: "半日",
     tags: ["当日予約OK", "送迎付き", "写真無料"],
+    rating: 4.7,
     reviewCount: 89,
     category: "seaturtles",
     features: [], includes: [], schedule: [],
@@ -132,6 +137,7 @@ export const plans: Plan[] = [
     originalPrice: 23000,
     duration: "半日",
     tags: ["送迎付き", "写真無料"],
+    rating: 4.6,
     reviewCount: 15,
     category: "hama-island",
     features: [], includes: [], schedule: [],
@@ -145,6 +151,7 @@ export const plans: Plan[] = [
     originalPrice: 28000,
     duration: "1日",
     tags: ["送迎付き", "写真無料"],
+    rating: 4.7,
     reviewCount: 22,
     category: "setplan",
     features: [], includes: [], schedule: [],
@@ -172,4 +179,62 @@ export function getPlanBySlug(slug: string): Plan | undefined {
  */
 export function getAllPlanSlugs(): string[] {
   return plans.map((p) => p.slug);
+}
+
+export type SearchSort = "popular" | "review";
+
+export type SearchFilter = {
+  category?: string;
+  tag?: string;
+  anyTag?: string[];
+};
+
+export type SearchInput = {
+  filter?: SearchFilter;
+  sort?: SearchSort;
+  page?: number;
+  perPage?: number;
+};
+
+export type SearchResult = {
+  plans: Plan[];
+  total: number;
+  page: number;
+  perPage: number;
+};
+
+/**
+ * フィルタ・ソート・ページング対応の検索
+ */
+export function searchPlans(input: SearchInput = {}): SearchResult {
+  const { filter = {}, sort = "popular", page = 1, perPage = 10 } = input;
+
+  let result = [...plans];
+
+  if (filter.category) {
+    result = result.filter((p) => p.category === filter.category);
+  }
+  if (filter.tag) {
+    result = result.filter((p) => p.tags.includes(filter.tag!));
+  }
+  if (filter.anyTag && filter.anyTag.length > 0) {
+    result = result.filter((p) => filter.anyTag!.some((t) => p.tags.includes(t)));
+  }
+
+  if (sort === "popular") {
+    result.sort((a, b) => (b.reviewCount ?? 0) - (a.reviewCount ?? 0));
+  } else if (sort === "review") {
+    result.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
+  }
+
+  const total = result.length;
+  const startIdx = (page - 1) * perPage;
+  const endIdx = startIdx + perPage;
+
+  return {
+    plans: result.slice(startIdx, endIdx),
+    total,
+    page,
+    perPage,
+  };
 }

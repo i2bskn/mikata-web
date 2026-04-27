@@ -10,10 +10,13 @@ import { RelatedSitesGrid } from "@repo/ui/related-sites-grid";
 import { BookingFlow } from "@repo/ui/booking-flow";
 import { FloatingSaleButton } from "@repo/ui/floating-sale-button";
 import { StickyPhotoBanner } from "@repo/ui/sticky-photo-banner";
+import { SearchResultsTemplate } from "@repo/ui/search-results-template";
 import { OrganizationJsonLd } from "@repo/seo/json-ld";
-import { getPopularPlans } from "../lib/data/plans";
+import { getPopularPlans, searchPlans } from "../lib/data/plans";
 import { siteConfig, sidebarConfig, bookingFlowSteps, categoryNavItems, campaignItems, campaignSearchItems, columnArticles, combinationItems, conditionSearchItems, planOptions, relatedBanners, sceneTimeItems, spotItems } from "../lib/site-config";
 import { Sidebar } from "../components/sidebar";
+import { SearchResultsBottom } from "../components/search-results-bottom";
+import { parseSearchResultsParams } from "../lib/search-results-url";
 
 // ヒーローバナーのスライドデータ（元サイト準拠）
 const heroSlides = [
@@ -34,7 +37,19 @@ const heroSlides = [
   },
 ];
 
-export default function HomePage() {
+type SearchParams = Record<string, string | string[] | undefined>;
+
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams?: Promise<SearchParams>;
+}) {
+  const params = (await searchParams) ?? {};
+
+  if (params.post_type === "plan") {
+    return <HomeSearchResultsView searchParams={params} />;
+  }
+
   const popularPlans = getPopularPlans(8);
 
   return (
@@ -85,6 +100,74 @@ export default function HomePage() {
         </div>
       </div>
 
+      <FloatingSaleButton />
+      <StickyPhotoBanner />
+    </>
+  );
+}
+
+const PER_PAGE = 10;
+const ACCENT_COLOR = "#007CDB";
+
+function HomeSearchResultsView({ searchParams }: { searchParams: SearchParams }) {
+  const { page, sort } = parseSearchResultsParams(searchParams);
+  const planGenreParam = searchParams.plan_genre;
+  const planGenre = Array.isArray(planGenreParam) ? planGenreParam[0] : planGenreParam;
+
+  const result = searchPlans({
+    filter: planGenre ? { tag: planGenre } : undefined,
+    sort,
+    page,
+    perPage: PER_PAGE,
+  });
+
+  const matchedOption = planGenre ? planOptions.find((o) => o.value === planGenre) : undefined;
+  const title = matchedOption?.label ?? "人気プランランキング";
+
+  const queryEntries = Object.entries(searchParams).flatMap(([key, value]) => {
+    if (key === "page" || key === "sort") return [];
+    if (Array.isArray(value)) return value.map((v) => [key, v] as const);
+    if (value === undefined) return [];
+    return [[key, value] as const];
+  });
+
+  const buildHref = (overrides: { page?: number; sort?: "popular" | "review" }) => {
+    const merged = new URLSearchParams();
+    for (const [k, v] of queryEntries) merged.append(k, v);
+    if (overrides.sort && overrides.sort !== "popular") merged.set("sort", overrides.sort);
+    const finalPage = overrides.page ?? page;
+    if (finalPage !== 1) merged.set("page", String(finalPage));
+    const qs = merged.toString();
+    return qs ? `/?${qs}` : "/";
+  };
+
+  const totalPages = Math.max(1, Math.ceil(result.total / PER_PAGE));
+
+  return (
+    <>
+      <SearchResultsTemplate
+        title={title}
+        plans={result.plans}
+        total={result.total}
+        page={page}
+        perPage={PER_PAGE}
+        sort={sort}
+        popularSortHref={buildHref({ sort: "popular" })}
+        reviewSortHref={buildHref({ sort: "review" })}
+        prevPageHref={page > 1 ? buildHref({ page: page - 1 }) : undefined}
+        nextPageHref={page < totalPages ? buildHref({ page: page + 1 }) : undefined}
+        accentColor={ACCENT_COLOR}
+        searchPanelSlot={
+          <SearchPanel
+            categoryNavItems={categoryNavItems}
+            planOptions={planOptions}
+            planCount={sidebarConfig.planCount}
+            backgroundColor="#dbfbfc"
+          />
+        }
+        sidebarSlot={<Sidebar categoryNavItems={categoryNavItems} />}
+        bottomSectionsSlot={<SearchResultsBottom />}
+      />
       <FloatingSaleButton />
       <StickyPhotoBanner />
     </>

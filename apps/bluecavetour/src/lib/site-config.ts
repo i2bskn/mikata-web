@@ -369,3 +369,32 @@ export const partnerLogos: PartnerLogo[] = [
 export const socialLinks = {
   instagram: "https://www.instagram.com/bluecavetour/",
 };
+
+/**
+ * 検索結果ページの slug → タイトル + 絞り込み条件
+ * 各 type ごとに定義し、page.tsx の generateStaticParams + searchPlans の filter として利用
+ */
+export type SearchSlugConfig = {
+  title: string;
+  category?: string;
+  tag?: string;
+  anyTag?: string[];
+};
+
+export const sceneTimeSlugMap: Record<string, SearchSlugConfig> = {
+  "half-day": { title: "お手軽！半日ツアー", anyTag: ["半日"] },
+  "one-day": { title: "満喫！1日ツアー", anyTag: ["1日満喫"] },
+  freetourphotos: { title: "写真無料サービス付きツアー" },
+  "same_day_booking": { title: "前日・当日予約可能な青の洞窟ツアー", tag: "当日予約OK" },
+  "same-day-booking": { title: "前日・当日予約可能な青の洞窟ツアー", tag: "当日予約OK" },
+  setplan: { title: "お得な割引セットプラン", category: "setplan" },
+  "rental-car": { title: "石垣島レンタカー特集" },
+};
+
+export const campaignSlugMap: Record<string, SearchSlugConfig> = {
+  "premium-plan": { title: "ツアーズ厳選プレミアムプラン" },
+};
+
+export const popularSpotSlugMap: Record<string, SearchSlugConfig> = {
+  bluecave: { title: "青の洞窟", category: "bluecave" },
+};

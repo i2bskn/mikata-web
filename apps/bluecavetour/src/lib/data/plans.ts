@@ -316,3 +316,61 @@ export function getPopularPlans(limit = 6): Plan[] {
 export function getAllPlanSlugs(): string[] {
   return plans.map((plan) => plan.slug);
 }
+
+export type SearchSort = "popular" | "review";
+
+export type SearchFilter = {
+  category?: string;
+  tag?: string;
+  anyTag?: string[];
+};
+
+export type SearchInput = {
+  filter?: SearchFilter;
+  sort?: SearchSort;
+  page?: number;
+  perPage?: number;
+};
+
+export type SearchResult = {
+  plans: Plan[];
+  total: number;
+  page: number;
+  perPage: number;
+};
+
+/**
+ * フィルタ・ソート・ページング対応の検索
+ */
+export function searchPlans(input: SearchInput = {}): SearchResult {
+  const { filter = {}, sort = "popular", page = 1, perPage = 10 } = input;
+
+  let result = [...plans];
+
+  if (filter.category) {
+    result = result.filter((p) => p.category === filter.category);
+  }
+  if (filter.tag) {
+    result = result.filter((p) => p.tags.includes(filter.tag!));
+  }
+  if (filter.anyTag && filter.anyTag.length > 0) {
+    result = result.filter((p) => filter.anyTag!.some((t) => p.tags.includes(t)));
+  }
+
+  if (sort === "popular") {
+    result.sort((a, b) => (b.reviewCount ?? 0) - (a.reviewCount ?? 0));
+  } else if (sort === "review") {
+    result.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
+  }
+
+  const total = result.length;
+  const startIdx = (page - 1) * perPage;
+  const endIdx = startIdx + perPage;
+
+  return {
+    plans: result.slice(startIdx, endIdx),
+    total,
+    page,
+    perPage,
+  };
+}

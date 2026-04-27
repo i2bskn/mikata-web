@@ -28,7 +28,8 @@ export interface RankingListProps {
 
 const BADGE_COLORS = ["#e3af3a", "#adadad", "#aa845e"] as const;
 
-function StarRating({ rating, reviewCount }: { rating: number; reviewCount?: number }) {
+function StarRating({ rating, reviewCount }: { rating?: number; reviewCount?: number }) {
+  const filled = rating !== undefined ? Math.round(rating) : 0;
   return (
     <div className="flex items-center gap-1">
       <div className="flex">
@@ -38,7 +39,7 @@ function StarRating({ rating, reviewCount }: { rating: number; reviewCount?: num
             width="16"
             height="16"
             viewBox="0 0 20 20"
-            fill={star <= Math.round(rating) ? "#fbc110" : "#ddd"}
+            fill={star <= filled ? "#fbc110" : "#ddd"}
           >
             <path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.92 5.34L10 13.27l-4.78 2.51.92-5.34L2.27 6.67l5.34-.78z" />
           </svg>
@@ -65,42 +66,48 @@ function PriceRow({
   highlight?: boolean;
 }) {
   return (
-    <p style={{ margin: 0, lineHeight: "21.6px" }}>
+    <div
+      className="flex items-center justify-between"
+      style={{ margin: "4px 0", lineHeight: "21.6px", gap: "8px" }}
+    >
       <span style={{ fontSize: "12px", fontWeight: "600", color: "#000" }}>
         {label}
       </span>
-      {"  "}
-      {highlight && originalPrice && (
-        <>
-          <s style={{ color: "#000", fontSize: "9.6px" }}>
-            <small>{originalPrice.toLocaleString()}円</small>
-          </s>
-          {" → "}
-        </>
-      )}
-      {highlight ? (
-        <span
-          style={{
-            fontSize: "18px",
-            fontWeight: "900",
-            color: "#fff",
-            backgroundColor: "#ec1818",
-            borderRadius: "5px",
-            padding: "0px 5.4px",
-          }}
-        >
-          <strong>{price.toLocaleString()}</strong>
-          <span>円</span>
-        </span>
-      ) : (
-        <>
-          <span style={{ fontSize: "18px", fontWeight: "600", color: "#000" }}>
-            {price.toLocaleString()}
+      <span className="flex items-center" style={{ gap: "6px" }}>
+        {highlight && originalPrice && (
+          <>
+            <s style={{ color: "#000", fontSize: "9.6px" }}>
+              <small>{originalPrice.toLocaleString()}円</small>
+            </s>
+            <span aria-hidden="true">→</span>
+          </>
+        )}
+        {highlight ? (
+          <span
+            style={{
+              fontSize: "18px",
+              fontWeight: "900",
+              color: "#fff",
+              backgroundColor: "#ec1818",
+              borderRadius: "5px",
+              padding: "2px 5.4px",
+              margin: "2px 0",
+              display: "inline-block",
+            }}
+          >
+            <strong>{price.toLocaleString()}</strong>
+            <span>円</span>
           </span>
-          <span style={{ fontSize: "18px", color: "#000" }}>円</span>
-        </>
-      )}
-    </p>
+        ) : (
+          <>
+            <span style={{ fontSize: "18px", fontWeight: "600", color: "#000" }}>
+              {price.toLocaleString()}
+            </span>
+            <span style={{ fontSize: "18px", color: "#000" }}>円</span>
+          </>
+        )}
+      </span>
+    </div>
   );
 }
 
@@ -261,7 +268,7 @@ export function RankingList({
 
               {/* 評価 + 詳細ボタン */}
               <div className="flex items-center justify-between flex-wrap gap-2">
-                {plan.rating !== undefined && (
+                {(plan.rating !== undefined || plan.reviewCount !== undefined) && (
                   <StarRating rating={plan.rating} reviewCount={plan.reviewCount} />
                 )}
                 <div

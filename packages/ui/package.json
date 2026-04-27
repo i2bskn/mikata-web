@@ -34,7 +34,10 @@
     "./floating-sale-button": "./src/floating-sale-button.tsx",
     "./sticky-photo-banner": "./src/sticky-photo-banner.tsx",
     "./drawer-shell": "./src/drawer-shell.tsx",
-    "./drawer-parts": "./src/drawer-parts/index.ts"
+    "./drawer-parts": "./src/drawer-parts/index.ts",
+    "./search-results-template": "./src/search-results-template.tsx",
+    "./search-results-pagination": "./src/search-results-pagination.tsx",
+    "./search-results-header": "./src/search-results-header.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

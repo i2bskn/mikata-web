@@ -26,6 +26,11 @@ const nextConfig: NextConfig = {
         source: "/campaign/:slug.html",
         destination: "/campaign/:slug",
       },
+      // 人気スポットページ
+      {
+        source: "/popular-spot/:slug.html",
+        destination: "/popular-spot/:slug",
+      },
     ];
   },
 };

@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, type FormEvent } from "react";
 import { CategoryNav, type CategoryItem } from "./category-nav";
 
 export interface SearchPanelPlanOption {
@@ -13,10 +16,27 @@ export interface SearchPanelProps {
 }
 
 export function SearchPanel({ categoryNavItems, planOptions, planCount, backgroundColor }: SearchPanelProps) {
+  const [planGenre, setPlanGenre] = useState("");
+  const [planDate, setPlanDate] = useState("");
+  const [today, setToday] = useState(false);
+  const [tomorrow, setTomorrow] = useState(false);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const params = new URLSearchParams();
+    params.set("post_type", "plan");
+    if (planGenre) params.set("plan_genre", planGenre);
+    if (planDate) params.set("plan_date", planDate);
+    if (today) params.append("plan_particular[]", "today");
+    if (tomorrow) params.append("plan_particular[]", "tomorrow");
+    window.location.href = `/?${params.toString()}`;
+  };
+
   return (
     <div style={{ backgroundColor, padding: "25px 0" }}>
       <div className="mx-auto" style={{ maxWidth: "1020px", padding: "0 10px" }}>
-        <div
+        <form
+          onSubmit={handleSubmit}
           className="mx-auto"
           style={{
             maxWidth: "880px",
@@ -32,6 +52,9 @@ export function SearchPanel({ categoryNavItems, planOptions, planCount, backgrou
             <div className="flex items-center gap-2 flex-wrap">
               <div className="w-full sm:w-auto sm:flex-1" style={{ minWidth: "120px" }}>
                 <select
+                  name="plan_genre"
+                  value={planGenre}
+                  onChange={(e) => setPlanGenre(e.target.value)}
                   style={{
                     width: "100%",
                     padding: "10px 38px 10px 10px",
@@ -56,9 +79,11 @@ export function SearchPanel({ categoryNavItems, planOptions, planCount, backgrou
 
               <div className="flex-1 relative" style={{ minWidth: "100px" }}>
                 <input
-                  type="text"
+                  type="date"
+                  name="plan_date"
+                  value={planDate}
+                  onChange={(e) => setPlanDate(e.target.value)}
                   placeholder="日付未定"
-                  readOnly
                   style={{
                     width: "100%",
                     padding: "10px 36px 10px 10px",
@@ -68,28 +93,25 @@ export function SearchPanel({ categoryNavItems, planOptions, planCount, backgrou
                     backgroundColor: "#ecf3f5",
                   }}
                 />
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#999"
-                  strokeWidth="2"
-                  className="absolute"
-                  style={{ right: "10px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}
-                >
-                  <rect x="3" y="4" width="18" height="18" rx="2" />
-                  <path d="M16 2v4M8 2v4M3 10h18" />
-                </svg>
               </div>
 
               <div className="flex items-center gap-3" style={{ fontSize: "14px", color: "#333" }}>
                 <label className="flex items-center gap-1 cursor-pointer">
-                  <input type="checkbox" style={{ width: "16px", height: "16px" }} />
+                  <input
+                    type="checkbox"
+                    checked={today}
+                    onChange={(e) => setToday(e.target.checked)}
+                    style={{ width: "16px", height: "16px" }}
+                  />
                   <span>今日</span>
                 </label>
                 <label className="flex items-center gap-1 cursor-pointer">
-                  <input type="checkbox" style={{ width: "16px", height: "16px" }} />
+                  <input
+                    type="checkbox"
+                    checked={tomorrow}
+                    onChange={(e) => setTomorrow(e.target.checked)}
+                    style={{ width: "16px", height: "16px" }}
+                  />
                   <span>明日</span>
                 </label>
               </div>
@@ -116,7 +138,7 @@ export function SearchPanel({ categoryNavItems, planOptions, planCount, backgrou
                 <span style={{ fontSize: "16px", color: "#333" }}>件</span>
               </div>
               <button
-                type="button"
+                type="submit"
                 className="text-base sm:text-[24px] px-6 sm:w-[195px] py-2.5 sm:py-3.5"
                 style={{
                   backgroundColor: "var(--color-danger)",
@@ -140,7 +162,7 @@ export function SearchPanel({ categoryNavItems, planOptions, planCount, backgrou
               </button>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

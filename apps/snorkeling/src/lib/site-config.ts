@@ -421,3 +421,30 @@ export const partnerLogos: PartnerLogo[] = [
 export const socialLinks = {
   instagram: "https://www.instagram.com/ishigaki_tours/",
 };
+
+/**
+ * 検索結果ページの slug → タイトル + 絞り込み条件
+ */
+export type SearchSlugConfig = {
+  title: string;
+  category?: string;
+  tag?: string;
+  anyTag?: string[];
+};
+
+export const sceneTimeSlugMap: Record<string, SearchSlugConfig> = {
+  "pickup-tour": { title: "送迎付きツアー", tag: "送迎付き" },
+  "same-day-booking": { title: "当日予約OKプラン", tag: "当日予約OK" },
+  "same_day_booking": { title: "当日予約OKプラン", tag: "当日予約OK" },
+  seaturtles: { title: "ウミガメシュノーケリング", anyTag: ["ウミガメ"] },
+  freetourphotos: { title: "写真撮影付きツアー", tag: "写真無料" },
+};
+
+export const campaignSlugMap: Record<string, SearchSlugConfig> = {
+  "premium-plan": { title: "ツアーズ厳選プレミアムプラン" },
+};
+
+export const popularSpotSlugMap: Record<string, SearchSlugConfig> = {
+  bluecave: { title: "青の洞窟" },
+  "barasu-island": { title: "バラス島" },
+};
