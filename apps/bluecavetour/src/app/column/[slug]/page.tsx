@@ -24,14 +24,24 @@ export function generateStaticParams(): Params[] {
   return columnArticles.map((a) => ({ slug: a.href.replace("/column/", "") }));
 }
 
-export function generateMetadata({ params }: { params: Params }): Metadata {
-  const article = findArticleBySlug(params.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<Params>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const article = findArticleBySlug(slug);
   if (!article) return {};
   return { title: article.title };
 }
 
-export default function ColumnDetailPage({ params }: { params: Params }) {
-  const article = findArticleBySlug(params.slug);
+export default async function ColumnDetailPage({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
+  const { slug } = await params;
+  const article = findArticleBySlug(slug);
   if (!article) notFound();
 
   const rankingArticles = [...columnArticles]

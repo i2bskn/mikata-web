@@ -21,12 +21,15 @@ export const metadata: Metadata = {
   title: "コラム一覧",
 };
 
-export default function ColumnListPage({
-  searchParams = {},
+type SearchParams = Record<string, string | string[] | undefined>;
+
+export default async function ColumnListPage({
+  searchParams,
 }: {
-  searchParams?: Record<string, string | string[] | undefined>;
+  searchParams?: Promise<SearchParams>;
 }) {
-  const { page } = parseColumnListParams(searchParams);
+  const sp = (await searchParams) ?? {};
+  const { page } = parseColumnListParams(sp);
 
   const sortedByDate = [...columnArticles].sort((a, b) => b.date.localeCompare(a.date));
   const total = sortedByDate.length;

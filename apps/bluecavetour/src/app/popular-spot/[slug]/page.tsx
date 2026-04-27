@@ -19,28 +19,36 @@ const PREMIUM_BADGE_URL =
   "https://bluecavetour.ishigaki-tours.com/wp-content/themes/tours-shisa/assets/img/premium-tag.png";
 
 type Params = { slug: string };
+type SearchParams = Record<string, string | string[] | undefined>;
 
 export function generateStaticParams(): Params[] {
   return Object.keys(popularSpotSlugMap).map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: { params: Params }): Metadata {
-  const config = popularSpotSlugMap[params.slug];
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<Params>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const config = popularSpotSlugMap[slug];
   if (!config) return {};
   return { title: `${config.title}の検索結果` };
 }
 
-export default function PopularSpotPage({
+export default async function PopularSpotPage({
   params,
-  searchParams = {},
+  searchParams,
 }: {
-  params: Params;
-  searchParams?: Record<string, string | string[] | undefined>;
+  params: Promise<Params>;
+  searchParams?: Promise<SearchParams>;
 }) {
-  const config = popularSpotSlugMap[params.slug];
+  const { slug } = await params;
+  const sp = (await searchParams) ?? {};
+  const config = popularSpotSlugMap[slug];
   if (!config) notFound();
 
-  const { page, sort } = parseSearchResultsParams(searchParams);
+  const { page, sort } = parseSearchResultsParams(sp);
   const result = searchPlans({
     filter: { category: config.category, tag: config.tag, anyTag: config.anyTag },
     sort,
@@ -48,7 +56,7 @@ export default function PopularSpotPage({
     perPage: PER_PAGE,
   });
 
-  const basePath = `/popular-spot/${params.slug}`;
+  const basePath = `/popular-spot/${slug}`;
   const totalPages = Math.max(1, Math.ceil(result.total / PER_PAGE));
 
   return (
