@@ -50,7 +50,8 @@
     "./plan-review-section": "./src/plan-review-section.tsx",
     "./related-plans-section": "./src/related-plans-section.tsx",
     "./faq-content": "./src/faq-content.tsx",
-    "./select-contact-content": "./src/select-contact-content.tsx"
+    "./select-contact-content": "./src/select-contact-content.tsx",
+    "./activity-list": "./src/activity-list.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

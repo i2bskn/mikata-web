@@ -17,6 +17,12 @@ export const siteConfig: SiteConfig = {
 export const themeColor = "#1a9edb";
 
 /**
+ * 人気ランキングのプレミアムバッジ画像URL
+ */
+export const rankingPremiumBadgeUrl: string | undefined =
+  "https://bluecavetour.ishigaki-tours.com/wp-content/themes/tours-shisa/assets/img/premium-tag.png";
+
+/**
  * 運営者情報ページ用データ
  */
 export const administratorKvImageUrl = "/images/administrator/kv.jpg";
@@ -506,7 +512,7 @@ export const planOptions = [
 ];
 
 export const navItems: NavItem[] = [
-  { label: "アクティビティ", href: "/plan" },
+  { label: "アクティビティ", href: "/category/activity" },
   { label: "人気ランキング", href: "/ranking" },
   { label: "石垣島青の洞窟ツアーズが「選ばれる理由」とは", href: "/visitor" },
 ];

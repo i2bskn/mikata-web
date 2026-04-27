@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
 import { BreadcrumbJsonLd } from "@repo/seo/json-ld";
 import { RankingList } from "@repo/ui/ranking-list";
+import { PageWithSidebarTemplate } from "@repo/ui/page-with-sidebar-template";
 import { plans, getPopularPlans } from "../../lib/data/plans";
-import { siteConfig, categoryNavItems } from "../../lib/site-config";
+import {
+  siteConfig,
+  categoryNavItems,
+  themeColor,
+  rankingPremiumBadgeUrl,
+} from "../../lib/site-config";
 import { Sidebar } from "../../components/sidebar";
+import { SearchResultsBottom } from "../../components/search-results-bottom";
 
 export const metadata: Metadata = {
   title: "人気ランキング",
@@ -21,14 +28,10 @@ export default function RankingPage() {
         ]}
       />
 
-      <div
-        className="mx-auto"
-        style={{ maxWidth: "1020px", padding: "0 10px" }}
-      >
-        <div className="flex gap-5" style={{ marginTop: "20px" }}>
-          <Sidebar categoryNavItems={categoryNavItems} />
-
-          <div className="flex-1 min-w-0">
+      <PageWithSidebarTemplate
+        sidebarSlot={<Sidebar categoryNavItems={categoryNavItems} />}
+        mainSlot={
+          <>
             <h1
               style={{
                 fontSize: "30px",
@@ -42,11 +45,13 @@ export default function RankingPage() {
 
             <RankingList
               plans={rankedPlans}
-              accentColor="#007CDB"
+              accentColor={themeColor}
+              premiumBadgeUrl={rankingPremiumBadgeUrl}
             />
-          </div>
-        </div>
-      </div>
+          </>
+        }
+        bottomSectionsSlot={<SearchResultsBottom />}
+      />
     </>
   );
 }

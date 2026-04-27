@@ -17,6 +17,11 @@ export const siteConfig: SiteConfig = {
 export const themeColor = "#007CDB";
 
 /**
+ * 人気ランキングのプレミアムバッジ画像URL（snorkeling は未指定）
+ */
+export const rankingPremiumBadgeUrl: string | undefined = undefined;
+
+/**
  * 運営者情報ページ用データ
  */
 export const administratorKvImageUrl = "/images/administrator/kv.webp";
