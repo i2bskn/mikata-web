@@ -23,3 +23,5 @@ export { CommercialTransactionsContent, type CommercialTransactionsContentProps 
 export { PolicyContent, type PolicyContentProps } from "./policy-content";
 export { PrivacyPolicyContent } from "./privacy-policy-content";
 export { LinksContent, type LinksContentProps, type LinkItem } from "./links-content";
+export { Sidebar, type SidebarProps, type SidebarCategoryNavItem } from "./sidebar";
+export { FloatingBookingButton } from "./floating-booking-button";

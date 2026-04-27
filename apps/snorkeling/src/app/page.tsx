@@ -221,7 +221,7 @@ export default function HomePage() {
                         left: "0",
                         top: "0",
                         zIndex: 10,
-                        backgroundColor: index < 3 ? "#ed3434" : "#999",
+                        backgroundColor: ["#E3AF3A", "#ADADAD", "#AA845E"][index] ?? "#34e5d3",
                         color: "#fff",
                         fontSize: "12px",
                         fontWeight: "bold",

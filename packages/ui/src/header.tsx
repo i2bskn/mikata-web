@@ -21,6 +21,26 @@ export interface MenuSection {
   items: MenuLink[];
 }
 
+export interface MenuFeaturedBanner {
+  href: string;
+  iconUrl: string;
+  subtitle?: string;
+  subtitle2?: string;
+  title: string;
+}
+
+export interface MenuInfoLinksSection {
+  title: string;
+  iconUrl?: string;
+  items: MenuLink[];
+}
+
+export interface MenuMainBanner {
+  href: string;
+  imageUrl: string;
+  alt: string;
+}
+
 export interface HeaderProps {
   siteName: string;
   logoUrl?: string;
@@ -34,6 +54,10 @@ export interface HeaderProps {
   menuSections?: MenuSection[];
   menuQuickLinks?: MenuLink[];
   menuExternalSites?: MenuLink[];
+  menuExternalSitesIconUrl?: string;
+  menuFeaturedBanners?: MenuFeaturedBanner[];
+  menuInfoLinksSection?: MenuInfoLinksSection;
+  menuMainBanner?: MenuMainBanner;
   navColor?: string;
   menuBannerUrl?: string;
   menuBannerHref?: string;
@@ -102,6 +126,10 @@ export const Header: FC<HeaderProps> = ({
   menuSections,
   menuQuickLinks,
   menuExternalSites,
+  menuExternalSitesIconUrl,
+  menuFeaturedBanners,
+  menuInfoLinksSection,
+  menuMainBanner,
   navColor = "#1a9edb",
   menuBannerUrl,
   menuBannerHref,
@@ -399,29 +427,36 @@ export const Header: FC<HeaderProps> = ({
               </div>
             )}
 
-            {/* 写真無料プランバナー - 既存: SP icon 45px / PC icon 15px */}
-            <div style={{ padding: "0 15px 25px" }}>
-              <a
-                href="/scene-time/freetourphotos.html"
-                onClick={() => setIsMenuOpen(false)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                  padding: "10px 12px",
-                  backgroundColor: "#fff",
-                  borderRadius: "10px",
-                  textDecoration: "none",
-                  color: "#666",
-                }}
-              >
-                <img src="/images/menu/icon-camera.png" alt="" style={{ width: menuIconSize, height: menuIconSize, objectFit: "contain" }} />
-                <div>
-                  <div style={{ fontSize: "12px", fontWeight: 500, color: "#666" }}>心に残る瞬間を写真に残そう！</div>
-                  <div style={{ fontWeight: 700, fontSize: "18px", color: "#666" }}>写真無料プラン</div>
-                </div>
-              </a>
-            </div>
+            {/* フィーチャーバナー(1) - 写真無料プラン的なバナー: SP icon 45px / PC icon 15px */}
+            {menuFeaturedBanners && menuFeaturedBanners[0] && (
+              <div style={{ padding: "0 15px 25px" }}>
+                <a
+                  href={menuFeaturedBanners[0].href}
+                  onClick={() => setIsMenuOpen(false)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    padding: "10px 12px",
+                    backgroundColor: "#fff",
+                    borderRadius: "10px",
+                    textDecoration: "none",
+                    color: "#666",
+                  }}
+                >
+                  <img src={menuFeaturedBanners[0].iconUrl} alt="" style={{ width: menuIconSize, height: menuIconSize, objectFit: "contain" }} />
+                  <div style={{ flex: 1 }}>
+                    {menuFeaturedBanners[0].subtitle && (
+                      <div style={{ fontSize: "12px", fontWeight: 500, color: "#666" }}>{menuFeaturedBanners[0].subtitle}</div>
+                    )}
+                    {menuFeaturedBanners[0].subtitle2 && (
+                      <div style={{ fontSize: "12px", fontWeight: 500, color: "#666" }}>{menuFeaturedBanners[0].subtitle2}</div>
+                    )}
+                    <div style={{ fontWeight: 700, fontSize: "18px", color: "#666", marginTop: menuFeaturedBanners[0].subtitle2 ? "2px" : 0 }}>{menuFeaturedBanners[0].title}</div>
+                  </div>
+                </a>
+              </div>
+            )}
 
             {/* メニューセクション */}
             {menuSections && menuSections.map((section) => (
@@ -469,7 +504,9 @@ export const Header: FC<HeaderProps> = ({
             {menuExternalSites && menuExternalSites.length > 0 && (
               <div style={{ padding: "0 15px 15px" }}>
                 <div style={sectionTitleStyle}>
-                  <img src="/images/menu/icon-other-island.png" alt="" style={{ width: "20px", height: "20px" }} />
+                  {menuExternalSitesIconUrl && (
+                    <img src={menuExternalSitesIconUrl} alt="" style={{ width: "20px", height: "20px" }} />
+                  )}
                   他の島のツアーもチェック
                 </div>
                 <div style={{
@@ -505,75 +542,80 @@ export const Header: FC<HeaderProps> = ({
               </div>
             )}
 
-            {/* 離島フェリー予約受付中 - SP icon 45px / PC icon 15px */}
-            <div style={{ padding: "0 15px 25px" }}>
-              <a
-                href="https://ishigaki-tours.com/tours-ferry"
-                onClick={() => setIsMenuOpen(false)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                  padding: "10px 12px",
-                  backgroundColor: "#fff",
-                  borderRadius: "10px",
-                  textDecoration: "none",
-                  color: "#666",
-                }}
-              >
-                <img src="/images/menu/icon-ferry.png" alt="" style={{ width: menuIconSize, height: menuIconSize, objectFit: "contain" }} />
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: "12px", fontWeight: 500, color: "#666" }}>【各便40席限定】石垣島から離島へ！</div>
-                  <div style={{ fontSize: "12px", fontWeight: 500, color: "#666" }}>（乗船時間までキャンセル料無料）</div>
-                  <div style={{ fontWeight: 700, fontSize: "18px", color: "#666", marginTop: "2px" }}>離島フェリー予約受付中</div>
+            {/* フィーチャーバナー(2) - 離島フェリー的なバナー: SP icon 45px / PC icon 15px */}
+            {menuFeaturedBanners && menuFeaturedBanners[1] && (
+              <div style={{ padding: "0 15px 25px" }}>
+                <a
+                  href={menuFeaturedBanners[1].href}
+                  onClick={() => setIsMenuOpen(false)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    padding: "10px 12px",
+                    backgroundColor: "#fff",
+                    borderRadius: "10px",
+                    textDecoration: "none",
+                    color: "#666",
+                  }}
+                >
+                  <img src={menuFeaturedBanners[1].iconUrl} alt="" style={{ width: menuIconSize, height: menuIconSize, objectFit: "contain" }} />
+                  <div style={{ flex: 1 }}>
+                    {menuFeaturedBanners[1].subtitle && (
+                      <div style={{ fontSize: "12px", fontWeight: 500, color: "#666" }}>{menuFeaturedBanners[1].subtitle}</div>
+                    )}
+                    {menuFeaturedBanners[1].subtitle2 && (
+                      <div style={{ fontSize: "12px", fontWeight: 500, color: "#666" }}>{menuFeaturedBanners[1].subtitle2}</div>
+                    )}
+                    <div style={{ fontWeight: 700, fontSize: "18px", color: "#666", marginTop: menuFeaturedBanners[1].subtitle2 ? "2px" : 0 }}>{menuFeaturedBanners[1].title}</div>
+                  </div>
+                </a>
+              </div>
+            )}
+
+            {/* 情報リンクセクション (2カラム) */}
+            {menuInfoLinksSection && menuInfoLinksSection.items.length > 0 && (
+              <div style={{ padding: "0 15px 25px" }}>
+                <div style={sectionTitleStyle}>
+                  {menuInfoLinksSection.iconUrl && (
+                    <img src={menuInfoLinksSection.iconUrl} alt="" style={{ width: "20px", height: "20px" }} />
+                  )}
+                  {menuInfoLinksSection.title}
                 </div>
-              </a>
-            </div>
-
-            {/* 初めて行く方へ！お役立ち情報 */}
-            <div style={{ padding: "0 15px 25px" }}>
-              <div style={sectionTitleStyle}>
-                <img src="/images/menu/icon-info.png" alt="" style={{ width: "20px", height: "20px" }} />
-                初めて行く方へ！お役立ち情報
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "8px" }}>
+                  {menuInfoLinksSection.items.map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      style={{
+                        display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center",
+                        padding: "10px 5px", backgroundColor: "#fff", borderRadius: "10px",
+                        textDecoration: "none", color: "#666", fontSize: "10px", fontWeight: 600, lineHeight: "1.3",
+                      }}
+                    >
+                      {item.iconUrl && (
+                        <img src={item.iconUrl} alt="" style={{ width: "40px", height: "40px", objectFit: "contain", marginBottom: "4px" }} />
+                      )}
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "8px" }}>
+            )}
+
+            {/* メインビジュアルバナー */}
+            {menuMainBanner && (
+              <div style={{ padding: "0 15px 12px" }}>
                 <a
-                  href="https://ishigaki-tours.com/popular-spot/bluecave.html"
+                  href={menuMainBanner.href}
                   onClick={() => setIsMenuOpen(false)}
-                  style={{
-                    display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center",
-                    padding: "10px 5px", backgroundColor: "#fff", borderRadius: "10px",
-                    textDecoration: "none", color: "#666", fontSize: "10px", fontWeight: 600, lineHeight: "1.3",
-                  }}
+                  style={{ display: "block" }}
                 >
-                  <img src="/images/menu/icon-bluecave.png" alt="" style={{ width: "40px", height: "40px", objectFit: "contain", marginBottom: "4px" }} />
-                  {"青の洞窟とは？\n基本情報紹介"}
-                </a>
-                <a
-                  href="/column"
-                  onClick={() => setIsMenuOpen(false)}
-                  style={{
-                    display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center",
-                    padding: "10px 5px", backgroundColor: "#fff", borderRadius: "10px",
-                    textDecoration: "none", color: "#666", fontSize: "10px", fontWeight: 600, lineHeight: "1.3",
-                  }}
-                >
-                  <img src="/images/menu/icon-column.png" alt="" style={{ width: "40px", height: "40px", objectFit: "contain", marginBottom: "4px" }} />
-                  コラム一覧
+                  <img src={menuMainBanner.imageUrl} alt={menuMainBanner.alt} style={{ width: "100%", borderRadius: "4px" }} />
                 </a>
               </div>
-            </div>
-
-            {/* 青の洞窟ツアーKVバナー */}
-            <div style={{ padding: "0 15px 12px" }}>
-              <a
-                href="https://ishigaki-tours.com/popular-spot/bluecave.html"
-                onClick={() => setIsMenuOpen(false)}
-                style={{ display: "block" }}
-              >
-                <img src="/images/menu/bluecave-kv.png" alt="青の洞窟ツアー" style={{ width: "100%", borderRadius: "4px" }} />
-              </a>
-            </div>
+            )}
 
             {/* フッタースライダー - SP 169x101 / PC 190x95 */}
             {menuSliderImages && menuSliderImages.length > 0 && (

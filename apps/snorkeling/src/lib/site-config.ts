@@ -11,16 +11,41 @@ export const siteConfig: SiteConfig = {
 };
 
 /**
+ * サイドバー設定
+ */
+export const sidebarConfig = {
+  planCount: 20,
+  banners: [
+    {
+      href: "https://ishigaki-tours.com/tours-ferry/",
+      imageUrl: "/images/sidebar/ferry-banner.webp",
+      alt: "離島フェリー予約",
+      external: true,
+    },
+    {
+      href: "/scene-time/seaturtles.html",
+      imageUrl: "/images/sidebar/seaturtles-banner.jpg",
+      alt: "ウミガメシュノーケリング",
+    },
+    {
+      href: "/uncategorized/hama-island.html",
+      imageUrl: "/images/sidebar/maboroshi-banner.png",
+      alt: "幻の島(浜島)でシュノーケリング体験",
+    },
+  ],
+};
+
+/**
  * カテゴリナビアイテム - 既存サイトのタブナビ（9項目）
  */
 export const categoryNavItems = [
   { label: "人気プラン\nランキング", href: "/ranking", iconUrl: "/images/category/ranking.webp", isActive: true },
   { label: "アクティビティ", href: "/plan", iconUrl: "/images/category/activity.webp" },
   { label: "スポットから\n探す", href: "/spot", iconUrl: "/images/category/spot.webp" },
-  { label: "人気の組み合わ\nせから探す", href: "/category/setplan", iconUrl: "/images/category/setplan.webp" },
+  { label: "人気の組み合わ\nせから探す", href: "/category/combinations", iconUrl: "/images/category/setplan.webp" },
   { label: "当日予約OK\nプラン", href: "/scene-time/same_day_booking.html", iconUrl: "/images/category/same-day.webp" },
   { label: "お得な割引\nセットプラン", href: "/category/setplan", iconUrl: "/images/category/setplan-discount.webp" },
-  { label: "プレミアム\n厳選プラン", href: "/campaign/premium-plan.html", iconUrl: "/images/category/premium.webp" },
+  { label: "プレミアム\n厳選プラン", href: "/campaign/premium-plan.html", iconUrl: "/images/category/premium.jpg" },
   { label: "送迎付きツアー", href: "/plan?category=shuttle", iconUrl: "/images/category/transfer.png" },
   { label: "観光ツアー", href: "/scene-time/sightseeing.html", iconUrl: "/images/category/sightseeing.webp" },
 ];

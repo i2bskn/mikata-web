@@ -20,7 +20,9 @@
     "./commercial-transactions-content": "./src/commercial-transactions-content.tsx",
     "./policy-content": "./src/policy-content.tsx",
     "./privacy-policy-content": "./src/privacy-policy-content.tsx",
-    "./links-content": "./src/links-content.tsx"
+    "./links-content": "./src/links-content.tsx",
+    "./sidebar": "./src/sidebar.tsx",
+    "./floating-booking-button": "./src/floating-booking-button.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

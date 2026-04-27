@@ -66,8 +66,8 @@ export default function RootLayout({
             "/images/footer/footer-02.webp",
             "/images/footer/footer-03.webp",
             "/images/footer/footer-04.webp",
-            "/images/footer/footer-05.webp",
-            "/images/footer/footer-06.webp",
+            "/images/footer/footer-05.jpg",
+            "/images/footer/footer-06.jpg",
             "/images/footer/footer-07.webp",
           ]}
         />

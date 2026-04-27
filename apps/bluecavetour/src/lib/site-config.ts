@@ -11,6 +11,26 @@ export const siteConfig: SiteConfig = {
 };
 
 /**
+ * サイドバー設定
+ */
+export const sidebarConfig = {
+  planCount: 17,
+  banners: [
+    {
+      href: "https://ishigaki-tours.com/ferry/",
+      imageUrl: "/images/sidebar/ferry-banner.webp",
+      alt: "離島フェリー予約",
+      external: true,
+    },
+    {
+      href: "/campaign/premium-plan.html",
+      imageUrl: "/images/banner/hero-premium.webp",
+      alt: "ツアーズ厳選プレミアムプラン",
+    },
+  ],
+};
+
+/**
  * カテゴリナビアイテム - サイドバー・カテゴリナビ共通
  */
 export const categoryNavItems = [
@@ -98,6 +118,35 @@ export const menuConfig = {
     { label: "石垣島ツアーズ", href: "https://ishigaki-tours.com/", iconUrl: "/images/menu/ishigaki-logo.png" },
     { label: "小浜島ツアーズ", href: "https://kohama-tours.com/", iconUrl: "/images/menu/kohama-logo.png" },
   ],
+  externalSitesIconUrl: "/images/menu/icon-other-island.png",
+  featuredBanners: [
+    {
+      href: "/scene-time/freetourphotos.html",
+      iconUrl: "/images/menu/icon-camera.png",
+      subtitle: "心に残る瞬間を写真に残そう！",
+      title: "写真無料プラン",
+    },
+    {
+      href: "https://ishigaki-tours.com/tours-ferry",
+      iconUrl: "/images/menu/icon-ferry.png",
+      subtitle: "【各便40席限定】石垣島から離島へ！",
+      subtitle2: "（乗船時間までキャンセル料無料）",
+      title: "離島フェリー予約受付中",
+    },
+  ],
+  infoLinksSection: {
+    title: "初めて行く方へ！お役立ち情報",
+    iconUrl: "/images/menu/icon-info.png",
+    items: [
+      { label: "青の洞窟とは？\n基本情報紹介", href: "https://ishigaki-tours.com/popular-spot/bluecave.html", iconUrl: "/images/menu/icon-bluecave.png" },
+      { label: "コラム一覧", href: "/column", iconUrl: "/images/menu/icon-column.png" },
+    ],
+  },
+  mainBanner: {
+    href: "https://ishigaki-tours.com/popular-spot/bluecave.html",
+    imageUrl: "/images/menu/bluecave-kv.png",
+    alt: "青の洞窟ツアー",
+  },
 };
 
 /**
