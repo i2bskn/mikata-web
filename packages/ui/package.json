@@ -29,7 +29,12 @@
     "./search-panel": "./src/search-panel.tsx",
     "./condition-search": "./src/condition-search.tsx",
     "./column-list": "./src/column-list.tsx",
-    "./related-sites-grid": "./src/related-sites-grid.tsx"
+    "./related-sites-grid": "./src/related-sites-grid.tsx",
+    "./booking-flow": "./src/booking-flow.tsx",
+    "./floating-sale-button": "./src/floating-sale-button.tsx",
+    "./sticky-photo-banner": "./src/sticky-photo-banner.tsx",
+    "./drawer-shell": "./src/drawer-shell.tsx",
+    "./drawer-parts": "./src/drawer-parts/index.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

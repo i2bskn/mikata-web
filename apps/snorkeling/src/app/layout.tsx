@@ -8,11 +8,11 @@ import {
   footerSections,
   companyInfo,
   headerConfig,
-  menuConfig,
   relatedSites,
   socialLinks,
   partnerLogos,
 } from "../lib/site-config";
+import { DrawerMenu } from "../components/drawer-menu";
 import "./globals.css";
 
 const notoSansJP = Noto_Sans_JP({
@@ -48,10 +48,7 @@ export default function RootLayout({
           contactUrl={headerConfig.contactUrl}
           saleUrl={headerConfig.saleUrl}
           reservationCheckUrl={headerConfig.reservationCheckUrl}
-          menuQuickLinks={menuConfig.quickLinks}
-          menuSections={menuConfig.sections}
-          menuExternalSites={menuConfig.externalSites}
-          menuSliderImages={[]}
+          drawerContent={<DrawerMenu />}
         />
         <main>{children}</main>
         <Footer

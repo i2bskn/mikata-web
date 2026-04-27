@@ -114,6 +114,36 @@ export const conditionSearchItems = [
 ];
 
 /**
+ * トップページ「予約から参加の流れ」のステップ
+ */
+export const bookingFlowSteps = [
+  {
+    step: 1,
+    image: "/images/flow/flow01.webp",
+    title: "ツアーを探す",
+    text: "シーンや時間帯から参加したいツアーを探してみましょう♪",
+  },
+  {
+    step: 2,
+    image: "/images/flow/flow02.webp",
+    title: "予約プランの申し込み",
+    text: "申し込みたいプランを決めたら、日付と時間帯を選んで申し込み開始！",
+  },
+  {
+    step: 3,
+    image: "/images/flow/flow03.webp",
+    title: "予約確定",
+    text: "予約が完了すると、石垣島ツアーズから連絡がきます♪",
+  },
+  {
+    step: 4,
+    image: "/images/flow/flow04.webp",
+    title: "ツアーに参加",
+    text: "あとは当日参加するだけ！思いっきり楽しんじゃおう！！",
+  },
+];
+
+/**
  * トップページ「関連情報」のバナー
  */
 export const relatedBanners = [

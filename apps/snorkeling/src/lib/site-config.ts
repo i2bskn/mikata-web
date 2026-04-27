@@ -149,6 +149,36 @@ export const conditionSearchItems = [
 ];
 
 /**
+ * トップページ「予約から参加の流れ」のステップ
+ */
+export const bookingFlowSteps = [
+  {
+    step: 1,
+    image: "/images/flow/flow01.jpg",
+    title: "ツアーを探す",
+    text: "時間帯や体験内容から希望のツアーを選択♪",
+  },
+  {
+    step: 2,
+    image: "/images/flow/flow02.jpg",
+    title: "プランを予約",
+    text: "日付や人数、オプションなどを選んで申し込み！",
+  },
+  {
+    step: 3,
+    image: "/images/flow/flow03.jpg",
+    title: "メールを確認",
+    text: "予約完了後、メールで詳細が届きます☆",
+  },
+  {
+    step: 4,
+    image: "/images/flow/flow04.jpg",
+    title: "ツアーに参加",
+    text: "あとは参加するだけ！思いきり楽しもう♪",
+  },
+];
+
+/**
  * トップページ「関連情報」のバナー
  */
 export const relatedBanners = [
@@ -250,24 +280,67 @@ export const headerConfig = {
  * ドロワーメニュー設定 - 既存サイト準拠
  */
 export const menuConfig = {
+  statusBanner: {
+    iconUrl: "/images/menu/icon-status-clock.png",
+    badge: "営業中",
+    hours: "8:00〜17:00",
+    message: "当日予約も受付中！",
+  },
   quickLinks: [
-    { label: "人気ツアー\nランキング", href: "/ranking", iconUrl: "/images/category/ranking.webp" },
+    { label: "人気ツアー\nランキング", href: "/ranking", iconUrl: "/images/menu/icon-ranking.png" },
     { label: "予約確認\n(予約済みの方)", href: "https://mikata.in/yaeyama-tour/subscribers/confirm", iconUrl: "/images/menu/calender-icon.png" },
-    { label: "閲覧履歴\nお気に入り", href: "/myplan", iconUrl: "/images/menu/bookmark-icon.png" },
+    { label: "閲覧履歴\nお気に入り", href: "/myplan", iconUrl: "/images/menu/icon-history.png" },
   ],
   sections: [
     {
       title: "プランを探す",
       items: [
-        { label: "送迎付きプラン\nから探す", href: "/plan?category=shuttle", iconUrl: "/images/category/transfer.png" },
-        { label: "当日予約OK\nプラン", href: "/scene-time/same_day_booking.html", iconUrl: "/images/category/same-day.webp" },
-        { label: "アクティビティ\nから探す", href: "/plan", iconUrl: "/images/category/activity.webp" },
+        { label: "送迎付き\nツアー", href: "/scene-time/pickup-tour.html", iconUrl: "/images/menu/icon-pickup.png" },
+        { label: "当日予約\nOKプラン", href: "/scene-time/same-day-booking.html", iconUrl: "/images/menu/icon-same-day.jpg" },
+        { label: "プレミアム\nプラン", href: "/campaign/premium-plan.html", iconUrl: "/images/menu/icon-premium.jpg" },
+        { label: "ウミガメ\nシュノーケリング", href: "/scene-time/seaturtles.html", iconUrl: "/images/menu/icon-seaturtles.png" },
+        { label: "時間帯\nから探す", href: "/category/scene-time", iconUrl: "/images/menu/icon-time-of-day.png" },
+      ],
+    },
+    {
+      title: "おすすめ人気スポット",
+      iconUrl: "/images/menu/icon-spot-pin.png",
+      items: [
+        { label: "青の洞窟", href: "/popular-spot/bluecave.html", iconUrl: "/images/menu/icon-bluecave.png" },
+        { label: "幻の島（浜島）", href: "/uncategorized/hama-island.html", iconUrl: "/images/menu/icon-maboroshi.png" },
+        { label: "バラス島", href: "/popular-spot/barasu-island.html", iconUrl: "/images/menu/icon-barasu.png" },
       ],
     },
   ],
-  externalSites: [
-    { label: "石垣島ツアーズ", href: "https://ishigaki-tours.com/", iconUrl: "/images/menu/ishigaki-logo.png" },
-    { label: "小浜島ツアーズ", href: "https://kohama-tours.com/", iconUrl: "/images/menu/kohama-logo.png" },
+  featuredBanners: [
+    {
+      href: "https://ishigaki-tours.com/tours-ferry",
+      iconUrl: "/images/menu/icon-ferry.png",
+      subtitle: "【各便40席限定】石垣島から離島へ！",
+      subtitle2: "（乗船時間までキャンセル料無料）",
+      title: "離島フェリー予約受付中",
+    },
+  ],
+  mainBanners: [
+    {
+      href: "/scene-time/seaturtles.html",
+      imageUrl: "/images/menu/banner-seaturtles.jpg",
+      alt: "ウミガメシュノーケリング",
+    },
+    {
+      href: "/campaign/premium-plan.html",
+      imageUrl: "/images/menu/banner-premium.jpg",
+      alt: "ツアーズ厳選プレミアムプラン",
+    },
+  ],
+  sliderImages: [
+    "/images/menu/slider/slide-01.webp",
+    "/images/menu/slider/slide-02.webp",
+    "/images/menu/slider/slide-03.webp",
+    "/images/menu/slider/slide-04.webp",
+    "/images/menu/slider/slide-05.webp",
+    "/images/menu/slider/slide-06.webp",
+    "/images/menu/slider/slide-07.webp",
   ],
 };
 
