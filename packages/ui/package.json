@@ -43,7 +43,10 @@
     "./column-search-box": "./src/column-search-box.tsx",
     "./column-top-main": "./src/column-top-main.tsx",
     "./column-top-hero-slider": "./src/column-top-hero-slider.tsx",
-    "./column-icons": "./src/column-icons.tsx"
+    "./column-icons": "./src/column-icons.tsx",
+    "./column-share-buttons": "./src/column-share-buttons.tsx",
+    "./column-article-author": "./src/column-article-author.tsx",
+    "./column-detail-main": "./src/column-detail-main.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
