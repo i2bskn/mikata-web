@@ -15,6 +15,8 @@ export interface ColumnListProps {
   seeMoreHref?: string | null;
   /** 「一覧を見る」のラベル。既定は「一覧を見る」 */
   seeMoreLabel?: string;
+  /** 表示する記事の最大件数。既定は 3 */
+  limit?: number;
 }
 
 export function ColumnList({
@@ -23,7 +25,9 @@ export function ColumnList({
   title = "ツアーズコラム",
   seeMoreHref = "/column-top",
   seeMoreLabel = "一覧を見る",
+  limit = 3,
 }: ColumnListProps) {
+  const visibleArticles = articles.slice(0, limit);
   return (
     <section style={{ marginTop: "20px", padding: "16px", backgroundColor: "var(--color-decoration-2)" }}>
       <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
@@ -54,7 +58,7 @@ export function ColumnList({
         )}
       </div>
       <div style={{ borderTop: "1px solid #E6E6E6" }}>
-        {articles.map((article) => (
+        {visibleArticles.map((article) => (
           <a
             key={article.href}
             href={article.href}
