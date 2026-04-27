@@ -1,0 +1,85 @@
+import type { ReviewItem, ReviewDemographic } from "@repo/ui/plan-review-section";
+
+export const sampleReviews: ReviewItem[] = [
+  {
+    id: "r1",
+    username: "ユーザー_nnpjさん",
+    ageGroup: "20代",
+    postedAt: "2026/02",
+    rating: 5,
+    text: "ウミガメ見れたし最高。川平湾も綺麗だったね。",
+  },
+  {
+    id: "r2",
+    username: "ユーザー_nldtさん",
+    ageGroup: "30代",
+    postedAt: "2026/02",
+    rating: 4,
+    text: "川平湾でのカヌーは波も穏やかで景色も良かったです。青の洞窟でのシュノーケリングではウミガメにも遭遇できました。ただ少し風が強かったので、羽織るものがあると良いかもしれません。",
+  },
+  {
+    id: "r3",
+    username: "ユーザー_oercさん",
+    ageGroup: "40代",
+    postedAt: "2026/02",
+    rating: 5,
+    text: "前回はマングローブのツアーに参加したので、今回は川平湾と青の洞窟のプランにしてみました。相変わらずガイドさんの案内が丁寧で、川平湾の透明度には驚かされました。また石垣島に来る際は利用したいです。",
+  },
+  {
+    id: "r4",
+    username: "ユーザー_wpmrさん",
+    ageGroup: "30代",
+    postedAt: "2026/02",
+    rating: 5,
+    text: "川平湾の景色が本当に綺麗でしたよ〜☆SUPとシュノーケリングがセットになっていて、一日たっぷり遊べました♪写真も無料でデータをもらえるのが嬉しいポイントですね。迷っている方はぜひ参加してみてね！",
+  },
+  {
+    id: "r5",
+    username: "ユーザー_mtjiさん",
+    ageGroup: "40代",
+    postedAt: "2026/02",
+    rating: 5,
+    text: "川平湾のSUPと青の洞窟がセットになっていてとってもお得ですよ〜！ガイドさんも優しくて、ウミガメを探すのを手伝ってくれました♪大満足のツアーなのでぜひ体験してみてね！",
+  },
+  {
+    id: "r6",
+    username: "ユーザー_zkstさん",
+    ageGroup: "40代",
+    postedAt: "2026/02",
+    rating: 5,
+    text: "とにかくどこを撮っても絵になります！SUPの上からの景色も、青の洞窟の青さも最高でした。ガイドさんが映える写真をたくさん撮ってくれたので、思い出がたくさん残せました。カメラ好きにはたまらないツアーです。",
+  },
+  {
+    id: "r7",
+    username: "ユーザー_ctymさん",
+    ageGroup: "30代",
+    postedAt: "2026/02",
+    rating: 5,
+    text: "彼と一緒に参加しましたが、川平湾のSUPも青の洞窟もすごく綺麗な景色で最高の思い出になりました。ウミガメを見つけた時は二人で大興奮でした！",
+  },
+  {
+    id: "r8",
+    username: "ユーザー_yjydさん",
+    ageGroup: "50代",
+    postedAt: "2026/02",
+    rating: 5,
+    text: "川平湾の静かな水面をカヌーで進む時間は、本当に心が洗われました。青の洞窟ではウミガメが優雅に泳ぐ姿に癒され…大自然の美しさにずっと余韻に浸っています。",
+  },
+  {
+    id: "r9",
+    username: "ユーザー_kmpaさん",
+    ageGroup: "20代",
+    postedAt: "2026/01",
+    rating: 5,
+    text: "初めての石垣島でしたが、ガイドさんが丁寧に説明してくれて安心して参加できました。青の洞窟の青さは想像以上で、写真も綺麗に残せて大満足です。",
+  },
+];
+
+export const sampleDemographics: ReviewDemographic[] = [
+  { ageGroup: "～10代", percentage: 0 },
+  { ageGroup: "20代", percentage: 22.5 },
+  { ageGroup: "30代", percentage: 40 },
+  { ageGroup: "40代", percentage: 17.5 },
+  { ageGroup: "50代", percentage: 20 },
+  { ageGroup: "60代～", percentage: 0 },
+];

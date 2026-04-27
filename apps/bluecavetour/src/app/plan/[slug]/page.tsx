@@ -3,11 +3,27 @@ import { notFound } from "next/navigation";
 import { ProductJsonLd, BreadcrumbJsonLd } from "@repo/seo/json-ld";
 import { generatePlanMetadata } from "@repo/seo/metadata";
 import { getPlanBySlug, getAllPlanSlugs, getPopularPlans } from "../../../lib/data/plans";
-import { siteConfig, categoryNavItems } from "../../../lib/site-config";
-import { PlanCard } from "@repo/ui/plan-card";
+import {
+  siteConfig,
+  categoryNavItems,
+  conditionSearchItems,
+  columnArticles,
+  relatedBanners,
+  bookingFlowSteps,
+} from "../../../lib/site-config";
 import { Sidebar } from "../../../components/sidebar";
 import { ImageSlider } from "@repo/ui/image-slider";
+import { PageWithSidebarTemplate } from "@repo/ui/page-with-sidebar-template";
+import { PlanReviewSection } from "@repo/ui/plan-review-section";
+import { RelatedPlansSection } from "@repo/ui/related-plans-section";
+import { ConditionSearch } from "@repo/ui/condition-search";
+import { ColumnList } from "@repo/ui/column-list";
+import { RelatedSitesGrid } from "@repo/ui/related-sites-grid";
+import { BookingFlow } from "@repo/ui/booking-flow";
 import { FloatingBookingButton } from "../../../components/floating-booking-button";
+import { sampleReviews, sampleDemographics } from "../../../lib/data/reviews";
+
+const THEME_COLOR = "#1a9edb";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -45,7 +61,7 @@ export default async function PlanDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const relatedPlans = getPopularPlans(3).filter((p) => p.slug !== slug);
+  const relatedPlans = getPopularPlans(6).filter((p) => p.slug !== slug).slice(0, 5);
 
   return (
     <>
@@ -78,88 +94,82 @@ export default async function PlanDetailPage({ params }: PageProps) {
         ]}
       />
 
-      <div className="mx-auto" style={{ maxWidth: "1020px", padding: "0 10px" }}>
-        {/* マル優バッジ + タイトル（全幅） */}
-        <div style={{ padding: "10px 0 0" }}>
-          <span
-            style={{
-              display: "inline-block",
-              backgroundColor: "var(--color-danger)",
-              color: "#fff",
-              padding: "1px 4px",
-              fontSize: "12px",
-              fontWeight: "400",
-              borderRadius: "0px",
-              marginBottom: "8px",
-            }}
-          >
-            マル優（安全対策優良）業者ツアー
-          </span>
-          <h1
-            style={{
-              fontSize: "19.2px",
-              fontWeight: 600,
-              color: "#212529",
-              lineHeight: "1.4",
-              margin: "0",
-            }}
-          >
-            {plan.name}
-          </h1>
-        </div>
+      <PageWithSidebarTemplate
+        topSlot={
+          <>
+            <div className="mx-auto" style={{ maxWidth: "1020px", padding: "0 10px" }}>
+              <div style={{ padding: "10px 0 0" }}>
+                <span
+                  style={{
+                    display: "inline-block",
+                    backgroundColor: "var(--color-danger)",
+                    color: "#fff",
+                    padding: "1px 4px",
+                    fontSize: "12px",
+                    fontWeight: "400",
+                    borderRadius: "0px",
+                    marginBottom: "8px",
+                  }}
+                >
+                  マル優（安全対策優良）業者ツアー
+                </span>
+                <h1
+                  style={{
+                    fontSize: "19.2px",
+                    fontWeight: 600,
+                    color: "#212529",
+                    lineHeight: "1.4",
+                    margin: "0",
+                  }}
+                >
+                  {plan.name}
+                </h1>
+              </div>
+            </div>
 
-      </div>
-
-      {/* 画像スライダーエリア（ビューポート全幅） */}
-      <div style={{ marginBottom: "10px", position: "relative", overflow: "visible" }}>
-        <ImageSlider
-          slides={(plan.imageUrls ?? [plan.imageUrl]).map((url, i) => ({
-            imageUrl: url,
-            alt: `${plan.name} - ${i + 1}`,
-          }))}
-          autoPlayInterval={5000}
-        />
-        {/* 価格オーバーレイ */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: "10px",
-            right: "10px",
-            backgroundColor: "rgba(0,0,0,0.7)",
-            color: "#fff",
-            padding: "10px 16px",
-            borderRadius: "4px",
-            fontSize: "13px",
-            lineHeight: "1.6",
-            zIndex: 1,
-          }}
-        >
-          <div>
-            大人(中学生以上)　：
-            {plan.originalPrice && (
-              <span style={{ textDecoration: "line-through" }}>{plan.originalPrice.toLocaleString()}円</span>
-            )}
-            {" → "}
-            <span style={{ fontSize: "20px", fontWeight: "bold" }}>{plan.price.toLocaleString()}</span>円
-          </div>
-          {plan.childPrice && (
-            <div>小人(中学生未満)：{plan.childPrice.toLocaleString()}円</div>
-          )}
-          {plan.infantPrice && (
-            <div>幼児(小学生未満)　：{plan.infantPrice.toLocaleString()}円</div>
-          )}
-        </div>
-      </div>
-
-      <div className="mx-auto" style={{ maxWidth: "1020px", padding: "0 10px" }}>
-
-        {/* 2カラムレイアウト */}
-        <div className="flex gap-5">
-          <Sidebar categoryNavItems={categoryNavItems} />
-
-          {/* メインコンテンツ */}
-          <div className="flex-1 min-w-0">
-            {/* 評価 */}
+            <div style={{ marginTop: "10px", marginBottom: "10px", position: "relative", overflow: "visible" }}>
+              <ImageSlider
+                slides={(plan.imageUrls ?? [plan.imageUrl]).map((url, i) => ({
+                  imageUrl: url,
+                  alt: `${plan.name} - ${i + 1}`,
+                }))}
+                autoPlayInterval={5000}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "10px",
+                  right: "10px",
+                  backgroundColor: "rgba(0,0,0,0.7)",
+                  color: "#fff",
+                  padding: "10px 16px",
+                  borderRadius: "4px",
+                  fontSize: "13px",
+                  lineHeight: "1.6",
+                  zIndex: 1,
+                }}
+              >
+                <div>
+                  大人(中学生以上)　：
+                  {plan.originalPrice && (
+                    <span style={{ textDecoration: "line-through" }}>{plan.originalPrice.toLocaleString()}円</span>
+                  )}
+                  {" → "}
+                  <span style={{ fontSize: "20px", fontWeight: "bold" }}>{plan.price.toLocaleString()}</span>円
+                </div>
+                {plan.childPrice && (
+                  <div>小人(中学生未満)：{plan.childPrice.toLocaleString()}円</div>
+                )}
+                {plan.infantPrice && (
+                  <div>幼児(小学生未満)　：{plan.infantPrice.toLocaleString()}円</div>
+                )}
+              </div>
+            </div>
+          </>
+        }
+        sidebarSlot={<Sidebar categoryNavItems={categoryNavItems} />}
+        mainSlot={
+          <>
             {plan.rating && (
               <div
                 style={{
@@ -204,7 +214,6 @@ export default async function PlanDetailPage({ params }: PageProps) {
               </div>
             )}
 
-            {/* タブナビゲーション */}
             <div style={{ borderBottom: "1px solid #eee", display: "flex", justifyContent: "space-between" }}>
               {["プランの特徴", "参考スケジュール", "内容と詳細", "このプランのQ&A", "関連プラン"].map((tab, i, arr) => (
                 <button
@@ -228,9 +237,7 @@ export default async function PlanDetailPage({ params }: PageProps) {
               ))}
             </div>
 
-            {/* 緊急性バナー〜予約ボタン〜お気に入り（右寄せ、幅360px統一） */}
             <div style={{ marginTop: "16px", maxWidth: "360px", marginLeft: "auto" }}>
-              {/* 緊急性バナー */}
               <div
                 style={{
                   padding: "4px 8px 2px",
@@ -245,7 +252,6 @@ export default async function PlanDetailPage({ params }: PageProps) {
                 <strong style={{ color: "var(--color-danger)", marginLeft: "8px" }}>残りわずか△</strong>
               </div>
 
-              {/* 予約ボタン */}
               <div style={{ marginTop: "16px" }}>
                 <a
                   href="#"
@@ -283,7 +289,6 @@ export default async function PlanDetailPage({ params }: PageProps) {
               </div>
             </div>
 
-            {/* お気に入り */}
             <div style={{ marginTop: "12px", textAlign: "right" }}>
               <button
                 type="button"
@@ -301,7 +306,6 @@ export default async function PlanDetailPage({ params }: PageProps) {
               </button>
             </div>
 
-            {/* ツアーズプレミアムプランとは？ */}
             <section style={{ marginTop: "20px", padding: "0" }}>
               <h2 style={{ fontSize: "19.2px", fontWeight: 600, color: "#212529", marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
                 <span style={{ fontSize: "20px" }}>🏆</span>
@@ -315,16 +319,15 @@ export default async function PlanDetailPage({ params }: PageProps) {
                 <li>ツアーに必要な用具レンタル無料！</li>
               </ol>
               <p style={{ marginTop: "8px" }}>
-                <a href="/campaign/premium-plan.html" style={{ color: "#1a9edb", fontSize: "14px", fontWeight: "bold" }}>
+                <a href="/campaign/premium-plan.html" style={{ color: THEME_COLOR, fontSize: "14px", fontWeight: "bold" }}>
                   →ツアーズプレミアムプランを詳しくチェック
                 </a>
               </p>
             </section>
 
-            {/* プランの特徴 */}
             <section style={{ marginTop: "20px" }}>
               <h2 style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
-                <span style={{ color: "#1a9edb", fontSize: "20px" }}>🏷</span>
+                <span style={{ color: THEME_COLOR, fontSize: "20px" }}>🏷</span>
                 このプランの特徴
               </h2>
               <p style={{ fontSize: "14px", color: "#333", lineHeight: "1.8" }}>{plan.description}</p>
@@ -332,7 +335,7 @@ export default async function PlanDetailPage({ params }: PageProps) {
                 <ul style={{ marginTop: "12px", listStyle: "none", padding: 0 }}>
                   {plan.features.map((feature, index) => (
                     <li key={index} style={{ display: "flex", alignItems: "center", gap: "8px", padding: "6px 0", fontSize: "14px", color: "#333" }}>
-                      <svg width="16" height="16" viewBox="0 0 20 20" fill="#1a9edb">
+                      <svg width="16" height="16" viewBox="0 0 20 20" fill={THEME_COLOR}>
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
                       {feature}
@@ -342,12 +345,11 @@ export default async function PlanDetailPage({ params }: PageProps) {
               )}
             </section>
 
-            {/* 金額・基本情報テーブル */}
             <section style={{ marginTop: "20px" }}>
               <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px" }}>
                 <tbody>
                   <tr style={{ borderBottom: "1px solid #e5e5e5" }}>
-                    <th style={{ padding: "10px", backgroundColor: "#1a9edb", fontWeight: 700, color: "#fff", textAlign: "left", width: "150px", fontSize: "16.8px" }}>金額</th>
+                    <th style={{ padding: "10px", backgroundColor: THEME_COLOR, fontWeight: 700, color: "#fff", textAlign: "left", width: "150px", fontSize: "16.8px" }}>金額</th>
                     <td style={{ padding: "10px", color: "#333" }}>
                       <div>大人(中学生以上)：{plan.originalPrice && <span style={{ textDecoration: "line-through", color: "#999" }}>{plan.originalPrice.toLocaleString()}円</span>} → <strong style={{ color: "var(--color-danger)" }}>{plan.price.toLocaleString()}円</strong></div>
                       {plan.childPrice && <div style={{ marginTop: "4px" }}>小人(中学生未満)：<strong>{plan.childPrice.toLocaleString()}円</strong></div>}
@@ -355,22 +357,22 @@ export default async function PlanDetailPage({ params }: PageProps) {
                     </td>
                   </tr>
                   <tr style={{ borderBottom: "1px solid #e5e5e5" }}>
-                    <th style={{ padding: "10px", backgroundColor: "#1a9edb", fontWeight: 700, color: "#fff", textAlign: "left", width: "150px", fontSize: "16.8px" }}>時間帯</th>
+                    <th style={{ padding: "10px", backgroundColor: THEME_COLOR, fontWeight: 700, color: "#fff", textAlign: "left", width: "150px", fontSize: "16.8px" }}>時間帯</th>
                     <td style={{ padding: "10px", color: "#333" }}>
                       {plan.schedule.length > 0 ? `${plan.schedule[0].time}-${plan.schedule[plan.schedule.length - 1].time}` : "お問い合わせください"}
                     </td>
                   </tr>
                   <tr style={{ borderBottom: "1px solid #e5e5e5" }}>
-                    <th style={{ padding: "10px", backgroundColor: "#1a9edb", fontWeight: 700, color: "#fff", textAlign: "left", width: "150px", fontSize: "16.8px" }}>所要時間</th>
+                    <th style={{ padding: "10px", backgroundColor: THEME_COLOR, fontWeight: 700, color: "#fff", textAlign: "left", width: "150px", fontSize: "16.8px" }}>所要時間</th>
                     <td style={{ padding: "10px", color: "#333" }}>{plan.duration}</td>
                   </tr>
                   <tr style={{ borderBottom: "1px solid #e5e5e5" }}>
-                    <th style={{ padding: "10px", backgroundColor: "#1a9edb", fontWeight: 700, color: "#fff", textAlign: "left", width: "150px", fontSize: "16.8px" }}>開催期間</th>
+                    <th style={{ padding: "10px", backgroundColor: THEME_COLOR, fontWeight: 700, color: "#fff", textAlign: "left", width: "150px", fontSize: "16.8px" }}>開催期間</th>
                     <td style={{ padding: "10px", color: "#333" }}>通年</td>
                   </tr>
                   {plan.meetingPoint && (
                     <tr style={{ borderBottom: "1px solid #e5e5e5" }}>
-                      <th style={{ padding: "10px", backgroundColor: "#1a9edb", fontWeight: 700, color: "#fff", textAlign: "left", width: "150px", fontSize: "16.8px" }}>集合場所</th>
+                      <th style={{ padding: "10px", backgroundColor: THEME_COLOR, fontWeight: 700, color: "#fff", textAlign: "left", width: "150px", fontSize: "16.8px" }}>集合場所</th>
                       <td style={{ padding: "10px", color: "#333" }}>{plan.meetingPoint}</td>
                     </tr>
                   )}
@@ -378,16 +380,15 @@ export default async function PlanDetailPage({ params }: PageProps) {
               </table>
             </section>
 
-            {/* 参考スケジュール */}
             {plan.schedule.length > 0 && (
               <section style={{ marginTop: "20px" }}>
                 <h2 style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "12px" }}>
                   参考スケジュール
                 </h2>
-                <div style={{ borderLeft: "3px solid #1a9edb", paddingLeft: "16px" }}>
+                <div style={{ borderLeft: `3px solid ${THEME_COLOR}`, paddingLeft: "16px" }}>
                   {plan.schedule.map((item, index) => (
                     <div key={index} style={{ display: "flex", gap: "12px", padding: "8px 0", borderBottom: "1px solid #f0f0f0" }}>
-                      <span style={{ fontWeight: "bold", color: "#1a9edb", fontSize: "14px", minWidth: "60px" }}>{item.time}</span>
+                      <span style={{ fontWeight: "bold", color: THEME_COLOR, fontSize: "14px", minWidth: "60px" }}>{item.time}</span>
                       <span style={{ fontSize: "14px", color: "#333" }}>{item.activity}</span>
                     </div>
                   ))}
@@ -395,7 +396,6 @@ export default async function PlanDetailPage({ params }: PageProps) {
               </section>
             )}
 
-            {/* 料金に含まれるもの */}
             {plan.includes.length > 0 && (
               <section style={{ marginTop: "20px" }}>
                 <h2 style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "12px" }}>
@@ -404,7 +404,7 @@ export default async function PlanDetailPage({ params }: PageProps) {
                 <ul style={{ listStyle: "none", padding: 0, display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "6px" }}>
                   {plan.includes.map((item, index) => (
                     <li key={index} style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px", color: "#333" }}>
-                      <span style={{ color: "#1a9edb" }}>✓</span>
+                      <span style={{ color: THEME_COLOR }}>✓</span>
                       {item}
                     </li>
                   ))}
@@ -412,7 +412,6 @@ export default async function PlanDetailPage({ params }: PageProps) {
               </section>
             )}
 
-            {/* 注意事項 */}
             {plan.notes && plan.notes.length > 0 && (
               <section style={{ marginTop: "20px" }}>
                 <h2 style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "12px" }}>
@@ -429,37 +428,24 @@ export default async function PlanDetailPage({ params }: PageProps) {
               </section>
             )}
 
-            {/* 関連プラン */}
-            {relatedPlans.length > 0 && (
-              <section style={{ marginTop: "30px", paddingBottom: "40px" }}>
-                <h2 style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "12px", borderBottom: "4px solid #1a9edb", paddingBottom: "10px" }}>
-                  関連プラン
-                </h2>
-                <div className="flex gap-3 overflow-x-auto pb-3">
-                  {relatedPlans.map((relatedPlan) => (
-                    <div key={relatedPlan.slug} className="shrink-0" style={{ width: "170px" }}>
-                      <PlanCard
-                        name={relatedPlan.name}
-                        description={relatedPlan.description}
-                        imageUrl={relatedPlan.imageUrl}
-                        href={`/plan/${relatedPlan.slug}`}
-                        price={relatedPlan.price}
-                        originalPrice={relatedPlan.originalPrice}
-                        duration={relatedPlan.duration}
-                        tags={relatedPlan.tags}
-                        rating={relatedPlan.rating}
-                        reviewCount={relatedPlan.reviewCount}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-          </div>
-        </div>
-      </div>
+          </>
+        }
+        bottomSectionsSlot={
+          <>
+            <PlanReviewSection
+              reviews={sampleReviews}
+              demographics={sampleDemographics}
+              accentColor={THEME_COLOR}
+            />
+            <ConditionSearch items={conditionSearchItems} iconUrl="/images/icons/loupe.svg" />
+            <RelatedPlansSection plans={relatedPlans} accentColor={THEME_COLOR} />
+            <ColumnList articles={columnArticles} iconUrl="/images/icons/pen.svg" />
+            <RelatedSitesGrid items={relatedBanners} />
+            <BookingFlow steps={bookingFlowSteps} />
+          </>
+        }
+      />
 
-      {/* フローティング予約ボタン */}
       <FloatingBookingButton />
     </>
   );

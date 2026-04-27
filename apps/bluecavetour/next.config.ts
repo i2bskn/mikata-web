@@ -6,11 +6,6 @@ const nextConfig: NextConfig = {
   // 既存のURL構造を維持するためのrewrite設定
   async rewrites() {
     return [
-      // セットプランページ: /setplan/xxx.html -> /setplan/xxx.html (slugに.htmlを含めて渡す)
-      {
-        source: "/setplan/:slug.html",
-        destination: "/setplan/:slug.html",
-      },
       // シーン・時間帯ページ
       {
         source: "/scene-time/:slug.html",

@@ -3,11 +3,25 @@ import { notFound } from "next/navigation";
 import { ProductJsonLd, BreadcrumbJsonLd } from "@repo/seo/json-ld";
 import { generatePlanMetadata } from "@repo/seo/metadata";
 import { getPlanBySlug, getAllPlanSlugs, getPopularPlans } from "../../../lib/data/plans";
-import { siteConfig, categoryNavItems } from "../../../lib/site-config";
-import { PlanCard } from "@repo/ui/plan-card";
+import {
+  siteConfig,
+  categoryNavItems,
+  conditionSearchItems,
+  columnArticles,
+  relatedBanners,
+  bookingFlowSteps,
+} from "../../../lib/site-config";
 import { Sidebar } from "../../../components/sidebar";
 import { ImageSlider } from "@repo/ui/image-slider";
+import { PageWithSidebarTemplate } from "@repo/ui/page-with-sidebar-template";
+import { PlanReviewSection } from "@repo/ui/plan-review-section";
+import { RelatedPlansSection } from "@repo/ui/related-plans-section";
+import { ConditionSearch } from "@repo/ui/condition-search";
+import { ColumnList } from "@repo/ui/column-list";
+import { RelatedSitesGrid } from "@repo/ui/related-sites-grid";
+import { BookingFlow } from "@repo/ui/booking-flow";
 import { FloatingBookingButton } from "../../../components/floating-booking-button";
+import { sampleReviews, sampleDemographics } from "../../../lib/data/reviews";
 
 const THEME_COLOR = "#007CDB";
 
@@ -47,7 +61,7 @@ export default async function PlanDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const relatedPlans = getPopularPlans(3).filter((p) => p.slug !== slug);
+  const relatedPlans = getPopularPlans(6).filter((p) => p.slug !== slug).slice(0, 5);
 
   return (
     <>
@@ -80,80 +94,82 @@ export default async function PlanDetailPage({ params }: PageProps) {
         ]}
       />
 
-      <div className="mx-auto" style={{ maxWidth: "1020px", padding: "0 10px" }}>
-        <div style={{ padding: "10px 0 0" }}>
-          <span
-            style={{
-              display: "inline-block",
-              backgroundColor: "var(--color-danger)",
-              color: "#fff",
-              padding: "1px 4px",
-              fontSize: "12px",
-              fontWeight: "400",
-              borderRadius: "0px",
-              marginBottom: "8px",
-            }}
-          >
-            マル優（安全対策優良）業者ツアー
-          </span>
-          <h1
-            style={{
-              fontSize: "19.2px",
-              fontWeight: 600,
-              color: "#212529",
-              lineHeight: "1.4",
-              margin: "0",
-            }}
-          >
-            {plan.name}
-          </h1>
-        </div>
-      </div>
+      <PageWithSidebarTemplate
+        topSlot={
+          <>
+            <div className="mx-auto" style={{ maxWidth: "1020px", padding: "0 10px" }}>
+              <div style={{ padding: "10px 0 0" }}>
+                <span
+                  style={{
+                    display: "inline-block",
+                    backgroundColor: "var(--color-danger)",
+                    color: "#fff",
+                    padding: "1px 4px",
+                    fontSize: "12px",
+                    fontWeight: "400",
+                    borderRadius: "0px",
+                    marginBottom: "8px",
+                  }}
+                >
+                  マル優（安全対策優良）業者ツアー
+                </span>
+                <h1
+                  style={{
+                    fontSize: "19.2px",
+                    fontWeight: 600,
+                    color: "#212529",
+                    lineHeight: "1.4",
+                    margin: "0",
+                  }}
+                >
+                  {plan.name}
+                </h1>
+              </div>
+            </div>
 
-      <div style={{ marginBottom: "10px", position: "relative", overflow: "visible" }}>
-        <ImageSlider
-          slides={(plan.imageUrls ?? [plan.imageUrl]).map((url, i) => ({
-            imageUrl: url,
-            alt: `${plan.name} - ${i + 1}`,
-          }))}
-          autoPlayInterval={5000}
-        />
-        <div
-          style={{
-            position: "absolute",
-            bottom: "10px",
-            right: "10px",
-            backgroundColor: "rgba(0,0,0,0.7)",
-            color: "#fff",
-            padding: "10px 16px",
-            borderRadius: "4px",
-            fontSize: "13px",
-            lineHeight: "1.6",
-            zIndex: 1,
-          }}
-        >
-          <div>
-            大人(中学生以上)　：
-            {plan.originalPrice && (
-              <span style={{ textDecoration: "line-through" }}>{plan.originalPrice.toLocaleString()}円</span>
-            )}
-            {" → "}
-            <span style={{ fontSize: "20px", fontWeight: "bold" }}>{plan.price.toLocaleString()}</span>円
-          </div>
-          {plan.childPrice && (
-            <div>小人(中学生未満)：{plan.childPrice.toLocaleString()}円</div>
-          )}
-          {plan.infantPrice && (
-            <div>幼児(小学生未満)　：{plan.infantPrice.toLocaleString()}円</div>
-          )}
-        </div>
-      </div>
-
-      <div className="mx-auto" style={{ maxWidth: "1020px", padding: "0 10px" }}>
-        <div className="flex gap-5">
-          <Sidebar categoryNavItems={categoryNavItems} />
-
-          <div className="flex-1 min-w-0">
+            <div style={{ marginTop: "10px", marginBottom: "10px", position: "relative", overflow: "visible" }}>
+              <ImageSlider
+                slides={(plan.imageUrls ?? [plan.imageUrl]).map((url, i) => ({
+                  imageUrl: url,
+                  alt: `${plan.name} - ${i + 1}`,
+                }))}
+                autoPlayInterval={5000}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "10px",
+                  right: "10px",
+                  backgroundColor: "rgba(0,0,0,0.7)",
+                  color: "#fff",
+                  padding: "10px 16px",
+                  borderRadius: "4px",
+                  fontSize: "13px",
+                  lineHeight: "1.6",
+                  zIndex: 1,
+                }}
+              >
+                <div>
+                  大人(中学生以上)　：
+                  {plan.originalPrice && (
+                    <span style={{ textDecoration: "line-through" }}>{plan.originalPrice.toLocaleString()}円</span>
+                  )}
+                  {" → "}
+                  <span style={{ fontSize: "20px", fontWeight: "bold" }}>{plan.price.toLocaleString()}</span>円
+                </div>
+                {plan.childPrice && (
+                  <div>小人(中学生未満)：{plan.childPrice.toLocaleString()}円</div>
+                )}
+                {plan.infantPrice && (
+                  <div>幼児(小学生未満)　：{plan.infantPrice.toLocaleString()}円</div>
+                )}
+              </div>
+            </div>
+          </>
+        }
+        sidebarSlot={<Sidebar categoryNavItems={categoryNavItems} />}
+        mainSlot={
+          <>
             {plan.rating && (
               <div
                 style={{
@@ -388,34 +404,23 @@ export default async function PlanDetailPage({ params }: PageProps) {
               </section>
             )}
 
-            {relatedPlans.length > 0 && (
-              <section style={{ marginTop: "30px", paddingBottom: "40px" }}>
-                <h2 style={{ fontSize: "18px", fontWeight: 600, color: "#212529", marginBottom: "12px", borderBottom: `4px solid ${THEME_COLOR}`, paddingBottom: "10px" }}>
-                  関連プラン
-                </h2>
-                <div className="flex gap-3 overflow-x-auto pb-3">
-                  {relatedPlans.map((relatedPlan) => (
-                    <div key={relatedPlan.slug} className="shrink-0" style={{ width: "170px" }}>
-                      <PlanCard
-                        name={relatedPlan.name}
-                        description={relatedPlan.description}
-                        imageUrl={relatedPlan.imageUrl}
-                        href={`/plan/${relatedPlan.slug}`}
-                        price={relatedPlan.price}
-                        originalPrice={relatedPlan.originalPrice}
-                        duration={relatedPlan.duration}
-                        tags={relatedPlan.tags}
-                        rating={relatedPlan.rating}
-                        reviewCount={relatedPlan.reviewCount}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-          </div>
-        </div>
-      </div>
+          </>
+        }
+        bottomSectionsSlot={
+          <>
+            <PlanReviewSection
+              reviews={sampleReviews}
+              demographics={sampleDemographics}
+              accentColor={THEME_COLOR}
+            />
+            <ConditionSearch items={conditionSearchItems} iconUrl="/images/icons/loupe.svg" />
+            <RelatedPlansSection plans={relatedPlans} accentColor={THEME_COLOR} />
+            <ColumnList articles={columnArticles} iconUrl="/images/icons/pen.svg" />
+            <RelatedSitesGrid items={relatedBanners} />
+            <BookingFlow steps={bookingFlowSteps} />
+          </>
+        }
+      />
 
       <FloatingBookingButton />
     </>
