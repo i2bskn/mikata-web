@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { BreadcrumbJsonLd } from "@repo/seo/json-ld";
 import { LinksContent } from "@repo/ui/links-content";
+import { PageWithSidebarTemplate } from "@repo/ui/page-with-sidebar-template";
 import { siteConfig, categoryNavItems } from "../../lib/site-config";
 import { Sidebar } from "../../components/sidebar";
 
@@ -20,16 +21,10 @@ export default function LinksPage() {
         ]}
       />
 
-      <div className="mx-auto" style={{ maxWidth: "1020px" }}>
-        <div style={{ paddingLeft: "5px", paddingRight: "5px" }}>
-          <div style={{ display: "flex", marginTop: "20px" }}>
-            <Sidebar categoryNavItems={categoryNavItems} />
-            <div className="flex-1 min-w-0">
-              <LinksContent />
-            </div>
-          </div>
-        </div>
-      </div>
+      <PageWithSidebarTemplate
+        sidebarSlot={<Sidebar categoryNavItems={categoryNavItems} />}
+        mainSlot={<LinksContent />}
+      />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { BreadcrumbJsonLd } from "@repo/seo/json-ld";
 import { PrivacyPolicyContent } from "@repo/ui/privacy-policy-content";
+import { PageWithSidebarTemplate } from "@repo/ui/page-with-sidebar-template";
 import { siteConfig, categoryNavItems } from "../../lib/site-config";
 import { Sidebar } from "../../components/sidebar";
 
@@ -20,16 +21,10 @@ export default function PrivacyPolicyPage() {
         ]}
       />
 
-      <div className="mx-auto" style={{ maxWidth: "1020px" }}>
-        <div style={{ paddingLeft: "5px", paddingRight: "5px" }}>
-          <div style={{ display: "flex", marginTop: "0px" }}>
-            <Sidebar categoryNavItems={categoryNavItems} />
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <PrivacyPolicyContent />
-            </div>
-          </div>
-        </div>
-      </div>
+      <PageWithSidebarTemplate
+        sidebarSlot={<Sidebar categoryNavItems={categoryNavItems} />}
+        mainSlot={<PrivacyPolicyContent />}
+      />
     </>
   );
 }

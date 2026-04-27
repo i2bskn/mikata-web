@@ -48,7 +48,9 @@
     "./column-article-author": "./src/column-article-author.tsx",
     "./column-detail-main": "./src/column-detail-main.tsx",
     "./plan-review-section": "./src/plan-review-section.tsx",
-    "./related-plans-section": "./src/related-plans-section.tsx"
+    "./related-plans-section": "./src/related-plans-section.tsx",
+    "./faq-content": "./src/faq-content.tsx",
+    "./select-contact-content": "./src/select-contact-content.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

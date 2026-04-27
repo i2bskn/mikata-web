@@ -1,61 +1,52 @@
 import type { Metadata } from "next";
 import { BreadcrumbJsonLd } from "@repo/seo/json-ld";
 import { PickupList } from "@repo/ui/pickup-list";
+import { PageWithSidebarTemplate } from "@repo/ui/page-with-sidebar-template";
+import { SearchResultsPagination } from "@repo/ui/search-results-pagination";
 import { siteConfig, categoryNavItems } from "../../lib/site-config";
 import { Sidebar } from "../../components/sidebar";
+import { SearchResultsBottom } from "../../components/search-results-bottom";
+import { pickupItems } from "../../lib/data/pickup-items";
+
+const PER_PAGE = 10;
+const BASE_PATH = "/pickup_item";
 
 export const metadata: Metadata = {
   title: "特集",
 };
 
-const pickupItems = [
-  {
-    title: "【各便40席限定】簡単！便利！離島フェリーチケットの予約＆詳細はこちら",
-    imageUrl: "/images/sidebar/ferry-banner.webp",
-    href: "https://ishigaki-tours.com/ferry/",
-    external: true,
-    date: "2025年9月28日",
-  },
-  {
-    title: "一生モノの絶景体験！石垣島『青の洞窟』で神秘のシュノーケリングツアー",
-    imageUrl: "/images/plans/bluecave304.webp",
-    href: "/plan?category=bluecave",
-    date: "2025年2月19日",
-  },
-  {
-    title: "【石垣空港送迎付き】人気の石垣島レンタカー特集！",
-    imageUrl: "/images/plans/kayak306.webp",
-    href: "https://rentacar.ishigaki-tours.com/",
-    external: true,
-    date: "2025年2月19日",
-  },
-  {
-    title: "【ツアーズ厳選】安心＆満足度No.1のおすすめプラン特集！",
-    imageUrl: "/images/sidebar/premium-plan-banner.png",
-    href: "/campaign/premium-plan.html",
-    date: "2025年2月18日",
-  },
-  {
-    title: "【写真無料サービス】絶景と感動の瞬間を無料写真でプレゼント☆",
-    imageUrl: "/images/plans/bluecave305.webp",
-    href: "/scene-time/freetourphotos.html",
-    date: "2025年2月18日",
-  },
-  {
-    title: "【青の洞窟1日セットプラン】シュノーケリングと大自然を1日で巡る充実ツアー特集！",
-    imageUrl: "/images/plans/setplan362.webp",
-    href: "/scene-time/setplan.html",
-    date: "2025年2月17日",
-  },
-  {
-    title: "【前日・当日予約OK！】急な旅行でも気軽に参加できる青の洞窟ツアー",
-    imageUrl: "/images/plans/setplan349.webp",
-    href: "/scene-time/same_day_booking.html",
-    date: "2025年2月16日",
-  },
-];
+type SearchParams = Record<string, string | string[] | undefined>;
 
-export default function PickupItemPage() {
+function pickFirst(value: string | string[] | undefined): string | undefined {
+  if (Array.isArray(value)) return value[0];
+  return value;
+}
+
+function parsePage(searchParams: SearchParams): number {
+  const raw = pickFirst(searchParams.page);
+  const parsed = raw !== undefined ? Number.parseInt(raw, 10) : NaN;
+  return Number.isFinite(parsed) && parsed >= 1 ? parsed : 1;
+}
+
+function buildHref(page: number): string {
+  if (page <= 1) return BASE_PATH;
+  return `${BASE_PATH}?page=${page}`;
+}
+
+export default async function PickupItemPage({
+  searchParams,
+}: {
+  searchParams?: Promise<SearchParams>;
+}) {
+  const sp = (await searchParams) ?? {};
+  const page = parsePage(sp);
+
+  const total = pickupItems.length;
+  const totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
+  const safePage = Math.min(page, totalPages);
+  const startIdx = (safePage - 1) * PER_PAGE;
+  const pageItems = pickupItems.slice(startIdx, startIdx + PER_PAGE);
+
   return (
     <>
       <BreadcrumbJsonLd
@@ -65,18 +56,28 @@ export default function PickupItemPage() {
         ]}
       />
 
-      <div
-        className="mx-auto"
-        style={{ maxWidth: "1020px", padding: "0 10px" }}
-      >
-        <div className="flex gap-5" style={{ marginTop: "20px" }}>
-          <Sidebar categoryNavItems={categoryNavItems} />
-
-          <div className="flex-1 min-w-0">
-            <PickupList items={pickupItems} />
-          </div>
-        </div>
-      </div>
+      <PageWithSidebarTemplate
+        sidebarSlot={<Sidebar categoryNavItems={categoryNavItems} />}
+        mainSlot={
+          <>
+            <PickupList
+              items={pageItems}
+              startIdx={startIdx + 1}
+              total={total}
+            />
+            <SearchResultsPagination
+              page={safePage}
+              perPage={PER_PAGE}
+              total={total}
+              prevPageHref={safePage > 1 ? buildHref(safePage - 1) : undefined}
+              nextPageHref={
+                safePage < totalPages ? buildHref(safePage + 1) : undefined
+              }
+            />
+          </>
+        }
+        bottomSectionsSlot={<SearchResultsBottom />}
+      />
     </>
   );
 }

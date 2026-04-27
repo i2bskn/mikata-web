@@ -10,9 +10,18 @@ export interface PickupItem {
 
 export interface PickupListProps {
   items: PickupItem[];
+  /** 表示している先頭件目（1始まり）。既定 1 */
+  startIdx?: number;
+  /** 全件数。既定 items.length */
+  total?: number;
 }
 
-export const PickupList: FC<PickupListProps> = ({ items }) => {
+export const PickupList: FC<PickupListProps> = ({
+  items,
+  startIdx = 1,
+  total = items.length,
+}) => {
+  const endIdx = startIdx + items.length - 1;
   return (
     <>
       <h1
@@ -34,7 +43,7 @@ export const PickupList: FC<PickupListProps> = ({ items }) => {
           marginBottom: "16px",
         }}
       >
-        1〜{items.length}件/{items.length}件中
+        {startIdx}〜{endIdx}件/{total}件中
       </p>
 
       <div

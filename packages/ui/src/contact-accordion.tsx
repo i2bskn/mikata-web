@@ -65,29 +65,41 @@ export function ContactAccordion({
               fontSize: "16.8px",
               fontWeight: "400",
               color: "#212529",
-              padding: "12px 0 4px 0",
               margin: 0,
             }}
           >
-            {category.title}
+            <button
+              type="button"
+              onClick={() => toggleCategory(catIndex)}
+              aria-expanded={openCategories.has(catIndex)}
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "12px 0",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                font: "inherit",
+                color: "inherit",
+                textAlign: "left",
+              }}
+            >
+              <span>{category.title}</span>
+              <span
+                style={{
+                  fontSize: "20px",
+                  lineHeight: 1,
+                  color: "#333",
+                  flexShrink: 0,
+                  marginLeft: "12px",
+                }}
+              >
+                {openCategories.has(catIndex) ? "−" : "＋"}
+              </span>
+            </button>
           </h3>
-
-          <button
-            type="button"
-            onClick={() => toggleCategory(catIndex)}
-            style={{
-              display: "block",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              fontSize: "20px",
-              lineHeight: "1.2",
-              color: "#333",
-              padding: "2px 0",
-            }}
-          >
-            {openCategories.has(catIndex) ? "−" : "＋"}
-          </button>
 
           {openCategories.has(catIndex) && (
             <div style={{ marginTop: "8px", display: "flex", flexDirection: "column", gap: "8px" }}>
