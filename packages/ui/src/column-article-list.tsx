@@ -26,9 +26,7 @@ export const ColumnArticleList: FC<ColumnArticleListProps> = ({
     <section
       style={{
         backgroundColor: "#fff",
-        border: "1px solid #e6e6e6",
-        borderRadius: "5px",
-        padding: "16px",
+        padding: "16px 0",
         marginBottom: "20px",
       }}
     >
