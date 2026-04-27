@@ -21,7 +21,7 @@ export function ColumnList({
   articles,
   iconUrl,
   title = "ツアーズコラム",
-  seeMoreHref = "/column",
+  seeMoreHref = "/column-top",
   seeMoreLabel = "一覧を見る",
 }: ColumnListProps) {
   return (
