@@ -191,10 +191,38 @@ export const relatedBanners = [
 ];
 
 /**
- * ツアーズコラムの記事（トップページのコラムリスト・/column-top で利用）
- * - 並びはサンプル。`views` 降順で閲覧数ランキング、その他で人気記事として表示する
+ * ツアーズコラムの記事（トップページのコラムリスト・/column-top・/column で利用）
+ * - 並びは date 降順（新着順）。views で閲覧数ランキングを派生
  */
 export const columnArticles = [
+  {
+    href: "/column/individual-snorkeling-spots",
+    image: "/images/column/snorkeling-guide.webp",
+    title: "石垣島個人シュノーケリングできる場所｜安全ビーチ＆地図ガイド",
+    date: "2026年4月27日",
+    views: 973,
+  },
+  {
+    href: "/column/hidden-beaches",
+    image: "/images/column/maboroshi-island.webp",
+    title: "石垣島の穴場ビーチ7選！地元民が教える「本当に綺麗な海」と混雑回避のコツ",
+    date: "2026年4月27日",
+    views: 3023,
+  },
+  {
+    href: "/column/snorkeling-complete-guide",
+    image: "/images/column/snorkeling-guide.webp",
+    title: "石垣島シュノーケリング初心者完全ガイド｜ツアー選び・個人スポット・ランキングまで解説",
+    date: "2026年4月25日",
+    views: 658,
+  },
+  {
+    href: "/column/beach-recommendations",
+    image: "/images/column/maboroshi-island.webp",
+    title: "石垣島のビーチおすすめ｜綺麗な海・穴場・地図で失敗しない選び方",
+    date: "2026年4月22日",
+    views: 339,
+  },
   {
     href: "/column/maboroshi-island-guide",
     image: "/images/column/maboroshi-island.webp",
@@ -229,6 +257,41 @@ export const columnArticles = [
     title: "ウミガメシュノーケリング攻略！高確率で会えるツアー・時間帯・写真の撮り方",
     date: "2026年3月23日",
     views: 478,
+  },
+  {
+    href: "/column/manta-snorkeling-tour",
+    image: "/images/column/maboroshi-island.webp",
+    title: "石垣島マンタシュノーケリングおすすめツアーランキング！半日プランや時期も",
+    date: "2026年3月16日",
+    views: 685,
+  },
+  {
+    href: "/column/maboroshi-island-tour",
+    image: "/images/column/maboroshi-island.webp",
+    title: "石垣島「幻の島」シュノーケリングおすすめツアー！上陸のみ・竹富島セットも",
+    date: "2026年3月11日",
+    views: 580,
+  },
+  {
+    href: "/column/diving-complete-guide",
+    image: "/images/column/sea-turtles.webp",
+    title: "石垣島ダイビング完全ガイド！マンタに会える人気スポットと初心者向け情報",
+    date: "2026年1月12日",
+    views: 204,
+  },
+  {
+    href: "/column/marine-activity-latest",
+    image: "/images/column/snorkeling-guide.webp",
+    title: "石垣島で楽しむマリンアクティビティ最新ガイド！シュノーケルスポットと当日予約のコツ",
+    date: "2026年1月12日",
+    views: 173,
+  },
+  {
+    href: "/column/family-snorkeling",
+    image: "/images/column/sea-turtles.webp",
+    title: "石垣島で子どもとシュノーケリングを満喫！家族で楽しめる体験スポットまとめ",
+    date: "2025年12月20日",
+    views: 718,
   },
   {
     href: "/column/snorkeling-guide",

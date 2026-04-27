@@ -2,7 +2,8 @@ import type { FC, ReactNode } from "react";
 import type { ColumnArticle } from "./column-list";
 
 export type ColumnArticleListProps = {
-  title: string;
+  /** 中見出し。未指定なら見出し（タイトル + iconNode）非表示 */
+  title?: string;
   /** 見出し左に表示する SVG 等（任意） */
   iconNode?: ReactNode;
   articles: ColumnArticle[];
@@ -30,19 +31,21 @@ export const ColumnArticleList: FC<ColumnArticleListProps> = ({
         marginBottom: "20px",
       }}
     >
-      <h2
-        className="flex items-center gap-2"
-        style={{
-          fontSize: "20px",
-          fontWeight: 700,
-          color: "#212529",
-          lineHeight: "1.2",
-          marginBottom: "8px",
-        }}
-      >
-        {iconNode}
-        <span>{title}</span>
-      </h2>
+      {title && (
+        <h2
+          className="flex items-center gap-2"
+          style={{
+            fontSize: "20px",
+            fontWeight: 700,
+            color: "#212529",
+            lineHeight: "1.2",
+            marginBottom: "8px",
+          }}
+        >
+          {iconNode}
+          <span>{title}</span>
+        </h2>
+      )}
 
       <div style={{ borderTop: "1px solid #e6e6e6" }}>
         {articles.map((article) => (

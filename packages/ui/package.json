@@ -42,7 +42,8 @@
     "./column-article-list": "./src/column-article-list.tsx",
     "./column-search-box": "./src/column-search-box.tsx",
     "./column-top-main": "./src/column-top-main.tsx",
-    "./column-top-hero-slider": "./src/column-top-hero-slider.tsx"
+    "./column-top-hero-slider": "./src/column-top-hero-slider.tsx",
+    "./column-icons": "./src/column-icons.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
