@@ -31,3 +31,4 @@ export { IconCardGrid, type IconCardGridProps, type IconCardGridItem } from "./i
 export { SearchPanel, type SearchPanelProps, type SearchPanelPlanOption } from "./search-panel";
 export { ConditionSearch, type ConditionSearchProps, type ConditionSearchItem } from "./condition-search";
 export { ColumnList, type ColumnListProps, type ColumnArticle } from "./column-list";
+export { RelatedSitesGrid, type RelatedSitesGridProps, type RelatedSiteItem } from "./related-sites-grid";

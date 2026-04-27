@@ -6,9 +6,10 @@ import { IconCardGrid } from "@repo/ui/icon-card-grid";
 import { SearchPanel } from "@repo/ui/search-panel";
 import { ConditionSearch } from "@repo/ui/condition-search";
 import { ColumnList } from "@repo/ui/column-list";
+import { RelatedSitesGrid } from "@repo/ui/related-sites-grid";
 import { OrganizationJsonLd } from "@repo/seo/json-ld";
 import { getPopularPlans } from "../lib/data/plans";
-import { siteConfig, sidebarConfig, categoryNavItems, campaignItems, columnArticles, combinationItems, conditionSearchItems, planOptions, sceneTimeItems } from "../lib/site-config";
+import { siteConfig, sidebarConfig, categoryNavItems, campaignItems, columnArticles, combinationItems, conditionSearchItems, planOptions, relatedBanners, sceneTimeItems } from "../lib/site-config";
 import { Sidebar } from "../components/sidebar";
 
 // ヒーローバナーのスライドデータ（旧サイト準拠: 4枚）
@@ -76,33 +77,7 @@ export default function HomePage() {
 
             <ColumnList articles={columnArticles} iconUrl="/images/icons/pen.svg" />
 
-            {/* 関連情報 - 旧サイト: 2x3グリッドのバナー */}
-            <section style={{ marginTop: "20px" }}>
-              <h2 style={{ fontSize: "21.6px", fontWeight: 600, color: "#212529", lineHeight: "1.2", marginBottom: "16px", borderBottom: "4px solid #1a9edb", paddingBottom: "10px" }}>
-                関連情報
-              </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {[
-                  { href: "/campaign/premium-plan.html", image: "/images/related/premium-plan.png", alt: "ツアーズ厳選プレミアムプラン" },
-                  { href: "https://ishigaki-tours.com/ferry/", image: "/images/related/ferry.webp", alt: "離島フェリー予約" },
-                  { href: "https://ishigaki-tours.com/", image: "/images/related/bluecavetour.webp", alt: "石垣島ツアーズ" },
-                  { href: "https://kohama-tours.com/", image: "/images/related/kohama.webp", alt: "小浜島ツアーズ" },
-                  { href: "https://iriomote-tours.com/", image: "/images/related/iriomote.png", alt: "西表島ツアーズ" },
-                  { href: "/affiliate-programs/", image: "/images/related/affiliate.png", alt: "アフィリエイトパートナー募集" },
-                ].map((item) => (
-                  <a
-                    key={item.alt}
-                    href={item.href}
-                    target={item.href.startsWith("http") ? "_blank" : undefined}
-                    rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="block overflow-hidden"
-                    style={{ borderRadius: "4px" }}
-                  >
-                    <img src={item.image} alt={item.alt} style={{ width: "100%", height: "auto", display: "block" }} />
-                  </a>
-                ))}
-              </div>
-            </section>
+            <RelatedSitesGrid items={relatedBanners} />
 
             {/* 予約から参加の流れ - 既存サイト: 4ステップ横並び */}
             <section style={{ marginTop: "20px", paddingBottom: "40px" }}>

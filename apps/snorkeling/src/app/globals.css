@@ -7,8 +7,8 @@
   --font-sans: var(--font-noto-sans-jp);
 
   /* サイトカラー（既存サイトから抽出） */
-  --color-primary: #1a9edb;
-  --color-primary-dark: #0097d8;
+  --color-primary: #007CDB;
+  --color-primary-dark: #0066b8;
   --color-accent: #f08300;
   --color-danger: #e65226;
   --color-decoration-2: #dbfbfc;

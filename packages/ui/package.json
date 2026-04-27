@@ -28,7 +28,8 @@
     "./icon-card-grid": "./src/icon-card-grid.tsx",
     "./search-panel": "./src/search-panel.tsx",
     "./condition-search": "./src/condition-search.tsx",
-    "./column-list": "./src/column-list.tsx"
+    "./column-list": "./src/column-list.tsx",
+    "./related-sites-grid": "./src/related-sites-grid.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

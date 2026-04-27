@@ -149,6 +149,18 @@ export const conditionSearchItems = [
 ];
 
 /**
+ * トップページ「関連情報」のバナー
+ */
+export const relatedBanners = [
+  { href: "/campaign/premium-plan.html", image: "/images/related/premium-plan.png", alt: "ツアーズ厳選プレミアムプラン" },
+  { href: "https://ishigaki-tours.com/tours-ferry/", image: "/images/related/ferry.webp", alt: "離島フェリー予約" },
+  { href: "https://ishigaki-tours.com/", image: "/images/related/ishigaki-tours.webp", alt: "石垣島ツアーズ" },
+  { href: "https://kohama-tours.com/", image: "/images/related/kohama.webp", alt: "小浜島ツアーズ" },
+  { href: "https://iriomote-tours.com/", image: "/images/related/iriomote.png", alt: "西表島ツアーズ" },
+  { href: "https://shummake-affiliate-programs.manus.space/", image: "/images/related/affiliate.png", alt: "アフィリエイトパートナー募集" },
+];
+
+/**
  * トップページ「ツアーズコラム」の記事
  */
 export const columnArticles = [
