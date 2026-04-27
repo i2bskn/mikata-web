@@ -240,14 +240,28 @@ export const columnArticles = [
 ];
 
 /**
- * /column-top のヒーロー記事
+ * /column-top のヒーロースライダー記事
  */
-export const columnHero = {
-  href: "/column/snorkeling-spots",
-  image: "/images/column/snorkeling-guide.webp",
-  title: "石垣島シュノーケリングおすすめスポット15選！透明度・ウミガメ・初心者向けを比較",
-  views: 1956,
-};
+export const columnHeroSlides = [
+  {
+    href: "/column/snorkeling-spots",
+    image: "/images/column/snorkeling-guide.webp",
+    title: "石垣島シュノーケリングおすすめスポット15選！透明度・ウミガメ・初心者向けを比較",
+    views: 1956,
+  },
+  {
+    href: "/column/maboroshi-island-guide",
+    image: "/images/column/maboroshi-island.webp",
+    title: "幻の島（浜島）完全ガイド！上陸ベストシーズン・所要時間・おすすめツアーまとめ",
+    views: 812,
+  },
+  {
+    href: "/column/sea-turtle-best-season",
+    image: "/images/column/sea-turtles.webp",
+    title: "石垣島でウミガメに会える時期は？5〜9月が狙い目＆ベストシーズン徹底解説",
+    views: 1284,
+  },
+];
 
 /**
  * トップページ検索パネルのプラン選択

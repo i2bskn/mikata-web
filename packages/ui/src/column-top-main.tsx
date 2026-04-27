@@ -2,16 +2,14 @@ import type { FC } from "react";
 import { ColumnArticleList } from "./column-article-list";
 import type { ColumnArticle } from "./column-list";
 import { ColumnSearchBox } from "./column-search-box";
-
-export type ColumnTopHero = {
-  href: string;
-  image: string;
-  title: string;
-  views: number;
-};
+import {
+  ColumnTopHeroSlider,
+  type ColumnTopHeroSlide,
+} from "./column-top-hero-slider";
 
 export type ColumnTopMainProps = {
-  hero: ColumnTopHero;
+  /** ヒーロー画像のスライド */
+  heroSlides: ColumnTopHeroSlide[];
   pickupArticles: ColumnArticle[];
   rankingArticles: ColumnArticle[];
   /** 検索フォームの送信先（任意） */
@@ -20,6 +18,8 @@ export type ColumnTopMainProps = {
   seeAllHref?: string;
   /** 見出し左線・ボタン枠の色。既定は var(--color-danger) */
   accentColor?: string;
+  /** ヒーロースライダーの自動再生間隔（ms）。0 で無効 */
+  heroAutoPlayInterval?: number;
 };
 
 const PageHeading: FC<{ accentColor: string }> = ({ accentColor }) => (
@@ -38,91 +38,6 @@ const PageHeading: FC<{ accentColor: string }> = ({ accentColor }) => (
   </h1>
 );
 
-const HeroBlock: FC<{ hero: ColumnTopHero }> = ({ hero }) => (
-  <a
-    href={hero.href}
-    style={{
-      position: "relative",
-      display: "block",
-      overflow: "hidden",
-      borderRadius: "8px",
-      textDecoration: "none",
-      color: "#fff",
-      marginBottom: "20px",
-    }}
-  >
-    <img
-      src={hero.image}
-      alt={hero.title}
-      style={{ width: "100%", height: "auto", display: "block" }}
-    />
-    <div
-      aria-hidden="true"
-      style={{
-        position: "absolute",
-        top: "50%",
-        left: "8px",
-        transform: "translateY(-50%)",
-        width: "32px",
-        height: "64px",
-        backgroundColor: "rgba(255,255,255,0.5)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: "4px",
-      }}
-    >
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.5">
-        <polyline points="15 18 9 12 15 6" />
-      </svg>
-    </div>
-    <div
-      aria-hidden="true"
-      style={{
-        position: "absolute",
-        top: "50%",
-        right: "8px",
-        transform: "translateY(-50%)",
-        width: "32px",
-        height: "64px",
-        backgroundColor: "rgba(255,255,255,0.5)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: "4px",
-      }}
-    >
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.5">
-        <polyline points="9 18 15 12 9 6" />
-      </svg>
-    </div>
-    <div
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        bottom: 0,
-        padding: "16px 20px",
-        background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.7) 100%)",
-      }}
-    >
-      <p style={{ fontSize: "16px", fontWeight: 700, lineHeight: 1.5, marginBottom: "4px" }}>
-        {hero.title}
-      </p>
-      <span
-        className="flex items-center gap-1"
-        style={{ fontSize: "13px", justifyContent: "flex-end" }}
-      >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-          <circle cx="12" cy="12" r="3" />
-        </svg>
-        {hero.views}
-      </span>
-    </div>
-  </a>
-);
-
 const PickupIcon: FC = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7a8794" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
@@ -139,18 +54,22 @@ const CrownIcon: FC = () => (
 );
 
 export const ColumnTopMain: FC<ColumnTopMainProps> = ({
-  hero,
+  heroSlides,
   pickupArticles,
   rankingArticles,
   searchAction,
   seeAllHref = "/column",
   accentColor = "var(--color-danger, #ed3434)",
+  heroAutoPlayInterval,
 }) => {
   return (
     <>
       <PageHeading accentColor={accentColor} />
 
-      <HeroBlock hero={hero} />
+      <ColumnTopHeroSlider
+        slides={heroSlides}
+        autoPlayInterval={heroAutoPlayInterval}
+      />
 
       <ColumnSearchBox action={searchAction} accentColor={accentColor} />
 

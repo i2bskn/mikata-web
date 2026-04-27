@@ -41,7 +41,8 @@
     "./page-with-sidebar-template": "./src/page-with-sidebar-template.tsx",
     "./column-article-list": "./src/column-article-list.tsx",
     "./column-search-box": "./src/column-search-box.tsx",
-    "./column-top-main": "./src/column-top-main.tsx"
+    "./column-top-main": "./src/column-top-main.tsx",
+    "./column-top-hero-slider": "./src/column-top-hero-slider.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

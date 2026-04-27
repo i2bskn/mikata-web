@@ -4,7 +4,7 @@ import { PageWithSidebarTemplate } from "@repo/ui/page-with-sidebar-template";
 import {
   categoryNavItems,
   columnArticles,
-  columnHero,
+  columnHeroSlides,
 } from "../../lib/site-config";
 import { Sidebar } from "../../components/sidebar";
 
@@ -23,7 +23,7 @@ export default function ColumnTopPage() {
       sidebarSlot={<Sidebar categoryNavItems={categoryNavItems} />}
       mainSlot={
         <ColumnTopMain
-          hero={columnHero}
+          heroSlides={columnHeroSlides}
           pickupArticles={pickupArticles}
           rankingArticles={rankingArticles}
           seeAllHref="/column"

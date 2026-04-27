@@ -205,14 +205,28 @@ export const columnArticles = [
 ];
 
 /**
- * /column-top のヒーロー記事
+ * /column-top のヒーロースライダー記事
  */
-export const columnHero = {
-  href: "/column/sightseeing-spots",
-  image: "/images/column/activity.webp",
-  title: "石垣島観光スポット15選！穴場・グルメ・モデルコースと「行ってはいけない」時期を徹底解説",
-  views: 735,
-};
+export const columnHeroSlides = [
+  {
+    href: "/column/sightseeing-spots",
+    image: "/images/column/activity.webp",
+    title: "石垣島観光スポット15選！穴場・グルメ・モデルコースと「行ってはいけない」時期を徹底解説",
+    views: 735,
+  },
+  {
+    href: "/column/bluecave-individual-route",
+    image: "/images/column/marine.webp",
+    title: "石垣島・青の洞窟へ個人で行く方法！自力ルートとがっかりしないコツ",
+    views: 1927,
+  },
+  {
+    href: "/column/sea-turtle-season",
+    image: "/images/column/okinawa-bluecave.webp",
+    title: "石垣島でウミガメに会える時期は？5〜9月が狙い目＆ベストシーズン解説",
+    views: 1154,
+  },
+];
 
 export const planOptions = [
   { value: "bluecave", label: "青の洞窟シュノーケリング" },
