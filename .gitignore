@@ -39,3 +39,6 @@ yarn-error.log*
 
 # Screenshots
 .screenshots
+
+# Claude Code local settings
+.claude/settings.local.json
