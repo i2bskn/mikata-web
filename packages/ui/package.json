@@ -10,7 +10,17 @@
     "./card": "./src/card.tsx",
     "./plan-card": "./src/plan-card.tsx",
     "./image-slider": "./src/image-slider.tsx",
-    "./category-nav": "./src/category-nav.tsx"
+    "./category-nav": "./src/category-nav.tsx",
+    "./ranking-list": "./src/ranking-list.tsx",
+    "./visitor-content": "./src/visitor-content.tsx",
+    "./contact-accordion": "./src/contact-accordion.tsx",
+    "./pickup-list": "./src/pickup-list.tsx",
+    "./faq-accordion": "./src/faq-accordion.tsx",
+    "./administrator-content": "./src/administrator-content.tsx",
+    "./commercial-transactions-content": "./src/commercial-transactions-content.tsx",
+    "./policy-content": "./src/policy-content.tsx",
+    "./privacy-policy-content": "./src/privacy-policy-content.tsx",
+    "./links-content": "./src/links-content.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

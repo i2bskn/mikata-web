@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 
-interface FaqItem {
+export interface FaqItem {
   question: string;
   answer: string;
 }
 
-interface FaqAccordionProps {
+export interface FaqAccordionProps {
   items: FaqItem[];
 }
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BreadcrumbJsonLd } from "@repo/seo/json-ld";
 import { siteConfig, categoryNavItems } from "../../lib/site-config";
 import { Sidebar } from "../../components/sidebar";
-import { FaqAccordion } from "./faq-accordion";
+import { FaqAccordion } from "@repo/ui/faq-accordion";
 
 export const metadata: Metadata = {
   title: "よくある質問＆注意事項",

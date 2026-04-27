@@ -2,28 +2,34 @@
 
 import { useState } from "react";
 
-interface ContactMethod {
+export interface ContactMethod {
   type: "line" | "phone" | "email" | "faq" | "link";
   label: string;
   href: string;
 }
 
-interface ContactSubItem {
+export interface ContactSubItem {
   title: string;
   description: string;
   methods: ContactMethod[];
 }
 
-interface ContactCategory {
+export interface ContactCategory {
   title: string;
   subItems: ContactSubItem[];
 }
 
-interface ContactAccordionProps {
+export interface ContactAccordionProps {
   items: ContactCategory[];
+  themeColor?: string;
+  accentColor?: string;
 }
 
-export function ContactAccordion({ items }: ContactAccordionProps) {
+export function ContactAccordion({
+  items,
+  themeColor = "#1a9edb",
+  accentColor = "#f08300",
+}: ContactAccordionProps) {
   const [openCategories, setOpenCategories] = useState<Set<number>>(new Set());
   const [openSubItem, setOpenSubItem] = useState<string | null>(null);
 
@@ -54,7 +60,6 @@ export function ContactAccordion({ items }: ContactAccordionProps) {
             marginBottom: "8px",
           }}
         >
-          {/* #7: fontSize=16.8px, #8: fontWeight=400, #9: color=#212529 */}
           <h3
             style={{
               fontSize: "16.8px",
@@ -67,7 +72,6 @@ export function ContactAccordion({ items }: ContactAccordionProps) {
             {category.title}
           </h3>
 
-          {/* +/- トグル */}
           <button
             type="button"
             onClick={() => toggleCategory(catIndex)}
@@ -85,7 +89,6 @@ export function ContactAccordion({ items }: ContactAccordionProps) {
             {openCategories.has(catIndex) ? "−" : "＋"}
           </button>
 
-          {/* 展開時のサブアイテム */}
           {openCategories.has(catIndex) && (
             <div style={{ marginTop: "8px", display: "flex", flexDirection: "column", gap: "8px" }}>
               {category.subItems.map((subItem, subIndex) => {
@@ -101,13 +104,13 @@ export function ContactAccordion({ items }: ContactAccordionProps) {
                         justifyContent: "space-between",
                         alignItems: "center",
                         padding: "12px 16px",
-                        border: "1px solid #1a9edb",
+                        border: `1px solid ${themeColor}`,
                         borderRadius: "6px",
                         background: "#fff",
                         cursor: "pointer",
                         fontSize: "15px",
                         fontWeight: "600",
-                        color: "#f08300",
+                        color: accentColor,
                         textAlign: "left",
                       }}
                     >
@@ -117,7 +120,7 @@ export function ContactAccordion({ items }: ContactAccordionProps) {
                         height="16"
                         viewBox="0 0 24 24"
                         fill="none"
-                        stroke="#f08300"
+                        stroke={accentColor}
                         strokeWidth="2"
                         style={{
                           flexShrink: 0,
@@ -135,9 +138,9 @@ export function ContactAccordion({ items }: ContactAccordionProps) {
                           fontSize: "14px",
                           lineHeight: "1.8",
                           color: "#333",
-                          borderLeft: "1px solid #1a9edb",
-                          borderRight: "1px solid #1a9edb",
-                          borderBottom: "1px solid #1a9edb",
+                          borderLeft: `1px solid ${themeColor}`,
+                          borderRight: `1px solid ${themeColor}`,
+                          borderBottom: `1px solid ${themeColor}`,
                           borderRadius: "0 0 6px 6px",
                         }}
                       >
@@ -155,7 +158,7 @@ export function ContactAccordion({ items }: ContactAccordionProps) {
                                   alignItems: "center",
                                   gap: "6px",
                                   padding: "8px 16px",
-                                  backgroundColor: "#1a9edb",
+                                  backgroundColor: themeColor,
                                   color: "#fff",
                                   borderRadius: "5px",
                                   fontSize: "13px",

@@ -38,7 +38,18 @@
       "Bash(NODE_OPTIONS='--stack-trace-limit=50' npx next build)",
       "Bash(npx tsc:*)",
       "Bash(pnpm --filter bluecavetour exec tsc --noEmit)",
-      "Bash(pnpm --filter snorkeling build)"
+      "Bash(pnpm --filter snorkeling build)",
+      "Bash(cp -r apps/bluecavetour/public/images/icons/* apps/snorkeling/public/images/icons/)",
+      "Bash(cp -r apps/bluecavetour/public/images/flow/* apps/snorkeling/public/images/flow/)",
+      "Bash(cp -r apps/bluecavetour/public/images/partner/* apps/snorkeling/public/images/partner/)",
+      "Bash(cp -r apps/bluecavetour/public/images/footer/* apps/snorkeling/public/images/footer/)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(list\\(d.get\\('mcpServers', {}\\).keys\\(\\)\\), indent=2\\)\\)\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(list\\(d.get\\('mcpServers', {}\\).keys\\(\\)\\), indent=2\\)\\)\")",
+      "Bash(grep -E \"\\\\.\\(tsx?|jsx?\\)$\")",
+      "Bash(grep -E \"\\\\.tsx?$\")",
+      "Bash(sed -i '' '/category: \"hama-island\",/{/features/!{s/category: \"hama-island\",/category: \"hama-island\",\\\\n    features: [],\\\\n    includes: [],\\\\n    schedule: [],/;}}' apps/snorkeling/src/lib/data/plans.ts)",
+      "Bash(sed -i '' '/category: \"setplan\",/{/features/!{s/category: \"setplan\",/category: \"setplan\",\\\\n    features: [],\\\\n    includes: [],\\\\n    schedule: [],/;}}' apps/snorkeling/src/lib/data/plans.ts)",
+      "Bash(sed -i '' '/category: \"seaturtles\",/{/features/!{s/category: \"seaturtles\",/category: \"seaturtles\",\\\\n    features: [],\\\\n    includes: [],\\\\n    schedule: [],/;}}' apps/snorkeling/src/lib/data/plans.ts)"
     ]
   }
 }

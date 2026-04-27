@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import { Header } from "@repo/ui/header";
+import { Footer } from "@repo/ui/footer";
 import {
   siteConfig,
   navItems,
+  footerSections,
+  companyInfo,
   headerConfig,
   menuConfig,
+  relatedSites,
+  socialLinks,
+  partnerLogos,
 } from "../lib/site-config";
 import "./globals.css";
 
@@ -48,6 +54,23 @@ export default function RootLayout({
           menuSliderImages={[]}
         />
         <main>{children}</main>
+        <Footer
+          siteName={siteConfig.siteName}
+          sections={footerSections}
+          companyInfo={companyInfo}
+          relatedSites={relatedSites}
+          socialLinks={socialLinks}
+          partnerLogos={partnerLogos}
+          decorativeImageUrls={[
+            "/images/footer/footer-01.webp",
+            "/images/footer/footer-02.webp",
+            "/images/footer/footer-03.webp",
+            "/images/footer/footer-04.webp",
+            "/images/footer/footer-05.webp",
+            "/images/footer/footer-06.webp",
+            "/images/footer/footer-07.webp",
+          ]}
+        />
       </body>
     </html>
   );

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { BreadcrumbJsonLd } from "@repo/seo/json-ld";
+import { ContactAccordion } from "@repo/ui/contact-accordion";
 import { siteConfig, categoryNavItems } from "../../lib/site-config";
 import { Sidebar } from "../../components/sidebar";
-import { ContactAccordion } from "./contact-accordion";
 
 export const metadata: Metadata = {
   title: "お問い合わせ",
@@ -133,7 +133,6 @@ export default function SelectContactPage() {
           <Sidebar categoryNavItems={categoryNavItems} />
 
           <div className="flex-1 min-w-0">
-            {/* #1: 24px OK, #2: color=#212529, #3: marginBottom=12px */}
             <h1
               style={{
                 fontSize: "24px",
@@ -146,7 +145,6 @@ export default function SelectContactPage() {
             </h1>
 
             <div style={{ fontSize: "14px", lineHeight: "1.8", color: "#212529" }}>
-              {/* #4: fontSize=16.8px, #5: fontWeight=400, #6: borderBottom=none */}
               <div
                 style={{
                   textAlign: "center",
