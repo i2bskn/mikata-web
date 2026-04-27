@@ -32,12 +32,12 @@ export const CategoryNav: FC<CategoryNavProps> = ({ items, className = "", embed
         padding: "12px 0",
       }}
     >
-      <div className="flex overflow-x-auto md:flex-wrap md:justify-center" style={{ WebkitOverflowScrolling: "touch", scrollbarWidth: "none" }}>
+      <div style={{ display: "flex", flexWrap: "nowrap", overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
         {items.map((item) => (
           <a
             key={item.href}
             href={item.href}
-            className="flex flex-col items-center text-center shrink-0 md:shrink w-[70px] md:w-[12.5%] md:min-w-[85px] text-[10px] md:text-[12px]"
+            className="flex flex-col items-center text-center shrink-0 w-[70px] md:w-[10%] text-[10px] md:text-[12px]"
             style={{
               padding: "0px 0px 5px",
               color: "#333",
@@ -50,9 +50,9 @@ export const CategoryNav: FC<CategoryNavProps> = ({ items, className = "", embed
               <img
                 src={item.iconUrl}
                 alt={item.label}
-                width={32}
-                height={32}
-                className="w-[32px] h-[32px]"
+                width={65}
+                height={38}
+                className="w-[65px] h-[38px]"
                 style={{ objectFit: "contain" }}
               />
             </span>

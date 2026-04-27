@@ -31,6 +31,16 @@ export const sidebarConfig = {
 };
 
 /**
+ * トップページ「シーン・時間帯から探す」の表示項目
+ */
+export const sceneTimeItems = [
+  { href: "/scene-time/half-day.html", image: "/images/scene/half-day.jpg", title: "お手軽！半日ツアー" },
+  { href: "/scene-time/one-day.html", image: "/images/scene/one-day.jpg", title: "満喫！1日ツアー" },
+  { href: "/scene-time/freetourphotos.html", image: "/images/scene/free-photo.webp", title: "写真無料サービス付きツアー" },
+  { href: "/scene-time/same_day_booking.html", image: "/images/scene/same-day.webp", title: "前日・当日予約可能な青の洞窟ツアー" },
+];
+
+/**
  * トップページ「人気の組み合わせから探す」の表示項目
  */
 export const combinationItems = [
@@ -69,6 +79,75 @@ export const categoryNavItems = [
 /**
  * ヘッダーナビゲーション - 既存サイト: アクティビティ、人気ランキング、「選ばれる理由」とは
  */
+/**
+ * トップページ「条件から探す」のアコーディオン項目
+ */
+export const conditionSearchItems = [
+  { label: "スポットから探す", options: ["青の洞窟"] },
+  { label: "見れるものから探す", options: ["星空", "マングローブ", "熱帯魚", "ウミガメ", "朝陽"] },
+  {
+    label: "シーンから探す",
+    options: ["学生旅行", "男旅", "社員旅行", "カップル", "ハネムーン", "ファミリー", "一人旅", "団体旅行", "女子旅"],
+  },
+  {
+    label: "シーズンから探す",
+    options: ["1年中", "冬（1月〜3月）", "夏（7月〜9月）", "春（4月〜6月）", "秋（10月〜12月）"],
+  },
+  { label: "時間帯から探す", options: ["早朝", "午前", "午後", "1日", "夕方"] },
+  {
+    label: "こだわり条件から探す",
+    options: [
+      "前日予約OK",
+      "当日予約OK",
+      "食事付き",
+      "度付きゴーグル",
+      "写真サービス無料",
+      "自由時間あり",
+      "60歳以上参加OKツアー",
+      "外国語対応（English available）",
+      "初心者向け",
+      "複数割対象",
+      "雨の日OK",
+      "マル優（安全対策優良）業者ツアー",
+    ],
+  },
+];
+
+/**
+ * トップページ「ツアーズコラム」の記事
+ */
+export const columnArticles = [
+  {
+    href: "/column/okinawa-bluecave",
+    image: "/images/column/okinawa-bluecave.webp",
+    title: "【沖縄・青の洞窟】行く前に知りたい！場所・アクセス・おすすめツアーまとめ",
+    date: "2025年11月10日",
+    views: 213,
+  },
+  {
+    href: "/column/marine",
+    image: "/images/column/marine.webp",
+    title: "石垣島で人気のマリンスポーツ完全ガイド！初心者でも楽しめるSUP・ダイビング・パラセーリング",
+    date: "2025年11月4日",
+    views: 106,
+  },
+  {
+    href: "/column/activity",
+    image: "/images/column/activity.webp",
+    title: "石垣島のアクティビティの魅力とは？後悔しないための楽しみ方＆ツアー選びのコツ",
+    date: "2025年10月31日",
+    views: 124,
+  },
+];
+
+export const planOptions = [
+  { value: "bluecave", label: "青の洞窟シュノーケリング" },
+  { value: "kayak", label: "カヤック" },
+  { value: "setplan", label: "セットプラン" },
+  { value: "charter", label: "チャーター" },
+  { value: "marine-sports", label: "マリンスポーツ" },
+];
+
 export const navItems: NavItem[] = [
   { label: "アクティビティ", href: "/plan" },
   { label: "人気ランキング", href: "/ranking" },

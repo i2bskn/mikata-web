@@ -39,7 +39,7 @@ export function PopularRankingSlider({
         <a
           href={seeMoreHref}
           style={{
-            backgroundColor: "#ed3434",
+            backgroundColor: "var(--color-danger)",
             color: "#fff",
             padding: "2px 10px",
             borderRadius: "3px",

@@ -68,12 +68,12 @@ export interface HeaderProps {
 const CssCloseIcon: FC<{ size?: number }> = ({ size = 30 }) => (
   <div style={{ width: size, height: size, position: "relative" }}>
     <span style={{
-      display: "block", width: size, height: 2, backgroundColor: "#ed3434",
+      display: "block", width: size, height: 2, backgroundColor: "var(--color-danger)",
       position: "absolute", top: "50%", left: 0,
       transform: "rotate(45deg)", transformOrigin: "center",
     }} />
     <span style={{
-      display: "block", width: size, height: 2, backgroundColor: "#ed3434",
+      display: "block", width: size, height: 2, backgroundColor: "var(--color-danger)",
       position: "absolute", top: "50%", left: 0,
       transform: "rotate(-45deg)", transformOrigin: "center",
     }} />
@@ -317,9 +317,9 @@ export const Header: FC<HeaderProps> = ({
                   style={{ width: "20px", height: "20px" }}
                   className="flex flex-col justify-center gap-[4px]"
                 >
-                  <span style={{ display: "block", width: "20px", height: "3px", backgroundColor: "#ed3434", borderRadius: "1px" }} />
-                  <span style={{ display: "block", width: "20px", height: "3px", backgroundColor: "#ed3434", borderRadius: "1px" }} />
-                  <span style={{ display: "block", width: "20px", height: "3px", backgroundColor: "#ed3434", borderRadius: "1px" }} />
+                  <span style={{ display: "block", width: "20px", height: "3px", backgroundColor: "var(--color-danger)", borderRadius: "1px" }} />
+                  <span style={{ display: "block", width: "20px", height: "3px", backgroundColor: "var(--color-danger)", borderRadius: "1px" }} />
+                  <span style={{ display: "block", width: "20px", height: "3px", backgroundColor: "var(--color-danger)", borderRadius: "1px" }} />
                 </div>
                 <span className="whitespace-nowrap" style={{ fontSize: "10px", marginTop: "2px", color: "#333", fontWeight: 400 }}>
                   メニュー

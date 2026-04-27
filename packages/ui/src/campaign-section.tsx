@@ -16,7 +16,7 @@ export function CampaignSection({
   iconUrl = "/images/icons/flag.svg",
 }: CampaignSectionProps) {
   return (
-    <section style={{ marginTop: "20px" }}>
+    <section style={{ marginTop: "20px", marginBottom: "40px" }}>
       <h2
         className="flex items-center gap-2"
         style={{ fontSize: "21.6px", fontWeight: 600, color: "#212529", lineHeight: "1.2", marginBottom: "12px" }}

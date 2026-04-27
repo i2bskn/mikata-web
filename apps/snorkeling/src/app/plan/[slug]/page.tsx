@@ -85,7 +85,7 @@ export default async function PlanDetailPage({ params }: PageProps) {
           <span
             style={{
               display: "inline-block",
-              backgroundColor: "#ed3434",
+              backgroundColor: "var(--color-danger)",
               color: "#fff",
               padding: "1px 4px",
               fontSize: "12px",
@@ -172,7 +172,7 @@ export default async function PlanDetailPage({ params }: PageProps) {
                     </svg>
                   ))}
                 </div>
-                <span style={{ fontSize: "16px", fontWeight: "600", color: "#ed3434" }}>{plan.rating.toFixed(1)}</span>
+                <span style={{ fontSize: "16px", fontWeight: "600", color: "var(--color-danger)" }}>{plan.rating.toFixed(1)}</span>
                 <span
                   style={{
                     background: "linear-gradient(45deg, #ffcd5a, #fd9a46)",
@@ -203,7 +203,7 @@ export default async function PlanDetailPage({ params }: PageProps) {
                     flex: 1,
                     padding: "10px 0",
                     fontWeight: "600",
-                    color: "#ed3434",
+                    color: "var(--color-danger)",
                     backgroundColor: "transparent",
                     border: "none",
                     borderRight: i < arr.length - 1 ? "1px solid #eee" : "none",
@@ -227,8 +227,8 @@ export default async function PlanDetailPage({ params }: PageProps) {
                   color: "#212529",
                 }}
               >
-                直近で<strong style={{ color: "#ed3434", fontSize: "18px" }}>87</strong>人が検討しています。
-                <strong style={{ color: "#ed3434", marginLeft: "8px" }}>残りわずか△</strong>
+                直近で<strong style={{ color: "var(--color-danger)", fontSize: "18px" }}>87</strong>人が検討しています。
+                <strong style={{ color: "var(--color-danger)", marginLeft: "8px" }}>残りわずか△</strong>
               </div>
 
               <div style={{ marginTop: "16px" }}>
@@ -239,7 +239,7 @@ export default async function PlanDetailPage({ params }: PageProps) {
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "center",
-                    backgroundColor: "#ed3434",
+                    backgroundColor: "var(--color-danger)",
                     color: "#fff",
                     padding: "8px 0px",
                     borderRadius: "3px",
@@ -311,7 +311,7 @@ export default async function PlanDetailPage({ params }: PageProps) {
                   <tr style={{ borderBottom: "1px solid #e5e5e5" }}>
                     <th style={{ padding: "10px", backgroundColor: THEME_COLOR, fontWeight: 700, color: "#fff", textAlign: "left", width: "150px", fontSize: "16.8px" }}>金額</th>
                     <td style={{ padding: "10px", color: "#333" }}>
-                      <div>大人(中学生以上)：{plan.originalPrice && <span style={{ textDecoration: "line-through", color: "#999" }}>{plan.originalPrice.toLocaleString()}円</span>} → <strong style={{ color: "#ed3434" }}>{plan.price.toLocaleString()}円</strong></div>
+                      <div>大人(中学生以上)：{plan.originalPrice && <span style={{ textDecoration: "line-through", color: "#999" }}>{plan.originalPrice.toLocaleString()}円</span>} → <strong style={{ color: "var(--color-danger)" }}>{plan.price.toLocaleString()}円</strong></div>
                       {plan.childPrice && <div style={{ marginTop: "4px" }}>小人(中学生未満)：<strong>{plan.childPrice.toLocaleString()}円</strong></div>}
                       {plan.infantPrice && <div style={{ marginTop: "4px" }}>幼児(小学生未満)：<strong>{plan.infantPrice.toLocaleString()}円</strong></div>}
                     </td>

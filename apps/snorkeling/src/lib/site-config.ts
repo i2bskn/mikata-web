@@ -36,6 +36,26 @@ export const sidebarConfig = {
 };
 
 /**
+ * トップページ「シーン・時間帯から探す」の表示項目
+ */
+export const sceneTimeItems = [
+  { href: "/scene-time/half-day.html", image: "/images/scene/half-day.jpg", title: "お手軽！半日ツアー" },
+  { href: "/scene-time/one-day.html", image: "/images/scene/one-day.jpg", title: "満喫！1日ツアー" },
+  { href: "/scene-time/freetourphotos.html", image: "/images/scene/free-photo.webp", title: "写真無料サービス付きツアー" },
+  { href: "/scene-time/same_day_booking.html", image: "/images/scene/same-day.webp", title: "前日・当日予約可能なツアー" },
+];
+
+/**
+ * トップページ「人気スポットから探す」の表示項目
+ */
+export const spotItems = [
+  { href: "/scene-time/seaturtles.html", image: "/images/spot/seaturtles.jpg", title: "ウミガメシュノーケリング" },
+  { href: "/spot/maboroshi", image: "/images/spot/maboroshi.png", title: "幻の島" },
+  { href: "/spot/bluecave", image: "/images/spot/bluecave.png", title: "青の洞窟" },
+  { href: "/spot/kabira", image: "/images/spot/kabira.webp", title: "川平湾" },
+];
+
+/**
  * トップページ「人気の組み合わせから探す」の表示項目
  */
 export const combinationItems = [
@@ -45,12 +65,19 @@ export const combinationItems = [
 ];
 
 /**
+ * トップページ「キャンペーンから探す」の表示項目
+ */
+export const campaignSearchItems = [
+  { href: "/campaign/premium-plan.html", title: "【厳選】石垣島シュノーケリングツアーズプレミアムプラン", image: "/images/campaign/premium-plan.webp" },
+];
+
+/**
  * トップページ「おすすめ観光情報＆キャンペーン」の表示項目
  */
 export const campaignItems = [
-  { href: "https://ishigaki-tours.com/tours-ferry/", image: "/images/campaign/ferry.webp", title: "【各便40席限定】簡単！便利！離島フェリーチケットの予約＆詳細はこちら" },
-  { href: "/uncategorized/setplan-activity-ferry.html", image: "/images/campaign/iriomote-ferry.webp", title: "【石垣島発着】西表島ツアー（フェリーチケット付き）" },
-  { href: "/scene-time/pickup-tour.html", image: "/images/campaign/pickup-tour.webp", title: "送迎付きツアー特集！ホテルからラクラク出発" },
+  { href: "https://ishigaki-tours.com/tours-ferry/", image: "/images/campaign/ferry.jpg", title: "【各便40席限定】簡単！便利！離島フェリーチケットの予約＆詳細はこちら" },
+  { href: "/uncategorized/setplan-activity-ferry.html", image: "/images/campaign/iriomote-ferry.png", title: "【石垣島発着】西表島ツアー（フェリーチケット付き）" },
+  { href: "/scene-time/pickup-tour.html", image: "/images/campaign/pickup-tour.jpg", title: "送迎付きツアー特集！ホテルからラクラク出発" },
   { href: "/scene-time/freetourphotos.html", image: "/images/campaign/freetourphotos.webp", title: "【写真無料】絶景と感動を写真でプレゼント！" },
   { href: "/campaign/premium-plan.html", image: "/images/campaign/premium-plan.webp", title: "【ツアーズ厳選】安心＆満足度No.1のおすすめプラン特集！" },
   { href: "/scene-time/same_day_booking.html", image: "/images/campaign/same-day-booking.webp", title: "前日・当日予約可能なツアー" },
@@ -62,13 +89,101 @@ export const campaignItems = [
 export const categoryNavItems = [
   { label: "人気プラン\nランキング", href: "/ranking", iconUrl: "/images/category/ranking.webp", isActive: true },
   { label: "アクティビティ", href: "/plan", iconUrl: "/images/category/activity.webp" },
-  { label: "スポットから\n探す", href: "/spot", iconUrl: "/images/category/spot.webp" },
+  { label: "スポットから\n探す", href: "/spot", iconUrl: "/images/category/spot.png" },
   { label: "人気の組み合わ\nせから探す", href: "/category/combinations", iconUrl: "/images/category/setplan.webp" },
   { label: "当日予約OK\nプラン", href: "/scene-time/same_day_booking.html", iconUrl: "/images/category/same-day.webp" },
-  { label: "お得な割引\nセットプラン", href: "/category/setplan", iconUrl: "/images/category/setplan-discount.webp" },
+  { label: "お得な割引\nセットプラン", href: "/category/setplan", iconUrl: "/images/category/setplan-discount.jpg" },
   { label: "プレミアム\n厳選プラン", href: "/campaign/premium-plan.html", iconUrl: "/images/category/premium.jpg" },
   { label: "送迎付きツアー", href: "/plan?category=shuttle", iconUrl: "/images/category/transfer.png" },
   { label: "観光ツアー", href: "/scene-time/sightseeing.html", iconUrl: "/images/category/sightseeing.webp" },
+];
+
+/**
+ * トップページ「条件から探す」のアコーディオン項目
+ */
+export const conditionSearchItems = [
+  { label: "スポットから探す", options: ["川平湾", "青の洞窟", "幻の島(浜島)", "西表島", "バラス島"] },
+  { label: "見れるものから探す", options: ["熱帯魚", "水牛", "ウミガメ", "マングローブ", "マンタ"] },
+  {
+    label: "シーンから探す",
+    options: ["カップル", "ハネムーン", "一人旅", "ファミリー", "団体旅行", "女子旅", "学生旅行", "男旅", "社員旅行"],
+  },
+  {
+    label: "シーズンから探す",
+    options: ["1年中", "冬（1月〜3月）", "夏（7月〜9月）", "春（4月〜6月）", "秋（10月〜12月）"],
+  },
+  { label: "時間帯から探す", options: ["1日", "午前", "午後"] },
+  {
+    label: "こだわり条件から探す",
+    options: [
+      "当日予約OK",
+      "前日予約OK",
+      "60歳以上参加OKツアー",
+      "食事付き",
+      "66歳以上参加OK",
+      "シャワー付き",
+      "最低価格保証",
+      "スキンダイビングOK",
+      "雨の日OK",
+      "リベンジ割対象",
+      "複数割対象",
+      "全部込み込み料金",
+      "写真サービス無料",
+      "送迎あり",
+      "初心者向け",
+      "マル優（安全対策優良）業者ツアー",
+      "0歳参加OK",
+      "1歳参加OK",
+      "2歳参加OK",
+      "3歳参加OK",
+      "4歳参加OK",
+      "5歳参加OK",
+      "6〜9歳参加OK",
+      "団体・大人数OK",
+      "外国語対応（English available）",
+      "自由時間あり",
+      "度付きゴーグル",
+      "泳げない人向け",
+    ],
+  },
+];
+
+/**
+ * トップページ「ツアーズコラム」の記事
+ */
+export const columnArticles = [
+  {
+    href: "/column/snorkeling-guide",
+    image: "/images/column/snorkeling-guide.webp",
+    title: "石垣島シュノーケリング完全ガイド！初心者でも安心の楽しみ方",
+    date: "2025年11月10日",
+    views: 185,
+  },
+  {
+    href: "/column/maboroshi-island",
+    image: "/images/column/maboroshi-island.webp",
+    title: "幻の島（浜島）とは？行き方・ベストシーズン・おすすめツアーまとめ",
+    date: "2025年11月4日",
+    views: 142,
+  },
+  {
+    href: "/column/sea-turtles",
+    image: "/images/column/sea-turtles.webp",
+    title: "石垣島でウミガメに会える！シュノーケリングツアーの選び方＆おすすめスポット",
+    date: "2025年10月31日",
+    views: 98,
+  },
+];
+
+/**
+ * トップページ検索パネルのプラン選択
+ */
+export const planOptions = [
+  { value: "snorkeling", label: "シュノーケリング" },
+  { value: "seaturtles", label: "ウミガメツアー" },
+  { value: "hama-island", label: "幻の島ツアー" },
+  { value: "setplan", label: "セットプラン" },
+  { value: "diving", label: "ダイビング" },
 ];
 
 /**

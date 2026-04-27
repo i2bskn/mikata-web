@@ -77,7 +77,7 @@ export default function VisitorPage() {
             <div className="flex-1 min-w-0">
               <VisitorContent
                 siteName={siteConfig.siteName}
-                kvImageUrl="/images/visitor/kv.webp"
+                kvImageUrl="/images/visitor/kv.jpg"
                 kvImageAlt="石垣島シュノーケリング専門 厳選ツアーがいっぱい！"
                 introText="石垣島で楽しめるシュノーケリングに特化した様々な情報や厳選したツアー・プランを掲載しております。"
                 siteDescription="現地在住スタッフも多く、掲載しているツアーや体験の多くをスタッフ自身が実際に体験しています。その中でも「本当にいい」と感じたものだけを厳選して掲載しているため、安心してご利用いただけます。"

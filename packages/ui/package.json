@@ -25,7 +25,10 @@
     "./floating-booking-button": "./src/floating-booking-button.tsx",
     "./popular-ranking-slider": "./src/popular-ranking-slider.tsx",
     "./campaign-section": "./src/campaign-section.tsx",
-    "./combination-section": "./src/combination-section.tsx"
+    "./icon-card-grid": "./src/icon-card-grid.tsx",
+    "./search-panel": "./src/search-panel.tsx",
+    "./condition-search": "./src/condition-search.tsx",
+    "./column-list": "./src/column-list.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

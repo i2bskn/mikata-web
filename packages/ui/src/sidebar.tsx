@@ -101,7 +101,7 @@ export function Sidebar({ categoryNavItems, planCount, banners }: SidebarProps) 
             type="button"
             style={{
               width: "100%",
-              backgroundColor: "#ed3434",
+              backgroundColor: "var(--color-danger)",
               color: "#fff",
               border: "none",
               borderRadius: "5px",

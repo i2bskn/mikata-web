@@ -27,4 +27,7 @@ export { Sidebar, type SidebarProps, type SidebarCategoryNavItem } from "./sideb
 export { FloatingBookingButton } from "./floating-booking-button";
 export { PopularRankingSlider, type PopularRankingSliderProps, type PopularRankingPlan } from "./popular-ranking-slider";
 export { CampaignSection, type CampaignSectionProps, type CampaignItem } from "./campaign-section";
-export { CombinationSection, type CombinationSectionProps, type CombinationItem } from "./combination-section";
+export { IconCardGrid, type IconCardGridProps, type IconCardGridItem } from "./icon-card-grid";
+export { SearchPanel, type SearchPanelProps, type SearchPanelPlanOption } from "./search-panel";
+export { ConditionSearch, type ConditionSearchProps, type ConditionSearchItem } from "./condition-search";
+export { ColumnList, type ColumnListProps, type ColumnArticle } from "./column-list";

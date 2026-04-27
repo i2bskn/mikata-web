@@ -11,20 +11,20 @@ export const metadata: Metadata = {
 const pickupItems = [
   {
     title: "【各便40席限定】簡単！便利！離島フェリーチケットの予約＆詳細はこちら",
-    imageUrl: "/images/pickup/ferry.webp",
+    imageUrl: "/images/pickup/ferry.jpg",
     href: "https://ishigaki-tours.com/tours-ferry",
     external: true,
     date: "2025年5月26日",
   },
   {
     title: "【石垣島発着】西表島ツアー（フェリーチケット付き）",
-    imageUrl: "/images/pickup/iriomote-ferry.webp",
+    imageUrl: "/images/pickup/iriomote-ferry.png",
     href: "/uncategorized/setplan-activity-ferry.html",
     date: "2025年5月26日",
   },
   {
     title: "【送迎付き】石垣島シュノーケリングツアーで 手ぶら＆ラクラク参加！",
-    imageUrl: "/images/pickup/pickup-tour.webp",
+    imageUrl: "/images/pickup/pickup-tour.jpg",
     href: "/scene-time/pickup-tour.html",
     date: "2025年5月26日",
   },
