@@ -25,3 +25,6 @@ export { PrivacyPolicyContent } from "./privacy-policy-content";
 export { LinksContent, type LinksContentProps, type LinkItem } from "./links-content";
 export { Sidebar, type SidebarProps, type SidebarCategoryNavItem } from "./sidebar";
 export { FloatingBookingButton } from "./floating-booking-button";
+export { PopularRankingSlider, type PopularRankingSliderProps, type PopularRankingPlan } from "./popular-ranking-slider";
+export { CampaignSection, type CampaignSectionProps, type CampaignItem } from "./campaign-section";
+export { CombinationSection, type CombinationSectionProps, type CombinationItem } from "./combination-section";

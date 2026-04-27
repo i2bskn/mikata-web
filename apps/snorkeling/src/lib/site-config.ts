@@ -36,6 +36,27 @@ export const sidebarConfig = {
 };
 
 /**
+ * トップページ「人気の組み合わせから探す」の表示項目
+ */
+export const combinationItems = [
+  { href: "/setplan/snorkeling-kabirabay", title: "シュノーケリング×川平湾ツアー", image: "/images/setplan/snorkeling-kabirabay.webp" },
+  { href: "/setplan/snorkeling-mangrove", title: "シュノーケリング×マングローブツアー", image: "/images/setplan/snorkeling-mangrove.webp" },
+  { href: "/setplan/maboroshi-taketomi", title: "幻の島×竹富島ツアー", image: "/images/setplan/maboroshi-taketomi.webp" },
+];
+
+/**
+ * トップページ「おすすめ観光情報＆キャンペーン」の表示項目
+ */
+export const campaignItems = [
+  { href: "https://ishigaki-tours.com/tours-ferry/", image: "/images/campaign/ferry.webp", title: "【各便40席限定】簡単！便利！離島フェリーチケットの予約＆詳細はこちら" },
+  { href: "/uncategorized/setplan-activity-ferry.html", image: "/images/campaign/iriomote-ferry.webp", title: "【石垣島発着】西表島ツアー（フェリーチケット付き）" },
+  { href: "/scene-time/pickup-tour.html", image: "/images/campaign/pickup-tour.webp", title: "送迎付きツアー特集！ホテルからラクラク出発" },
+  { href: "/scene-time/freetourphotos.html", image: "/images/campaign/freetourphotos.webp", title: "【写真無料】絶景と感動を写真でプレゼント！" },
+  { href: "/campaign/premium-plan.html", image: "/images/campaign/premium-plan.webp", title: "【ツアーズ厳選】安心＆満足度No.1のおすすめプラン特集！" },
+  { href: "/scene-time/same_day_booking.html", image: "/images/campaign/same-day-booking.webp", title: "前日・当日予約可能なツアー" },
+];
+
+/**
  * カテゴリナビアイテム - 既存サイトのタブナビ（9項目）
  */
 export const categoryNavItems = [

@@ -1,10 +1,12 @@
 import Link from "next/link";
-import { PlanCard } from "@repo/ui/plan-card";
 import { ImageSlider } from "@repo/ui/image-slider";
 import { CategoryNav } from "@repo/ui/category-nav";
+import { PopularRankingSlider } from "@repo/ui/popular-ranking-slider";
+import { CampaignSection } from "@repo/ui/campaign-section";
+import { CombinationSection } from "@repo/ui/combination-section";
 import { OrganizationJsonLd } from "@repo/seo/json-ld";
 import { getPopularPlans } from "../lib/data/plans";
-import { siteConfig, categoryNavItems } from "../lib/site-config";
+import { siteConfig, categoryNavItems, campaignItems, combinationItems } from "../lib/site-config";
 import { Sidebar } from "../components/sidebar";
 
 // ヒーローバナーのスライドデータ（元サイト準拠）
@@ -185,96 +187,9 @@ export default function HomePage() {
 
           {/* メインコンテンツ */}
           <div className="flex-1 min-w-0">
-            {/* 人気プランランキング */}
-            <section>
-              <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
-                <h2 className="flex items-center gap-2" style={{ fontSize: "21.6px", fontWeight: 600, color: "#212529", lineHeight: "1.2" }}>
-                  <img src="/images/icons/crown.svg" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
-                  人気プランランキング
-                </h2>
-                <Link
-                  href="/ranking"
-                  style={{
-                    backgroundColor: "#ed3434",
-                    color: "#fff",
-                    padding: "2px 10px",
-                    borderRadius: "3px",
-                    fontSize: "16.8px",
-                    fontWeight: "400",
-                    textDecoration: "none",
-                  }}
-                >
-                  一覧を見る
-                </Link>
-              </div>
+            <PopularRankingSlider plans={popularPlans} />
 
-              <div className="flex gap-3 overflow-x-auto pb-3" style={{ scrollSnapType: "x mandatory" }}>
-                {popularPlans.map((plan, index) => (
-                  <div
-                    key={plan.slug}
-                    className="shrink-0"
-                    style={{ width: "160px", scrollSnapAlign: "start", position: "relative" }}
-                  >
-                    <div
-                      style={{
-                        position: "absolute",
-                        left: "0",
-                        top: "0",
-                        zIndex: 10,
-                        backgroundColor: ["#E3AF3A", "#ADADAD", "#AA845E"][index] ?? "#34e5d3",
-                        color: "#fff",
-                        fontSize: "12px",
-                        fontWeight: "bold",
-                        padding: "2px 10px",
-                        borderRadius: "0 0 8px 0",
-                      }}
-                    >
-                      {index + 1}位
-                    </div>
-                    <PlanCard
-                      name={plan.name}
-                      description={plan.description}
-                      imageUrl={plan.imageUrl}
-                      href={`/plan/${plan.slug}`}
-                      price={plan.price}
-                      originalPrice={plan.originalPrice}
-                      tags={plan.tags}
-                      reviewCount={plan.reviewCount}
-                    />
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* おすすめ観光情報＆キャンペーン */}
-            <section style={{ marginTop: "20px" }}>
-              <h2 className="flex items-center gap-2" style={{ fontSize: "21.6px", fontWeight: 600, color: "#212529", lineHeight: "1.2", marginBottom: "12px" }}>
-                <img src="/images/icons/flag.svg" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
-                おすすめ観光情報＆キャンペーン
-              </h2>
-              <div className="flex gap-3 overflow-x-auto pb-3" style={{ scrollSnapType: "x mandatory" }}>
-                {[
-                  { href: "https://ishigaki-tours.com/tours-ferry/", image: "/images/campaign/ferry.webp", title: "【各便40席限定】簡単！便利！離島フェリーチケットの予約＆詳細はこちら" },
-                  { href: "/uncategorized/setplan-activity-ferry.html", image: "/images/campaign/iriomote-ferry.webp", title: "【石垣島発着】西表島ツアー（フェリーチケット付き）" },
-                  { href: "/scene-time/pickup-tour.html", image: "/images/campaign/pickup-tour.webp", title: "送迎付きツアー特集！ホテルからラクラク出発" },
-                  { href: "/scene-time/freetourphotos.html", image: "/images/campaign/freetourphotos.webp", title: "【写真無料】絶景と感動を写真でプレゼント！" },
-                  { href: "/campaign/premium-plan.html", image: "/images/campaign/premium-plan.webp", title: "【ツアーズ厳選】安心＆満足度No.1のおすすめプラン特集！" },
-                  { href: "/scene-time/same_day_booking.html", image: "/images/campaign/same-day-booking.webp", title: "前日・当日予約可能なツアー" },
-                ].map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="block shrink-0 overflow-hidden"
-                    style={{ width: "160px", scrollSnapAlign: "start", borderRadius: "4px", border: "1px solid #e5e5e5" }}
-                  >
-                    <div style={{ width: "160px", height: "89px", overflow: "hidden" }}>
-                      <img src={item.image} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                    </div>
-                    <div style={{ padding: "8px", fontSize: "12px", fontWeight: "bold", color: "#333", lineHeight: "1.4" }}>{item.title}</div>
-                  </Link>
-                ))}
-              </div>
-            </section>
+            <CampaignSection items={campaignItems} />
 
             {/* 人気スポットから探す */}
             <section style={{ marginTop: "20px" }}>
@@ -362,47 +277,7 @@ export default function HomePage() {
               </div>
             </section>
 
-            {/* 人気の組み合わせから探す */}
-            <section style={{ marginTop: "20px", padding: "16px" }}>
-              <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
-                <h2 className="flex items-center gap-2" style={{ fontSize: "21.6px", fontWeight: 600, color: "#212529", lineHeight: "1.2" }}>
-                  人気の組み合わせから探す
-                </h2>
-                <Link
-                  href="/category/setplan"
-                  style={{
-                    backgroundColor: "#ed3434",
-                    color: "#fff",
-                    padding: "2px 10px",
-                    borderRadius: "3px",
-                    fontSize: "16.8px",
-                    fontWeight: "400",
-                    textDecoration: "none",
-                  }}
-                >
-                  一覧を見る
-                </Link>
-              </div>
-              <div className="flex gap-3 overflow-x-auto pb-3 sm:grid sm:grid-cols-3 sm:overflow-visible">
-                {[
-                  { href: "/setplan/snorkeling-kabirabay", title: "シュノーケリング×川平湾ツアー", image: "/images/setplan/snorkeling-kabirabay.webp" },
-                  { href: "/setplan/snorkeling-mangrove", title: "シュノーケリング×マングローブツアー", image: "/images/setplan/snorkeling-mangrove.webp" },
-                  { href: "/setplan/maboroshi-taketomi", title: "幻の島×竹富島ツアー", image: "/images/setplan/maboroshi-taketomi.webp" },
-                ].map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="block overflow-hidden shrink-0 w-[150px] sm:w-auto"
-                    style={{ borderRadius: "4px", backgroundColor: "#fff", border: "1px solid #e5e5e5" }}
-                  >
-                    <div style={{ aspectRatio: "4/3", overflow: "hidden" }}>
-                      <img src={item.image} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                    </div>
-                    <div style={{ padding: "10px", fontSize: "13px", fontWeight: "bold", color: "#333" }}>{item.title}</div>
-                  </Link>
-                ))}
-              </div>
-            </section>
+            <CombinationSection items={combinationItems} />
 
             {/* 条件から探す */}
             <section style={{ marginTop: "20px" }}>

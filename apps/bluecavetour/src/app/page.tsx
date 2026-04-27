@@ -1,10 +1,12 @@
 import Link from "next/link";
-import { PlanCard } from "@repo/ui/plan-card";
 import { ImageSlider } from "@repo/ui/image-slider";
 import { CategoryNav } from "@repo/ui/category-nav";
+import { PopularRankingSlider } from "@repo/ui/popular-ranking-slider";
+import { CampaignSection } from "@repo/ui/campaign-section";
+import { CombinationSection } from "@repo/ui/combination-section";
 import { OrganizationJsonLd } from "@repo/seo/json-ld";
 import { getPopularPlans } from "../lib/data/plans";
-import { siteConfig, categoryNavItems } from "../lib/site-config";
+import { siteConfig, categoryNavItems, campaignItems, combinationItems } from "../lib/site-config";
 import { Sidebar } from "../components/sidebar";
 
 // ヒーローバナーのスライドデータ（旧サイト準拠: 4枚）
@@ -198,100 +200,9 @@ export default function HomePage() {
 
           {/* メインコンテンツ */}
           <div className="flex-1 min-w-0">
-            {/* 人気プランランキング */}
-            <section>
-              <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
-                <h2 className="flex items-center gap-2" style={{ fontSize: "21.6px", fontWeight: 600, color: "#212529", lineHeight: "1.2" }}>
-                  <img src="/images/icons/crown.svg" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
-                  人気プランランキング
-                </h2>
-                <Link
-                  href="/ranking"
-                  style={{
-                    backgroundColor: "#ed3434",
-                    color: "#fff",
-                    padding: "2px 10px",
-                    borderRadius: "3px",
-                    fontSize: "16.8px",
-                    fontWeight: "400",
-                    textDecoration: "none",
-                  }}
-                >
-                  一覧を見る
-                </Link>
-              </div>
+            <PopularRankingSlider plans={popularPlans} />
 
-              {/* プランカード横スクロール - 既存サイトは5つ横並び */}
-              <div className="flex gap-3 overflow-x-auto pb-3" style={{ scrollSnapType: "x mandatory" }}>
-                {popularPlans.map((plan, index) => (
-                  <div
-                    key={plan.slug}
-                    className="shrink-0"
-                    style={{ width: "160px", scrollSnapAlign: "start", position: "relative" }}
-                  >
-                    {/* ランキングバッジ */}
-                    <div
-                      style={{
-                        position: "absolute",
-                        left: "0",
-                        top: "0",
-                        zIndex: 10,
-                        backgroundColor: ["#E3AF3A", "#ADADAD", "#AA845E"][index] ?? "#34e5d3",
-                        color: "#fff",
-                        fontSize: "12px",
-                        fontWeight: "bold",
-                        padding: "2px 10px",
-                        borderRadius: "0 0 8px 0",
-                      }}
-                    >
-                      {index + 1}位
-                    </div>
-                    <PlanCard
-                      name={plan.name}
-                      description={plan.description}
-                      imageUrl={plan.imageUrl}
-                      href={`/plan/${plan.slug}`}
-                      price={plan.price}
-                      originalPrice={plan.originalPrice}
-                      tags={plan.tags}
-                      rating={plan.rating}
-                      reviewCount={plan.reviewCount}
-                    />
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* おすすめ観光情報＆キャンペーン - 旧サイト: 横スクロール7カード */}
-            <section style={{ marginTop: "20px" }}>
-              <h2 className="flex items-center gap-2" style={{ fontSize: "21.6px", fontWeight: 600, color: "#212529", lineHeight: "1.2", marginBottom: "12px" }}>
-                <img src="/images/icons/flag.svg" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
-                おすすめ観光情報＆キャンペーン
-              </h2>
-              <div className="flex gap-3 overflow-x-auto pb-3" style={{ scrollSnapType: "x mandatory" }}>
-                {[
-                  { href: "/ferry/tours", image: "/images/campaign/ferry.jpg", title: "【各便40席限定】簡単！便利！離島フェリーチケットの予約＆詳細はこちら" },
-                  { href: "/popular-spot/bluecave.html", image: "/images/campaign/bluecave-spot.png", title: "一生モノの絶景体験！石垣島『青の洞窟』で神秘のシュノーケリングツアー" },
-                  { href: "/scene-time/rental-car.html", image: "/images/campaign/rental-car.png", title: "【石垣空港送迎付き】人気の石垣島レンタカー特集！" },
-                  { href: "/campaign/premium-plan.html", image: "/images/campaign/premium-plan.webp", title: "【ツアーズ厳選】安心＆満足度No.1のおすすめプラン特集！" },
-                  { href: "/scene-time/freetourphotos.html", image: "/images/campaign/freetourphotos.webp", title: "【写真無料】絶景と感動を写真でプレゼント！" },
-                  { href: "/scene-time/setplan.html", image: "/images/campaign/setplan.jpg", title: "お得な割引セットプラン特集" },
-                  { href: "/scene-time/same_day_booking.html", image: "/images/campaign/same-day-booking.webp", title: "前日・当日予約可能な青の洞窟ツアー" },
-                ].map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="block shrink-0 overflow-hidden"
-                    style={{ width: "160px", scrollSnapAlign: "start", borderRadius: "4px", border: "1px solid #e5e5e5" }}
-                  >
-                    <div style={{ width: "160px", height: "89px", overflow: "hidden" }}>
-                      <img src={item.image} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                    </div>
-                    <div style={{ padding: "8px", fontSize: "12px", fontWeight: "bold", color: "#333", lineHeight: "1.4" }}>{item.title}</div>
-                  </Link>
-                ))}
-              </div>
-            </section>
+            <CampaignSection items={campaignItems} />
 
             {/* シーン・時間帯から探す - 既存サイト: SP 2x2グリッド、PC 4列 */}
             <section style={{ marginTop: "20px" }}>
@@ -337,48 +248,7 @@ export default function HomePage() {
               </div>
             </section>
 
-            {/* 人気の組み合わせから探す */}
-            <section style={{ marginTop: "20px", padding: "16px" }}>
-              <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
-                <h2 className="flex items-center gap-2" style={{ fontSize: "21.6px", fontWeight: 600, color: "#212529", lineHeight: "1.2" }}>
-                  <img src="/images/icons/icon-activity.png" alt="" width={30} height={30} style={{ width: "30px", height: "30px", marginRight: "5px" }} />
-                  人気の組み合わせから探す
-                </h2>
-                <Link
-                  href="/category/setplan"
-                  style={{
-                    backgroundColor: "#ed3434",
-                    color: "#fff",
-                    padding: "2px 10px",
-                    borderRadius: "3px",
-                    fontSize: "16.8px",
-                    fontWeight: "400",
-                    textDecoration: "none",
-                  }}
-                >
-                  一覧を見る
-                </Link>
-              </div>
-              <div className="flex gap-3 overflow-x-auto pb-3 sm:grid sm:grid-cols-3 sm:overflow-visible">
-                {[
-                  { href: "/setplan/bluecave-kabirabay.html", title: "青の洞窟×川平湾ツアー", image: "/images/setplan/bluecave-kabirabay.webp" },
-                  { href: "/setplan/bluecave-mangrove.html", title: "青の洞窟×マングローブツアー", image: "/images/setplan/bluecave-mangrove.webp" },
-                  { href: "/setplan/bluecave-sup-kayak.html", title: "石垣島青の洞窟×SUP・カヤック", image: "/images/setplan/bluecave-sup-kayak.webp" },
-                ].map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="block overflow-hidden shrink-0 w-[150px] sm:w-auto"
-                    style={{ borderRadius: "4px", backgroundColor: "#fff", border: "1px solid #e5e5e5" }}
-                  >
-                    <div style={{ aspectRatio: "4/3", overflow: "hidden" }}>
-                      <img src={item.image} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                    </div>
-                    <div style={{ padding: "10px", fontSize: "13px", fontWeight: "bold", color: "#333" }}>{item.title}</div>
-                  </Link>
-                ))}
-              </div>
-            </section>
+            <CombinationSection items={combinationItems} iconUrl="/images/icons/icon-activity.png" />
 
             {/* 条件から探す */}
             <section style={{ marginTop: "20px" }}>

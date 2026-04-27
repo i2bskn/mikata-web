@@ -22,7 +22,10 @@
     "./privacy-policy-content": "./src/privacy-policy-content.tsx",
     "./links-content": "./src/links-content.tsx",
     "./sidebar": "./src/sidebar.tsx",
-    "./floating-booking-button": "./src/floating-booking-button.tsx"
+    "./floating-booking-button": "./src/floating-booking-button.tsx",
+    "./popular-ranking-slider": "./src/popular-ranking-slider.tsx",
+    "./campaign-section": "./src/campaign-section.tsx",
+    "./combination-section": "./src/combination-section.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
