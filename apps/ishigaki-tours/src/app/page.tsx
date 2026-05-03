@@ -21,7 +21,6 @@ import {
   campaignItems,
   campaignSearchItems,
   columnArticles,
-  combinationItems,
   conditionSearchItems,
   planOptions,
   relatedBanners,
@@ -90,8 +89,6 @@ export default async function HomePage({
             <IconCardGrid title="人気スポットから探す" seeMoreHref="/spot" items={spotItems} backgroundImageUrl="/images/section-bg.png" />
 
             <IconCardGrid title="シーン・時間帯から探す" seeMoreHref="/category/scene-time" items={sceneTimeItems} backgroundImageUrl="/images/section-bg.png" />
-
-            <IconCardGrid title="人気の組み合わせから探す" seeMoreHref="/category/setplan" items={combinationItems} backgroundImageUrl="/images/section-bg.png" />
 
             <IconCardGrid title="キャンペーンから探す" seeMoreHref="/category/campaign" items={campaignSearchItems} backgroundImageUrl="/images/section-bg.png" />
 

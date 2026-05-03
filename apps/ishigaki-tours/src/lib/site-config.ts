@@ -56,7 +56,7 @@ export const visitorKvImageUrl = "/images/visitor/kv.jpg";
 export const visitorKvImageAlt = "石垣島専門 厳選ツアー/アクティビティ/レンタカーがいっぱい！";
 
 export const visitorIntroText =
-  "石垣島で楽しめる様々なツアー・アクティビティ・レンタカーの情報や厳選プランを掲載しております。";
+  "石垣島に特化した様々な情報や厳選したツアー・プランを掲載しております。";
 
 export const visitorSiteDescription =
   "現地在住スタッフも多く、掲載しているツアーや体験の多くをスタッフ自身が実際に体験しています。その中でも「本当にいい」と感じたものだけを厳選して掲載しているため、安心してご利用いただけます。";
@@ -64,23 +64,23 @@ export const visitorSiteDescription =
 export const visitorReasons = [
   {
     title: "会員登録不要で簡単予約",
-    text: "石垣島ツアーズでは面倒な会員登録が不要。必要情報を入力して1分程度で予約が完結します。",
+    text: "石垣島ツアーズでは面倒な会員登録が不要。必要情報を入力して1分程度で予約が完結。石垣島ツアーズでは面倒な会員登録をスキップして簡単に予約することができます。",
   },
   {
-    title: "24時間WEB予約受付",
-    text: "石垣島ツアーズは石垣島専門のツアー/アクティビティ/レンタカー予約サイトで、24時間いつでもWEBから簡単にご予約いただけます。せっかくのご旅行を、現地ツアーに参加して最高の思い出にしませんか？",
+    title: "24時間WEB予約受付（相談可能）",
+    text: "石垣島ツアーズは石垣島に特化したアクティビティの予約サイトです。石垣島を知り尽くしたスタッフが多数在籍しておりますので、アクティビティの相談やツアーの空き状況確認等、小さなことから何でもお気軽にお問い合わせくださいませ。いつでも簡単にWEBからご予約が可能です。",
   },
   {
-    title: "石垣島の旅行情報を網羅",
-    text: "石垣島ツアーズは石垣島の旅行・アクティビティに特化した様々な情報を掲載しております。おすすめのアクティビティ、観光スポット、グルメ、レンタカーなど幅広い情報を集約しておりますので、事前にチェックして、最大限に旅行楽しめる準備をしておきましょう！",
+    title: "石垣島最大規模のプラン取扱数",
+    text: "石垣島ツアーズでは石垣島専門のアクティビティ予約サイトの中で最大規模のプラン数を取り扱っております。定番のプランからニッチなコンテンツまで幅広いジャンルを取り揃えています。石垣島で楽しめる多彩な体験が凝縮された当サイトを、ぜひご参考ください。※2025年2月時点 当社調べ（該当月の任意の日程で、予約可能プラン数を各社計測）",
   },
   {
     title: "厳選されたプランのみ掲載",
     text: "石垣島ツアーズは、価格の安さや品ぞろえの豊富さだけではなく、貴重なご旅行を心の底から楽しんでもらうために高品質プランの提案を心がけています。厳選された多くのプランを一度に比較・予約することができるので、お客様の好みにあったプランを見つけることができるでしょう。",
   },
   {
-    title: "プラン情報のわかりやすさ",
-    text: "石垣島ツアーズでは各プランの魅力・情報が最大限に伝わるように「わかりやすさ」「明瞭さ」を意識しております。持ち物や集合場所等の必要な情報をできるだけわかりやすく説明しており、口コミから実際に参加したお客様の声を確認することも可能です。",
+    title: "人気の離島で楽しめるのプランを網羅",
+    text: "西表島、小浜島、竹富島など石垣島から行くことのできる八重山諸島のツアーを多数掲載しております。八重山諸島で楽しめる数多くのツアーを網羅しているので、ご希望のプランが必ず見つかるはずです。",
   },
   {
     title: "直前予約も可能",
@@ -88,16 +88,16 @@ export const visitorReasons = [
   },
   {
     title: "安心の実績",
-    text: "現在、弊社では沖縄の離島を中心に全15以上の地域でアクティビティ予約サイト「ツアーズ」を展開しています。累計45万人以上のお客様からこれまでご予約をいただいており、石垣島ツアーズだけでも多くの参加実績を誇ります。",
+    text: "現在、弊社では沖縄の離島を中心に全15以上の地域でアクティビティ予約サイト「ツアーズ」を展開しています。累計45万人以上のお客様からこれまでご予約をいただいており、石垣島ツアーズだけでも多くの参加実績を誇ります。みなさまのご旅行をより良いものにするために素敵なプランをご提案いたします。＊2025/2/1時点",
   },
   {
     title: "旅行専門家が運営",
-    text: "旅行業を取得した信頼ある旅行専門家が運営。現地在住スタッフも多く、実際に体験した中から厳選して掲載。◼︎旅行業登録番号：沖縄県知事登録旅行業 第3-471号",
+    text: "私たちのサイトは、旅行業を取得した信頼ある旅行専門家が運営しています。現地在住スタッフも多く、掲載しているツアーや体験の多くをスタッフ自身が実際に体験しています。その中でも「本当にいい」と感じたものだけを厳選して掲載しているため、安心してご利用いただけます。さらに、私たちのスタッフ全員が旅行好きという情熱を持っているため、実際に訪れた場所や体験を基にしたリアルなアドバイスやおすすめが満載です。◼︎旅行業登録番号：沖縄県知事登録旅行業　第3-471号",
   },
 ];
 
 export const visitorIslandDescription =
-  "石垣島は、透き通る海と壮大な自然が魅力の南国リゾートです。シュノーケリングやダイビング、SUP、カヌー等のマリンアクティビティはもちろん、離島巡り、観光ツアー、レンタカーで巡るドライブまで、楽しみ方は多種多様。穏やかな海は初心者にも優しく、隠れたビーチやローカルな食堂を巡るのもおすすめ。ゆったりとした時間の中で、自然のエネルギーと島の温かさを全身で感じられることでしょう。";
+  "石垣島は、八重山諸島の玄関口として、多彩な魅力を持つ沖縄屈指のリゾート地です。エメラルドグリーンに輝く海や、白砂が美しいビーチなど、息をのむような絶景が広がっています。島内には豊かな自然が残り、多様なアクティビティが満喫できます。また、西表島や竹富島、小浜島などの周辺離島へも簡単にアクセスできます。";
 
 export const visitorTravelTips: { title: string; text: string }[] = [
   {
@@ -107,6 +107,10 @@ export const visitorTravelTips: { title: string; text: string }[] = [
   {
     title: "レンタカーも事前に予約しておこう",
     text: "繁忙期シーズンや連休などには満車になることが多々ございます。レンタカーがあると観光の利便性が一段と上がりますので、早めのご予約を推奨いたします。",
+  },
+  {
+    title: "服装や持ち物について",
+    text: "季節によって適切な服装がございます。冬のシーズンは想像以上に寒かったなんてこともあるかもしれません。せっかくの旅行で体調を崩さないようにしっかり準備しておきましょう。",
   },
 ];
 
@@ -198,51 +202,45 @@ export const sidebarConfig = {
 };
 
 /**
- * トップページ「シーン・時間帯から探す」の表示項目
+ * トップページ「シーン・時間帯から探す」の表示項目（旧サイト準拠）
  */
 export const sceneTimeItems = [
-  { href: "/scene-time/half-day.html", image: "/images/scene/half-day.jpg", title: "お手軽！半日ツアー" },
-  { href: "/scene-time/one-day.html", image: "/images/scene/one-day.jpg", title: "満喫！1日ツアー" },
-  { href: "/scene-time/freetourphotos.html", image: "/images/scene/free-photo.webp", title: "写真無料サービス付きツアー" },
-  { href: "/scene-time/same_day_booking.html", image: "/images/scene/same-day.webp", title: "前日・当日予約可能なツアー" },
+  { href: "/scene-time/special-plan.html", image: "/images/scene/scene-special-plan.png", title: "ツアーズ限定プラン" },
+  { href: "/scene-time/same_day_booking.html", image: "/images/scene/scene-same-day.jpg", title: "当日予約OKプラン" },
+  { href: "/scene-time/certification-tour.html", image: "/images/scene/scene-certification.png", title: "マル優認定ツアー" },
+  { href: "/scene-time/ferry-ticket.html", image: "/images/scene/scene-ferry-ticket.jpg", title: "フェリーチケット付きツアー" },
 ];
 
 /**
- * トップページ「人気スポットから探す」の表示項目
+ * トップページ「人気スポットから探す」の表示項目（旧サイト準拠）
  */
 export const spotItems = [
-  { href: "/scene-time/seaturtles.html", image: "/images/spot/seaturtles.jpg", title: "ウミガメシュノーケリング" },
-  { href: "/spot/maboroshi", image: "/images/spot/maboroshi.png", title: "幻の島" },
-  { href: "/spot/bluecave", image: "/images/spot/bluecave.png", title: "青の洞窟" },
-  { href: "/spot/kabira", image: "/images/spot/kabira.webp", title: "川平湾" },
+  { href: "/popular-spot/kabira-bay.html", image: "/images/spot/spot-kabira-bay.webp", title: "川平湾" },
+  { href: "/popular-spot/bluecave.html", image: "/images/spot/spot-bluecave.jpg", title: "青の洞窟" },
+  { href: "/popular-spot/hama-island.html", image: "/images/spot/spot-hama-island.jpg", title: "幻の島（浜島）" },
+  { href: "/popular-spot/barasu-island.html", image: "/images/spot/spot-barasu-island.jpg", title: "バラス島" },
 ];
 
 /**
- * トップページ「人気の組み合わせから探す」の表示項目
- */
-export const combinationItems = [
-  { href: "/setplan/snorkeling-kabirabay", title: "シュノーケリング×川平湾ツアー", image: "/images/setplan/snorkeling-kabirabay.webp" },
-  { href: "/setplan/snorkeling-mangrove", title: "シュノーケリング×マングローブツアー", image: "/images/setplan/snorkeling-mangrove.webp" },
-  { href: "/setplan/maboroshi-taketomi", title: "幻の島×竹富島ツアー", image: "/images/setplan/maboroshi-taketomi.webp" },
-];
-
-/**
- * トップページ「キャンペーンから探す」の表示項目
+ * トップページ「キャンペーンから探す」の表示項目（旧サイト準拠）
  */
 export const campaignSearchItems = [
-  { href: "/campaign/premium-plan.html", title: "【厳選】石垣島シュノーケリングツアーズプレミアムプラン", image: "/images/campaign/premium-plan.webp" },
+  { href: "/campaign/spacial-sale-plan.html", title: "特別SALEプラン", image: "/images/campaign/campaign-search-sale.jpg" },
+  { href: "/campaign/gw-activity.html", title: "GWアクティビティ特集", image: "/images/campaign/campaign-search-gw.png" },
+  { href: "/campaign/premium-plan.html", title: "ツアーズ厳選プレミアムプラン", image: "/images/campaign/campaign-search-premium.png" },
+  { href: "/campaign/multi-buy-discount.html", title: "複数割キャンペーン", image: "/images/campaign/campaign-search-multi-buy.png" },
 ];
 
 /**
- * トップページ「おすすめ観光情報＆キャンペーン」の表示項目
+ * トップページ「おすすめ観光情報＆キャンペーン」の表示項目（旧サイト準拠）
  */
 export const campaignItems = [
-  { href: "https://ishigaki-tours.com/tours-ferry/", image: "/images/campaign/ferry.jpg", title: "【各便40席限定】簡単！便利！離島フェリーチケットの予約＆詳細はこちら" },
-  { href: "/uncategorized/setplan-activity-ferry.html", image: "/images/campaign/iriomote-ferry.png", title: "【石垣島発着】西表島ツアー（フェリーチケット付き）" },
-  { href: "/scene-time/pickup-tour.html", image: "/images/campaign/pickup-tour.jpg", title: "送迎付きツアー特集！ホテルからラクラク出発" },
-  { href: "/scene-time/freetourphotos.html", image: "/images/campaign/freetourphotos.webp", title: "【写真無料】絶景と感動を写真でプレゼント！" },
-  { href: "/campaign/premium-plan.html", image: "/images/campaign/premium-plan.webp", title: "【ツアーズ厳選】安心＆満足度No.1のおすすめプラン特集！" },
-  { href: "/scene-time/same_day_booking.html", image: "/images/campaign/same-day-booking.webp", title: "前日・当日予約可能なツアー" },
+  { href: "https://ishigaki-tours.com/tours-ferry/", image: "/images/campaign/campaign-ferry.png", title: "【各便40席限定】簡単！便利！離島フェリーチケットの予約＆詳細はこちら" },
+  { href: "/scene-time/spacial-sale-plan.html", image: "/images/campaign/campaign-search-sale.jpg", title: "【期間限定】特別SALEプランで石垣島を満喫！" },
+  { href: "/campaign/gw-activity.html", image: "/images/campaign/campaign-gw-activity.png", title: "GW期間中も楽しめるアクティビティ特集" },
+  { href: "/activitys/setplan-activity-ferry.html", image: "/images/campaign/campaign-iriomote-setplan.webp", title: "【石垣島発着】西表島ツアー（フェリーチケット付き）" },
+  { href: "/scene-time/special-plan.html", image: "/images/campaign/campaign-special-plan.png", title: "【ツアーズ厳選】安心＆満足度No.1の限定プラン特集" },
+  { href: "/monthly-information", image: "/images/campaign/campaign-monthly-info.jpg", title: "月別おすすめ情報＆季節のツアー特集" },
 ];
 
 /**
