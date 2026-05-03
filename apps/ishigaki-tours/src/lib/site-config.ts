@@ -246,18 +246,25 @@ export const campaignItems = [
 ];
 
 /**
- * カテゴリナビアイテム - 既存サイトのタブナビ（9項目）
+ * カテゴリナビアイテム - 旧サイト ishigaki-tours.com に準拠（14項目）
+ * - 既存ページがあるものは内部path、未実装の機能は外部リンク or `#` placeholder
+ * - 後続でカテゴリ別ページを実装したら href を内部pathに切り替える
  */
 export const categoryNavItems = [
-  { label: "人気プラン\nランキング", href: "/ranking", iconUrl: "/images/category/ranking.webp", isActive: true },
-  { label: "アクティビティ", href: "/plan", iconUrl: "/images/category/activity.webp" },
+  { label: "人気プラン\nランキング", href: "/ranking", iconUrl: "/images/category/ranking.png", isActive: true },
+  { label: "アクティビティ", href: "/plan", iconUrl: "/images/category/activity.jpg" },
+  { label: "フェリー\nチケット予約", href: "https://ishigaki-tours.com/tours-ferry/", iconUrl: "/images/category/ferry.jpg" },
   { label: "スポットから\n探す", href: "/spot", iconUrl: "/images/category/spot.png" },
-  { label: "人気の組み合わ\nせから探す", href: "/category/combinations", iconUrl: "/images/category/setplan.webp" },
-  { label: "当日予約OK\nプラン", href: "/scene-time/same_day_booking.html", iconUrl: "/images/category/same-day.webp" },
+  { label: "当日予約OK\nプラン", href: "/scene-time/same_day_booking.html", iconUrl: "/images/category/same-day.jpg" },
   { label: "お得な割引\nセットプラン", href: "/category/setplan", iconUrl: "/images/category/setplan-discount.jpg" },
   { label: "プレミアム\n厳選プラン", href: "/campaign/premium-plan.html", iconUrl: "/images/category/premium.jpg" },
-  { label: "送迎付きツアー", href: "/plan?category=shuttle", iconUrl: "/images/category/transfer.png" },
-  { label: "観光ツアー", href: "/scene-time/sightseeing.html", iconUrl: "/images/category/sightseeing.webp" },
+  { label: "レンタカー", href: "https://ishigaki-tours.com/scene-time/rental-car.html", iconUrl: "/images/category/rentacar.jpg" },
+  { label: "観光ツアー", href: "/scene-time/sightseeing.html", iconUrl: "/images/category/sightseeing.jpg" },
+  { label: "スパ＆リラク\nゼーション", href: "#", iconUrl: "/images/category/spa.jpg" },
+  { label: "ものづくり体験", href: "#", iconUrl: "/images/category/craft.jpg" },
+  { label: "物販", href: "#", iconUrl: "/images/category/shopping.png" },
+  { label: "ベビーシッター", href: "#", iconUrl: "/images/category/babysitter.png" },
+  { label: "石垣島\n出張料理", href: "#", iconUrl: "/images/category/catering.png" },
 ];
 
 /**
