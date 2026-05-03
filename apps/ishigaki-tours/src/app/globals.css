@@ -1,0 +1,97 @@
+@import "tailwindcss";
+@source "../../../../packages/ui/src/**/*.tsx";
+
+@theme inline {
+  --color-background: #ffffff;
+  --color-foreground: #212529;
+  --font-sans: var(--font-noto-sans-jp);
+
+  /* サイトカラー（既存サイトから抽出 / 暫定） */
+  --color-primary: #1E90FF;
+  --color-primary-dark: #1873cc;
+  --color-accent: #f08300;
+  --color-danger: #e65226;
+  --color-decoration-2: #dbfbfc;
+
+  /* フッター背景 */
+  --color-footer-bg: #f9f9f2;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  background-color: #ffffff;
+  color: #212529;
+  font-family: "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+}
+
+/* コラム詳細本文（tiptap 出力 HTML を想定） */
+.column-content {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #333;
+}
+.column-content h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #212529;
+  margin-top: 32px;
+  margin-bottom: 14px;
+  padding: 8px 12px;
+  background-color: var(--color-decoration-2);
+  border-left: 4px solid var(--color-primary);
+}
+.column-content h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #212529;
+  margin-top: 24px;
+  margin-bottom: 10px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--color-primary);
+}
+.column-content p {
+  margin-bottom: 16px;
+}
+.column-content a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+.column-content ul, .column-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 16px;
+}
+.column-content ul li {
+  list-style: disc;
+  margin-bottom: 6px;
+}
+.column-content ol li {
+  list-style: decimal;
+  margin-bottom: 6px;
+}
+.column-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin: 16px 0;
+}
+.column-content blockquote {
+  margin: 16px 0;
+  padding: 12px 16px;
+  border-left: 4px solid #d1d5db;
+  background-color: #f9fafb;
+  color: #555;
+}
+.column-content strong {
+  font-weight: 700;
+  color: #212529;
+}
+
+/* 著者 bio 内のリンク */
+.column-author-bio a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
