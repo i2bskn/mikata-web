@@ -12,9 +12,9 @@ export const siteConfig: SiteConfig = {
 };
 
 /**
- * テーマカラー（暫定）
+ * テーマカラー（旧サイト ishigaki-tours.com から抽出: Bootstrap primary）
  */
-export const themeColor = "#1E90FF";
+export const themeColor = "#007BFF";
 
 /**
  * 人気ランキングのプレミアムバッジ画像URL（snorkeling は未指定）

@@ -6,9 +6,9 @@
   --color-foreground: #212529;
   --font-sans: var(--font-noto-sans-jp);
 
-  /* サイトカラー（既存サイトから抽出 / 暫定） */
-  --color-primary: #1E90FF;
-  --color-primary-dark: #1873cc;
+  /* サイトカラー（旧サイト ishigaki-tours.com から抽出: Bootstrap primary） */
+  --color-primary: #007BFF;
+  --color-primary-dark: #0062cc;
   --color-accent: #f08300;
   --color-danger: #e65226;
   --color-decoration-2: #dbfbfc;
