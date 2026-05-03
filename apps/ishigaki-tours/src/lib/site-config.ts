@@ -39,10 +39,10 @@ export const administratorCompanyInfo = [
 ];
 
 export const administratorPartnerImages = [
-  { src: "/images/partner/anta.webp", alt: "全国旅行業協会" },
-  { src: "/images/partner/his.webp", alt: "HIS" },
-  { src: "/images/partner/sdgs.webp", alt: "おきなわSDGsパートナー" },
-  { src: "/images/partner/umi-nihon.webp", alt: "海と日本プロジェクト" },
+  { src: "/images/partner/anta.png", alt: "全国旅行業協会" },
+  { src: "/images/partner/his.png", alt: "HIS" },
+  { src: "/images/partner/sdgs.png", alt: "おきなわSDGsパートナー" },
+  { src: "/images/partner/umi-nihon.png", alt: "海と日本プロジェクト" },
 ];
 
 /**
@@ -721,32 +721,32 @@ export const relatedSites: RelatedSite[] = [
 export const partnerLogos: PartnerLogo[] = [
   {
     name: "全国旅行業協会（ANTA）",
-    imageUrl: "/images/partner/anta.webp",
+    imageUrl: "/images/partner/anta.png",
     description: "一般社団法人 全国旅行業協会（ANTA）〈旅行業協会加盟〉",
   },
   {
     name: "HIS",
-    imageUrl: "/images/partner/his.webp",
+    imageUrl: "/images/partner/his.png",
     description: "HIS〈大手旅行会社と提携〉",
   },
   {
     name: "海と日本プロジェクト",
-    imageUrl: "/images/partner/umi-nihon.webp",
+    imageUrl: "/images/partner/umi-nihon.png",
     description: "海と日本プロジェクト〈内閣府と日本財団が推進〉",
   },
   {
     name: "宝塚医療大学",
-    imageUrl: "/images/partner/takarazuka.webp",
+    imageUrl: "/images/partner/takarazuka.png",
     description: "宝塚医療大学〈産学連携〉",
   },
   {
     name: "おきなわSDGsパートナー",
-    imageUrl: "/images/partner/sdgs.webp",
+    imageUrl: "/images/partner/sdgs.png",
     description: "おきなわSDGsパートナー〈SDGsの普及活動を実施〉",
   },
   {
     name: "スカイレンタカー",
-    imageUrl: "/images/partner/sky-rentacar.webp",
+    imageUrl: "/images/partner/sky-rentacar.png",
     description: "スカイレンタカー〈レンタカー事業の提携〉",
   },
 ];
