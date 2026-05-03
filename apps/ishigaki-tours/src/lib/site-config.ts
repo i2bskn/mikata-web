@@ -24,7 +24,7 @@ export const rankingPremiumBadgeUrl: string | undefined = undefined;
 /**
  * 運営者情報ページ用データ
  */
-export const administratorKvImageUrl = "/images/administrator/kv.webp";
+export const administratorKvImageUrl = "/images/administrator/kv.jpg";
 
 export const administratorCompanyInfo = [
   { label: "会社名", value: "株式会社ShumMaKe" },
@@ -51,7 +51,7 @@ export const administratorPartnerImages = [
 export const visitorMetaDescription =
   "「旅行をもっと簡単に」 私たちはエリア特化型の観光ポータルを運営することで、様々な旅行の不便の解消を目指します";
 
-export const visitorKvImageUrl = "/images/visitor/kv.jpg";
+export const visitorKvImageUrl = "/images/visitor/kv.png";
 
 export const visitorKvImageAlt = "石垣島専門 厳選ツアー/アクティビティ/レンタカーがいっぱい！";
 
@@ -183,20 +183,20 @@ export const sidebarConfig = {
   planCount: 20,
   banners: [
     {
+      href: "/activitys/setplan-activity-ferry.html",
+      imageUrl: "/images/sidebar/sidebar-setplan-iriomote.png",
+      alt: "【ツアーズ限定割引】西表島セットプラン（フェリーチケット付き）",
+    },
+    {
       href: "https://ishigaki-tours.com/tours-ferry/",
-      imageUrl: "/images/sidebar/ferry-banner.webp",
+      imageUrl: "/images/sidebar/sidebar-ferry.png",
       alt: "離島フェリー予約",
       external: true,
     },
     {
-      href: "/scene-time/seaturtles.html",
-      imageUrl: "/images/sidebar/seaturtles-banner.jpg",
-      alt: "ウミガメシュノーケリング",
-    },
-    {
-      href: "/uncategorized/hama-island.html",
-      imageUrl: "/images/sidebar/maboroshi-banner.png",
-      alt: "幻の島(浜島)でシュノーケリング体験",
+      href: "/campaign/premium-plan.html",
+      imageUrl: "/images/sidebar/sidebar-premium.png",
+      alt: "ツアーズ厳選プレミアムプラン",
     },
   ],
 };
@@ -360,112 +360,113 @@ export const relatedBanners = [
 /**
  * ツアーズコラムの記事（トップページのコラムリスト・/column-top・/column で利用）
  * - 並びは date 降順（新着順）。views で閲覧数ランキングを派生
+ * - 旧サイト ishigaki-tours.com/column の記事から抽出
  */
 export const columnArticles = [
   {
-    href: "/column/individual-snorkeling-spots",
-    image: "/images/column/snorkeling-guide.webp",
-    title: "石垣島個人シュノーケリングできる場所｜安全ビーチ＆地図ガイド",
+    href: "/column/cherry-blossoms",
+    image: "/images/column/cherry-blossoms.jpg",
+    title: "石垣島の桜はいつ咲く？2026年の開花予想と寒緋桜の名所・スポットまとめ",
     date: "2026年4月27日",
-    views: 973,
+    views: 1842,
   },
   {
-    href: "/column/hidden-beaches",
-    image: "/images/column/maboroshi-island.webp",
-    title: "石垣島の穴場ビーチ7選！地元民が教える「本当に綺麗な海」と混雑回避のコツ",
-    date: "2026年4月27日",
-    views: 3023,
+    href: "/column/taiwan",
+    image: "/images/column/taiwan.jpg",
+    title: "石垣島から台湾へ直行便はある？距離・移動時間・おすすめ手段まとめ！",
+    date: "2026年4月20日",
+    views: 1230,
   },
   {
-    href: "/column/snorkeling-complete-guide",
-    image: "/images/column/snorkeling-guide.webp",
-    title: "石垣島シュノーケリング初心者完全ガイド｜ツアー選び・個人スポット・ランキングまで解説",
-    date: "2026年4月25日",
-    views: 658,
+    href: "/column/ferry-iriomotejima",
+    image: "/images/column/ferry-iriomotejima.webp",
+    title: "石垣島→西表島フェリー｜料金・時刻表・上原港vs大原港・欠航時の対応を完全解説",
+    date: "2026年4月10日",
+    views: 2870,
   },
   {
-    href: "/column/beach-recommendations",
-    image: "/images/column/maboroshi-island.webp",
-    title: "石垣島のビーチおすすめ｜綺麗な海・穴場・地図で失敗しない選び方",
-    date: "2026年4月22日",
-    views: 339,
+    href: "/column/bluecave-snorkeling",
+    image: "/images/column/bluecave-snorkeling.jpg",
+    title: "石垣島「青の洞窟」完全ガイド｜場所・行き方・シュノーケリングツアー料金・初心者OK情報まとめ",
+    date: "2026年3月25日",
+    views: 3420,
   },
   {
-    href: "/column/maboroshi-island-guide",
-    image: "/images/column/maboroshi-island.webp",
-    title: "幻の島（浜島）完全ガイド！上陸ベストシーズン・所要時間・おすすめツアーまとめ",
-    date: "2026年4月21日",
-    views: 812,
+    href: "/column/ferry-taketomijima",
+    image: "/images/column/ferry-taketomijima.jpg",
+    title: "石垣島-竹富島フェリー情報【時刻表・料金・お得なWEB予約も！】竹富島観光の魅力も徹底解説！",
+    date: "2026年3月15日",
+    views: 2156,
   },
   {
-    href: "/column/snorkeling-beginner",
-    image: "/images/column/snorkeling-guide.webp",
-    title: "石垣島シュノーケリング初心者講座！持ち物・服装・酔いやすい人のコツまで完全解説",
-    date: "2026年4月17日",
-    views: 624,
+    href: "/column/attraction-spot",
+    image: "/images/column/attraction-spot.jpg",
+    title: "石垣島観光の決定版！絶対外せない人気スポット・アクティビティ・ベストシーズンを徹底解説",
+    date: "2026年3月5日",
+    views: 4180,
   },
   {
-    href: "/column/sea-turtle-best-season",
-    image: "/images/column/sea-turtles.webp",
-    title: "石垣島でウミガメに会える時期は？5〜9月が狙い目＆ベストシーズン徹底解説",
-    date: "2026年4月6日",
-    views: 1284,
+    href: "/column/observation-deck",
+    image: "/images/column/observation-deck.jpg",
+    title: "石垣島の展望台おすすめ7選！星空・夜景・絶景を楽しむ完全ガイド",
+    date: "2026年2月20日",
+    views: 1675,
   },
   {
-    href: "/column/snorkeling-spots",
-    image: "/images/column/snorkeling-guide.webp",
-    title: "石垣島シュノーケリングおすすめスポット15選！透明度・ウミガメ・初心者向けを比較",
-    date: "2026年4月3日",
-    views: 1956,
+    href: "/column/winter",
+    image: "/images/column/winter.jpg",
+    title: "石垣島は冬に観光するのがおすすめな理由を徹底解説！",
+    date: "2026年2月10日",
+    views: 980,
   },
   {
-    href: "/column/sea-turtles-tour",
-    image: "/images/column/sea-turtles.webp",
-    title: "ウミガメシュノーケリング攻略！高確率で会えるツアー・時間帯・写真の撮り方",
-    date: "2026年3月23日",
-    views: 478,
+    href: "/column/ishigakijima-izakaya",
+    image: "/images/column/izakaya.jpg",
+    title: "石垣島で人気の居酒屋10選！予約必須の人気のお店から地元の方が通う穴場のお店までご紹介",
+    date: "2026年1月25日",
+    views: 2340,
   },
   {
-    href: "/column/manta-snorkeling-tour",
-    image: "/images/column/maboroshi-island.webp",
-    title: "石垣島マンタシュノーケリングおすすめツアーランキング！半日プランや時期も",
-    date: "2026年3月16日",
-    views: 685,
+    href: "/column/downtown",
+    image: "/images/column/downtown.jpg",
+    title: "石垣島の繁華街について！繁華街から近い居酒屋やホテルをご紹介！",
+    date: "2026年1月15日",
+    views: 1456,
   },
   {
-    href: "/column/maboroshi-island-tour",
-    image: "/images/column/maboroshi-island.webp",
-    title: "石垣島「幻の島」シュノーケリングおすすめツアー！上陸のみ・竹富島セットも",
-    date: "2026年3月11日",
-    views: 580,
+    href: "/column/kuroshima-lunch",
+    image: "/images/column/kuroshima-lunch.jpg",
+    title: "黒島ランチ完全ガイド！おすすめ店舗と失敗しない選び方・観光モデルコース",
+    date: "2025年12月28日",
+    views: 670,
   },
   {
-    href: "/column/diving-complete-guide",
-    image: "/images/column/sea-turtles.webp",
-    title: "石垣島ダイビング完全ガイド！マンタに会える人気スポットと初心者向け情報",
-    date: "2026年1月12日",
-    views: 204,
+    href: "/column/hatoma-island",
+    image: "/images/column/hatoma-island.jpg",
+    title: "石垣島から行ける鳩間島観光ガイド｜フェリー・アクセス・スポット・宿泊を完全解説",
+    date: "2025年12月10日",
+    views: 540,
   },
   {
-    href: "/column/marine-activity-latest",
-    image: "/images/column/snorkeling-guide.webp",
-    title: "石垣島で楽しむマリンアクティビティ最新ガイド！シュノーケルスポットと当日予約のコツ",
-    date: "2026年1月12日",
-    views: 173,
+    href: "/column/supermarket",
+    image: "/images/column/supermarket.jpg",
+    title: "石垣島のスーパーについて！大手のスーパーから地元のスーパーまで",
+    date: "2025年11月20日",
+    views: 820,
   },
   {
-    href: "/column/family-snorkeling",
-    image: "/images/column/sea-turtles.webp",
-    title: "石垣島で子どもとシュノーケリングを満喫！家族で楽しめる体験スポットまとめ",
-    date: "2025年12月20日",
-    views: 718,
+    href: "/column/ishigaki-parasailing-accident-safety-guide",
+    image: "/images/column/parasailing-safety.jpg",
+    title: "石垣島パラセーリングで事故はあるのか？最新事例と安全に楽しむための完全ガイド",
+    date: "2025年11月5日",
+    views: 1120,
   },
   {
-    href: "/column/snorkeling-guide",
-    image: "/images/column/snorkeling-guide.webp",
-    title: "石垣島シュノーケリング完全ガイド！初心者でも安心の楽しみ方",
-    date: "2025年11月10日",
-    views: 712,
+    href: "/column/miyakojima-parasailing-fukusou",
+    image: "/images/column/miyakojima-parasailing-fukusou.jpg",
+    title: "石垣島パラセーリングの服装はこれでOK！女性向けコーデと季節別対策",
+    date: "2025年10月20日",
+    views: 730,
   },
 ];
 
@@ -474,9 +475,9 @@ export const columnArticles = [
  * - 本実装では tiptap で編集された記事ごとの著者情報を持たせる想定
  */
 export const columnAuthor = {
-  name: "T.Furuike",
-  image: "/images/column/sea-turtles.webp",
-  bioHtml: `幼少期から体を動かすのが大好きで、今までシュノーケリング・ダイビング・カヌー・SUP・トレッキング・サーフィン…等20種以上のアクティビティを経験。 大学時代に一度訪れた石垣島に魅了され、20代前半の時には沖縄本島へ移住し4年間生活。4年間で訪れた離島の数は40島以上。 現在では、200ヶ所以上の観光地へ直接足を運び、その土地のおすすめや魅力を発信している。（Instagramで沖縄旅行に役立つ情報を発信中→<a href="https://www.instagram.com/worldtours_official" target="_blank" rel="noopener noreferrer">@worldtours_official</a>）　〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜　旅行のお役立ち情報や最新キャンペーン情報を発信する公式LINEアカウントができました！友達限定のお得な情報を発信予定です♪<a href="#" target="_blank" rel="noopener noreferrer">友達追加はこちら</a>`,
+  name: "石垣島ツアーズ編集部",
+  image: "/images/column/attraction-spot.jpg",
+  bioHtml: `石垣島ツアーズ編集部は、現地在住スタッフと旅行のプロフェッショナルで構成されたチームです。実際に体験したアクティビティや訪れた観光スポット、地元ならではの食事処やイベント情報など、石垣島の「本当におすすめできる」情報を発信しています。離島めぐり、マリンアクティビティ、観光ツアー、レンタカー利用のコツなど、皆さまの旅をより充実させるための情報を随時更新中。（Instagramでも沖縄旅行に役立つ情報を発信中→<a href="https://www.instagram.com/ishigaki_tours/" target="_blank" rel="noopener noreferrer">@ishigaki_tours</a>）　〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜　旅行のお役立ち情報や最新キャンペーン情報を発信する公式LINEアカウントができました！友達限定のお得な情報を発信予定です♪<a href="#" target="_blank" rel="noopener noreferrer">友達追加はこちら</a>`,
 };
 
 /**
@@ -485,69 +486,77 @@ export const columnAuthor = {
  * - 当面は全記事に同じサンプルを表示する
  */
 export const columnArticleSampleBody = `
-<p>石垣島の海は、日本でも屈指の透明度と豊かな生態系を誇るシュノーケリングの聖地です。本記事では、初心者の方でも安心して楽しめるよう、おすすめのスポットや時期、必要な持ち物、押さえておきたいポイントを徹底的に解説します。</p>
+<p>石垣島は、八重山諸島の玄関口として年間を通じて多くの旅行者が訪れる人気の南国リゾートです。本記事では、初めての石垣島旅行でも失敗しないように、おすすめの観光スポットや離島めぐり、必要な持ち物、押さえておきたいポイントを徹底的に解説します。</p>
 
-<h2>石垣島でシュノーケリングを楽しむベストシーズン</h2>
-<p>石垣島は通年でシュノーケリングが可能ですが、特におすすめのシーズンは <strong>5月〜10月</strong> です。この時期は海水温が25℃を超え、ウェットスーツなしでも快適に泳ぐことができます。</p>
+<h2>石垣島観光のベストシーズン</h2>
+<p>石垣島は通年で観光が楽しめますが、特におすすめのシーズンは <strong>4月〜10月</strong> です。この時期は気温も水温も心地よく、マリンアクティビティから離島巡りまで幅広く楽しむことができます。</p>
 <h3>季節ごとの特徴</h3>
 <ul>
-  <li><strong>春（4〜5月）</strong>：透明度が高く、混雑も少ない穴場シーズン</li>
+  <li><strong>春（3〜5月）</strong>：寒緋桜の見頃、混雑も比較的少ない狙い目シーズン</li>
   <li><strong>夏（6〜9月）</strong>：海水温も気温も最高、家族連れにも最適</li>
   <li><strong>秋（10〜11月）</strong>：台風後の透明度回復シーズン、ウミガメ遭遇率も高い</li>
-  <li><strong>冬（12〜3月）</strong>：マンタやクジラに会える可能性もあるが、ウェットスーツ必須</li>
+  <li><strong>冬（12〜2月）</strong>：星空観賞・マンタやクジラに会える可能性もあり、観光客も少なめ</li>
 </ul>
 
-<h2>おすすめスポット 3 選</h2>
-<h3>1. 幻の島（浜島）</h3>
-<p>石垣島から船で30分ほどの場所にある、潮が引いた時にだけ姿を現す三日月形の白い砂浜。360度を珊瑚礁に囲まれ、シュノーケリングの絶景スポットとして人気です。</p>
-<img src="/images/column/maboroshi-island.webp" alt="幻の島" />
-<p>島の周辺ではカラフルな熱帯魚やウミガメと出会えるチャンスも多く、初心者から上級者まで楽しめます。</p>
-<h3>2. 米原ビーチ</h3>
-<p>遠浅の地形と豊富な珊瑚礁が魅力のビーチ。ビーチからエントリーできるため、ボートが苦手な方にもおすすめです。</p>
-<h3>3. 青の洞窟周辺</h3>
-<p>石垣島北部の人気スポット。洞窟内に差し込む光が海を青く染め上げる神秘的な景観と、周辺の珊瑚礁での生き物観察が楽しめます。</p>
+<h2>絶対に外せない観光スポット 3 選</h2>
+<h3>1. 川平湾</h3>
+<p>ミシュラン・グリーンガイド・ジャポンで三つ星を獲得した、石垣島を代表する絶景スポット。エメラルドグリーンの海と点在する小島が織りなす景色は、一度見たら忘れられません。グラスボートで海中観察も人気です。</p>
+<img src="/images/column/attraction-spot.jpg" alt="石垣島の人気観光スポット" />
+<h3>2. 幻の島（浜島）</h3>
+<p>潮が引いた時にだけ姿を現す三日月形の白い砂浜。石垣島から船で30分ほどの場所にあり、360度を珊瑚礁に囲まれた絶景スポットとして人気です。シュノーケリングや写真撮影に最適。</p>
+<h3>3. 青の洞窟</h3>
+<p>石垣島北部の人気スポット。洞窟内に差し込む光が海を青く染め上げる神秘的な景観と、周辺の珊瑚礁での生き物観察が楽しめます。シュノーケリングツアーが豊富。</p>
 
-<h2>当日の持ち物チェックリスト</h2>
+<h2>離島めぐりも石垣島観光の醍醐味</h2>
+<p>石垣島は、西表島・竹富島・小浜島・黒島・鳩間島・パナリ島など、八重山諸島へのアクセスが抜群。フェリーで30分〜1時間程度で行けるので、日帰りツアーも充実しています。</p>
 <ul>
-  <li>水着（ラッシュガード推奨）</li>
+  <li><strong>竹富島</strong>：水牛車で巡る赤瓦の集落と白い砂浜</li>
+  <li><strong>西表島</strong>：マングローブとジャングルの大自然</li>
+  <li><strong>小浜島</strong>：のどかな景色とサトウキビ畑</li>
+  <li><strong>黒島</strong>：人より牛の数が多い、のんびり島時間</li>
+</ul>
+
+<h2>持ち物チェックリスト</h2>
+<ul>
+  <li>水着・ラッシュガード</li>
   <li>タオル・着替え</li>
   <li>日焼け止め（環境に優しい珊瑚礁配慮のもの）</li>
   <li>飲み物・軽食</li>
   <li>防水カメラ・スマホケース</li>
-  <li>ビーチサンダル</li>
+  <li>ビーチサンダル・歩きやすい靴</li>
+  <li>レンタカー予約（離島巡り以外なら必須級）</li>
 </ul>
-<p>シュノーケル器材一式（マスク・シュノーケル・フィン）はツアー参加であればレンタル可能なため、手ぶらでもOKです。</p>
 
 <blockquote>
-<p>初心者の方は必ずガイド付きツアーに参加することをおすすめします。海況の判断や緊急時の対応など、安全面でも安心です。</p>
+<p>人気のツアーやレンタカーは特に繁忙期にはすぐに満席・満車になります。石垣島ツアーズで事前予約しておくのがおすすめです。</p>
 </blockquote>
 
 <h2>まとめ</h2>
-<p>石垣島でのシュノーケリングは、一度体験すると忘れられない感動の連続です。本記事を参考に、自分にぴったりのスポット・シーズン・ツアーを選び、思い出に残る素敵な旅をお楽しみください。</p>
-<p>ご予約・お問い合わせはお気軽に当店までご連絡ください。皆様のご参加を心よりお待ちしております。</p>
+<p>石垣島は、海・空・島・食・文化のすべてが詰まった魅力たっぷりの観光地です。本記事を参考に、自分にぴったりの観光プラン・アクティビティ・ツアーを選び、思い出に残る素敵な旅をお楽しみください。</p>
+<p>ご予約・お問い合わせはお気軽に石垣島ツアーズまで！皆様のご参加を心よりお待ちしております。</p>
 `;
 
 /**
- * /column-top のヒーロースライダー記事
+ * /column-top のヒーロースライダー記事（views 上位3件）
  */
 export const columnHeroSlides = [
   {
-    href: "/column/snorkeling-spots",
-    image: "/images/column/snorkeling-guide.webp",
-    title: "石垣島シュノーケリングおすすめスポット15選！透明度・ウミガメ・初心者向けを比較",
-    views: 1956,
+    href: "/column/attraction-spot",
+    image: "/images/column/attraction-spot.jpg",
+    title: "石垣島観光の決定版！絶対外せない人気スポット・アクティビティ・ベストシーズンを徹底解説",
+    views: 4180,
   },
   {
-    href: "/column/maboroshi-island-guide",
-    image: "/images/column/maboroshi-island.webp",
-    title: "幻の島（浜島）完全ガイド！上陸ベストシーズン・所要時間・おすすめツアーまとめ",
-    views: 812,
+    href: "/column/bluecave-snorkeling",
+    image: "/images/column/bluecave-snorkeling.jpg",
+    title: "石垣島「青の洞窟」完全ガイド｜場所・行き方・シュノーケリングツアー料金・初心者OK情報まとめ",
+    views: 3420,
   },
   {
-    href: "/column/sea-turtle-best-season",
-    image: "/images/column/sea-turtles.webp",
-    title: "石垣島でウミガメに会える時期は？5〜9月が狙い目＆ベストシーズン徹底解説",
-    views: 1284,
+    href: "/column/ferry-iriomotejima",
+    image: "/images/column/ferry-iriomotejima.webp",
+    title: "石垣島→西表島フェリー｜料金・時刻表・上原港vs大原港・欠航時の対応を完全解説",
+    views: 2870,
   },
 ];
 
@@ -555,11 +564,14 @@ export const columnHeroSlides = [
  * トップページ検索パネルのプラン選択
  */
 export const planOptions = [
+  { value: "marine", label: "マリンアクティビティ" },
+  { value: "iriomote", label: "西表島ツアー" },
+  { value: "taketomi", label: "竹富島ツアー" },
   { value: "snorkeling", label: "シュノーケリング" },
-  { value: "seaturtles", label: "ウミガメツアー" },
-  { value: "hama-island", label: "幻の島ツアー" },
-  { value: "setplan", label: "セットプラン" },
   { value: "diving", label: "ダイビング" },
+  { value: "sup-kayak", label: "SUP・カヌー" },
+  { value: "sightseeing", label: "観光ツアー" },
+  { value: "setplan", label: "セットプラン" },
 ];
 
 /**
@@ -630,9 +642,9 @@ export const menuConfig = {
       title: "プランを探す",
       items: [
         { label: "送迎付き\nツアー", href: "/scene-time/pickup-tour.html", iconUrl: "/images/menu/icon-pickup.png" },
-        { label: "当日予約\nOKプラン", href: "/scene-time/same-day-booking.html", iconUrl: "/images/menu/icon-same-day.jpg" },
+        { label: "当日予約\nOKプラン", href: "/scene-time/same_day_booking.html", iconUrl: "/images/menu/icon-same-day.jpg" },
         { label: "プレミアム\nプラン", href: "/campaign/premium-plan.html", iconUrl: "/images/menu/icon-premium.jpg" },
-        { label: "ウミガメ\nシュノーケリング", href: "/scene-time/seaturtles.html", iconUrl: "/images/menu/icon-seaturtles.png" },
+        { label: "離島セット\nプラン", href: "/activitys/setplan-activity-ferry.html", iconUrl: "/images/menu/icon-seaturtles.png" },
         { label: "時間帯\nから探す", href: "/category/scene-time", iconUrl: "/images/menu/icon-time-of-day.png" },
       ],
     },
@@ -657,9 +669,9 @@ export const menuConfig = {
   ],
   mainBanners: [
     {
-      href: "/scene-time/seaturtles.html",
-      imageUrl: "/images/menu/banner-seaturtles.jpg",
-      alt: "ウミガメシュノーケリング",
+      href: "/activitys/setplan-activity-ferry.html",
+      imageUrl: "/images/menu/banner-iriomote-setplan.png",
+      alt: "【ツアーズ限定割引】西表島セットプラン（フェリーチケット付き）",
     },
     {
       href: "/campaign/premium-plan.html",
