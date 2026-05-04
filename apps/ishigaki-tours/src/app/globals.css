@@ -95,3 +95,13 @@ body {
   color: var(--color-primary);
   text-decoration: underline;
 }
+
+/* お問い合わせページ サブ項目内の説明文インラインリンク */
+.contact-description a {
+  color: var(--contact-link-color, var(--color-primary));
+  text-decoration: underline;
+  font-weight: 400;
+}
+.contact-description a:hover {
+  opacity: 0.8;
+}

@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 import { VisitorAccordionList } from "./visitor-accordion-list";
 
 export interface VisitorReason {
@@ -10,12 +10,20 @@ export interface VisitorContentProps {
   siteName: string;
   kvImageUrl: string;
   kvImageAlt: string;
-  introText: string;
-  siteDescription: string;
+  introText: ReactNode;
+  siteDescription: ReactNode;
   reasons: VisitorReason[];
   themeColor?: string;
+  /** strong など強調表示に当てる文字色。未指定なら色付けなし。 */
+  accentColor?: string;
+  /** 紹介文セクション直下に挿入する装飾画像（ミッション/旅イラスト等） */
+  missionImage?: { src: string; alt: string };
+  /** 「予約から参加までの流れ」セクションの中身を差し替えるスロット（見出しごと置換） */
+  bookingFlowSlot?: ReactNode;
   steps?: string[];
-  islandDescription?: string;
+  islandDescription?: ReactNode;
+  /** 「島の魅力とは」直下に挿入するスロット（関連プランカード等） */
+  islandRelatedSlot?: ReactNode;
   travelTips?: { title: string; text: string }[];
   accordion?: boolean;
 }
@@ -50,11 +58,16 @@ export const VisitorContent: FC<VisitorContentProps> = ({
   siteDescription,
   reasons,
   themeColor = "#1a9edb",
+  accentColor,
+  missionImage,
+  bookingFlowSlot,
   steps = ["ツアーを探す", "予約プランの申し込み", "予約確定", "ツアーに参加"],
   islandDescription,
+  islandRelatedSlot,
   travelTips,
   accordion = false,
 }) => {
+  const strongStyle = accentColor ? { color: accentColor } : undefined;
   return (
     <>
       <h1
@@ -84,18 +97,28 @@ export const VisitorContent: FC<VisitorContentProps> = ({
             「旅行をもっと簡単に」
           </p>
           <p style={{ marginBottom: "12px" }}>
-            私たちは<strong>エリア特化型</strong>の観光ポータルを運営することで、様々な<strong>旅行の不便の解消</strong>を目指します。
+            私たちは<strong style={strongStyle}>エリア特化型</strong>の観光ポータルを運営することで、様々な<strong style={strongStyle}>旅行の不便の解消</strong>を目指します。
           </p>
           <p style={{ marginBottom: "12px" }}>
             {introText}
           </p>
           <p style={{ marginBottom: "12px" }}>
-            私たちのサイトは、<strong>旅行業</strong>を取得した信頼ある<strong>旅行専門家</strong>が運営しています。
+            私たちのサイトは、<strong style={strongStyle}>旅行業</strong>を取得した信頼ある<strong style={strongStyle}>旅行専門家</strong>が運営しています。
           </p>
           <p>
             {siteDescription}
           </p>
         </section>
+
+        {missionImage && (
+          <section style={{ marginBottom: "16.8px", textAlign: "center" }}>
+            <img
+              src={missionImage.src}
+              alt={missionImage.alt}
+              style={{ maxWidth: "100%", height: "auto", display: "inline-block" }}
+            />
+          </section>
+        )}
 
         {/* 選ばれる理由セクション */}
         <section style={{ marginBottom: "16.8px" }}>
@@ -117,44 +140,53 @@ export const VisitorContent: FC<VisitorContentProps> = ({
         </section>
 
         {/* 予約から参加までの流れ */}
-        <section style={{ marginBottom: "16.8px" }}>
-          <h2 style={h2Style(themeColor)}>予約から参加までの流れ</h2>
-          <div
-            className="grid grid-cols-2 lg:grid-cols-4"
-            style={{ gap: "12px", textAlign: "center" }}
-          >
-            {steps.map((step, index) => (
-              <div
-                key={index}
-                style={{
-                  padding: "16px 8px",
-                  backgroundColor: "#f5f5f5",
-                  borderRadius: "6px",
-                }}
-              >
+        {bookingFlowSlot ? (
+          bookingFlowSlot
+        ) : (
+          <section style={{ marginBottom: "16.8px" }}>
+            <h2 style={h2Style(themeColor)}>予約から参加までの流れ</h2>
+            <div
+              className="grid grid-cols-2 lg:grid-cols-4"
+              style={{ gap: "12px", textAlign: "center" }}
+            >
+              {steps.map((step, index) => (
                 <div
+                  key={index}
                   style={{
-                    fontSize: "24px",
-                    fontWeight: "bold",
-                    color: themeColor,
-                    marginBottom: "8px",
+                    padding: "16px 8px",
+                    backgroundColor: "#f5f5f5",
+                    borderRadius: "6px",
                   }}
                 >
-                  {index + 1}
+                  <div
+                    style={{
+                      fontSize: "24px",
+                      fontWeight: "bold",
+                      color: themeColor,
+                      marginBottom: "8px",
+                    }}
+                  >
+                    {index + 1}
+                  </div>
+                  <div style={{ fontSize: "13px", fontWeight: "600" }}>
+                    {step}
+                  </div>
                 </div>
-                <div style={{ fontSize: "13px", fontWeight: "600" }}>
-                  {step}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* 石垣島の魅力 */}
         {islandDescription && (
           <section style={{ marginBottom: "16.8px" }}>
             <h3 style={h3Style}>石垣島の魅力とは</h3>
-            <p>{islandDescription}</p>
+            {typeof islandDescription === "string" ? (
+              <p>{islandDescription}</p>
+            ) : (
+              islandDescription
+            )}
+            {islandRelatedSlot}
           </section>
         )}
 

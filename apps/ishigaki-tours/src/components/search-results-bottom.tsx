@@ -13,7 +13,7 @@ export function SearchResultsBottom() {
   return (
     <>
       <ConditionSearch items={conditionSearchItems} iconUrl="/images/icons/loupe.svg" />
-      <ColumnList articles={columnArticles} />
+      <ColumnList articles={columnArticles} iconUrl="/images/icons/pen.svg" />
       <RelatedSitesGrid items={relatedBanners} />
       <BookingFlow steps={bookingFlowSteps} />
     </>

@@ -6,6 +6,12 @@ export interface SelectContactContentProps {
   themeColor?: string;
   agencyContactHref?: string;
   agencyContactLabel?: string;
+  /** サブ項目のタイトル・矢印・枠線の色（未指定時は ContactAccordion の accentColor） */
+  subItemAccentColor?: string;
+  /** 展開時にサブ項目群の背景に敷く色（未指定時は背景なし） */
+  expandedBg?: string;
+  /** 初期表示で全カテゴリを開いた状態にするか */
+  defaultAllOpen?: boolean;
 }
 
 const DEFAULT_AGENCY_LABEL = "旅行代理店の方向け\n◎お問い合わせはこちら◎";
@@ -15,6 +21,9 @@ export const SelectContactContent: FC<SelectContactContentProps> = ({
   themeColor = "#1a9edb",
   agencyContactHref,
   agencyContactLabel = DEFAULT_AGENCY_LABEL,
+  subItemAccentColor,
+  expandedBg,
+  defaultAllOpen,
 }) => {
   const isExternal =
     typeof agencyContactHref === "string" &&
@@ -42,13 +51,14 @@ export const SelectContactContent: FC<SelectContactContentProps> = ({
         >
           <h2
             style={{
-              fontSize: "16.8px",
-              fontWeight: "400",
+              fontSize: "24px",
+              fontWeight: "600",
               color: "#212529",
-              lineHeight: "1.6",
+              lineHeight: "1.5",
               display: "inline-block",
-              borderBottom: `3px solid ${themeColor}`,
-              paddingBottom: "8px",
+              borderBottom: `4px solid ${themeColor}`,
+              paddingBottom: "4px",
+              margin: 0,
             }}
           >
             お問い合わせ内容を
@@ -57,7 +67,13 @@ export const SelectContactContent: FC<SelectContactContentProps> = ({
           </h2>
         </div>
 
-        <ContactAccordion items={items} themeColor={themeColor} />
+        <ContactAccordion
+          items={items}
+          themeColor={themeColor}
+          subItemAccentColor={subItemAccentColor}
+          expandedBg={expandedBg}
+          defaultAllOpen={defaultAllOpen}
+        />
 
         {agencyContactHref && (
           <div style={{ textAlign: "center", marginTop: "32px" }}>

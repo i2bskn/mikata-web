@@ -36,6 +36,9 @@ export default function SelectContactPage() {
             items={contactCategories}
             themeColor={themeColor}
             agencyContactHref={agencyContactHref}
+            subItemAccentColor={themeColor}
+            expandedBg="#fbfbef"
+            defaultAllOpen
           />
         }
       />

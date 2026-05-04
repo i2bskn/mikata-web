@@ -21,6 +21,8 @@ export interface Plan {
   schedule: ScheduleItem[];
   meetingPoint?: string;
   notes?: string[];
+  /** ランキング等で Premium Plan バッジを表示するか */
+  isPremium?: boolean;
 }
 
 export type PlanCategory =

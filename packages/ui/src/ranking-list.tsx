@@ -14,6 +14,8 @@ export interface RankingPlan {
   infantPrice?: number;
   rating?: number;
   reviewCount?: number;
+  /** Premium Plan バッジを表示するか（プラン単位） */
+  isPremium?: boolean;
 }
 
 export interface RankingListProps {
@@ -22,8 +24,14 @@ export interface RankingListProps {
   accentColor: string;
   /** プラン詳細リンクのプレフィックス（デフォルト: "/plan/"） */
   planLinkPrefix?: string;
-  /** Premium Planバッジ画像URL（指定しない場合は非表示） */
+  /**
+   * Premium Plan バッジ画像 URL。
+   * - `premiumBadgeMode="all"`（デフォルト）: URL があれば全プランに表示
+   * - `premiumBadgeMode="per-plan"`: `plan.isPremium === true` のプランのみ表示
+   */
   premiumBadgeUrl?: string;
+  /** Premium バッジの出し分けモード */
+  premiumBadgeMode?: "all" | "per-plan";
 }
 
 const BADGE_COLORS = ["#e3af3a", "#adadad", "#aa845e"] as const;
@@ -116,6 +124,7 @@ export function RankingList({
   accentColor,
   planLinkPrefix = "/plan/",
   premiumBadgeUrl,
+  premiumBadgeMode = "all",
 }: RankingListProps) {
   return (
     <div
@@ -126,7 +135,11 @@ export function RankingList({
         marginBottom: "40px",
       }}
     >
-      {plans.map((plan, index) => (
+      {plans.map((plan, index) => {
+        const showPremiumBadge =
+          !!premiumBadgeUrl &&
+          (premiumBadgeMode === "all" || plan.isPremium === true);
+        return (
         <a
           key={plan.slug}
           href={`${planLinkPrefix}${plan.slug}`}
@@ -182,7 +195,7 @@ export function RankingList({
                 {index + 1}位
               </div>
               {/* Premium Planバッジ */}
-              {premiumBadgeUrl && (
+              {showPremiumBadge && (
                 <img
                   src={premiumBadgeUrl}
                   alt="Premium plan"
@@ -290,7 +303,8 @@ export function RankingList({
             </div>
           </div>
         </a>
-      ))}
+        );
+      })}
     </div>
   );
 }

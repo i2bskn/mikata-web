@@ -16,10 +16,16 @@ export const siteConfig: SiteConfig = {
  */
 export const themeColor = "#007BFF";
 
+export const accentColor = "#f08300";
+
 /**
- * 人気ランキングのプレミアムバッジ画像URL（snorkeling は未指定）
+ * 人気ランキングのプレミアムバッジ画像URL
+ * 旧サイト ishigaki-tours.com の "Premium plan" バッジ。
+ * RankingList の per-plan モードと組み合わせて、`Plan.isPremium === true`
+ * のプランのみ表示する。
  */
-export const rankingPremiumBadgeUrl: string | undefined = undefined;
+export const rankingPremiumBadgeUrl: string | undefined =
+  "/images/ranking/premium-plan-badge.png";
 
 /**
  * 運営者情報ページ用データ
@@ -54,6 +60,10 @@ export const visitorMetaDescription =
 export const visitorKvImageUrl = "/images/visitor/kv.png";
 
 export const visitorKvImageAlt = "石垣島専門 厳選ツアー/アクティビティ/レンタカーがいっぱい！";
+
+export const visitorMissionImageUrl = "/images/visitor/mission.png";
+
+export const visitorMissionImageAlt = "旅をもっと簡単に - 石垣島ツアーズのミッション";
 
 export const visitorIntroText =
   "石垣島に特化した様々な情報や厳選したツアー・プランを掲載しております。";
@@ -98,6 +108,37 @@ export const visitorReasons = [
 
 export const visitorIslandDescription =
   "石垣島は、八重山諸島の玄関口として、多彩な魅力を持つ沖縄屈指のリゾート地です。エメラルドグリーンに輝く海や、白砂が美しいビーチなど、息をのむような絶景が広がっています。島内には豊かな自然が残り、多様なアクティビティが満喫できます。また、西表島や竹富島、小浜島などの周辺離島へも簡単にアクセスできます。";
+
+/** 「石垣島の魅力とは」直下に表示する関連プラン3カード */
+export const visitorIslandRelatedCards = [
+  {
+    href: "/activitys/snorkel.html",
+    image: "/images/visitor/related/snorkel.jpg",
+    imageAlt: "石垣島シュノーケリング",
+    title: "石垣島シュノーケリング（シュノーケル）ツアー",
+    excerpt:
+      "世界的にも人気の高い石垣島でカラフルなサンゴ、熱帯魚、青の洞窟など様々なシュノーケリングの魅力を満喫しましょう！",
+    countLabel: "（全92件）",
+  },
+  {
+    href: "/scene-time/same_day_booking.html",
+    image: "/images/visitor/related/same-day.jpg",
+    imageAlt: "パラセーリング",
+    title: "当日予約可能なアクティビティツアー",
+    excerpt:
+      "今日参加したい方必見！ 石垣島の当日予約可能なプランをご紹介 石垣島へ旅行に来た方の中には、忙しくて旅程を組めずノープランで来た方や、悪天候で予約していたツアーがキャンセルになってしまった方など、様々だと思います。 今回 […]",
+    countLabel: "（全104件）",
+  },
+  {
+    href: "/?post_type=post&p=35787",
+    image: "/images/visitor/related/iriomote-set.png",
+    imageAlt: "石垣島から行く西表島ツアーの格安セットプラン",
+    title: "【石垣島発着】西表島ツアー（フェリーチケット付き）",
+    excerpt:
+      "かなりお得★石垣島⇄西表島上原港 往復フェリーチケット付きセットプラン 石垣島ツアーズでは、石垣島⇄西表島上原港の往復フェリーチケットとアクティビティがセットになったプランを大好評販売中！ もっと安くお得に旅行を楽しめる […]",
+    countLabel: "（全12件）",
+  },
+];
 
 export const visitorTravelTips: { title: string; text: string }[] = [
   {
@@ -368,7 +409,7 @@ export const campaignItems = [
  */
 export const categoryNavItems = [
   { label: "人気プラン\nランキング", href: "/ranking", iconUrl: "/images/category/ranking.png", isActive: true },
-  { label: "アクティビティ", href: "/plan", iconUrl: "/images/category/activity.jpg" },
+  { label: "アクティビティ", href: "/category/activitys", iconUrl: "/images/category/activity.jpg" },
   { label: "フェリー\nチケット予約", href: "https://ishigaki-tours.com/tours-ferry/", iconUrl: "/images/category/ferry.jpg" },
   { label: "スポットから\n探す", href: "/spot", iconUrl: "/images/category/spot.png" },
   { label: "当日予約OK\nプラン", href: "/scene-time/same_day_booking.html", iconUrl: "/images/category/same-day.jpg" },
@@ -928,26 +969,38 @@ export const contactCategories: ContactCategory[] = [
     title: "既にご予約されたお客様",
     subItems: [
       {
-        title: "ご予約内容の確認・集合場所等のお問い合わせ",
+        title: "キャンセル・変更ご希望のお客様",
         description:
-          "ご予約確定メールに記載の連絡方法にて、担当ガイドまたは施設へ直接ご連絡ください。",
+          '公式LINEにお問い合わせください。\n[[BUTTON_0]]\n（営業時間：8:00〜17:00）\n※フェリー欠航時の案内については<a href="/cancellation-2">こちら</a>をご覧下さい。\n※キャンセル料が発生する場合がございます。詳しくは<a href="/faq">よくある質問</a>をご覧ください。',
         methods: [
           {
-            type: "link",
-            label: "予約確認ページ",
-            href: "https://mikata.in/yaeyama-tour/subscribers/confirm",
+            type: "line",
+            label: "LINE でお問い合わせ",
+            href: "https://lin.ee/ApNkLoW",
           },
         ],
       },
       {
-        title: "キャンセル・変更のお問い合わせ",
+        title: "プラン内容に関するお問い合わせ",
         description:
-          "ご予約確定メールをご確認ください。キャンセル料については「よくある質問＆注意事項」ページもご参照ください。",
+          '・予約確定メールに記載のガイドへお問い合わせください。\nガイドの連絡先がわからないお客様は<a href="https://mikata.in/yaeyama-tour/subscribers/confirm" target="_blank" rel="noopener noreferrer">こちら</a>からご確認ください。\n・お問い合わせ前に<a href="/faq">よくある質問</a>も是非ご参照ください。',
+        methods: [],
+      },
+      {
+        title: "領収書発行をご希望のお客様",
+        description:
+          '決済方法によって発行方法が異なります。\n以下より、ご利用の決済方法の項目をご確認ください。\n●現地決済の場合\n現地のツアーガイド、施設が発行します。\nご精算時に領収書発行をご依頼ください。\n＊事業者によっては領収書発行ができない場合もございますので、必要な方は事前に担当ガイドまでお問い合わせください。\n●事前決済の場合\n領収書が必要な方は、<a href="https://mikata.in/yaeyama-tour/subscribers/confirm" target="_blank" rel="noopener noreferrer">予約確認画面</a>よりダウンロードをお願いいたします。\n＊発行可能期間： 参加日の2日後から90日後まで\n＊適格領収書には該当しませんのでご注意ください',
+        methods: [],
+      },
+      {
+        title: "その他お問い合わせ",
+        description:
+          '石垣島ツアーズにお問い合わせください。\n[[BUTTON_0]]\n（24時間受付中）\n・お問い合わせ前に<a href="/faq">よくある質問</a>も是非ご参照ください。',
         methods: [
           {
-            type: "faq",
-            label: "よくある質問＆注意事項",
-            href: "/faq",
+            type: "line",
+            label: "LINE でお問い合わせ",
+            href: "https://lin.ee/ApNkLoW",
           },
         ],
       },
@@ -957,26 +1010,25 @@ export const contactCategories: ContactCategory[] = [
     title: "これからご予約されるお客様",
     subItems: [
       {
-        title: "当日予約の空き確認",
+        title: "当日の予約をしたい",
         description:
-          "当日予約はサイト内で空きのあるプランを検索いただけます。",
-        methods: [
-          {
-            type: "link",
-            label: "プランを探す",
-            href: "/",
-          },
-        ],
+          '当日予約が可能なツアーは<a href="/scene-time/same_day_booking.html">こちら</a>をチェック！',
+        methods: [],
       },
       {
-        title: "その他のご予約に関するお問い合わせ",
+        title: "当日『以外』の予約をしたい",
         description:
-          "24時間WEB予約受付中、会員登録不要でご予約いただけます。トップページからプランを選んでお申し込みください。",
+          '<a href="/">石垣島ツアーズトップページ</a>から、ご希望のアクティビティやプランをお選びいただき、「予約・空き状況を見る」からご予約ください。\n（24時間受付中）',
+        methods: [],
+      },
+      {
+        title: "オペレーターに相談したい",
+        description: "公式LINEにてお問い合わせを承ります。\n[[BUTTON_0]]",
         methods: [
           {
-            type: "link",
-            label: "トップページ",
-            href: "/",
+            type: "line",
+            label: "LINE でお問い合わせ",
+            href: "https://lin.ee/ApNkLoW",
           },
         ],
       },
@@ -986,40 +1038,33 @@ export const contactCategories: ContactCategory[] = [
     title: "その他のお問い合わせやご相談",
     subItems: [
       {
-        title: "領収書発行をご希望のお客様",
-        description:
-          "現地決済の場合はツアーガイド・施設が発行いたします。事前決済の場合は領収書発行ページから発行いただけます。",
-        methods: [
-          {
-            type: "link",
-            label: "領収書発行ページ",
-            href: "https://ishigaki-tours.com/receipt",
-          },
-        ],
-      },
-      {
         title: "アクティビティ参加後のお問い合わせ",
         description:
-          "忘れ物・写真データ等のお問い合わせは、担当ガイドへ直接ご連絡ください。連絡先が不明な場合は予約確認ページからご確認いただけます。",
+          '・ガイドへ直接お問い合わせください。\nガイドの連絡先がわからないお客様は<a href="https://mikata.in/yaeyama-tour/subscribers/confirm" target="_blank" rel="noopener noreferrer">こちら</a>からご確認ください。\nそれでも解決しない場合は石垣島ツアーズにお問い合わせください。\n[[BUTTON_0]]',
         methods: [
           {
-            type: "link",
-            label: "予約確認ページ",
-            href: "https://mikata.in/yaeyama-tour/subscribers/confirm",
+            type: "line",
+            label: "LINE でお問い合わせ",
+            href: "https://lin.ee/ApNkLoW",
           },
         ],
       },
       {
-        title: "その他一般的なご質問",
-        description:
-          "よくある質問をご確認ください。解決しない場合は、お気軽にお問い合わせください。",
+        title: "その他のお問い合わせやご相談",
+        description: "公式LINEにてお問い合わせを承ります。\n[[BUTTON_0]]",
         methods: [
           {
-            type: "faq",
-            label: "よくある質問＆注意事項",
-            href: "/faq",
+            type: "line",
+            label: "LINE でお問い合わせ",
+            href: "https://lin.ee/ApNkLoW",
           },
         ],
+      },
+      {
+        title: "石垣島旅行のよくある質問100選はこちら",
+        description:
+          '石垣島旅行に関する疑問や不安は、<a href="/ishigaki-faq">「よくある質問100選」</a>でまとめてご確認いただけます。\n旅行前に気になるポイントを、1問1答でわかりやすく解説しています。\n「何泊必要？」「いつ行くのがベスト？」「雨でも楽しめる？」「レンタカーは必要？」など、\n初めての石垣島旅行で気になりやすい内容を幅広く掲載しています。\n旅行計画を立てる前に、ぜひ一度ご覧ください。',
+        methods: [],
       },
     ],
   },

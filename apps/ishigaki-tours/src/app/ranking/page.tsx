@@ -10,7 +10,6 @@ import {
   rankingPremiumBadgeUrl,
 } from "../../lib/site-config";
 import { Sidebar } from "../../components/sidebar";
-import { SearchResultsBottom } from "../../components/search-results-bottom";
 
 export const metadata: Metadata = {
   title: "人気ランキング",
@@ -47,10 +46,10 @@ export default function RankingPage() {
               plans={rankedPlans}
               accentColor={themeColor}
               premiumBadgeUrl={rankingPremiumBadgeUrl}
+              premiumBadgeMode="per-plan"
             />
           </>
         }
-        bottomSectionsSlot={<SearchResultsBottom />}
       />
     </>
   );

@@ -5,11 +5,15 @@ import { PageWithSidebarTemplate } from "@repo/ui/page-with-sidebar-template";
 import { SearchResultsPagination } from "@repo/ui/search-results-pagination";
 import { ConditionSearch } from "@repo/ui/condition-search";
 import { BookingFlow } from "@repo/ui/booking-flow";
+import { ColumnList } from "@repo/ui/column-list";
+import { RelatedSitesGrid } from "@repo/ui/related-sites-grid";
 import {
   siteConfig,
   categoryNavItems,
   conditionSearchItems,
   bookingFlowSteps,
+  columnArticles,
+  relatedBanners,
 } from "../../../lib/site-config";
 import { Sidebar } from "../../../components/sidebar";
 import { activityCategories } from "../../../lib/data/activity-categories";
@@ -73,6 +77,8 @@ export default async function ActivitysCategoryPage({
               items={conditionSearchItems}
               iconUrl="/images/icons/loupe.svg"
             />
+            <ColumnList articles={columnArticles} iconUrl="/images/icons/pen.svg" />
+            <RelatedSitesGrid items={relatedBanners} />
             <BookingFlow steps={bookingFlowSteps} />
           </>
         }

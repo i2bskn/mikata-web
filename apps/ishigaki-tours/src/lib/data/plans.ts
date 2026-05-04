@@ -33,6 +33,7 @@ export const plans: Plan[] = [
     reviewCount: 28,
     category: "hama-island",
     features: [], includes: [], schedule: [],
+    isPremium: true,
   },
   {
     slug: "hama-island458",
@@ -47,6 +48,7 @@ export const plans: Plan[] = [
     reviewCount: 28,
     category: "hama-island",
     features: [], includes: [], schedule: [],
+    isPremium: true,
   },
   {
     slug: "setplan349",
@@ -61,6 +63,7 @@ export const plans: Plan[] = [
     reviewCount: 130,
     category: "setplan",
     features: [], includes: [], schedule: [],
+    isPremium: true,
   },
   {
     slug: "bluecave304",
@@ -113,6 +116,7 @@ export const plans: Plan[] = [
       "飲酒後の参加はお断りしています",
       "集合時間に遅れた場合、ツアーに参加できない場合があります",
     ],
+    isPremium: true,
   },
   {
     slug: "seaturtles310",

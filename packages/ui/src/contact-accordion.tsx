@@ -10,6 +10,10 @@ export interface ContactMethod {
 
 export interface ContactSubItem {
   title: string;
+  /**
+   * 説明文。HTML 文字列として描画されるため、文中の `<a href="...">` でインラインリンクを表現できる。
+   * `\n` は改行として表示される。
+   */
   description: string;
   methods: ContactMethod[];
 }
@@ -23,15 +27,34 @@ export interface ContactAccordionProps {
   items: ContactCategory[];
   themeColor?: string;
   accentColor?: string;
+  /** サブ項目タイトル・矢印・枠線の色（未指定時は accentColor） */
+  subItemAccentColor?: string;
+  /** 展開時にサブ項目群の背景に敷く色（未指定時は背景なし） */
+  expandedBg?: string;
+  /** 初期表示で全カテゴリを開いた状態にするか */
+  defaultAllOpen?: boolean;
 }
 
 export function ContactAccordion({
   items,
   themeColor = "#1a9edb",
   accentColor = "#f08300",
+  subItemAccentColor,
+  expandedBg,
+  defaultAllOpen = false,
 }: ContactAccordionProps) {
-  const [openCategories, setOpenCategories] = useState<Set<number>>(new Set());
-  const [openSubItem, setOpenSubItem] = useState<string | null>(null);
+  const subAccent = subItemAccentColor ?? accentColor;
+  const [openCategories, setOpenCategories] = useState<Set<number>>(
+    () => (defaultAllOpen ? new Set(items.map((_, i) => i)) : new Set()),
+  );
+  const [openSubItems, setOpenSubItems] = useState<Set<string>>(() => {
+    if (!defaultAllOpen) return new Set();
+    const initial = new Set<string>();
+    items.forEach((cat, ci) =>
+      cat.subItems.forEach((_, si) => initial.add(`${ci}-${si}`)),
+    );
+    return initial;
+  });
 
   const toggleCategory = (catIndex: number) => {
     setOpenCategories((prev) => {
@@ -46,7 +69,12 @@ export function ContactAccordion({
   };
 
   const toggleSubItem = (key: string) => {
-    setOpenSubItem(openSubItem === key ? null : key);
+    setOpenSubItems((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
   };
 
   return (
@@ -63,8 +91,8 @@ export function ContactAccordion({
           <h3
             style={{
               fontSize: "16.8px",
-              fontWeight: "400",
-              color: "#212529",
+              fontWeight: "600",
+              color: "#363636",
               margin: 0,
             }}
           >
@@ -102,7 +130,16 @@ export function ContactAccordion({
           </h3>
 
           {openCategories.has(catIndex) && (
-            <div style={{ marginTop: "8px", display: "flex", flexDirection: "column", gap: "8px" }}>
+            <div
+              style={{
+                marginTop: "8px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                background: expandedBg ?? "transparent",
+                padding: expandedBg ? "15px 20px" : 0,
+              }}
+            >
               {category.subItems.map((subItem, subIndex) => {
                 const subKey = `${catIndex}-${subIndex}`;
                 return (
@@ -116,13 +153,13 @@ export function ContactAccordion({
                         justifyContent: "space-between",
                         alignItems: "center",
                         padding: "12px 16px",
-                        border: `1px solid ${themeColor}`,
+                        border: `1px solid ${subAccent}`,
                         borderRadius: "6px",
-                        background: "#fff",
+                        background: expandedBg ? "transparent" : "#fff",
                         cursor: "pointer",
-                        fontSize: "15px",
-                        fontWeight: "600",
-                        color: accentColor,
+                        fontSize: "16px",
+                        fontWeight: "700",
+                        color: subAccent,
                         textAlign: "left",
                       }}
                     >
@@ -132,57 +169,36 @@ export function ContactAccordion({
                         height="16"
                         viewBox="0 0 24 24"
                         fill="none"
-                        stroke={accentColor}
+                        stroke={subAccent}
                         strokeWidth="2"
                         style={{
                           flexShrink: 0,
-                          transform: openSubItem === subKey ? "rotate(180deg)" : "none",
+                          transform: openSubItems.has(subKey) ? "rotate(180deg)" : "none",
                           transition: "transform 0.2s",
                         }}
                       >
                         <polyline points="6 9 12 15 18 9" />
                       </svg>
                     </button>
-                    {openSubItem === subKey && (
+                    {openSubItems.has(subKey) && (
                       <div
                         style={{
-                          padding: "12px 16px",
+                          padding: "16px 20px",
                           fontSize: "14px",
                           lineHeight: "1.8",
                           color: "#333",
-                          borderLeft: `1px solid ${themeColor}`,
-                          borderRight: `1px solid ${themeColor}`,
-                          borderBottom: `1px solid ${themeColor}`,
+                          borderLeft: `1px solid ${subAccent}`,
+                          borderRight: `1px solid ${subAccent}`,
+                          borderBottom: `1px solid ${subAccent}`,
                           borderRadius: "0 0 6px 6px",
+                          background: "#fff",
                         }}
                       >
-                        <p style={{ marginBottom: "12px" }}>{subItem.description}</p>
-                        {subItem.methods.length > 0 && (
-                          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-                            {subItem.methods.map((method, mIndex) => (
-                              <a
-                                key={mIndex}
-                                href={method.href}
-                                target={method.href.startsWith("http") ? "_blank" : undefined}
-                                rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                                style={{
-                                  display: "inline-flex",
-                                  alignItems: "center",
-                                  gap: "6px",
-                                  padding: "8px 16px",
-                                  backgroundColor: themeColor,
-                                  color: "#fff",
-                                  borderRadius: "5px",
-                                  fontSize: "13px",
-                                  fontWeight: "bold",
-                                  textDecoration: "none",
-                                }}
-                              >
-                                {method.label}
-                              </a>
-                            ))}
-                          </div>
-                        )}
+                        <ContactDescriptionWithButtons
+                          description={subItem.description}
+                          methods={subItem.methods}
+                          themeColor={themeColor}
+                        />
                       </div>
                     )}
                   </div>
@@ -193,5 +209,125 @@ export function ContactAccordion({
         </div>
       ))}
     </div>
+  );
+}
+
+const LINE_GREEN = "#06C755";
+
+/**
+ * 説明文（HTML）と methods を `[[BUTTON_N]]` プレースホルダで合成して描画する。
+ * - description 内の `[[BUTTON_0]]` 等は対応する methods[N] を本文中インラインで表示
+ * - プレースホルダで参照されなかった methods は説明文末尾に縦並びで表示（後方互換）
+ */
+function ContactDescriptionWithButtons({
+  description,
+  methods,
+  themeColor,
+}: {
+  description: string;
+  methods: ContactMethod[];
+  themeColor: string;
+}) {
+  const placeholderRe = /\[\[BUTTON_(\d+)\]\]/g;
+  const usedMethodIndexes = new Set<number>();
+  const parts: Array<{ type: "html"; html: string } | { type: "method"; method: ContactMethod }> = [];
+
+  let lastIndex = 0;
+  let m: RegExpExecArray | null;
+  while ((m = placeholderRe.exec(description)) !== null) {
+    if (m.index > lastIndex) {
+      parts.push({ type: "html", html: description.slice(lastIndex, m.index) });
+    }
+    const idx = Number(m[1]);
+    const method = methods[idx];
+    if (method) {
+      usedMethodIndexes.add(idx);
+      parts.push({ type: "method", method });
+    }
+    lastIndex = m.index + m[0].length;
+  }
+  if (lastIndex < description.length) {
+    parts.push({ type: "html", html: description.slice(lastIndex) });
+  }
+
+  const trailingMethods = methods.filter((_, i) => !usedMethodIndexes.has(i));
+
+  return (
+    <div
+      className="contact-description"
+      style={{
+        ["--contact-link-color" as string]: themeColor,
+      }}
+    >
+      {parts.map((part, i) =>
+        part.type === "html" ? (
+          <div
+            key={i}
+            style={{ whiteSpace: "pre-line" }}
+            dangerouslySetInnerHTML={{ __html: part.html }}
+          />
+        ) : (
+          <div key={i} style={{ margin: "8px 0" }}>
+            <ContactMethodButton method={part.method} themeColor={themeColor} />
+          </div>
+        ),
+      )}
+      {trailingMethods.length > 0 && (
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "8px" }}>
+          {trailingMethods.map((method, i) => (
+            <ContactMethodButton key={i} method={method} themeColor={themeColor} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ContactMethodButton({ method, themeColor }: { method: ContactMethod; themeColor: string }) {
+  const isExternal = method.href.startsWith("http");
+  const isLine = method.type === "line";
+  const bg = isLine ? LINE_GREEN : themeColor;
+  return (
+    <a
+      href={method.href}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "8px",
+        padding: "10px 24px",
+        backgroundColor: bg,
+        color: "#fff",
+        borderRadius: "6px",
+        fontSize: "14px",
+        fontWeight: "bold",
+        textDecoration: "none",
+        alignSelf: "flex-start",
+      }}
+    >
+      {isLine && (
+        <span
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "24px",
+            height: "24px",
+            borderRadius: "999px",
+            background: "#fff",
+            color: LINE_GREEN,
+            fontSize: "10px",
+            fontWeight: "900",
+            letterSpacing: "0.5px",
+          }}
+          aria-hidden="true"
+        >
+          LINE
+        </span>
+      )}
+      {method.label}
+    </a>
   );
 }
