@@ -26,6 +26,7 @@ import {
   relatedBanners,
   sceneTimeItems,
   spotItems,
+  activityItems,
 } from "../lib/site-config";
 import { Sidebar } from "../components/sidebar";
 import { SearchResultsBottom } from "../components/search-results-bottom";
@@ -33,12 +34,12 @@ import { parseSearchResultsParams } from "../lib/search-results-url";
 
 const heroSlides = [
   { imageUrl: "/images/banner/hero-campaign.png", alt: "石垣島ツアーズ キャンペーン", href: "/" },
-  { imageUrl: "/images/banner/hero-ferry.png", alt: "離島フェリー予約", href: "https://ishigaki-tours.com/tours-ferry/" },
+  { imageUrl: "/images/banner/hero-ferry.png", alt: "離島フェリー予約", href: "/tours-ferry/" },
   { imageUrl: "/images/banner/hero-special-plan.png", alt: "ツアーズ限定プラン", href: "/scene-time/special-plan.html" },
   { imageUrl: "/images/banner/hero-iriomote-setplan.png", alt: "西表島ツアーセットプラン", href: "/activitys/setplan-activity-ferry.html" },
-  { imageUrl: "/images/banner/hero-rentacar.png", alt: "石垣島レンタカー", href: "https://ishigaki-tours.com/scene-time/rental-car.html" },
-  { imageUrl: "/images/banner/hero-premium.png", alt: "ツアーズ厳選プレミアムプラン", href: "/campaign/premium-plan.html" },
-  { imageUrl: "/images/banner/hero-rainy-column.png", alt: "石垣島の雨の日の楽しみ方", href: "/column/rainy-season" },
+  { imageUrl: "/images/banner/hero-rentacar.png", alt: "石垣島レンタカー", href: "/scene-time/rental-car.html" },
+  { imageUrl: "/images/banner/hero-premium.png", alt: "ツアーズ厳選プレミアムプラン", href: "/activitys/premium-plan.html" },
+  { imageUrl: "/images/banner/hero-rainy-column.png", alt: "石垣島の雨の日の楽しみ方", href: "/column/rainy_season20200716" },
 ];
 
 type SearchParams = Record<string, string | string[] | undefined>;
@@ -87,6 +88,8 @@ export default async function HomePage({
             <CampaignSection items={campaignItems} />
 
             <IconCardGrid title="人気スポットから探す" seeMoreHref="/spot" items={spotItems} backgroundImageUrl="/images/section-bg.png" />
+
+            <IconCardGrid title="アクティビティから探す" seeMoreHref="/plan" items={activityItems} backgroundImageUrl="/images/section-bg.png" />
 
             <IconCardGrid title="シーン・時間帯から探す" seeMoreHref="/category/scene-time" items={sceneTimeItems} backgroundImageUrl="/images/section-bg.png" />
 

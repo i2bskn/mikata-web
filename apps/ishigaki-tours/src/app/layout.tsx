@@ -60,13 +60,13 @@ export default function RootLayout({
           socialLinks={socialLinks}
           partnerLogos={partnerLogos}
           decorativeImageUrls={[
-            "/images/footer/footer-01.webp",
-            "/images/footer/footer-02.webp",
-            "/images/footer/footer-03.webp",
-            "/images/footer/footer-04.webp",
-            "/images/footer/footer-05.jpg",
-            "/images/footer/footer-06.jpg",
-            "/images/footer/footer-07.webp",
+            "/images/footer/footer-panari-snorkel.jpg",
+            "/images/footer/footer-panari-diving.jpg",
+            "/images/footer/footer-fishing.jpg",
+            "/images/footer/footer-parasailing.jpg",
+            "/images/footer/footer-snorkeling.jpg",
+            "/images/footer/footer-bluecave-sup.jpeg",
+            "/images/footer/footer-mangrove-canoe.jpeg",
           ]}
         />
       </body>

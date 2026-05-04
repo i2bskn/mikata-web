@@ -33,9 +33,9 @@ export const CategoryNav: FC<CategoryNavProps> = ({ items, className = "", embed
       }}
     >
       <div style={{ display: "flex", flexWrap: "nowrap", overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
-        {items.map((item) => (
+        {items.map((item, idx) => (
           <a
-            key={item.href}
+            key={`${item.href}-${idx}`}
             href={item.href}
             className="flex flex-col items-center text-center shrink-0 w-[70px] md:w-[10%] text-[10px] md:text-[12px]"
             style={{

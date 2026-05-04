@@ -134,18 +134,18 @@ export function SearchPanel({ categoryNavItems, planOptions, planCount, backgrou
             <div className="flex items-center justify-between" style={{ marginTop: "16px" }}>
               <div style={{ color: "#666", fontSize: "14px" }}>
                 該当プラン数{" "}
-                <span style={{ fontSize: "32px", fontWeight: "bold", color: "#333" }}>{planCount}</span>
+                <span style={{ fontSize: "36px", fontWeight: "normal", color: "var(--color-danger)" }}>{planCount}</span>
                 <span style={{ fontSize: "16px", color: "#333" }}>件</span>
               </div>
               <button
                 type="submit"
-                className="text-base sm:text-[24px] px-6 sm:w-[195px] py-2.5 sm:py-3.5"
+                className="text-base sm:text-[28px] sm:w-[260px] py-1.5 sm:py-[3px]"
                 style={{
                   backgroundColor: "var(--color-danger)",
                   color: "#fff",
                   border: "none",
                   borderRadius: "5px",
-                  fontWeight: "bold",
+                  fontWeight: "normal",
                   cursor: "pointer",
                   display: "flex",
                   alignItems: "center",

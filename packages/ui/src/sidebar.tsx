@@ -12,22 +12,42 @@ export interface SidebarBanner {
   external?: boolean;
 }
 
+export interface SidebarWidgetItem {
+  label: string;
+  href: string;
+}
+
+export interface SidebarWidgetSection {
+  title: string;
+  items: SidebarWidgetItem[];
+}
+
 export interface SidebarProps {
   categoryNavItems: SidebarCategoryNavItem[];
   planCount: number;
   banners: SidebarBanner[];
+  widgetSections?: SidebarWidgetSection[];
+  recentlyViewedTitle?: string;
+  recentlyViewedEmptyText?: string;
 }
 
-export function Sidebar({ categoryNavItems, planCount, banners }: SidebarProps) {
+export function Sidebar({
+  categoryNavItems,
+  planCount,
+  banners,
+  widgetSections,
+  recentlyViewedTitle,
+  recentlyViewedEmptyText,
+}: SidebarProps) {
   return (
     <aside className="hidden lg:block shrink-0" style={{ width: "225px", paddingRight: "25px" }}>
       <div className="sticky" style={{ top: "110px" }}>
         {/* サイドバーカテゴリナビ + 検索フォーム（1つのカード） */}
         <div style={{ backgroundColor: "#fff", borderRadius: "10px", boxShadow: "0px 1px 6px 0px #ccc", overflow: "hidden", padding: "15px", marginBottom: "20px" }}>
           <div style={{ overflowX: "auto", whiteSpace: "nowrap" }}>
-            {categoryNavItems.map((item) => (
+            {categoryNavItems.map((item, idx) => (
               <a
-                key={item.href}
+                key={`${item.href}-${idx}`}
                 href={item.href}
                 className="inline-flex flex-col items-center text-center"
                 style={{
@@ -124,9 +144,36 @@ export function Sidebar({ categoryNavItems, planCount, banners }: SidebarProps) 
           </div>
         </div>
 
+        {/* 最近チェックしたプラン */}
+        {recentlyViewedTitle && (
+          <div style={{ marginTop: "20px" }}>
+            <h3 style={{ fontSize: "14px", fontWeight: 600, color: "#666", borderBottom: "3px solid #eee", paddingBottom: "5px", marginBottom: "10px" }}>
+              {recentlyViewedTitle}
+            </h3>
+            <p style={{ fontSize: "12px", color: "#666" }}>{recentlyViewedEmptyText}</p>
+          </div>
+        )}
+
+        {/* widget セクション (アクティビティから探す等) */}
+        {widgetSections?.map((section) => (
+          <div key={section.title} style={{ marginTop: "20px" }}>
+            <h3 style={{ fontSize: "14px", fontWeight: 600, color: "#666", borderBottom: "3px solid #eee", paddingBottom: "5px", marginBottom: "10px" }}>
+              {section.title}
+            </h3>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              {section.items.map((item) => (
+                <li key={item.href + item.label} style={{ fontSize: "14px", lineHeight: "1.6", paddingLeft: "12px", position: "relative", marginBottom: "4px" }}>
+                  <span style={{ position: "absolute", left: 0, color: "#666" }}>-</span>
+                  <a href={item.href} style={{ color: "var(--color-danger)", textDecoration: "none" }}>{item.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
         {/* サイドバーバナー広告 */}
         {banners.map((banner, i) => (
-          <div key={banner.imageUrl} style={{ marginTop: i === 0 ? "16px" : "12px" }}>
+          <div key={banner.imageUrl} style={{ marginTop: i === 0 ? "20px" : "12px" }}>
             <a
               href={banner.href}
               {...(banner.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}

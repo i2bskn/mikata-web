@@ -46,7 +46,7 @@ export const administratorPartnerImages = [
 ];
 
 /**
- * 選ばれる理由（/visitor）ページ用データ
+ * 選ばれる理由（/visitor-2）ページ用データ
  */
 export const visitorMetaDescription =
   "「旅行をもっと簡単に」 私たちはエリア特化型の観光ポータルを運営することで、様々な旅行の不便の解消を目指します";
@@ -180,7 +180,7 @@ export const administratorReasons = [
  * サイドバー設定
  */
 export const sidebarConfig = {
-  planCount: 20,
+  planCount: 409,
   banners: [
     {
       href: "/activitys/setplan-activity-ferry.html",
@@ -188,10 +188,9 @@ export const sidebarConfig = {
       alt: "【ツアーズ限定割引】西表島セットプラン（フェリーチケット付き）",
     },
     {
-      href: "https://ishigaki-tours.com/tours-ferry/",
+      href: "/tours-ferry/",
       imageUrl: "/images/sidebar/sidebar-ferry.png",
       alt: "離島フェリー予約",
-      external: true,
     },
     {
       href: "/campaign/premium-plan.html",
@@ -199,26 +198,145 @@ export const sidebarConfig = {
       alt: "ツアーズ厳選プレミアムプラン",
     },
   ],
+  widgetSections: [
+    {
+      title: "アクティビティから探す",
+      items: [
+        { label: "SUP（スタンドアップパドル）", href: "/activitys/sup.html" },
+        { label: "幻の島（浜島）ツアー", href: "/popular-spot/hama-island.html" },
+        { label: "青の洞窟ツアー", href: "/popular-spot/bluecave.html" },
+        { label: "シュノーケリング", href: "/activitys/snorkel.html" },
+        { label: "川平湾ツアー", href: "/popular-spot/kabira-bay.html" },
+        { label: "マンタツアー", href: "/activitys/manta.html" },
+        { label: "ダイビング", href: "/activitys/diving.html" },
+        { label: "カヌー（シーカヤック）", href: "/activitys/kayak.html" },
+        { label: "八重山離島巡り", href: "/popular-spot/remote-island-tour.html" },
+        { label: "ナイトツアー（星空・ナイトサファリ）", href: "/scene-time/nighttour.html" },
+        { label: "石垣島チャーター（貸切）ツアー", href: "/scene-time/charter_tour.html" },
+        { label: "マリンスポーツ（バナナボート・ウィンドサーフィン）", href: "/activitys/marine-sports.html" },
+        { label: "クルージング", href: "/activitys/cruising.html" },
+        { label: "フォトツアー", href: "/activitys/photo-tour.html" },
+        { label: "グラスボート体験", href: "/activitys/glassboat.html" },
+        { label: "釣りツアー", href: "/activitys/fishing.html" },
+        { label: "【石垣島発着】新城島（パナリ島）ツアー", href: "/popular-spot/panari-island.html" },
+        { label: "ドルフィンツアー（イルカ体験）", href: "/activitys/dolphin.html" },
+        { label: "ジャングルトレッキング", href: "/activitys/trekking.html" },
+        { label: "“奇跡の島” バラス島ツアー", href: "/popular-spot/barasu-island.html" },
+        { label: "ヨガ体験", href: "/activitys/yoga.html" },
+        { label: "マッサージ", href: "/activitys/massage.html" },
+        { label: "【季節限定】ホタル・サガリバナツアー", href: "/scene-time/seasonal.html" },
+        { label: "石垣島レンタカー", href: "/scene-time/rental-car.html" },
+      ],
+    },
+    {
+      title: "人気スポットから探す",
+      items: [
+        { label: "川平湾ツアー", href: "/popular-spot/kabira-bay.html" },
+        { label: "青の洞窟ツアー", href: "/popular-spot/bluecave.html" },
+        { label: "幻の島（浜島）ツアー", href: "/popular-spot/hama-island.html" },
+        { label: "“奇跡の島” バラス島ツアー", href: "/popular-spot/barasu-island.html" },
+        { label: "【石垣島発着】竹富島観光（水牛車）日帰り離島ツアー", href: "/popular-spot/taketomi-island.html" },
+        { label: "【石垣島発着】新城島（パナリ島）ツアー", href: "/popular-spot/panari-island.html" },
+        { label: "【石垣島発】周辺離島巡りツアー(西表・由布・竹富・小浜)", href: "/popular-spot/remote-island-tour.html" },
+      ],
+    },
+    {
+      title: "シーン・時間帯から探す",
+      items: [
+        { label: "【厳選】石垣島ツアーズプレミアムプラン", href: "/campaign/premium-plan.html" },
+        { label: "当日予約可能なアクティビティツアー", href: "/scene-time/same_day_booking.html" },
+        { label: "マル優（安全対策優良業者）認定ツアー", href: "/scene-time/certification-tour.html" },
+        { label: "石垣島ナイトツアー", href: "/scene-time/nighttour.html" },
+        { label: "石垣島チャーター(貸切)ツアー", href: "/scene-time/charter_tour.html" },
+        { label: "【季節限定開催】石垣島サガリバナ＆ホタル鑑賞ツアー", href: "/scene-time/seasonal.html" },
+        { label: "石垣島レンタカー", href: "/scene-time/rental-car.html" },
+        { label: "石垣島の乗り物(レンタルバイク・レンタサイクル)アクティビティ", href: "/scene-time/rentalothers.html" },
+        { label: "【物販】石垣島レジンアート", href: "/scene-time/resin-art.html" },
+      ],
+    },
+    {
+      title: "石垣島関連情報",
+      items: [
+        { label: "コラム一覧", href: "/column" },
+        { label: "観光スポット一覧", href: "/spot" },
+      ],
+    },
+  ],
+  recentlyViewedTitle: "最近チェックしたプラン",
+  recentlyViewedEmptyText: "閲覧履歴はありません。",
 };
 
 /**
- * トップページ「シーン・時間帯から探す」の表示項目（旧サイト準拠）
+ * トップページ「シーン・時間帯から探す」の表示項目（旧サイト準拠 18項目）
  */
 export const sceneTimeItems = [
-  { href: "/scene-time/special-plan.html", image: "/images/scene/scene-special-plan.png", title: "ツアーズ限定プラン" },
-  { href: "/scene-time/same_day_booking.html", image: "/images/scene/scene-same-day.jpg", title: "当日予約OKプラン" },
-  { href: "/scene-time/certification-tour.html", image: "/images/scene/scene-certification.png", title: "マル優認定ツアー" },
-  { href: "/scene-time/ferry-ticket.html", image: "/images/scene/scene-ferry-ticket.jpg", title: "フェリーチケット付きツアー" },
+  { href: "/scene-time/special-plan.html", image: "/images/scene/scene-special-plan.png", title: "石垣島ツアーズ限定★オリジナル体験プラン" },
+  { href: "/scene-time/same_day_booking.html", image: "/images/scene/scene-same-day.jpg", title: "当日予約可能なアクティビティツアー" },
+  { href: "/scene-time/certification-tour.html", image: "/images/scene/scene-certification.png", title: "マル優（安全対策優良業者）認定ツアー" },
+  { href: "/scene-time/ferry-ticket.html", image: "/images/scene/scene-ferry-ticket.jpg", title: "【事前予約】離島フェリーチケット" },
+  { href: "/scene-time/group-travel.html", image: "/images/scene/scene-group-travel.png", title: "石垣島団体グループ旅行（家族旅行・社員旅行・学生旅行・修学旅行）" },
+  { href: "/scene-time/beginner.html", image: "/images/scene/scene-beginner.jpg", title: "【はじめての石垣】失敗したくない方向け王道ツアー" },
+  { href: "/scene-time/charter_tour.html", image: "/images/scene/scene-charter.jpg", title: "石垣島チャーター（貸切）ツアー" },
+  { href: "/scene-time/sunset-tour.html", image: "/images/scene/scene-sunset.jpeg", title: "石垣島サンセット（夕方開催）ツアー" },
+  { href: "/scene-time/nighttour.html", image: "/images/scene/scene-nighttour.webp", title: "石垣島ナイトツアー" },
+  { href: "/scene-time/seasonal.html", image: "/images/scene/scene-seasonal.jpg", title: "【季節限定開催】石垣島サガリバナ＆ホタル鑑賞ツアー" },
+  { href: "/scene-time/rental-car.html", image: "/images/scene/scene-rental-car.jpg", title: "石垣島レンタカー" },
+  { href: "/scene-time/kickboard-rental.html", image: "/images/scene/scene-kickboard.png", title: "石垣島電動キックボードレンタル" },
+  { href: "/scene-time/rentalothers.html", image: "/images/scene/scene-rentalothers.jpg", title: "石垣島の乗り物（レンタルバイク・レンタサイクル）アクティビティ" },
+  { href: "/scene-time/baby-sitter.html", image: "/images/scene/scene-baby-sitter.jpg", title: "石垣島ベビーシッター" },
+  { href: "/scene-time/unusual-experience.html", image: "/images/scene/scene-unusual.jpg", title: "【石垣島】ちょっと変わった珍しい＆面白い体験ツアー" },
+  { href: "/scene-time/senior-tour.html", image: "/images/scene/scene-senior.jpeg", title: "【60代～70代】ご年配の方でも楽しめるツアー" },
+  { href: "/scene-time/pet.html", image: "/images/scene/scene-pet.jpg", title: "【ペット（愛犬）と参加OK】石垣島アクティビティツアー・レンタカー" },
+  { href: "/scene-time/resin-art.html", image: "/images/scene/scene-resin-art.png", title: "【物販】石垣島レジンアート" },
 ];
 
 /**
- * トップページ「人気スポットから探す」の表示項目（旧サイト準拠）
+ * トップページ「人気スポットから探す」の表示項目（旧サイト準拠 12項目）
  */
 export const spotItems = [
-  { href: "/popular-spot/kabira-bay.html", image: "/images/spot/spot-kabira-bay.webp", title: "川平湾" },
-  { href: "/popular-spot/bluecave.html", image: "/images/spot/spot-bluecave.jpg", title: "青の洞窟" },
-  { href: "/popular-spot/hama-island.html", image: "/images/spot/spot-hama-island.jpg", title: "幻の島（浜島）" },
-  { href: "/popular-spot/barasu-island.html", image: "/images/spot/spot-barasu-island.jpg", title: "バラス島" },
+  { href: "/popular-spot/kabira-bay.html", image: "/images/spot/spot-kabira-bay.webp", title: "川平湾ツアー" },
+  { href: "/popular-spot/bluecave.html", image: "/images/spot/spot-bluecave.jpg", title: "青の洞窟ツアー" },
+  { href: "/popular-spot/hama-island.html", image: "/images/spot/spot-hama-island.jpg", title: "幻の島（浜島）ツアー" },
+  { href: "/popular-spot/barasu-island.html", image: "/images/spot/spot-barasu-island.jpg", title: "“奇跡の島” バラス島ツアー" },
+  { href: "/popular-spot/mangrove.html", image: "/images/spot/spot-mangrove.jpeg", title: "石垣島マングローブツアー" },
+  { href: "/popular-spot/taketomi-island.html", image: "/images/spot/spot-taketomi-island.jpg", title: "【石垣島発着】竹富島観光（水牛車）日帰り離島ツアー" },
+  { href: "/popular-spot/iriomotejima.html", image: "/images/spot/spot-iriomotejima.jpg", title: "【石垣島発着】西表島アクティビティツアー" },
+  { href: "/popular-spot/kohamajima.html", image: "/images/spot/spot-kohamajima.jpeg", title: "【石垣島発着】小浜島ツアー" },
+  { href: "/popular-spot/panari-island.html", image: "/images/spot/spot-panari-island.jpg", title: "【石垣島発着】新城島（パナリ島）ツアー" },
+  { href: "/popular-spot/remote-island-tour.html", image: "/images/spot/spot-remote-island-tour.jpg", title: "【石垣島発着】周辺離島巡りツアー（西表・由布・竹富・小浜）" },
+  { href: "/popular-spot/haterumajima.html", image: "/images/spot/spot-haterumajima.jpg", title: "【石垣島発着】波照間島アクティビティツアー" },
+  { href: "/popular-spot/kuroshima.html", image: "/images/spot/spot-kuroshima.jpg", title: "【石垣島発着】黒島アクティビティツアー" },
+];
+
+/**
+ * トップページ「アクティビティから探す」の表示項目（旧サイト準拠 25項目）
+ */
+export const activityItems = [
+  { href: "/activitys/setplan-activity-ferry.html", image: "/images/activity/activity-setplan-ferry.png", title: "【石垣島発着】西表島ツアー（フェリーチケット付き）" },
+  { href: "/activitys/snorkel.html", image: "/images/activity/activity-snorkel.jpg", title: "石垣島シュノーケリング（シュノーケル）ツアー" },
+  { href: "/activitys/sup.html", image: "/images/activity/activity-sup.jpg", title: "石垣島SUP（サップ）ツアー" },
+  { href: "/activitys/kayak.html", image: "/images/activity/activity-kayak.jpg", title: "石垣島カヌー（カヤック）ツアー" },
+  { href: "/activitys/diving.html", image: "/images/activity/activity-diving.jpg", title: "石垣島ダイビング・スキューバダイビングツアー" },
+  { href: "/activitys/umigame.html", image: "/images/activity/activity-umigame.jpg", title: "石垣島ウミガメの体験プラン・アクティビティツアー" },
+  { href: "/activitys/fishing.html", image: "/images/activity/activity-fishing.jpg", title: "石垣島海釣り・船釣り体験ツアー" },
+  { href: "/activitys/boat-charter.html", image: "/images/activity/activity-boat-charter.jpg", title: "石垣島・小浜島ボートチャーター（貸切）ツアー" },
+  { href: "/activitys/marine-sports.html", image: "/images/activity/activity-marine-sports.jpg", title: "マリンスポーツ（バナナボート・トーイングチューブ・ウィンドサーフィン）" },
+  { href: "/activitys/manta.html", image: "/images/activity/activity-manta.jpg", title: "石垣島マンタ(シュノーケル・ダイビング)ツアー" },
+  { href: "/activitys/dolphin.html", image: "/images/activity/activity-dolphin.jpg", title: "石垣島ドルフィンツアー（イルカふれあい体験）" },
+  { href: "/activitys/parasailing.html", image: "/images/activity/activity-parasailing.jpg", title: "石垣島パラセーリングツアー" },
+  { href: "/activitys/bus-tour.html", image: "/images/activity/activity-bus-tour.jpg", title: "石垣島観光バス・タクシーツアー" },
+  { href: "/activitys/trekking.html", image: "/images/activity/activity-trekking.jpg", title: "石垣島トレッキングツアー" },
+  { href: "/activitys/buggy.html", image: "/images/activity/activity-buggy.jpg", title: "石垣島四輪バギー体験ツアー・レンタル" },
+  { href: "/activitys/trike.html", image: "/images/activity/activity-trike.jpg", title: "石垣島トライク(ガイド付き)ツアー" },
+  { href: "/activitys/cruising.html", image: "/images/activity/activity-cruising.jpg", title: "石垣島クルージングツアー" },
+  { href: "/activitys/glassboat.html", image: "/images/activity/activity-glassboat.jpg", title: "石垣島グラスボート体験" },
+  { href: "/activitys/jet-ski.html", image: "/images/activity/activity-jet-ski.jpg", title: "石垣島ジェットスキー・水上バイク体験ツアー" },
+  { href: "/activitys/yoga.html", image: "/images/activity/activity-yoga.jpg", title: "石垣島ヨガ体験" },
+  { href: "/activitys/sauna.html", image: "/images/activity/activity-sauna.png", title: "石垣島サウナ体験(ビーチサウナ体験)" },
+  { href: "/activitys/photo-tour.html", image: "/images/activity/activity-photo-tour.jpeg", title: "石垣島フォト(写真撮影)ツアー" },
+  { href: "/activitys/massage.html", image: "/images/activity/activity-massage.jpg", title: "石垣島マッサージ体験" },
+  { href: "/activitys/okinawa-cultural.html", image: "/images/activity/activity-okinawa-cultural.jpg", title: "沖縄伝統文化体験(食文化・三線体験)" },
+  { href: "/activitys/handmade.html", image: "/images/activity/activity-handmade.jpg", title: "石垣島のものづくり・ハンドメイド体験" },
 ];
 
 /**
@@ -578,8 +696,9 @@ export const planOptions = [
  * ヘッダーナビゲーション - 既存サイト: 人気ランキング、「選ばれる理由」とは（2項目）
  */
 export const navItems: NavItem[] = [
+  { label: "アクティビティ", href: "/category/activitys" },
   { label: "人気ランキング", href: "/ranking" },
-  { label: `${siteConfig.siteName}が「選ばれる理由」とは`, href: "/visitor" },
+  { label: `${siteConfig.siteName}が「選ばれる理由」とは`, href: "/visitor-2" },
 ];
 
 /**
@@ -589,14 +708,20 @@ export const footerSections: FooterSection[] = [
   {
     title: "サイト情報",
     links: [
-      { label: `${siteConfig.siteName}が「選ばれる理由」とは`, href: "/visitor" },
+      { label: `${siteConfig.siteName}が「選ばれる理由」とは`, href: "/visitor-2" },
       { label: "よくある質問＆注意事項", href: "/faq" },
-      { label: "運営者情報", href: "/administratordata" },
-      { label: "旅行業務取扱料金表(国内旅行)", href: "https://www.shummake.com/ryokin-kokunnai/" },
-      { label: "特定商取引法に関する表記", href: "/act_on_specified_commercial_transactions" },
-      { label: "利用規約", href: "/policy" },
-      { label: "個人情報保護方針", href: "/privacypolicy" },
+      { label: `${siteConfig.siteName}特集＆キャンペーン情報`, href: "/campaign" },
+      { label: "石垣島の観光スポット一覧", href: "/spot" },
       { label: "リンク集・掲載事業者一覧", href: "/links" },
+      { label: "個人情報保護方針", href: "/privacypolicy" },
+      { label: "利用規約", href: "/policy" },
+      { label: "特定商取引法に関する表記", href: "/act_on_specified_commercial_transactions" },
+      { label: "旅行業約款・条件書", href: "/yakkan" },
+      { label: "旅行業務取扱料金表(国内旅行)", href: "https://www.shummake.com/ryokin-kokunnai/" },
+      { label: "運営者情報", href: "/administratordata" },
+      { label: "ツアーの手配について（旅行代理店専用）", href: "/group-travel" },
+      { label: "掲載のご依頼について", href: "/partner-entry" },
+      { label: "記事掲載のご依頼について（記事広告）", href: "/promotion" },
       { label: "アフィリエイトについて", href: "https://shummake-affiliate-programs.manus.space/" },
       { label: "採用情報", href: "https://www.shummake.com/recruit/" },
     ],
@@ -615,7 +740,7 @@ export const companyInfo = {
  * ヘッダー設定
  */
 export const headerConfig = {
-  catchphrase: `石垣島専門のツアー/アクティビティ/レンタカー予約サイト`,
+  catchphrase: `石垣島専門のアクティビティ予約サイト"${siteConfig.siteName}"`,
   contactUrl: "/select-contact",
   historyUrl: "/myplan",
   saleUrl: "/pickup_item",

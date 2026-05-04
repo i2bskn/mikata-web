@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import { VisitorAccordionList } from "./visitor-accordion-list";
 
 export interface VisitorReason {
   title: string;
@@ -16,9 +17,10 @@ export interface VisitorContentProps {
   steps?: string[];
   islandDescription?: string;
   travelTips?: { title: string; text: string }[];
+  accordion?: boolean;
 }
 
-const h3Style = (themeColor: string) => ({
+const h3Style = {
   fontSize: "19.4px",
   fontWeight: "600" as const,
   color: "#666",
@@ -29,7 +31,7 @@ const h3Style = (themeColor: string) => ({
   paddingBottom: "3px",
   lineHeight: "1.4",
   borderBottom: "3px solid #eee",
-});
+};
 
 const h2Style = (themeColor: string) => ({
   fontSize: "21.6px",
@@ -51,6 +53,7 @@ export const VisitorContent: FC<VisitorContentProps> = ({
   steps = ["ツアーを探す", "予約プランの申し込み", "予約確定", "ツアーに参加"],
   islandDescription,
   travelTips,
+  accordion = false,
 }) => {
   return (
     <>
@@ -96,17 +99,21 @@ export const VisitorContent: FC<VisitorContentProps> = ({
 
         {/* 選ばれる理由セクション */}
         <section style={{ marginBottom: "16.8px" }}>
-          <h3 style={h3Style(themeColor)}>ツアーズが選ばれる理由</h3>
-          <ol style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            {reasons.map((reason, index) => (
-              <li key={index} style={{ marginBottom: "20px" }}>
-                <p style={{ fontWeight: "bold", marginBottom: "4px" }}>
-                  {index + 1}. {reason.title}
-                </p>
-                <p>{reason.text}</p>
-              </li>
-            ))}
-          </ol>
+          <h3 style={h3Style}>ツアーズが選ばれる理由</h3>
+          {accordion ? (
+            <VisitorAccordionList items={reasons} themeColor={themeColor} />
+          ) : (
+            <ol style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              {reasons.map((reason, index) => (
+                <li key={index} style={{ marginBottom: "20px" }}>
+                  <p style={{ fontWeight: "bold", marginBottom: "4px" }}>
+                    {index + 1}. {reason.title}
+                  </p>
+                  <p>{reason.text}</p>
+                </li>
+              ))}
+            </ol>
+          )}
         </section>
 
         {/* 予約から参加までの流れ */}
@@ -146,7 +153,7 @@ export const VisitorContent: FC<VisitorContentProps> = ({
         {/* 石垣島の魅力 */}
         {islandDescription && (
           <section style={{ marginBottom: "16.8px" }}>
-            <h3 style={h3Style(themeColor)}>石垣島の魅力とは</h3>
+            <h3 style={h3Style}>石垣島の魅力とは</h3>
             <p>{islandDescription}</p>
           </section>
         )}
@@ -154,17 +161,21 @@ export const VisitorContent: FC<VisitorContentProps> = ({
         {/* 旅行を失敗しないために */}
         {travelTips && travelTips.length > 0 && (
           <section style={{ marginBottom: "16.8px" }}>
-            <h3 style={h3Style(themeColor)}>石垣島旅行を失敗しないために</h3>
-            <ol style={{ listStyle: "none", padding: 0, margin: 0 }}>
-              {travelTips.map((tip, index) => (
-                <li key={index} style={{ marginBottom: "20px" }}>
-                  <p style={{ fontWeight: "bold", marginBottom: "4px" }}>
-                    {index + 1}．{tip.title}
-                  </p>
-                  <p>{tip.text}</p>
-                </li>
-              ))}
-            </ol>
+            <h3 style={h3Style}>石垣島旅行を失敗しないために</h3>
+            {accordion ? (
+              <VisitorAccordionList items={travelTips} themeColor={themeColor} />
+            ) : (
+              <ol style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                {travelTips.map((tip, index) => (
+                  <li key={index} style={{ marginBottom: "20px" }}>
+                    <p style={{ fontWeight: "bold", marginBottom: "4px" }}>
+                      {index + 1}．{tip.title}
+                    </p>
+                    <p>{tip.text}</p>
+                  </li>
+                ))}
+              </ol>
+            )}
           </section>
         )}
       </div>

@@ -30,7 +30,7 @@ export default function VisitorPage() {
           { name: "ホーム", url: siteConfig.siteUrl },
           {
             name: `旅行専門家が作る予約サイト「${siteConfig.siteName}」とは`,
-            url: `${siteConfig.siteUrl}/visitor`,
+            url: `${siteConfig.siteUrl}/visitor-2`,
           },
         ]}
       />
@@ -48,6 +48,7 @@ export default function VisitorPage() {
             themeColor={themeColor}
             islandDescription={visitorIslandDescription}
             travelTips={visitorTravelTips}
+            accordion
           />
         }
       />

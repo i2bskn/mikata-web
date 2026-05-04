@@ -1,0 +1,43 @@
+import type { ActivityCategoryItem } from "@repo/ui/activity-list";
+
+/**
+ * /category/activitys ページのリスト項目（旧サイト準拠 36件、表示順そのまま）
+ */
+export const activityCategories: ActivityCategoryItem[] = [
+  { name: "石垣島 サンセットSUP", href: "/activitys/sunset-sup.html", imageUrl: "/images/activity/activity-sunset-sup.webp" },
+  { name: "石垣島サンセットカヤック（カヌー）ツアー", href: "/activitys/sunset-kayak.html", imageUrl: "/images/activity/activity-sunset-kayak.jpg" },
+  { name: "石垣島マングローブカヤック（カヌー）ツアー", href: "/activitys/mangrove-kayak.html", imageUrl: "/images/activity/activity-mangrove-kayak.jpg" },
+  { name: "【石垣島発着】西表島ツアー(フェリーチケット付き)", href: "/activitys/setplan-activity-ferry.html", imageUrl: "/images/activity/activity-setplan-ferry.png" },
+  { name: "石垣島シュノーケリング（シュノーケル）ツアー", href: "/activitys/snorkel.html", imageUrl: "/images/activity/activity-snorkel.jpg" },
+  { name: "石垣島SUP（サップ）ツアー", href: "/activitys/sup.html", imageUrl: "/images/activity/activity-sup.jpg" },
+  { name: "石垣島カヌー（カヤック）ツアー", href: "/activitys/kayak.html", imageUrl: "/images/activity/activity-kayak.jpg" },
+  { name: "石垣島ダイビング・スキューバダイビングツアー", href: "/activitys/diving.html", imageUrl: "/images/activity/activity-diving.jpg" },
+  { name: "石垣島ウミガメの体験プラン・アクティビティツアー", href: "/activitys/umigame.html", imageUrl: "/images/activity/activity-umigame.jpg" },
+  { name: "石垣島海釣り・船釣り体験ツアー", href: "/activitys/fishing.html", imageUrl: "/images/activity/activity-fishing.jpg" },
+  { name: "石垣島・小浜島ボートチャーター（貸切）ツアー", href: "/activitys/boat-charter.html", imageUrl: "/images/activity/activity-boat-charter.jpg" },
+  { name: "マリンスポーツ（バナナボート・トーイングチューブ・ウィンドサーフィン）", href: "/activitys/marine-sports.html", imageUrl: "/images/activity/activity-marine-sports.jpg" },
+  { name: "石垣島マンタ(シュノーケル・ダイビング)ツアー", href: "/activitys/manta.html", imageUrl: "/images/activity/activity-manta.jpg" },
+  { name: "石垣島ドルフィンツアー（イルカふれあい体験）", href: "/activitys/dolphin.html", imageUrl: "/images/activity/activity-dolphin.jpg" },
+  { name: "石垣島パラセーリングツアー", href: "/activitys/parasailing.html", imageUrl: "/images/activity/activity-parasailing.jpg" },
+  { name: "石垣島観光バス・タクシーツアー", href: "/activitys/bus-tour.html", imageUrl: "/images/activity/activity-bus-tour.jpg" },
+  { name: "石垣島トレッキングツアー", href: "/activitys/trekking.html", imageUrl: "/images/activity/activity-trekking.jpg" },
+  { name: "石垣島四輪バギー体験ツアー・レンタル", href: "/activitys/buggy.html", imageUrl: "/images/activity/activity-buggy.jpg" },
+  { name: "石垣島トライク（ガイド付き）ツアー", href: "/activitys/trike.html", imageUrl: "/images/activity/activity-trike.jpg" },
+  { name: "石垣島クルージングツアー", href: "/activitys/cruising.html", imageUrl: "/images/activity/activity-cruising.jpg" },
+  { name: "石垣島グラスボート体験", href: "/activitys/glassboat.html", imageUrl: "/images/activity/activity-glassboat.jpg" },
+  { name: "石垣島ジェットスキー・水上バイク体験ツアー", href: "/activitys/jet-ski.html", imageUrl: "/images/activity/activity-jet-ski.jpg" },
+  { name: "石垣島ヨガ体験", href: "/activitys/yoga.html", imageUrl: "/images/activity/activity-yoga.jpg" },
+  { name: "石垣島サウナ体験（ビーチサウナ体験）", href: "/activitys/sauna.html", imageUrl: "/images/activity/activity-sauna.png" },
+  { name: "石垣島フォト（写真撮影）ツアー", href: "/activitys/photo-tour.html", imageUrl: "/images/activity/activity-photo-tour.jpeg" },
+  { name: "石垣島マッサージ体験", href: "/activitys/massage.html", imageUrl: "/images/activity/activity-massage.jpg" },
+  { name: "沖縄伝統文化体験（食文化・三線体験）", href: "/activitys/okinawa-cultural.html", imageUrl: "/images/activity/activity-okinawa-cultural.jpg" },
+  { name: "石垣島のものづくり・ハンドメイド体験", href: "/activitys/handmade.html", imageUrl: "/images/activity/activity-handmade.jpg" },
+  { name: "石垣島星空ツアー（フォト/鑑賞）", href: "/activitys/starry-sky-phototour.html", imageUrl: "/images/activity/activity-starry-sky.jpg" },
+  { name: "石垣島ファンダイビングツアー", href: "/activitys/fun-diving.html", imageUrl: "/images/activity/activity-fun-diving.jpg" },
+  { name: "石垣島フォトウェディング", href: "/activitys/wedding-photo.html", imageUrl: "/images/activity/activity-wedding-photo.jpg" },
+  { name: "石垣島の女子旅におすすめアクティビティ体験ツアー", href: "/activitys/girls-trip.html", imageUrl: "/images/activity/activity-girls-trip.jpg" },
+  { name: "石垣島の機織り体験･機織り教室体験・ツアー", href: "/activitys/weaving-experience.html", imageUrl: "/images/activity/activity-weaving.jpg" },
+  { name: "石垣島のクリアSUP(クリアサップ)体験・ツアー", href: "/activitys/clear-sup.html", imageUrl: "/images/activity/activity-clear-sup.jpg" },
+  { name: "石垣島ドローン撮影付きアクティビティツアー", href: "/activitys/drone.html", imageUrl: "/images/activity/activity-drone.jpg" },
+  { name: "石垣島BBQ（バーベキュー）プラン", href: "/activitys/bbq.html", imageUrl: "/images/activity/activity-bbq.jpg" },
+];
