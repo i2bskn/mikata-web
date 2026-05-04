@@ -77,7 +77,8 @@ export function generatePlanMetadata(
 ): Metadata {
   return generatePageMetadata(
     {
-      title: `${plan.name} | ${site.siteName}`,
+      title: plan.name,
+      ogTitle: `${plan.name} | ${site.siteName}`,
       description: plan.description,
       ogImage: plan.image,
       canonical: `${site.siteUrl}/plan/${plan.slug}`,
@@ -100,7 +101,8 @@ export function generateColumnMetadata(
 ): Metadata {
   return generatePageMetadata(
     {
-      title: `${column.title} | ${site.siteName}`,
+      title: column.title,
+      ogTitle: `${column.title} | ${site.siteName}`,
       description: column.excerpt,
       ogImage: column.image,
       canonical: `${site.siteUrl}/column/${column.slug}`,
