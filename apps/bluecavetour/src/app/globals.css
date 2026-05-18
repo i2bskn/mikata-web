@@ -15,6 +15,9 @@
 
   /* フッター背景 */
   --color-footer-bg: #f9f9f2;
+
+  /* ドロワー背景（SearchPanel 外側と同色） */
+  --color-drawer-bg: var(--color-decoration-2);
 }
 
 html, body {

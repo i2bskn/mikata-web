@@ -74,7 +74,7 @@ export const DrawerShell: FC<DrawerShellProps> = ({ isOpen, onClose, children })
           right: 0,
           bottom: 0,
           width: "min(380px, 90vw)",
-          backgroundColor: "#eff4ff",
+          backgroundColor: "var(--color-drawer-bg, #eff4ff)",
           zIndex: 10000,
           overflowY: "auto",
           transform: isOpen ? "translateX(0)" : "translateX(100%)",

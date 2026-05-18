@@ -25,6 +25,22 @@ export interface ImageSliderProps {
    */
   showDots?: boolean;
   /**
+   * ドットナビゲーションの配置。デフォルト: "overlay"（スライダー画像上にオーバーレイ）
+   * "below" を指定するとスライダーの下に通常配置される。
+   */
+  dotsPosition?: "overlay" | "below";
+  /**
+   * 画像のフィット方法。デフォルト: "cover"（はみ出し部分はクロップ）
+   * "contain" を指定すると画像全体を表示（余白ができる場合あり）
+   */
+  objectFit?: "cover" | "contain";
+  /**
+   * 親コンテナの実幅にスライド幅を追従させるレスポンシブモード。デフォルト: false
+   * （既存ページ: 1000px 幅前提のフル幅レイアウト）
+   * true にすると、サイドバー併設の狭いカラム内でも切れずに収まる。
+   */
+  responsive?: boolean;
+  /**
    * カウンターの表示位置。デフォルト: "right"
    */
   counterPosition?: "left" | "right";
@@ -54,8 +70,11 @@ export const ImageSlider: FC<ImageSliderProps> = ({
   height = 460,
   className = "",
   showDots = true,
+  dotsPosition = "overlay",
+  objectFit = "cover",
   counterPosition = "right",
   arrowVariant = "dark",
+  responsive = false,
   totalSlides,
   children,
 }) => {
@@ -69,13 +88,20 @@ export const ImageSlider: FC<ImageSliderProps> = ({
   // レスポンシブ: コンテナ幅に応じてスライド幅を変更
   useEffect(() => {
     const updateSlideWidth = () => {
+      if (responsive && containerRef.current) {
+        const w = containerRef.current.clientWidth;
+        if (w > 0) {
+          setSlideWidth(w);
+          return;
+        }
+      }
       const vw = window.innerWidth;
       setSlideWidth(vw < 768 ? vw : DESKTOP_SLIDE_WIDTH);
     };
     updateSlideWidth();
     window.addEventListener("resize", updateSlideWidth);
     return () => window.removeEventListener("resize", updateSlideWidth);
-  }, []);
+  }, [responsive]);
 
   // 実際のインデックス（0〜slides.length-1）
   const realIndex = ((position % slides.length) + slides.length) % slides.length;
@@ -138,7 +164,7 @@ export const ImageSlider: FC<ImageSliderProps> = ({
           <img
             src={slide.imageUrl}
             alt={slide.alt}
-            className="h-full w-full object-cover"
+            className={`h-full w-full ${objectFit === "contain" ? "object-contain" : "object-cover"}`}
           />
         </a>
       ) : (
@@ -151,10 +177,26 @@ export const ImageSlider: FC<ImageSliderProps> = ({
     </div>
   );
 
-  return (
+  const belowDots = showDots && slides.length > 1 && dotsPosition === "below" ? (
+    <div className="flex justify-center gap-2" style={{ marginTop: "10px" }}>
+      {slides.map((_, index) => (
+        <button
+          key={index}
+          type="button"
+          onClick={() => goToSlide(index)}
+          className={`h-2 w-2 rounded-full transition-colors ${
+            index === realIndex ? "bg-gray-700" : "bg-gray-300 hover:bg-gray-400"
+          }`}
+          aria-label={`スライド ${index + 1} へ移動`}
+        />
+      ))}
+    </div>
+  ) : null;
+
+  const sliderInner = (
     <div ref={containerRef} className={`relative overflow-hidden ${className}`} style={{ height: slideWidth < 768 ? "auto" : `${height}px`, aspectRatio: slideWidth < 768 ? "16/9" : undefined }}>
       {/* スライダーコンテナ - 旧サイト準拠: max-width: 1000px, 中央配置, overflow: visible で前後スライドが見切れる */}
-      <div style={{ maxWidth: slideWidth < 768 ? "100%" : `${DESKTOP_SLIDE_WIDTH}px`, margin: "0 auto", height: "100%", position: "relative", overflow: "visible" }}>
+      <div style={{ maxWidth: responsive ? "100%" : (slideWidth < 768 ? "100%" : `${DESKTOP_SLIDE_WIDTH}px`), margin: "0 auto", height: "100%", position: "relative", overflow: responsive ? "hidden" : "visible" }}>
         {/* スライドトラック */}
         <div
           ref={trackRef}
@@ -224,8 +266,8 @@ export const ImageSlider: FC<ImageSliderProps> = ({
         </>
       )}
 
-      {/* インジケーター（ドット） */}
-      {showDots && slides.length > 1 && (
+      {/* インジケーター（ドット） - overlay 配置時のみここに描画 */}
+      {showDots && slides.length > 1 && dotsPosition === "overlay" && (
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
           {slides.map((_, index) => (
             <button
@@ -254,4 +296,15 @@ export const ImageSlider: FC<ImageSliderProps> = ({
       {children}
     </div>
   );
+
+  if (dotsPosition === "below") {
+    return (
+      <div>
+        {sliderInner}
+        {belowDots}
+      </div>
+    );
+  }
+
+  return sliderInner;
 };
